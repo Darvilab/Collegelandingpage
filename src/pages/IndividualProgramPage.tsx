@@ -108,6 +108,11 @@ export function IndividualProgramPage() {
     const modulesSectionRef = useRef(null);
     const whyUniversitySectionRef = useRef(null);
     const faqSectionRef = useRef(null);
+    const mainContentRef = useRef<HTMLDivElement>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const relatedProgramsRef = useRef<HTMLElement>(null);
+    const ctaSectionRef = useRef<HTMLElement>(null);
+    const [isSidebarSticky, setIsSidebarSticky] = useState(true);
 
     const isHeroInView = useInView(heroRef, { once: true });
     const isOverviewInView = useInView(overviewSectionRef, { once: true, margin: "-100px" });
@@ -116,6 +121,53 @@ export function IndividualProgramPage() {
     const isModulesInView = useInView(modulesSectionRef, { once: true, margin: "-100px" });
     const isWhyUniversityInView = useInView(whyUniversitySectionRef, { once: true, margin: "-100px" });
     const isFaqInView = useInView(faqSectionRef, { once: true, margin: "-100px" });
+
+    // Track when sidebar should stop being sticky (when main content ends)
+    useEffect(() => {
+        const handleSidebarSticky = () => {
+            if (!mainContentRef.current) {
+                setIsSidebarSticky(true);
+                return;
+            }
+
+            const mainContentRect = mainContentRef.current.getBoundingClientRect();
+            const headerHeight = 112; // top-28 = 7rem = 112px
+            const mainContentBottomViewport = mainContentRect.bottom;
+
+            // Sidebar should be sticky as long as the main content container's bottom
+            // is still below the sticky position. CSS sticky will automatically handle
+            // sticking when the sidebar reaches the top-28 position.
+            // We only disable sticky when we've scrolled past the main content.
+            const shouldBeSticky = mainContentBottomViewport > headerHeight;
+
+            setIsSidebarSticky(shouldBeSticky);
+        };
+
+        // Throttled scroll handler
+        let ticking = false;
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleSidebarSticky();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        // Initial check
+        const initTimeout = setTimeout(handleSidebarSticky, 100);
+        handleSidebarSticky();
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleSidebarSticky, { passive: true });
+
+        return () => {
+            clearTimeout(initTimeout);
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleSidebarSticky);
+        };
+    }, []);
 
     return (
         <div className="min-h-screen bg-white" lang="en">
@@ -349,9 +401,9 @@ export function IndividualProgramPage() {
 
             {/* Main Content Section - Redesigned for better UI/UX */}
             <main className="relative bg-gray-50/50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                <div ref={mainContentRef} className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
                     {/* Mobile Sidebar Navigation */}
-                    <div className="lg:hidden overflow-x-auto pb-4 mb-8 -mx-4 px-4">
+                    <div className="lg:hidden overflow-x-auto pb-4 mb-8">
                         <nav className="flex gap-2" aria-label="Page navigation">
                             {[
                                 { id: "overview", label: "Overview", icon: BookOpen },
@@ -380,10 +432,14 @@ export function IndividualProgramPage() {
                         </nav>
                     </div>
 
-                    <div className="lg:grid lg:grid-cols-12 lg:gap-16">
+                    <div className="lg:flex lg:gap-8">
                         {/* Sticky Sidebar Navigation (Desktop) */}
-                        <aside className="hidden lg:block lg:col-span-3">
-                            <div className="sticky top-28">
+                        <aside className="hidden lg:block flex-shrink-0 self-start" style={{ width: '25%', maxWidth: '25%' }}>
+                            <div
+                                ref={sidebarRef}
+                                className={isSidebarSticky ? "sticky top-28" : ""}
+                                style={isSidebarSticky ? { position: 'sticky', top: '7rem' } : {}}
+                            >
                                 <nav aria-label="Page sections">
                                     <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wider mb-4">On this page</h3>
                                     <div className="space-y-2">
@@ -417,7 +473,7 @@ export function IndividualProgramPage() {
                         </aside>
 
                         {/* Main Content Flow */}
-                        <div className="lg:col-span-9 space-y-24">
+                        <div className="space-y-24 flex-1 min-w-0">
                             {/* --- Overview Section --- */}
                             <motion.section
                                 ref={overviewSectionRef}
@@ -722,7 +778,7 @@ export function IndividualProgramPage() {
 
             {/* Related Courses Section */}
             {relatedPrograms.length > 0 && (
-                <section className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+                <section ref={relatedProgramsRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
                     <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -805,7 +861,7 @@ export function IndividualProgramPage() {
             )}
 
             {/* CTA Section */}
-            <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 relative overflow-hidden">
+            <section ref={ctaSectionRef} className="py-20 lg:py-32 bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[150px]"></div>
                     <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px]"></div>
@@ -858,4 +914,5 @@ export function IndividualProgramPage() {
         </div>
     );
 }
+
 
