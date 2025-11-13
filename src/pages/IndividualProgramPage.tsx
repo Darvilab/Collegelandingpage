@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap } from "lucide-react";
+import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap, TrendingUp, Users, Target, Lightbulb, Star } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -400,10 +400,16 @@ export function IndividualProgramPage() {
             </section>
 
             {/* Main Content Section - Redesigned for better UI/UX */}
-            <main className="relative bg-gray-50/50">
-                <div ref={mainContentRef} className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+            <main className="relative bg-gradient-to-b from-white via-gray-50/30 to-white">
+                {/* Decorative Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-100/20 rounded-full blur-3xl"></div>
+                </div>
+
+                <div ref={mainContentRef} className="relative max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
                     {/* Mobile Sidebar Navigation */}
-                    <div className="lg:hidden overflow-x-auto pb-4 mb-8">
+                    <div className="lg:hidden overflow-x-auto pb-6 mb-8 -mx-6 px-6">
                         <nav className="flex gap-2" aria-label="Page navigation">
                             {[
                                 { id: "overview", label: "Overview", icon: BookOpen },
@@ -418,9 +424,9 @@ export function IndividualProgramPage() {
                                     <button
                                         key={item.id}
                                         onClick={() => scrollToSection(item.id)}
-                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm whitespace-nowrap transition-all font-medium ${activeSection === item.id
-                                            ? "bg-gradient-to-r from-[#0b4c78] to-cyan-500 text-white shadow-md"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm whitespace-nowrap transition-all font-medium shadow-sm ${activeSection === item.id
+                                            ? "bg-gradient-to-r from-[#0b4c78] to-cyan-500 text-white shadow-lg scale-105"
+                                            : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
                                             }`}
                                         aria-label={`Navigate to ${item.label} section`}
                                     >
@@ -432,7 +438,7 @@ export function IndividualProgramPage() {
                         </nav>
                     </div>
 
-                    <div className="lg:flex lg:gap-8">
+                    <div className="lg:flex lg:gap-12">
                         {/* Sticky Sidebar Navigation (Desktop) */}
                         <aside className="hidden lg:block flex-shrink-0 self-start" style={{ width: '25%', maxWidth: '25%' }}>
                             <div
@@ -440,9 +446,9 @@ export function IndividualProgramPage() {
                                 className={isSidebarSticky ? "sticky top-28" : ""}
                                 style={isSidebarSticky ? { position: 'sticky', top: '7rem' } : {}}
                             >
-                                <nav aria-label="Page sections">
-                                    <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wider mb-4">On this page</h3>
-                                    <div className="space-y-2">
+                                <nav aria-label="Page sections" className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
+                                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6">On this page</h3>
+                                    <div className="space-y-1.5">
                                         {[
                                             { id: "overview", label: "Overview", icon: BookOpen },
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
@@ -456,13 +462,13 @@ export function IndividualProgramPage() {
                                                 <button
                                                     key={item.id}
                                                     onClick={() => scrollToSection(item.id)}
-                                                    className={`group w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out transform hover:translate-x-1 ${activeSection === item.id
-                                                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg"
-                                                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                                                    className={`group w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out ${activeSection === item.id
+                                                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/30 scale-[1.02]"
+                                                        : "text-gray-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 hover:text-gray-900 hover:scale-[1.01]"
                                                         }`}
                                                     aria-current={activeSection === item.id ? "page" : undefined}
                                                 >
-                                                    <ItemIcon className={`h-5 w-5 flex-shrink-0 transition-colors ${activeSection === item.id ? "text-white" : "text-blue-600"}`} />
+                                                    <ItemIcon className={`h-5 w-5 flex-shrink-0 transition-colors ${activeSection === item.id ? "text-white" : "text-blue-600 group-hover:text-blue-700"}`} />
                                                     <span>{item.label}</span>
                                                 </button>
                                             );
@@ -473,7 +479,7 @@ export function IndividualProgramPage() {
                         </aside>
 
                         {/* Main Content Flow */}
-                        <div className="space-y-24 flex-1 min-w-0">
+                        <div className="space-y-32 flex-1 min-w-0">
                             {/* --- Overview Section --- */}
                             <motion.section
                                 ref={overviewSectionRef}
@@ -483,25 +489,55 @@ export function IndividualProgramPage() {
                                 animate={isOverviewInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.7 }}
                             >
-                                <div className="prose prose-lg max-w-none">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <BookOpen className="h-7 w-7 text-blue-600" />
-                                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight m-0">Program Overview</h2>
+                                <div className="relative">
+                                    {/* Section Header */}
+                                    <div className="mb-8">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 mb-6">
+                                            <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+                                                <BookOpen className="h-5 w-5 text-white" />
+                                            </div>
+                                            <span className="text-sm font-semibold text-blue-700 uppercase tracking-wider">Program Overview</span>
+                                        </div>
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                                            Discover Your Path
+                                        </h2>
+                                        <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+                                            {program.overview}
+                                        </p>
                                     </div>
-                                    <p className="text-gray-600">
-                                        {program.overview}
-                                    </p>
-                                </div>
-                                <div className="mt-10 bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-5">What You Will Learn:</h3>
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-                                        {program.youWill.map((item, index) => (
-                                            <li key={index} className="flex items-start gap-3">
-                                                <CheckCircle2 className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" />
-                                                <span className="text-gray-700">{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+
+                                    {/* What You Will Learn Card */}
+                                    <div className="relative mt-12 bg-gradient-to-br from-white to-blue-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden">
+                                        {/* Decorative gradient overlay */}
+                                        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+
+                                        <div className="relative">
+                                            <div className="flex items-center gap-3 mb-8">
+                                                <div className="p-3 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg">
+                                                    <Lightbulb className="h-6 w-6 text-white" />
+                                                </div>
+                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">What You Will Learn</h3>
+                                            </div>
+                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                {program.youWill.map((item, index) => (
+                                                    <motion.li
+                                                        key={index}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={isOverviewInView ? { opacity: 1, x: 0 } : {}}
+                                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                        className="flex items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm hover:bg-white/80 hover:shadow-md transition-all group"
+                                                    >
+                                                        <div className="flex-shrink-0 mt-0.5">
+                                                            <div className="p-1.5 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 group-hover:scale-110 transition-transform">
+                                                                <CheckCircle2 className="h-5 w-5 text-white" />
+                                                            </div>
+                                                        </div>
+                                                        <span className="text-gray-700 font-medium leading-relaxed">{item}</span>
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </motion.section>
 
@@ -514,86 +550,112 @@ export function IndividualProgramPage() {
                                 animate={isFeeInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.7 }}
                             >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <DollarSign className="h-7 w-7 text-blue-600" />
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Fee Structure</h2>
-                                </div>
-                                <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200/80 shadow-xl bg-white">
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-sm">
-                                            <thead className="bg-gray-100">
-                                                <tr>
-                                                    <th scope="col" className="px-6 py-4 text-left font-bold text-gray-800 uppercase tracking-wider">Particulars</th>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <th key={index} scope="col" className="px-6 py-4 text-center font-bold text-gray-800 uppercase tracking-wider">
-                                                            {fee.year}
-                                                        </th>
-                                                    ))}
-                                                </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-gray-200">
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Admission Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Annual Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            NPR {fee.annualFee.toLocaleString()}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">CCA Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            NPR {fee.ccaFee.toLocaleString()}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Semester 1 Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            NPR {fee.semester1Fee.toLocaleString()}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Semester 2 Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            NPR {fee.semester2Fee.toLocaleString()}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="hover:bg-gray-50/50">
-                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">University Regd. Fee</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
-                                                            {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                                <tr className="bg-blue-600 text-white font-bold">
-                                                    <td className="px-6 py-4 whitespace-nowrap text-base">Grand Total</td>
-                                                    {program.feeStructure.map((fee, index) => (
-                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-base">
-                                                            NPR {fee.total.toLocaleString()}
-                                                        </td>
-                                                    ))}
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                <div className="relative">
+                                    {/* Section Header */}
+                                    <div className="mb-10">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-6">
+                                            <div className="p-2 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500">
+                                                <DollarSign className="h-5 w-5 text-white" />
+                                            </div>
+                                            <span className="text-sm font-semibold text-emerald-700 uppercase tracking-wider">Investment</span>
+                                        </div>
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Fee Structure</h2>
+                                        <p className="text-lg text-gray-600 max-w-2xl">Transparent pricing for your educational journey</p>
                                     </div>
-                                </div>
-                                <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200 text-blue-800 text-sm">
-                                    <strong>Note:</strong> University Registration Fee applies only to the first year. Fees are subject to change. Please contact admissions for the most current details.
+
+                                    {/* Fee Table Card */}
+                                    <div className="relative mt-8 overflow-hidden rounded-3xl border border-gray-200/60 shadow-2xl bg-white">
+                                        {/* Decorative elements */}
+                                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500"></div>
+
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full">
+                                                <thead>
+                                                    <tr className="bg-gradient-to-r from-blue-600 to-cyan-500">
+                                                        <th scope="col" className="px-6 py-5 text-left font-bold text-white uppercase tracking-wider text-base">Particulars</th>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <th key={index} scope="col" className="px-6 py-5 text-center font-bold text-white uppercase tracking-wider text-base">
+                                                                {fee.year}
+                                                            </th>
+                                                        ))}
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-gray-200">
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Admission Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Annual Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                NPR {fee.annualFee.toLocaleString()}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">CCA Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                NPR {fee.ccaFee.toLocaleString()}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Semester 1 Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                NPR {fee.semester1Fee.toLocaleString()}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Semester 2 Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                NPR {fee.semester2Fee.toLocaleString()}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 transition-colors">
+                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">University Regd. Fee</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                                {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                    <tr className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold border-t-4 border-blue-700">
+                                                        <td className="px-6 py-6 whitespace-nowrap text-lg">Grand Total</td>
+                                                        {program.feeStructure.map((fee, index) => (
+                                                            <td key={index} className="px-6 py-6 whitespace-nowrap text-center text-lg">
+                                                                NPR {fee.total.toLocaleString()}
+                                                            </td>
+                                                        ))}
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    {/* Note Card */}
+                                    <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-200/60 shadow-lg">
+                                        <div className="flex items-start gap-3">
+                                            <div className="p-2 rounded-lg bg-blue-500 flex-shrink-0">
+                                                <FileText className="h-5 w-5 text-white" />
+                                            </div>
+                                            <div>
+                                                <p className="text-blue-900 font-semibold mb-1">Important Note</p>
+                                                <p className="text-blue-800 text-sm leading-relaxed">
+                                                    University Registration Fee applies only to the first year. Fees are subject to change. Please contact admissions for the most current details.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </motion.section>
 
@@ -606,32 +668,91 @@ export function IndividualProgramPage() {
                                 animate={isDegreeInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.7 }}
                             >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Award className="h-7 w-7 text-blue-600" />
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Career Prospects</h2>
-                                </div>
-                                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2"><Zap className="text-blue-500" />Key Skills You'll Gain</h3>
-                                        <ul className="space-y-4">
-                                            {program.degreeHighlights.map((highlight, index) => (
-                                                <li key={index} className="flex items-start gap-3 text-gray-700">
-                                                    <ChevronRight className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                                                    <span>{highlight}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                <div className="relative">
+                                    {/* Section Header */}
+                                    <div className="mb-10">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 mb-6">
+                                            <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                                                <Award className="h-5 w-5 text-white" />
+                                            </div>
+                                            <span className="text-sm font-semibold text-purple-700 uppercase tracking-wider">Career Prospects</span>
+                                        </div>
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Your Future Awaits</h2>
+                                        <p className="text-lg text-gray-600 max-w-2xl">Unlock your potential with skills and opportunities that shape tomorrow</p>
                                     </div>
-                                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2"><Briefcase className="text-cyan-600" />Potential Career Paths</h3>
-                                        <ul className="space-y-4">
-                                            {program.careerOutcomes.map((career, index) => (
-                                                <li key={index} className="flex items-start gap-3 text-gray-700">
-                                                    <ChevronRight className="h-5 w-5 text-cyan-600 flex-shrink-0 mt-0.5" />
-                                                    <span>{career}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+
+                                    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        {/* Key Skills Card */}
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -30 }}
+                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                            transition={{ duration: 0.6, delay: 0.2 }}
+                                            className="relative bg-gradient-to-br from-white to-blue-50/40 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden group hover:shadow-2xl transition-all"
+                                        >
+                                            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+                                            <div className="relative">
+                                                <div className="flex items-center gap-4 mb-8">
+                                                    <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg group-hover:scale-110 transition-transform">
+                                                        <Zap className="h-6 w-6 text-white" />
+                                                    </div>
+                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Key Skills You'll Gain</h3>
+                                                </div>
+                                                <ul className="space-y-3">
+                                                    {program.degreeHighlights.map((highlight, index) => (
+                                                        <motion.li
+                                                            key={index}
+                                                            initial={{ opacity: 0, x: -20 }}
+                                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                            className="flex items-start gap-3 p-4 rounded-xl bg-white/70 backdrop-blur-sm hover:bg-white/90 hover:shadow-md transition-all group/item"
+                                                        >
+                                                            <div className="flex-shrink-0 mt-0.5">
+                                                                <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-400 to-cyan-400 group-hover/item:scale-110 transition-transform">
+                                                                    <TrendingUp className="h-4 w-4 text-white" />
+                                                                </div>
+                                                            </div>
+                                                            <span className="text-gray-700 font-medium leading-relaxed">{highlight}</span>
+                                                        </motion.li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </motion.div>
+
+                                        {/* Career Paths Card */}
+                                        <motion.div
+                                            initial={{ opacity: 0, x: 30 }}
+                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                            transition={{ duration: 0.6, delay: 0.2 }}
+                                            className="relative bg-gradient-to-br from-white to-cyan-50/40 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden group hover:shadow-2xl transition-all"
+                                        >
+                                            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-cyan-400/10 to-teal-400/10 rounded-full blur-3xl"></div>
+                                            <div className="relative">
+                                                <div className="flex items-center gap-4 mb-8">
+                                                    <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500 shadow-lg group-hover:scale-110 transition-transform">
+                                                        <Briefcase className="h-6 w-6 text-white" />
+                                                    </div>
+                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Potential Career Paths</h3>
+                                                </div>
+                                                <ul className="space-y-3">
+                                                    {program.careerOutcomes.map((career, index) => (
+                                                        <motion.li
+                                                            key={index}
+                                                            initial={{ opacity: 0, x: 20 }}
+                                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                            className="flex items-start gap-3 p-4 rounded-xl bg-white/70 backdrop-blur-sm hover:bg-white/90 hover:shadow-md transition-all group/item"
+                                                        >
+                                                            <div className="flex-shrink-0 mt-0.5">
+                                                                <div className="p-1.5 rounded-lg bg-gradient-to-br from-cyan-400 to-teal-400 group-hover/item:scale-110 transition-transform">
+                                                                    <Target className="h-4 w-4 text-white" />
+                                                                </div>
+                                                            </div>
+                                                            <span className="text-gray-700 font-medium leading-relaxed">{career}</span>
+                                                        </motion.li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </motion.div>
                                     </div>
                                 </div>
                             </motion.section>
@@ -645,55 +766,74 @@ export function IndividualProgramPage() {
                                 animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.7 }}
                             >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <BookMarked className="h-7 w-7 text-blue-600" />
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Course Modules</h2>
-                                </div>
-                                <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full mt-8">
-                                    <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1.5 rounded-xl shadow-inner">
-                                        {program.modules.map((year) => (
-                                            <TabsTrigger
-                                                key={year.year}
-                                                value={year.year}
-                                                className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-md rounded-lg py-2.5 transition-all text-gray-600 font-semibold text-sm"
-                                            >
-                                                {year.year}
-                                            </TabsTrigger>
-                                        ))}
-                                    </TabsList>
-                                    {program.modules.map((year, yearIndex) => (
-                                        <TabsContent key={yearIndex} value={year.year} className="mt-8">
-                                            <div className="space-y-10">
-                                                {year.semesters.map((semester, semIndex) => (
-                                                    <div key={semIndex}>
-                                                        <h3 className="text-2xl font-bold text-gray-800 mb-5 border-l-4 border-blue-500 pl-4">{semester.semester}</h3>
-                                                        <Accordion type="single" collapsible className="w-full space-y-3">
-                                                            {semester.modules.map((module, modIndex) => (
-                                                                <AccordionItem
-                                                                    key={modIndex}
-                                                                    value={`module-${yearIndex}-${semIndex}-${modIndex}`}
-                                                                    className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-                                                                >
-                                                                    <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
-                                                                        {module.name}
-                                                                        <span className="ml-4 text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{module.credits} Credits</span>
-                                                                    </AccordionTrigger>
-                                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
-                                                                        {module.description}
-                                                                    </AccordionContent>
-                                                                </AccordionItem>
-                                                            ))}
-                                                        </Accordion>
-                                                    </div>
-                                                ))}
+                                <div className="relative">
+                                    {/* Section Header */}
+                                    <div className="mb-10">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-6">
+                                            <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500">
+                                                <BookMarked className="h-5 w-5 text-white" />
                                             </div>
-                                        </TabsContent>
-                                    ))}
-                                </Tabs>
+                                            <span className="text-sm font-semibold text-indigo-700 uppercase tracking-wider">Curriculum</span>
+                                        </div>
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Course Modules</h2>
+                                        <p className="text-lg text-gray-600 max-w-2xl">Comprehensive curriculum designed for real-world success</p>
+                                    </div>
+
+                                    <div className="mt-10 bg-gradient-to-br from-white to-indigo-50/20 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10">
+                                        <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
+                                            <TabsList className="grid w-full grid-cols-3 bg-gray-100/80 p-1.5 rounded-2xl shadow-inner border border-gray-200/50 mb-8">
+                                                {program.modules.map((year) => (
+                                                    <TabsTrigger
+                                                        key={year.year}
+                                                        value={year.year}
+                                                        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg rounded-xl py-3 transition-all text-gray-700 font-bold text-sm hover:bg-gray-200/50"
+                                                    >
+                                                        {year.year}
+                                                    </TabsTrigger>
+                                                ))}
+                                            </TabsList>
+                                            {program.modules.map((year, yearIndex) => (
+                                                <TabsContent key={yearIndex} value={year.year} className="mt-6">
+                                                    <div className="space-y-12">
+                                                        {year.semesters.map((semester, semIndex) => (
+                                                            <div key={semIndex} className="relative">
+                                                                <div className="flex items-center gap-4 mb-6">
+                                                                    <div className="h-12 w-1 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></div>
+                                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">{semester.semester}</h3>
+                                                                </div>
+                                                                <Accordion type="single" collapsible className="w-full space-y-4">
+                                                                    {semester.modules.map((module, modIndex) => (
+                                                                        <AccordionItem
+                                                                            key={modIndex}
+                                                                            value={`module-${yearIndex}-${semIndex}-${modIndex}`}
+                                                                            className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden"
+                                                                        >
+                                                                            <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                                                <span className="text-lg pr-4">{module.name}</span>
+                                                                                <div className="flex items-center gap-3 flex-shrink-0">
+                                                                                    <span className="text-sm font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 px-4 py-1.5 rounded-full border border-indigo-200 group-hover:from-indigo-100 group-hover:to-purple-100 transition-colors">
+                                                                                        {module.credits} Credits
+                                                                                    </span>
+                                                                                </div>
+                                                                            </AccordionTrigger>
+                                                                            <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                                                {module.description}
+                                                                            </AccordionContent>
+                                                                        </AccordionItem>
+                                                                    ))}
+                                                                </Accordion>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </TabsContent>
+                                            ))}
+                                        </Tabs>
+                                    </div>
+                                </div>
                             </motion.section>
 
                             {/* --- Why University & FAQ Section --- */}
-                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 scroll-mt-28" id="why-university">
+                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 scroll-mt-28" id="why-university">
                                 {/* Why University */}
                                 {program.whyUniversity && (
                                     <motion.section
@@ -702,13 +842,35 @@ export function IndividualProgramPage() {
                                         animate={isWhyUniversityInView ? { opacity: 1, y: 0 } : {}}
                                         transition={{ duration: 0.7 }}
                                     >
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <Sparkles className="h-7 w-7 text-blue-600" />
-                                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Why Choose Us?</h2>
-                                        </div>
-                                        <div className="mt-8 bg-white p-8 rounded-2xl shadow-lg border border-gray-200/80 prose max-w-none text-gray-600">
-                                            <p>{program.whyUniversity}</p>
-                                            <p className="text-sm italic">Note: The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.</p>
+                                        <div className="relative h-full">
+                                            <div className="mb-8">
+                                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-6">
+                                                    <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
+                                                        <Sparkles className="h-5 w-5 text-white" />
+                                                    </div>
+                                                    <span className="text-sm font-semibold text-amber-700 uppercase tracking-wider">Why Choose Us</span>
+                                                </div>
+                                                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Why Choose Us?</h2>
+                                                <p className="text-lg text-gray-600">Experience excellence in education</p>
+                                            </div>
+                                            <div className="relative bg-gradient-to-br from-white to-amber-50/30 p-8 lg:p-10 rounded-3xl shadow-xl border border-gray-200/60 overflow-hidden group hover:shadow-2xl transition-all">
+                                                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
+                                                <div className="relative">
+                                                    <div className="flex items-start gap-4 mb-6">
+                                                        <div className="p-3 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg flex-shrink-0">
+                                                            <Star className="h-6 w-6 text-white" />
+                                                        </div>
+                                                        <div className="flex-1">
+                                                            <p className="text-gray-700 leading-relaxed text-lg mb-4">{program.whyUniversity}</p>
+                                                            <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200/50">
+                                                                <p className="text-sm text-amber-800 italic leading-relaxed">
+                                                                    <strong className="font-semibold">Note:</strong> The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </motion.section>
                                 )}
@@ -722,52 +884,77 @@ export function IndividualProgramPage() {
                                     animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
                                     transition={{ duration: 0.7 }}
                                 >
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <HelpCircle className="h-7 w-7 text-blue-600" />
-                                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">FAQs</h2>
-                                    </div>
-                                    <div className="mt-8 space-y-3">
-                                        <Accordion type="single" collapsible className="w-full">
-                                            <AccordionItem value="faq-1" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
-                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
-                                                    What are the admission requirements?
-                                                </AccordionTrigger>
-                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
-                                                    {program.admissionEligibility}
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                            <AccordionItem value="faq-2" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
-                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
-                                                    What are the program fees?
-                                                </AccordionTrigger>
-                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
-                                                    The total program fee is NPR {totalFee.toLocaleString()}. This includes all fees across all years.
-                                                    Please refer to the detailed fee structure above for a year-by-year breakdown.
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                            <AccordionItem value="faq-3" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
-                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
-                                                    What are the career prospects after graduation?
-                                                </AccordionTrigger>
-                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
-                                                    <p className="mb-3">Graduates can pursue careers in:</p>
-                                                    <ul className="list-disc list-inside space-y-2">
-                                                        {program.careerOutcomes.map((career, index) => (
-                                                            <li key={index}>{career}</li>
-                                                        ))}
-                                                    </ul>
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                            <AccordionItem value="faq-4" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
-                                                    Are scholarships available?
-                                                </AccordionTrigger>
-                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
-                                                    Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
-                                                    Please contact our admissions office for more information about available scholarships and eligibility criteria.
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        </Accordion>
+                                    <div className="relative h-full">
+                                        <div className="mb-8">
+                                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 mb-6">
+                                                <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 to-pink-500">
+                                                    <HelpCircle className="h-5 w-5 text-white" />
+                                                </div>
+                                                <span className="text-sm font-semibold text-rose-700 uppercase tracking-wider">Frequently Asked</span>
+                                            </div>
+                                            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">FAQs</h2>
+                                            <p className="text-lg text-gray-600">Get answers to common questions</p>
+                                        </div>
+                                        <div className="mt-8 space-y-4">
+                                            <Accordion type="single" collapsible className="w-full">
+                                                <AccordionItem value="faq-1" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
+                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-lg pr-4">What are the admission requirements?</span>
+                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                                                            <HelpCircle className="h-5 w-5 text-rose-600" />
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                        {program.admissionEligibility}
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                                <AccordionItem value="faq-2" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
+                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-lg pr-4">What are the program fees?</span>
+                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                                                            <DollarSign className="h-5 w-5 text-rose-600" />
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                        The total program fee is <strong className="font-semibold text-gray-900">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
+                                                        Please refer to the detailed fee structure above for a year-by-year breakdown.
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                                <AccordionItem value="faq-3" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
+                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-lg pr-4">What are the career prospects after graduation?</span>
+                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                                                            <Briefcase className="h-5 w-5 text-rose-600" />
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                        <p className="mb-4 font-semibold text-gray-900">Graduates can pursue careers in:</p>
+                                                        <ul className="space-y-2">
+                                                            {program.careerOutcomes.map((career, index) => (
+                                                                <li key={index} className="flex items-start gap-3">
+                                                                    <div className="p-1 rounded-full bg-rose-100 mt-1 flex-shrink-0">
+                                                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                                                                    </div>
+                                                                    <span>{career}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                                <AccordionItem value="faq-4" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-lg pr-4">Are scholarships available?</span>
+                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                                                            <Award className="h-5 w-5 text-rose-600" />
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                        Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
+                                                        Please contact our admissions office for more information about available scholarships and eligibility criteria.
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                            </Accordion>
+                                        </div>
                                     </div>
                                 </motion.section>
                             </div>
