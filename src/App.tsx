@@ -1,29 +1,16 @@
-import { Header } from "./components/Header";
-import { HeroSection } from "./components/HeroSection";
-import { ProgramsSection } from "./components/ProgramsSection";
-import { WhyNIETSection } from "./components/WhyNIETSection";
-import { CampusLifeSection } from "./components/CampusLifeSection";
-import { AdmissionProcessSection } from "./components/AdmissionProcessSection";
-import { RecognitionSection } from "./components/RecognitionSection";
-import { FAQSection } from "./components/FAQSection";
-import { FinalCTASection } from "./components/FinalCTASection";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { AboutPage } from "./pages/AboutPage";
+import { AcademicProgramsPage } from "./pages/AcademicProgramsPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <HeroSection />
-        <ProgramsSection />
-        <WhyNIETSection />
-        <CampusLifeSection />
-        <AdmissionProcessSection />
-        <RecognitionSection />
-        <FAQSection />
-        <FinalCTASection />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/academics" element={<AcademicProgramsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

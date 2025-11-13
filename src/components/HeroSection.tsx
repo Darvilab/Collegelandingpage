@@ -16,7 +16,7 @@ export function HeroSection() {
       {/* Animated Background Image */}
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1685456891912-c09f9cd252eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwY2FtcHVzfGVufDF8fHx8MTc2MjcxNDk1Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+          src="/building1_khNhjUl.jpg"
           alt="NIET Campus"
           className="w-full h-full object-cover opacity-20"
         />
