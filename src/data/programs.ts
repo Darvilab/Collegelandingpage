@@ -68,7 +68,7 @@ export const programs: Program[] = [
         intake: "Autumn",
         overview: "Our BTech in Artificial Intelligence program focuses on machine learning, deep learning, natural language processing, and ethical AI. Students master cutting-edge AI technologies including neural networks, computer vision, and generative AI systems.",
         description: "BTech in Artificial Intelligence course integrates foundational computer science and AI expertise, emphasizing computational thinking, programming, and advanced AI techniques for a versatile skill set in technology.",
-        image: "https://images.unsplash.com/photo-1625314887424-9f190599bd56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwcm9ib3R8ZW58MXx8fHwxNzYyNzU0NjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        image: "/AILab.png",
         gradient: "from-violet-500 via-purple-500 to-indigo-500",
         coreCourses: [
             "Neural Networks and Deep Learning",
