@@ -43,9 +43,11 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#0b4c78] to-cyan-400 rounded-2xl flex items-center justify-center">
-                <span className="text-white text-xl">N</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="NIET Logo"
+                className="w-12 h-12 object-contain rounded-full"
+              />
               <div className="flex flex-col">
                 <span className="text-white text-xl">NIET</span>
                 <span className="text-xs text-gray-500">Engineering Excellence</span>

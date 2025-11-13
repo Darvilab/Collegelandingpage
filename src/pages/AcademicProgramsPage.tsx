@@ -19,7 +19,7 @@ export function AcademicProgramsPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-24">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="/building1_khNhjUl.jpg"
@@ -33,8 +33,8 @@ export function AcademicProgramsPage() {
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-20">
-          <div className="max-w-5xl text-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40 flex flex-col items-center justify-center min-h-screen">
+          <div className="max-w-5xl text-center mb-12 lg:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -67,6 +67,46 @@ export function AcademicProgramsPage() {
               Comprehensive engineering education designed for the future. Three cutting-edge programs to shape your career in technology and healthcare.
             </motion.p>
           </div>
+
+          {/* Programs Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6"
+          >
+            {programs.map((program, index) => {
+              const Icon = program.icon;
+              return (
+                <Link
+                  key={program.id}
+                  to={`/academics/${program.slug}`}
+                  className="group"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                    className="relative h-full p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all cursor-pointer"
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <Icon className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                        {program.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-sm text-blue-200">
+                        <span>{program.degree}</span>
+                        <span>•</span>
+                        <span>{program.duration}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
