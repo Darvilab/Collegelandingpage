@@ -121,7 +121,7 @@ export function IndividualProgramPage() {
         <div className="min-h-screen bg-white" lang="en">
             <Header />
             {/* Hero Section */}
-            <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-24">
+            <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
                 {/* Animated Background Image */}
                 <div className="absolute inset-0 z-0">
                     <ImageWithFallback
@@ -139,16 +139,16 @@ export function IndividualProgramPage() {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32 w-full">
-                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-16 lg:py-32 w-full">
+                    <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center mb-12 lg:mb-16">
                         {/* Left Side - Program Image */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.8 }}
-                            className="relative"
+                            className="relative order-2 lg:order-1"
                         >
-                            <div className="relative h-[500px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl">
+                            <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl">
                                 <ImageWithFallback
                                     src={program.image}
                                     alt={program.title}
@@ -196,7 +196,7 @@ export function IndividualProgramPage() {
                                 </div>
                             </div>
                             {program.studentName && (
-                                <p className="text-sm text-blue-200/80 mt-4 text-center">
+                                <p className="text-xs sm:text-sm text-blue-200/80 mt-3 sm:mt-4 text-center">
                                     Student on picture: {program.studentName}
                                 </p>
                             )}
@@ -207,71 +207,65 @@ export function IndividualProgramPage() {
                             initial={{ opacity: 0, x: 50 }}
                             animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="space-y-8 max-w-3xl"
+                            className="space-y-6 lg:space-y-8 max-w-3xl order-1 lg:order-2 mb-8 lg:mb-0"
                         >
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.4 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+                                className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
                             >
-                                <GraduationCap className="h-4 w-4 text-cyan-400" />
-                                <span className="text-white text-sm font-semibold">{program.degree}</span>
+                                <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-400" />
+                                <span className="text-white text-xs sm:text-sm font-semibold">{program.degree}</span>
                             </motion.div>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-[1.2] tracking-tight mb-6">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-[1.2] tracking-tight mb-4 lg:mb-6">
                                 {program.title}
                             </h1>
 
-                            <div className="flex flex-wrap gap-3 mb-6">
-                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-sm">Duration:</span>
-                                    <span className="text-white font-semibold">{program.duration}</span>
+                            <div className="flex flex-wrap gap-2 lg:gap-3 mb-4 lg:mb-6">
+                                <div className="flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Duration:</span>
+                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.duration}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-sm">Credit:</span>
-                                    <span className="text-white font-semibold">{program.credit}</span>
+                                <div className="flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Credit:</span>
+                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.credit}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-sm">Intake:</span>
-                                    <span className="text-white font-semibold">{program.intake}</span>
+                                <div className="flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Intake:</span>
+                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.intake}</span>
                                 </div>
                             </div>
 
-                            <p className="text-xl md:text-2xl text-blue-100/90 leading-[1.2] mb-8">
+                            <p className="text-lg sm:text-xl md:text-2xl text-blue-100/90 leading-[1.2] mb-6 lg:mb-8">
                                 {program.description}
                             </p>
 
-                            <div className="flex flex-col md:flex-row gap-4 mb-8">
+                            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-6 lg:mb-8">
                                 <Button
                                     size="lg"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-6 h-12 group"
+                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base lg:text-lg px-5 lg:px-6 h-11 lg:h-12 group"
                                     aria-label="Download program brochure"
                                 >
-                                    <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                                    <Download className="mr-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:scale-110 transition-transform" />
                                     Download Brochure
                                 </Button>
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-6 h-12 transition-all"
+                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-base lg:text-lg px-5 lg:px-6 h-11 lg:h-12 transition-all"
                                     onClick={() => scrollToSection("fee-structure")}
                                     aria-label="View fee structure"
                                 >
-                                    <FileText className="mr-2 h-5 w-5" />
+                                    <FileText className="mr-2 h-4 w-4 lg:h-5 lg:w-5" />
                                     Fee Structure
                                 </Button>
                             </div>
 
-                            {/* Admission Eligibility - Simplified */}
-                            <div className="pt-6 border-t border-white/20">
-                                <h3 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">ADMISSION ELIGIBILITY</h3>
-                                <p className="text-blue-100/90 leading-relaxed text-base">{program.admissionEligibility}</p>
-                            </div>
-
                             <Button
                                 size="lg"
-                                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group w-full md:w-auto"
+                                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base lg:text-lg px-6 lg:px-8 h-12 lg:h-14 group w-full sm:w-auto mb-0"
                                 aria-label="Apply now for this program"
                             >
                                 Apply Now
@@ -279,6 +273,77 @@ export function IndividualProgramPage() {
                             </Button>
                         </motion.div>
                     </div>
+
+                    {/* Key Highlights Section - Below the fold but visible */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="mt-16 lg:mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto"
+                    >
+                        {/* Career Prospects */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-7 hover:bg-white/15 transition-all">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2.5 rounded-xl bg-cyan-500/20">
+                                    <Briefcase className="h-5 w-5 text-cyan-300" />
+                                </div>
+                                <h3 className="text-white font-bold text-base lg:text-lg">Career Prospects</h3>
+                            </div>
+                            <ul className="space-y-2.5">
+                                {program.careerOutcomes.slice(0, 3).map((career, index) => (
+                                    <li key={index} className="flex items-start gap-2.5 text-blue-100/90 text-sm lg:text-base">
+                                        <ChevronRight className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                                        <span>{career}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {program.careerOutcomes.length > 3 && (
+                                <button
+                                    onClick={() => scrollToSection("degree-highlights")}
+                                    className="text-cyan-200 hover:text-cyan-100 text-xs lg:text-sm mt-4 transition-colors cursor-pointer hover:underline"
+                                >
+                                    +{program.careerOutcomes.length - 3} more careers
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Key Skills */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-7 hover:bg-white/15 transition-all">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2.5 rounded-xl bg-blue-500/20">
+                                    <Zap className="h-5 w-5 text-blue-300" />
+                                </div>
+                                <h3 className="text-white font-bold text-base lg:text-lg">Key Skills</h3>
+                            </div>
+                            <ul className="space-y-2.5">
+                                {program.degreeHighlights.slice(0, 3).map((skill, index) => (
+                                    <li key={index} className="flex items-start gap-4 text-blue-100/90 text-sm lg:text-base">
+                                        <CheckCircle2 className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                                        <span>{skill}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {program.degreeHighlights.length > 3 && (
+                                <button
+                                    onClick={() => scrollToSection("degree-highlights")}
+                                    className="text-cyan-200 hover:text-cyan-100 text-xs lg:text-sm mt-4 transition-colors cursor-pointer hover:underline"
+                                >
+                                    +{program.degreeHighlights.length - 3} more skills
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Admission Eligibility */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-7 hover:bg-white/15 transition-all sm:col-span-2 lg:col-span-1">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2.5 rounded-xl bg-purple-500/20">
+                                    <GraduationCap className="h-5 w-5 text-purple-300" />
+                                </div>
+                                <h3 className="text-white font-bold text-base lg:text-lg">Eligibility</h3>
+                            </div>
+                            <p className="text-blue-100/90 leading-relaxed text-sm lg:text-base">{program.admissionEligibility}</p>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
 
