@@ -156,7 +156,40 @@ export function IndividualProgramPage() {
                                     loading="eager"
                                 />
                                 <div className={`absolute inset-0 bg-gradient-to-br ${program.gradient} opacity-30`}></div>
-                                <div className="absolute top-6 left-6">
+
+                                {/* Course-specific illustration overlay */}
+                                {program.slug === "btech-artificial-intelligence" && (
+                                    <div className="absolute inset-0">
+                                        <ImageWithFallback
+                                            src="/ArtificialIntelligence.png"
+                                            alt="Artificial Intelligence Illustration"
+                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            loading="eager"
+                                        />
+                                    </div>
+                                )}
+                                {program.slug === "be-biomedical-engineering" && (
+                                    <div className="absolute inset-0">
+                                        <ImageWithFallback
+                                            src="/BioMedicalEngineeringInNepal.png"
+                                            alt="Biomedical Engineering Illustration"
+                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            loading="eager"
+                                        />
+                                    </div>
+                                )}
+                                {program.slug === "be-computer-engineering" && (
+                                    <div className="absolute inset-0">
+                                        <ImageWithFallback
+                                            src="/ComputerEngineering.png"
+                                            alt="Computer Engineering Illustration"
+                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            loading="eager"
+                                        />
+                                    </div>
+                                )}
+
+                                <div className="absolute top-6 left-6 z-10">
                                     <div className="w-16 h-16 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center">
                                         <Icon className="h-8 w-8 text-gray-900" />
                                     </div>
@@ -249,11 +282,11 @@ export function IndividualProgramPage() {
                 </div>
             </section>
 
-            {/* Main Content */}
-            <section className="py-20 lg:py-32 bg-white">
-                <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            {/* Main Content Section - Redesigned for better UI/UX */}
+            <main className="relative bg-gray-50/50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
                     {/* Mobile Sidebar Navigation */}
-                    <div className="lg:hidden overflow-x-auto pb-4 mb-8 -mx-6 px-6">
+                    <div className="lg:hidden overflow-x-auto pb-4 mb-8 -mx-4 px-4">
                         <nav className="flex gap-2" aria-label="Page navigation">
                             {[
                                 { id: "overview", label: "Overview", icon: BookOpen },
@@ -282,349 +315,13 @@ export function IndividualProgramPage() {
                         </nav>
                     </div>
 
-                    <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                        {/* Main Content Area - Left Side */}
-                        <div className="lg:col-span-9 space-y-16 lg:space-y-20">
-                            {/* Overview Section */}
-                            <motion.div
-                                ref={overviewSectionRef}
-                                id="overview"
-                                className="scroll-mt-24"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isOverviewInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="mb-6">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                        <BookOpen className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                        <span className="text-[#0b4c78] text-xs font-medium">Program Overview</span>
-                                    </div>
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                        Overview
-                                    </h2>
-                                </div>
-                                <p className="text-gray-700 leading-relaxed text-lg mb-8">
-                                    {program.overview}
-                                </p>
-                                <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-4">You will:</h3>
-                                    <ul className="space-y-3">
-                                        {program.youWill.map((item, index) => (
-                                            <li key={index} className="flex items-start gap-3">
-                                                <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0 mt-0.5" />
-                                                <span className="text-gray-700 text-sm leading-relaxed">{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </motion.div>
-
-                            {/* Fee Structure Section */}
-                            <motion.div
-                                ref={feeSectionRef}
-                                id="fee-structure"
-                                className="scroll-mt-24"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isFeeInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="mb-6">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                        <DollarSign className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                        <span className="text-[#0b4c78] text-xs font-medium">Financial Information</span>
-                                    </div>
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                        Fee Structure
-                                    </h2>
-                                </div>
-                                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
-                                    <table className="w-full border-collapse" role="table" aria-label="Program fee structure">
-                                        <caption className="sr-only">Fee structure breakdown by year</caption>
-                                        <thead>
-                                            <tr className="bg-blue-600">
-                                                <th scope="col" className="px-4 py-3 text-left font-semibold text-white text-sm">Particulars</th>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <th key={index} scope="col" className="px-4 py-3 text-center font-semibold text-white text-sm">
-                                                        {fee.year}
-                                                    </th>
-                                                ))}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Admission Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Annual Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        NPR {fee.annualFee.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">CCA Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        NPR {fee.ccaFee.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Semester 1 Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        NPR {fee.semester1Fee.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Semester 2 Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        NPR {fee.semester2Fee.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
-                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">University Regd. Fee</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
-                                                        {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                            <tr className="bg-blue-100 font-bold border-y-2 border-blue-300">
-                                                <td className="px-4 py-3 text-gray-900 text-base" data-label="Particulars">Total</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-900 text-base" data-label={fee.year}>
-                                                        NPR {fee.total.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                                    <p className="text-sm text-gray-700 leading-relaxed">
-                                        <strong className="text-gray-900 font-semibold">Notes:</strong> University Registration Fee is applicable only in the first year.
-                                        All fees are subject to change. Please contact admissions for the most current fee structure.
-                                    </p>
-                                </div>
-                            </motion.div>
-
-                            {/* Degree Career Highlights & Opportunities - Combined Section */}
-                            <motion.div
-                                ref={degreeSectionRef}
-                                id="degree-highlights"
-                                className="scroll-mt-24"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isDegreeInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="mb-6">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                        <Award className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                        <span className="text-[#0b4c78] text-xs font-medium">Career & Skills</span>
-                                    </div>
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                        Degree Career Highlights & Opportunities
-                                    </h2>
-                                </div>
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    {/* Left Column - Skills/Highlights */}
-                                    <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Skills You'll Gain</h3>
-                                        <ul className="space-y-4 divide-y divide-gray-100">
-                                            {program.degreeHighlights.map((highlight, index) => (
-                                                <li key={index} className="flex items-start gap-3 py-2 first:pt-0 last:pb-0">
-                                                    <Zap className="h-5 w-5 text-blue-500 flex-shrink-0" />
-                                                    <span className="text-gray-700 leading-relaxed text-sm">{highlight}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Right Column - Career Opportunities */}
-                                    <div
-                                        id="career-opportunities"
-                                        className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm"
-                                    >
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Career Opportunities</h3>
-                                        <ul className="space-y-4">
-                                            {program.careerOutcomes.map((career, index) => (
-                                                <li key={index} className="flex items-center gap-3">
-                                                    <Briefcase className="h-5 w-5 text-cyan-600 flex-shrink-0" />
-                                                    <span className="text-gray-700 leading-relaxed text-sm">{career}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            {/* Modules Section */}
-                            <motion.div
-                                ref={modulesSectionRef}
-                                id="modules"
-                                className="scroll-mt-24"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="mb-6">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                        <BookMarked className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                        <span className="text-[#0b4c78] text-xs font-medium">Curriculum</span>
-                                    </div>
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                        Modules
-                                    </h2>
-                                </div>
-                                <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
-                                    <div className="sticky top-24 z-10 bg-white pb-4">
-                                        <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1.5 rounded-xl shadow-inner">
-                                            {program.modules.map((year, index) => (
-                                                <TabsTrigger
-                                                    key={index}
-                                                    value={year.year}
-                                                    className="data-[state=active]:bg-white data-[state=active]:text-[#0b4c78] data-[state=active]:shadow-md rounded-lg py-2 transition-all text-gray-600 font-semibold"
-                                                    aria-label={`View ${year.year} modules`}
-                                                >
-                                                    {year.year}
-                                                </TabsTrigger>
-                                            ))}
-                                        </TabsList>
-                                    </div>
-                                    {program.modules.map((year, yearIndex) => (
-                                        <TabsContent key={yearIndex} value={year.year} className="space-y-6">
-                                            {year.semesters.map((semester, semIndex) => (
-                                                <div key={semIndex} className="mb-10">
-                                                    <h3 className="text-xl font-bold text-gray-900 mb-5 px-2">{semester.semester}</h3>
-                                                    <Accordion type="single" collapsible className="w-full space-y-2">
-                                                        {semester.modules.map((module, modIndex) => (
-                                                            <AccordionItem
-                                                                key={modIndex}
-                                                                value={`module-${yearIndex}-${semIndex}-${modIndex}`}
-                                                                className="border-b border-gray-200 last:border-b-0 overflow-hidden rounded-xl mb-4 shadow-sm"
-                                                            >
-                                                                <AccordionTrigger className="flex justify-between items-center text-lg font-bold py-5 hover:no-underline bg-white hover:bg-blue-50 transition-colors px-6 rounded-t-xl data-[state=open]:rounded-b-none">
-                                                                    <div className="flex items-center justify-between w-full pr-4">
-                                                                        <span className="font-semibold text-gray-900">{module.name}</span>
-                                                                        <span className="text-sm font-medium text-[#0b4c78] bg-blue-50 px-3 py-1 rounded-full">{module.credits} Credits</span>
-                                                                    </div>
-                                                                </AccordionTrigger>
-                                                                <AccordionContent className="px-8 pb-5">
-                                                                    <p className="text-gray-700 leading-relaxed">{module.description}</p>
-                                                                </AccordionContent>
-                                                            </AccordionItem>
-                                                        ))}
-                                                    </Accordion>
-                                                </div>
-                                            ))}
-                                        </TabsContent>
-                                    ))}
-                                </Tabs>
-                            </motion.div>
-
-                            {/* Why University Section */}
-                            {program.whyUniversity && (
-                                <motion.div
-                                    ref={whyUniversitySectionRef}
-                                    id="why-university"
-                                    className="scroll-mt-24"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={isWhyUniversityInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ duration: 0.6 }}
-                                >
-                                    <div className="mb-6">
-                                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                            <Sparkles className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                            <span className="text-[#0b4c78] text-xs font-medium">Why Choose Us</span>
-                                        </div>
-                                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                            Why University?
-                                        </h2>
-                                    </div>
-                                    <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
-                                        <p className="text-gray-700 leading-relaxed mb-4">
-                                            {program.whyUniversity}
-                                        </p>
-                                        <p className="text-sm text-gray-600 italic leading-relaxed">
-                                            Note: The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            )}
-
-                            {/* FAQ Section */}
-                            <motion.div
-                                ref={faqSectionRef}
-                                id="faq"
-                                className="scroll-mt-24"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="mb-6">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-                                        <HelpCircle className="h-3.5 w-3.5 text-[#0b4c78]" />
-                                        <span className="text-[#0b4c78] text-xs font-medium">Common Questions</span>
-                                    </div>
-                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-                                        FAQ
-                                    </h2>
-                                </div>
-                                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                                    <Accordion type="single" collapsible className="w-full" defaultValue="none">
-                                        <AccordionItem value="faq-1" className="border-b border-gray-200">
-                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the admission requirements?</AccordionTrigger>
-                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
-                                                {program.admissionEligibility}
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                        <AccordionItem value="faq-2" className="border-b border-gray-200">
-                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the program fees?</AccordionTrigger>
-                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
-                                                The total program fee is NPR {totalFee.toLocaleString()}. This includes all fees across all years.
-                                                Please refer to the detailed fee structure above for a year-by-year breakdown.
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                        <AccordionItem value="faq-3" className="border-b border-gray-200">
-                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the career prospects after graduation?</AccordionTrigger>
-                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
-                                                <p className="mb-3">Graduates can pursue careers in:</p>
-                                                <ul className="list-disc list-inside space-y-2">
-                                                    {program.careerOutcomes.map((career, index) => (
-                                                        <li key={index}>{career}</li>
-                                                    ))}
-                                                </ul>
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                        <AccordionItem value="faq-4">
-                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">Are scholarships available?</AccordionTrigger>
-                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
-                                                Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
-                                                Please contact our admissions office for more information about available scholarships and eligibility criteria.
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    </Accordion>
-                                </div>
-                            </motion.div>
-                        </div>
-
-                        {/* Desktop Sidebar Navigation - Right Side, Sticky */}
-                        <div className="hidden lg:block lg:col-span-3">
-                            <div className="sticky top-24 z-10">
-                                <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
-                                    <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">ON THIS PAGE</h3>
-                                    <nav className="space-y-1" aria-label="Table of contents">
+                    <div className="lg:grid lg:grid-cols-12 lg:gap-16">
+                        {/* Sticky Sidebar Navigation (Desktop) */}
+                        <aside className="hidden lg:block lg:col-span-3">
+                            <div className="sticky top-28">
+                                <nav aria-label="Page sections">
+                                    <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wider mb-4">On this page</h3>
+                                    <div className="space-y-2">
                                         {[
                                             { id: "overview", label: "Overview", icon: BookOpen },
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
@@ -638,24 +335,325 @@ export function IndividualProgramPage() {
                                                 <button
                                                     key={item.id}
                                                     onClick={() => scrollToSection(item.id)}
-                                                    className={`flex items-center gap-2.5 w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#0b4c78] focus:ring-offset-1 ${activeSection === item.id
-                                                        ? "bg-blue-500 text-white font-bold shadow-lg"
-                                                        : "text-gray-600 hover:text-[#0b4c78] hover:bg-gray-50"
+                                                    className={`group w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out transform hover:translate-x-1 ${activeSection === item.id
+                                                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg"
+                                                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                                                         }`}
-                                                    aria-label={`Navigate to ${item.label} section`}
+                                                    aria-current={activeSection === item.id ? "page" : undefined}
                                                 >
-                                                    <ItemIcon className={`h-4 w-4 flex-shrink-0 ${activeSection === item.id ? "text-white" : "text-[#0b4c78]"}`} />
+                                                    <ItemIcon className={`h-5 w-5 flex-shrink-0 transition-colors ${activeSection === item.id ? "text-white" : "text-blue-600"}`} />
                                                     <span>{item.label}</span>
                                                 </button>
                                             );
                                         })}
-                                    </nav>
+                                    </div>
+                                </nav>
+                            </div>
+                        </aside>
+
+                        {/* Main Content Flow */}
+                        <div className="lg:col-span-9 space-y-24">
+                            {/* --- Overview Section --- */}
+                            <motion.section
+                                ref={overviewSectionRef}
+                                id="overview"
+                                className="scroll-mt-28"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isOverviewInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.7 }}
+                            >
+                                <div className="prose prose-lg max-w-none">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <BookOpen className="h-7 w-7 text-blue-600" />
+                                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight m-0">Program Overview</h2>
+                                    </div>
+                                    <p className="text-gray-600">
+                                        {program.overview}
+                                    </p>
                                 </div>
+                                <div className="mt-10 bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-5">What You Will Learn:</h3>
+                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                                        {program.youWill.map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <CheckCircle2 className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" />
+                                                <span className="text-gray-700">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.section>
+
+                            {/* --- Fee Structure Section --- */}
+                            <motion.section
+                                ref={feeSectionRef}
+                                id="fee-structure"
+                                className="scroll-mt-28"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isFeeInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.7 }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <DollarSign className="h-7 w-7 text-blue-600" />
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Fee Structure</h2>
+                                </div>
+                                <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200/80 shadow-xl bg-white">
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm">
+                                            <thead className="bg-gray-100">
+                                                <tr>
+                                                    <th scope="col" className="px-6 py-4 text-left font-bold text-gray-800 uppercase tracking-wider">Particulars</th>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <th key={index} scope="col" className="px-6 py-4 text-center font-bold text-gray-800 uppercase tracking-wider">
+                                                            {fee.year}
+                                                        </th>
+                                                    ))}
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-200">
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Admission Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Annual Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            NPR {fee.annualFee.toLocaleString()}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">CCA Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            NPR {fee.ccaFee.toLocaleString()}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Semester 1 Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            NPR {fee.semester1Fee.toLocaleString()}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">Semester 2 Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            NPR {fee.semester2Fee.toLocaleString()}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="hover:bg-gray-50/50">
+                                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">University Regd. Fee</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-gray-600">
+                                                            {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                                <tr className="bg-blue-600 text-white font-bold">
+                                                    <td className="px-6 py-4 whitespace-nowrap text-base">Grand Total</td>
+                                                    {program.feeStructure.map((fee, index) => (
+                                                        <td key={index} className="px-6 py-4 whitespace-nowrap text-center text-base">
+                                                            NPR {fee.total.toLocaleString()}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200 text-blue-800 text-sm">
+                                    <strong>Note:</strong> University Registration Fee applies only to the first year. Fees are subject to change. Please contact admissions for the most current details.
+                                </div>
+                            </motion.section>
+
+                            {/* --- Career Highlights & Opportunities Section --- */}
+                            <motion.section
+                                ref={degreeSectionRef}
+                                id="degree-highlights"
+                                className="scroll-mt-28"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isDegreeInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.7 }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <Award className="h-7 w-7 text-blue-600" />
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Career Prospects</h2>
+                                </div>
+                                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2"><Zap className="text-blue-500" />Key Skills You'll Gain</h3>
+                                        <ul className="space-y-4">
+                                            {program.degreeHighlights.map((highlight, index) => (
+                                                <li key={index} className="flex items-start gap-3 text-gray-700">
+                                                    <ChevronRight className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                                                    <span>{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200/80 p-8">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2"><Briefcase className="text-cyan-600" />Potential Career Paths</h3>
+                                        <ul className="space-y-4">
+                                            {program.careerOutcomes.map((career, index) => (
+                                                <li key={index} className="flex items-start gap-3 text-gray-700">
+                                                    <ChevronRight className="h-5 w-5 text-cyan-600 flex-shrink-0 mt-0.5" />
+                                                    <span>{career}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </motion.section>
+
+                            {/* --- Modules Section --- */}
+                            <motion.section
+                                ref={modulesSectionRef}
+                                id="modules"
+                                className="scroll-mt-28"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.7 }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <BookMarked className="h-7 w-7 text-blue-600" />
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">Course Modules</h2>
+                                </div>
+                                <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full mt-8">
+                                    <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1.5 rounded-xl shadow-inner">
+                                        {program.modules.map((year) => (
+                                            <TabsTrigger
+                                                key={year.year}
+                                                value={year.year}
+                                                className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-md rounded-lg py-2.5 transition-all text-gray-600 font-semibold text-sm"
+                                            >
+                                                {year.year}
+                                            </TabsTrigger>
+                                        ))}
+                                    </TabsList>
+                                    {program.modules.map((year, yearIndex) => (
+                                        <TabsContent key={yearIndex} value={year.year} className="mt-8">
+                                            <div className="space-y-10">
+                                                {year.semesters.map((semester, semIndex) => (
+                                                    <div key={semIndex}>
+                                                        <h3 className="text-2xl font-bold text-gray-800 mb-5 border-l-4 border-blue-500 pl-4">{semester.semester}</h3>
+                                                        <Accordion type="single" collapsible className="w-full space-y-3">
+                                                            {semester.modules.map((module, modIndex) => (
+                                                                <AccordionItem
+                                                                    key={modIndex}
+                                                                    value={`module-${yearIndex}-${semIndex}-${modIndex}`}
+                                                                    className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                                                                >
+                                                                    <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
+                                                                        {module.name}
+                                                                        <span className="ml-4 text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{module.credits} Credits</span>
+                                                                    </AccordionTrigger>
+                                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
+                                                                        {module.description}
+                                                                    </AccordionContent>
+                                                                </AccordionItem>
+                                                            ))}
+                                                        </Accordion>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </TabsContent>
+                                    ))}
+                                </Tabs>
+                            </motion.section>
+
+                            {/* --- Why University & FAQ Section --- */}
+                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 scroll-mt-28" id="why-university">
+                                {/* Why University */}
+                                {program.whyUniversity && (
+                                    <motion.section
+                                        ref={whyUniversitySectionRef}
+                                        initial={{ opacity: 0, y: 50 }}
+                                        animate={isWhyUniversityInView ? { opacity: 1, y: 0 } : {}}
+                                        transition={{ duration: 0.7 }}
+                                    >
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <Sparkles className="h-7 w-7 text-blue-600" />
+                                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Why Choose Us?</h2>
+                                        </div>
+                                        <div className="mt-8 bg-white p-8 rounded-2xl shadow-lg border border-gray-200/80 prose max-w-none text-gray-600">
+                                            <p>{program.whyUniversity}</p>
+                                            <p className="text-sm italic">Note: The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.</p>
+                                        </div>
+                                    </motion.section>
+                                )}
+
+                                {/* FAQ */}
+                                <motion.section
+                                    ref={faqSectionRef}
+                                    id="faq"
+                                    className="scroll-mt-28"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.7 }}
+                                >
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <HelpCircle className="h-7 w-7 text-blue-600" />
+                                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">FAQs</h2>
+                                    </div>
+                                    <div className="mt-8 space-y-3">
+                                        <Accordion type="single" collapsible className="w-full">
+                                            <AccordionItem value="faq-1" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
+                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
+                                                    What are the admission requirements?
+                                                </AccordionTrigger>
+                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
+                                                    {program.admissionEligibility}
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                            <AccordionItem value="faq-2" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
+                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
+                                                    What are the program fees?
+                                                </AccordionTrigger>
+                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
+                                                    The total program fee is NPR {totalFee.toLocaleString()}. This includes all fees across all years.
+                                                    Please refer to the detailed fee structure above for a year-by-year breakdown.
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                            <AccordionItem value="faq-3" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow mb-3">
+                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
+                                                    What are the career prospects after graduation?
+                                                </AccordionTrigger>
+                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
+                                                    <p className="mb-3">Graduates can pursue careers in:</p>
+                                                    <ul className="list-disc list-inside space-y-2">
+                                                        {program.careerOutcomes.map((career, index) => (
+                                                            <li key={index}>{career}</li>
+                                                        ))}
+                                                    </ul>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                            <AccordionItem value="faq-4" className="bg-white border border-gray-200/80 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 text-left font-semibold text-gray-800 hover:no-underline">
+                                                    Are scholarships available?
+                                                </AccordionTrigger>
+                                                <AccordionContent className="px-6 pb-6 pt-2 text-gray-600">
+                                                    Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
+                                                    Please contact our admissions office for more information about available scholarships and eligibility criteria.
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
+                                    </div>
+                                </motion.section>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </main>
 
             {/* Related Courses Section */}
             {relatedPrograms.length > 0 && (
