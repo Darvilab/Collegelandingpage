@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Button } from "./ui/button";
-import { Menu, X, ChevronDown, Brain, HeartPulse, Cpu, GraduationCap } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { getAllPrograms } from "../data/programs";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,11 +31,16 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const allPrograms = getAllPrograms();
   const programs = [
     { name: "All Programs", href: "/academics", degree: null, icon: GraduationCap, description: "Explore our full range of engineering degrees" },
-    { name: "Artificial Intelligence (AI)", href: "/academics#btech-ai", degree: "BTech", icon: Brain, description: "Master AI technologies and machine learning" },
-    { name: "Biomedical Engineering", href: "/academics#be-bme", degree: "BE", icon: HeartPulse, description: "Innovate in healthcare and medical devices" },
-    { name: "Computer Engineering", href: "/academics#be-computer", degree: "BE", icon: Cpu, description: "Build the future of computing systems" },
+    ...allPrograms.map(p => ({
+      name: p.title,
+      href: `/academics/${p.slug}`,
+      degree: p.degree,
+      icon: p.icon,
+      description: p.overview.substring(0, 80) + "..."
+    }))
   ];
 
   const navigation = [
@@ -116,6 +122,7 @@ export function Header() {
                     {programs.map((program, index) => {
                       const IconComponent = program.icon;
                       const isNew = program.name.includes("Artificial Intelligence") && new Date().getFullYear() === 2025;
+                      const isActive = location.pathname === program.href || (location.pathname.startsWith('/academics/') && index > 0 && location.pathname === program.href);
                       return (
                         <Link
                           key={index}
@@ -124,7 +131,7 @@ export function Header() {
                           className={`group relative flex items-start gap-4 px-6 py-5 text-gray-700 hover:bg-gradient-to-r hover:from-cyan-50/80 hover:via-blue-50/60 hover:to-cyan-50/40 hover:text-[#0b4c78] transition-all duration-300 ease-out hover:translate-x-1 ${index === 0
                             ? 'font-semibold text-gray-900 bg-gradient-to-r from-cyan-50/50 to-blue-50/30'
                             : ''
-                            } ${location.pathname === program.href && index !== 0
+                            } ${isActive && index !== 0
                               ? 'bg-gradient-to-r from-cyan-50/70 to-blue-50/40 text-[#0b4c78] font-medium'
                               : ''
                             }`}
@@ -218,7 +225,7 @@ export function Header() {
               {/* Mobile Academics Section - Enhanced similarly */}
               <div className="px-4">
                 {programs.map((program, index) => {
-                  const isActive = location.pathname === program.href || (location.pathname.startsWith('/academics') && index === 0);
+                  const isActive = location.pathname === program.href || (location.pathname.startsWith('/academics/') && index > 0 && location.pathname === program.href) || (location.pathname === '/academics' && index === 0);
                   const IconComponent = program.icon;
                   const isNew = program.name.includes("Artificial Intelligence") && new Date().getFullYear() === 2025;
                   return (

@@ -1,140 +1,18 @@
 import { Button } from "../components/ui/button";
-import { ArrowRight, Sparkles, HeartPulse, Brain, Cpu, GraduationCap, FlaskConical, CheckCircle2, Download, FileText } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, FlaskConical, CheckCircle2, Download, FileText } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { getAllPrograms } from "../data/programs";
 
 export function AcademicProgramsPage() {
   const programsRef = useRef(null);
   const isProgramsInView = useInView(programsRef, { once: true, margin: "-100px" });
 
-  const programs = [
-    {
-      icon: Brain,
-      title: "BTech in Artificial Intelligence (AI)",
-      degree: "BTech",
-      duration: "4 Years",
-      overview: "Our BTech in Artificial Intelligence program focuses on machine learning, deep learning, natural language processing, and ethical AI. Students master cutting-edge AI technologies including neural networks, computer vision, and generative AI systems.",
-      coreCourses: [
-        "Neural Networks and Deep Learning",
-        "Data Science and Analytics",
-        "AI Ethics and Responsible AI",
-        "Natural Language Processing",
-        "Computer Vision",
-        "Reinforcement Learning",
-        "Machine Learning Algorithms",
-        "AI System Design"
-      ],
-      electives: [
-        "Generative AI and Large Language Models",
-        "Robotics and Autonomous Systems",
-        "AI for Healthcare",
-        "Edge AI and IoT Integration"
-      ],
-      careerOutcomes: [
-        "AI Engineer",
-        "Data Scientist",
-        "Machine Learning Engineer",
-        "Robotics Specialist",
-        "AI Research Scientist",
-        "Computer Vision Engineer"
-      ],
-      facilities: [
-        "AI Research Lab with GPU Clusters",
-        "TensorFlow and PyTorch Development Environment",
-        "Robotics Lab",
-        "High-Performance Computing Infrastructure"
-      ],
-      gradient: "from-violet-500 via-purple-500 to-indigo-500",
-      image: "https://images.unsplash.com/photo-1625314887424-9f190599bd56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwcm9ib3R8ZW58MXx8fHwxNzYyNzU0NjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      slug: "btech-artificial-intelligence",
-      id: "btech-ai"
-    },
-    {
-      icon: HeartPulse,
-      title: "BE in Biomedical Engineering",
-      degree: "BE",
-      duration: "4 Years",
-      overview: "Our BE in Biomedical Engineering program blends engineering principles with healthcare applications. Students learn to design medical devices, develop diagnostic systems, and work on cutting-edge projects in bioinformatics, tissue engineering, and medical imaging.",
-      coreCourses: [
-        "Biomechanics",
-        "Medical Imaging Systems",
-        "Biomaterials and Tissue Engineering",
-        "Bioinstrumentation",
-        "Biomedical Signal Processing",
-        "Medical Device Design",
-        "Biomedical Electronics",
-        "Clinical Engineering"
-      ],
-      electives: [
-        "Prosthetics and Orthotics",
-        "Biomedical Informatics",
-        "Regenerative Medicine",
-        "Healthcare Technology Management"
-      ],
-      careerOutcomes: [
-        "Biomedical Device Designer",
-        "Clinical Engineer",
-        "Biotech Researcher",
-        "Medical Equipment Specialist",
-        "Healthcare Technology Consultant",
-        "Regulatory Affairs Specialist"
-      ],
-      facilities: [
-        "Prosthetics and Orthotics Lab",
-        "Medical Imaging Lab",
-        "Bioinstrumentation Lab",
-        "Biomedical Device Prototyping Center"
-      ],
-      gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
-      image: "/BiomedicalLab.jpg",
-      slug: "be-biomedical-engineering",
-      id: "be-bme"
-    },
-    {
-      icon: Cpu,
-      title: "BE in Computer Engineering",
-      degree: "BE",
-      duration: "4 Years",
-      overview: "Our BE in Computer Engineering program covers hardware-software integration, embedded systems, and cybersecurity. Students master computer architecture, operating systems, VLSI design, and network systems to build the digital infrastructure of tomorrow.",
-      coreCourses: [
-        "Computer Architecture",
-        "Operating Systems",
-        "VLSI Design",
-        "Embedded Systems",
-        "Network Security",
-        "Digital Signal Processing",
-        "Microprocessors and Microcontrollers",
-        "System Design and Integration"
-      ],
-      electives: [
-        "IoT and Edge Computing",
-        "Quantum Computing Fundamentals",
-        "Cybersecurity and Cryptography",
-        "Cloud Computing Architecture"
-      ],
-      careerOutcomes: [
-        "Systems Engineer",
-        "Chip Designer",
-        "Network Architect",
-        "Embedded Systems Engineer",
-        "Hardware Engineer",
-        "Cybersecurity Specialist"
-      ],
-      facilities: [
-        "Computer Architecture Lab",
-        "FPGA Development Boards",
-        "Network Security Lab",
-        "Industry-Standard Software Tools"
-      ],
-      gradient: "from-blue-500 via-cyan-500 to-teal-500",
-      image: "/Lab.jpeg",
-      slug: "be-computer-engineering",
-      id: "be-computer"
-    }
-  ];
+  const programs = getAllPrograms();
 
   return (
     <div className="min-h-screen bg-white">
@@ -298,19 +176,29 @@ export function AcademicProgramsPage() {
                       </div>
 
                       <div className="mt-8 flex flex-wrap gap-3">
+                        <Link to={`/academics/${program.slug}`}>
+                          <Button
+                            className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
+                          >
+                            View Full Details
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
                         <Button
                           className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
                         >
                           <Download className="mr-2 h-4 w-4" />
                           Download Brochure
                         </Button>
-                        <Button
-                          variant="outline"
-                          className="rounded-full"
-                        >
-                          <FileText className="mr-2 h-4 w-4" />
-                          Fee Structure
-                        </Button>
+                        <Link to={`/academics/${program.slug}#fee-structure`}>
+                          <Button
+                            variant="outline"
+                            className="rounded-full"
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            Fee Structure
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>

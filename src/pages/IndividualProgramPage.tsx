@@ -1,0 +1,805 @@
+import React from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight } from "lucide-react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { getProgramBySlug, getAllPrograms, Program } from "../data/programs";
+import { motion, useInView } from "motion/react";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+export function IndividualProgramPage() {
+    const { slug } = useParams<{ slug: string }>();
+    const navigate = useNavigate();
+    const [activeSection, setActiveSection] = useState("overview");
+
+    const program = slug ? getProgramBySlug(slug) : undefined;
+    const allPrograms = getAllPrograms();
+    const relatedPrograms = allPrograms.filter(p => p.slug !== slug).slice(0, 3);
+
+    const scrollToSection = useCallback((sectionId: string) => {
+        const refs: { [key: string]: React.RefObject<HTMLDivElement> } = {
+            overview: overviewSectionRef,
+            "fee-structure": feeSectionRef,
+            "degree-highlights": degreeSectionRef,
+            modules: modulesSectionRef,
+            "why-university": whyUniversitySectionRef,
+            faq: faqSectionRef,
+        };
+
+        const ref = refs[sectionId];
+        if (ref?.current) {
+            const offset = 100; // Account for fixed header
+            const elementPosition = ref.current.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!program) {
+            navigate("/academics");
+            return;
+        }
+
+        // Handle hash-based scrolling on page load
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+            setTimeout(() => {
+                scrollToSection(hash);
+            }, 100);
+        }
+    }, [program, navigate, scrollToSection]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = [
+                { id: "overview", ref: overviewSectionRef },
+                { id: "fee-structure", ref: feeSectionRef },
+                { id: "degree-highlights", ref: degreeSectionRef },
+                { id: "modules", ref: modulesSectionRef },
+                { id: "why-university", ref: whyUniversitySectionRef },
+                { id: "faq", ref: faqSectionRef },
+            ];
+
+            for (const section of sections) {
+                if (section.ref.current) {
+                    const rect = section.ref.current.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        setActiveSection(section.id);
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    if (!program) {
+        return null;
+    }
+
+    const Icon = program.icon;
+    const totalFee = program.feeStructure.reduce((sum, fee) => sum + fee.grandTotal, 0);
+    const [showBackToTop, setShowBackToTop] = useState(false);
+
+    // Handle back to top button visibility
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowBackToTop(window.scrollY > 400);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Refs for animations
+    const heroRef = useRef(null);
+    const overviewSectionRef = useRef(null);
+    const feeSectionRef = useRef(null);
+    const degreeSectionRef = useRef(null);
+    const modulesSectionRef = useRef(null);
+    const whyUniversitySectionRef = useRef(null);
+    const faqSectionRef = useRef(null);
+
+    const isHeroInView = useInView(heroRef, { once: true });
+    const isOverviewInView = useInView(overviewSectionRef, { once: true, margin: "-100px" });
+    const isFeeInView = useInView(feeSectionRef, { once: true, margin: "-100px" });
+    const isDegreeInView = useInView(degreeSectionRef, { once: true, margin: "-100px" });
+    const isModulesInView = useInView(modulesSectionRef, { once: true, margin: "-100px" });
+    const isWhyUniversityInView = useInView(whyUniversitySectionRef, { once: true, margin: "-100px" });
+    const isFaqInView = useInView(faqSectionRef, { once: true, margin: "-100px" });
+
+    return (
+        <div className="min-h-screen bg-white" lang="en">
+            <Header />
+            {/* Hero Section */}
+            <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-24">
+                {/* Animated Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <ImageWithFallback
+                        src={program.image}
+                        alt={program.title}
+                        className="w-full h-full object-cover opacity-20"
+                        loading="lazy"
+                    />
+                </div>
+
+                {/* Simplified Gradient Overlay - Removed pulsing animations */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[120px]"></div>
+                    <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[100px]"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32 w-full">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        {/* Left Side - Program Image */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.8 }}
+                            className="relative"
+                        >
+                            <div className="relative h-[500px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl">
+                                <ImageWithFallback
+                                    src={program.image}
+                                    alt={program.title}
+                                    className="w-full h-full object-cover"
+                                    loading="eager"
+                                />
+                                <div className={`absolute inset-0 bg-gradient-to-br ${program.gradient} opacity-30`}></div>
+                                <div className="absolute top-6 left-6">
+                                    <div className="w-16 h-16 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center">
+                                        <Icon className="h-8 w-8 text-gray-900" />
+                                    </div>
+                                </div>
+                            </div>
+                            {program.studentName && (
+                                <p className="text-sm text-blue-200/80 mt-4 text-center">
+                                    Student on picture: {program.studentName}
+                                </p>
+                            )}
+                        </motion.div>
+
+                        {/* Right Side - Course Details */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="space-y-8 max-w-3xl"
+                        >
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+                            >
+                                <GraduationCap className="h-4 w-4 text-cyan-400" />
+                                <span className="text-white text-sm font-semibold">{program.degree}</span>
+                            </motion.div>
+
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-[1.2] tracking-tight mb-6">
+                                {program.title}
+                            </h1>
+
+                            <div className="flex flex-wrap gap-3 mb-6">
+                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm">Duration:</span>
+                                    <span className="text-white font-semibold">{program.duration}</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm">Credit:</span>
+                                    <span className="text-white font-semibold">{program.credit}</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm">Intake:</span>
+                                    <span className="text-white font-semibold">{program.intake}</span>
+                                </div>
+                            </div>
+
+                            <p className="text-xl md:text-2xl text-blue-100/90 leading-[1.2] mb-8">
+                                {program.description}
+                            </p>
+
+                            <div className="flex flex-col md:flex-row gap-4 mb-8">
+                                <Button
+                                    size="lg"
+                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-6 h-12 group"
+                                    aria-label="Download program brochure"
+                                >
+                                    <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                                    Download Brochure
+                                </Button>
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-6 h-12 transition-all"
+                                    onClick={() => scrollToSection("fee-structure")}
+                                    aria-label="View fee structure"
+                                >
+                                    <FileText className="mr-2 h-5 w-5" />
+                                    Fee Structure
+                                </Button>
+                            </div>
+
+                            {/* Admission Eligibility - Simplified */}
+                            <div className="pt-6 border-t border-white/20">
+                                <h3 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">ADMISSION ELIGIBILITY</h3>
+                                <p className="text-blue-100/90 leading-relaxed text-base">{program.admissionEligibility}</p>
+                            </div>
+
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group w-full md:w-auto"
+                                aria-label="Apply now for this program"
+                            >
+                                Apply Now
+                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Main Content */}
+            <section className="py-20 lg:py-32 bg-white">
+                <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+                    {/* Mobile Sidebar Navigation */}
+                    <div className="lg:hidden overflow-x-auto pb-4 mb-8 -mx-6 px-6">
+                        <nav className="flex gap-2" aria-label="Page navigation">
+                            {[
+                                { id: "overview", label: "Overview", icon: BookOpen },
+                                { id: "fee-structure", label: "Fee", icon: DollarSign },
+                                { id: "degree-highlights", label: "Highlights", icon: Award },
+                                { id: "modules", label: "Modules", icon: BookMarked },
+                                { id: "why-university", label: "Why Us", icon: Sparkles },
+                                { id: "faq", label: "FAQ", icon: HelpCircle },
+                            ].map((item) => {
+                                const ItemIcon = item.icon;
+                                return (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => scrollToSection(item.id)}
+                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm whitespace-nowrap transition-all font-medium ${activeSection === item.id
+                                            ? "bg-gradient-to-r from-[#0b4c78] to-cyan-500 text-white shadow-md"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                            }`}
+                                        aria-label={`Navigate to ${item.label} section`}
+                                    >
+                                        <ItemIcon className={`h-4 w-4 flex-shrink-0 ${activeSection === item.id ? "text-white" : "text-[#0b4c78]"}`} />
+                                        <span>{item.label}</span>
+                                    </button>
+                                );
+                            })}
+                        </nav>
+                    </div>
+
+                    <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
+                        {/* Main Content Area - Left Side */}
+                        <div className="lg:col-span-9 space-y-16 lg:space-y-20 order-1">
+                            {/* Overview Section */}
+                            <motion.div
+                                ref={overviewSectionRef}
+                                id="overview"
+                                className="scroll-mt-24"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isOverviewInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                        <BookOpen className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                        <span className="text-[#0b4c78] text-xs font-medium">Program Overview</span>
+                                    </div>
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                        Overview
+                                    </h2>
+                                </div>
+                                <p className="text-gray-700 leading-relaxed text-lg mb-8">
+                                    {program.overview}
+                                </p>
+                                <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-4">You will:</h3>
+                                    <ul className="space-y-3">
+                                        {program.youWill.map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3">
+                                                <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0 mt-0.5" />
+                                                <span className="text-gray-700 text-sm leading-relaxed">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+
+                            {/* Fee Structure Section */}
+                            <motion.div
+                                ref={feeSectionRef}
+                                id="fee-structure"
+                                className="scroll-mt-24"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isFeeInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                        <DollarSign className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                        <span className="text-[#0b4c78] text-xs font-medium">Financial Information</span>
+                                    </div>
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                        Fee Structure
+                                    </h2>
+                                </div>
+                                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <table className="w-full border-collapse" role="table" aria-label="Program fee structure">
+                                        <caption className="sr-only">Fee structure breakdown by year</caption>
+                                        <thead>
+                                            <tr className="bg-[#0b4c78]">
+                                                <th scope="col" className="px-4 py-3 text-left font-semibold text-white text-sm">Particulars</th>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <th key={index} scope="col" className="px-4 py-3 text-center font-semibold text-white text-sm">
+                                                        {fee.year}
+                                                    </th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Admission Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Annual Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        NPR {fee.annualFee.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">CCA Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        NPR {fee.ccaFee.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Semester 1 Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        NPR {fee.semester1Fee.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">Semester 2 Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        NPR {fee.semester2Fee.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="bg-gray-50 border-b border-gray-100 hover:bg-gray-100 transition-colors">
+                                                <td className="px-4 py-3 text-gray-800 font-medium text-sm" data-label="Particulars">University Regd. Fee</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-700 text-sm" data-label={fee.year}>
+                                                        {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="bg-blue-50 font-semibold border-t-2 border-b-2 border-blue-200">
+                                                <td className="px-4 py-3 text-gray-900 text-sm" data-label="Particulars">Total</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-900 text-sm" data-label={fee.year}>
+                                                        NPR {fee.total.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                            <tr className="bg-[#0b4c78] text-white font-semibold">
+                                                <td className="px-4 py-3 text-base" data-label="Particulars">Grand Total (NPR)</td>
+                                                {program.feeStructure.map((fee, index) => (
+                                                    <td key={index} className="px-4 py-3 text-center text-base" data-label={fee.year}>
+                                                        NPR {fee.grandTotal.toLocaleString()}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                                    <p className="text-sm text-gray-700 leading-relaxed">
+                                        <strong className="text-gray-900 font-semibold">Notes:</strong> University Registration Fee is applicable only in the first year.
+                                        All fees are subject to change. Please contact admissions for the most current fee structure.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* Degree Career Highlights & Opportunities - Combined Section */}
+                            <motion.div
+                                ref={degreeSectionRef}
+                                id="degree-highlights"
+                                className="scroll-mt-24"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isDegreeInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                        <Award className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                        <span className="text-[#0b4c78] text-xs font-medium">Career & Skills</span>
+                                    </div>
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                        Degree Career Highlights & Opportunities
+                                    </h2>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {/* Left Column - Skills/Highlights */}
+                                    <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Skills You'll Gain</h3>
+                                        <ul className="space-y-3">
+                                            {program.degreeHighlights.map((highlight, index) => (
+                                                <li key={index} className="flex items-start gap-3">
+                                                    <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0 mt-0.5" />
+                                                    <span className="text-gray-700 leading-relaxed text-sm">{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Right Column - Career Opportunities */}
+                                    <div
+                                        id="career-opportunities"
+                                        className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm"
+                                    >
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Career Opportunities</h3>
+                                        <div className="space-y-3">
+                                            {program.careerOutcomes.map((career, index) => (
+                                                <div key={index} className="flex items-center gap-3">
+                                                    <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0" />
+                                                    <span className="text-gray-700 leading-relaxed text-sm">{career}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Modules Section */}
+                            <motion.div
+                                ref={modulesSectionRef}
+                                id="modules"
+                                className="scroll-mt-24"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                        <BookMarked className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                        <span className="text-[#0b4c78] text-xs font-medium">Curriculum</span>
+                                    </div>
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                        Modules
+                                    </h2>
+                                </div>
+                                <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
+                                    <div className="sticky top-24 z-10 bg-white pb-4">
+                                        <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1 rounded-xl">
+                                            {program.modules.map((year, index) => (
+                                                <TabsTrigger
+                                                    key={index}
+                                                    value={year.year}
+                                                    className="data-[state=active]:bg-white data-[state=active]:shadow-md transition-all"
+                                                    aria-label={`View ${year.year} modules`}
+                                                >
+                                                    {year.year}
+                                                </TabsTrigger>
+                                            ))}
+                                        </TabsList>
+                                    </div>
+                                    {program.modules.map((year, yearIndex) => (
+                                        <TabsContent key={yearIndex} value={year.year} className="space-y-6">
+                                            {year.semesters.map((semester, semIndex) => (
+                                                <div key={semIndex} className="mb-10">
+                                                    <h3 className="text-xl font-bold text-gray-900 mb-5 px-2">{semester.semester}</h3>
+                                                    <Accordion type="single" collapsible className="w-full space-y-2">
+                                                        {semester.modules.map((module, modIndex) => (
+                                                            <AccordionItem
+                                                                key={modIndex}
+                                                                value={`module-${yearIndex}-${semIndex}-${modIndex}`}
+                                                                className="border border-gray-200 rounded-xl mb-2 overflow-hidden hover:border-blue-300 transition-colors"
+                                                            >
+                                                                <AccordionTrigger className="text-left px-8 py-5 hover:no-underline">
+                                                                    <div className="flex items-center justify-between w-full pr-4">
+                                                                        <span className="font-semibold text-gray-900">{module.name}</span>
+                                                                        <span className="text-sm font-medium text-[#0b4c78] bg-blue-50 px-3 py-1 rounded-full">{module.credits} Credits</span>
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="px-8 pb-5">
+                                                                    <p className="text-gray-700 leading-relaxed">{module.description}</p>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        ))}
+                                                    </Accordion>
+                                                </div>
+                                            ))}
+                                        </TabsContent>
+                                    ))}
+                                </Tabs>
+                            </motion.div>
+
+                            {/* Why University Section */}
+                            {program.whyUniversity && (
+                                <motion.div
+                                    ref={whyUniversitySectionRef}
+                                    id="why-university"
+                                    className="scroll-mt-24"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={isWhyUniversityInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    <div className="mb-6">
+                                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                            <Sparkles className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                            <span className="text-[#0b4c78] text-xs font-medium">Why Choose Us</span>
+                                        </div>
+                                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                            Why University?
+                                        </h2>
+                                    </div>
+                                    <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
+                                        <p className="text-gray-700 leading-relaxed mb-4">
+                                            {program.whyUniversity}
+                                        </p>
+                                        <p className="text-sm text-gray-600 italic leading-relaxed">
+                                            Note: The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* FAQ Section */}
+                            <motion.div
+                                ref={faqSectionRef}
+                                id="faq"
+                                className="scroll-mt-24"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+                                        <HelpCircle className="h-3.5 w-3.5 text-[#0b4c78]" />
+                                        <span className="text-[#0b4c78] text-xs font-medium">Common Questions</span>
+                                    </div>
+                                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+                                        FAQ
+                                    </h2>
+                                </div>
+                                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                                    <Accordion type="single" collapsible className="w-full" defaultValue="none">
+                                        <AccordionItem value="faq-1" className="border-b border-gray-200">
+                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the admission requirements?</AccordionTrigger>
+                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
+                                                {program.admissionEligibility}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                        <AccordionItem value="faq-2" className="border-b border-gray-200">
+                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the program fees?</AccordionTrigger>
+                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
+                                                The total program fee is NPR {totalFee.toLocaleString()}. This includes all fees across all years.
+                                                Please refer to the detailed fee structure above for a year-by-year breakdown.
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                        <AccordionItem value="faq-3" className="border-b border-gray-200">
+                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">What are the career prospects after graduation?</AccordionTrigger>
+                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
+                                                <p className="mb-3">Graduates can pursue careers in:</p>
+                                                <ul className="list-disc list-inside space-y-2">
+                                                    {program.careerOutcomes.map((career, index) => (
+                                                        <li key={index}>{career}</li>
+                                                    ))}
+                                                </ul>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                        <AccordionItem value="faq-4">
+                                            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-4">Are scholarships available?</AccordionTrigger>
+                                            <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
+                                                Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
+                                                Please contact our admissions office for more information about available scholarships and eligibility criteria.
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </Accordion>
+                                </div>
+                            </motion.div>
+                        </div>
+
+                        {/* Desktop Sidebar Navigation - Right Side, Sticky */}
+                        <div className="hidden lg:block lg:col-span-3 order-2">
+                            <div className="sticky top-24 z-10">
+                                <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-md">
+                                    <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">ON THIS PAGE</h3>
+                                    <nav className="space-y-1" aria-label="Table of contents">
+                                        {[
+                                            { id: "overview", label: "Overview", icon: BookOpen },
+                                            { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
+                                            { id: "degree-highlights", label: "Highlights & Careers", icon: Award },
+                                            { id: "modules", label: "Modules", icon: BookMarked },
+                                            { id: "why-university", label: "Why University?", icon: Sparkles },
+                                            { id: "faq", label: "FAQ", icon: HelpCircle },
+                                        ].map((item) => {
+                                            const ItemIcon = item.icon;
+                                            return (
+                                                <button
+                                                    key={item.id}
+                                                    onClick={() => scrollToSection(item.id)}
+                                                    className={`flex items-center gap-2.5 w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#0b4c78] focus:ring-offset-1 ${activeSection === item.id
+                                                        ? "bg-[#0b4c78] text-white"
+                                                        : "text-gray-700 hover:bg-gray-50"
+                                                        }`}
+                                                    aria-label={`Navigate to ${item.label} section`}
+                                                >
+                                                    <ItemIcon className={`h-4 w-4 flex-shrink-0 ${activeSection === item.id ? "text-white" : "text-[#0b4c78]"}`} />
+                                                    <span>{item.label}</span>
+                                                </button>
+                                            );
+                                        })}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Related Courses Section */}
+            {relatedPrograms.length > 0 && (
+                <section className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+                    <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                            className="text-center mb-12"
+                        >
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
+                                <Sparkles className="h-4 w-4 text-[#0b4c78]" />
+                                <span className="text-[#0b4c78] text-sm">Related Programs</span>
+                            </div>
+                            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                                Explore Other Programs
+                            </h2>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+                            {relatedPrograms.map((relatedProgram, index) => {
+                                const RelatedIcon = relatedProgram.icon;
+                                return (
+                                    <motion.div
+                                        key={relatedProgram.slug}
+                                        initial={{ opacity: 0, y: 50 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                                        className="group"
+                                    >
+                                        <Link to={`/academics/${relatedProgram.slug}`}>
+                                            <div className="relative h-full bg-white rounded-[2rem] overflow-hidden border border-gray-200 hover:border-gray-300 transition-all hover:shadow-2xl group/card">
+                                                <div className="relative h-64 overflow-hidden">
+                                                    <ImageWithFallback
+                                                        src={relatedProgram.image}
+                                                        alt={relatedProgram.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                        loading="lazy"
+                                                    />
+                                                    <div className={`absolute inset-0 bg-gradient-to-br ${relatedProgram.gradient} opacity-40 group-hover:opacity-30 transition-opacity`}></div>
+
+                                                    {/* Floating Icon */}
+                                                    <div className="absolute top-6 right-6">
+                                                        <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+                                                            <RelatedIcon className="h-7 w-7 text-gray-900" />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Stats Badge */}
+                                                    <div className="absolute bottom-6 left-6">
+                                                        <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-sm text-gray-900">
+                                                            {relatedProgram.duration} • {relatedProgram.degree}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Content */}
+                                                <div className="p-8">
+                                                    <h3 className="text-2xl text-gray-900 mb-3">{relatedProgram.title}</h3>
+                                                    <p className="text-gray-600 mb-6 leading-relaxed line-clamp-2">{relatedProgram.overview}</p>
+
+                                                    <Button
+                                                        variant="ghost"
+                                                        className="text-[#0b4c78] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"
+                                                    >
+                                                        <span className="text-base">Explore Program</span>
+                                                        <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
+                                                    </Button>
+                                                </div>
+
+                                                {/* Gradient Border Effect */}
+                                                <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br ${relatedProgram.gradient} opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none`}></div>
+                                            </div>
+                                        </Link>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* CTA Section */}
+            <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 relative overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[150px]"></div>
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px]"></div>
+                </div>
+
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="text-4xl lg:text-6xl text-white mb-6 tracking-tight">
+                            Ready to Start Your Journey?
+                        </h2>
+                        <p className="text-xl text-blue-100/90 mb-10 max-w-2xl mx-auto">
+                            Apply now for admissions 2026. Join us and shape your future in technology and innovation.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+                            >
+                                Apply Now
+                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
+                            >
+                                Contact Admissions
+                            </Button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Back to Top Button */}
+            {showBackToTop && (
+                <Button
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 w-12 h-12 p-0"
+                    aria-label="Scroll to top"
+                >
+                    <ArrowUp className="h-5 w-5 text-white" />
+                </Button>
+            )}
+
+            <Footer />
+        </div>
+    );
+}
+
