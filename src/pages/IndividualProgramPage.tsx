@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight } from "lucide-react";
+import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -282,9 +282,9 @@ export function IndividualProgramPage() {
                         </nav>
                     </div>
 
-                    <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
+                    <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                         {/* Main Content Area - Left Side */}
-                        <div className="lg:col-span-9 space-y-16 lg:space-y-20 order-1">
+                        <div className="lg:col-span-9 space-y-16 lg:space-y-20">
                             {/* Overview Section */}
                             <motion.div
                                 ref={overviewSectionRef}
@@ -341,7 +341,7 @@ export function IndividualProgramPage() {
                                     <table className="w-full border-collapse" role="table" aria-label="Program fee structure">
                                         <caption className="sr-only">Fee structure breakdown by year</caption>
                                         <thead>
-                                            <tr className="bg-[#0b4c78]">
+                                            <tr className="bg-blue-600">
                                                 <th scope="col" className="px-4 py-3 text-left font-semibold text-white text-sm">Particulars</th>
                                                 {program.feeStructure.map((fee, index) => (
                                                     <th key={index} scope="col" className="px-4 py-3 text-center font-semibold text-white text-sm">
@@ -399,22 +399,15 @@ export function IndividualProgramPage() {
                                                     </td>
                                                 ))}
                                             </tr>
-                                            <tr className="bg-blue-50 font-semibold border-t-2 border-b-2 border-blue-200">
-                                                <td className="px-4 py-3 text-gray-900 text-sm" data-label="Particulars">Total</td>
+                                            <tr className="bg-blue-100 font-bold border-y-2 border-blue-300">
+                                                <td className="px-4 py-3 text-gray-900 text-base" data-label="Particulars">Total</td>
                                                 {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-gray-900 text-sm" data-label={fee.year}>
+                                                    <td key={index} className="px-4 py-3 text-center text-gray-900 text-base" data-label={fee.year}>
                                                         NPR {fee.total.toLocaleString()}
                                                     </td>
                                                 ))}
                                             </tr>
-                                            <tr className="bg-[#0b4c78] text-white font-semibold">
-                                                <td className="px-4 py-3 text-base" data-label="Particulars">Grand Total (NPR)</td>
-                                                {program.feeStructure.map((fee, index) => (
-                                                    <td key={index} className="px-4 py-3 text-center text-base" data-label={fee.year}>
-                                                        NPR {fee.grandTotal.toLocaleString()}
-                                                    </td>
-                                                ))}
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -448,10 +441,10 @@ export function IndividualProgramPage() {
                                     {/* Left Column - Skills/Highlights */}
                                     <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                                         <h3 className="text-lg font-semibold text-gray-900 mb-4">Skills You'll Gain</h3>
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-4 divide-y divide-gray-100">
                                             {program.degreeHighlights.map((highlight, index) => (
-                                                <li key={index} className="flex items-start gap-3">
-                                                    <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0 mt-0.5" />
+                                                <li key={index} className="flex items-start gap-3 py-2 first:pt-0 last:pb-0">
+                                                    <Zap className="h-5 w-5 text-blue-500 flex-shrink-0" />
                                                     <span className="text-gray-700 leading-relaxed text-sm">{highlight}</span>
                                                 </li>
                                             ))}
@@ -464,14 +457,14 @@ export function IndividualProgramPage() {
                                         className="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm"
                                     >
                                         <h3 className="text-lg font-semibold text-gray-900 mb-4">Career Opportunities</h3>
-                                        <div className="space-y-3">
+                                        <ul className="space-y-4">
                                             {program.careerOutcomes.map((career, index) => (
-                                                <div key={index} className="flex items-center gap-3">
-                                                    <CheckCircle2 className="h-5 w-5 text-[#0b4c78] flex-shrink-0" />
+                                                <li key={index} className="flex items-center gap-3">
+                                                    <Briefcase className="h-5 w-5 text-cyan-600 flex-shrink-0" />
                                                     <span className="text-gray-700 leading-relaxed text-sm">{career}</span>
-                                                </div>
+                                                </li>
                                             ))}
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
                             </motion.div>
@@ -496,12 +489,12 @@ export function IndividualProgramPage() {
                                 </div>
                                 <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
                                     <div className="sticky top-24 z-10 bg-white pb-4">
-                                        <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1 rounded-xl">
+                                        <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1.5 rounded-xl shadow-inner">
                                             {program.modules.map((year, index) => (
                                                 <TabsTrigger
                                                     key={index}
                                                     value={year.year}
-                                                    className="data-[state=active]:bg-white data-[state=active]:shadow-md transition-all"
+                                                    className="data-[state=active]:bg-white data-[state=active]:text-[#0b4c78] data-[state=active]:shadow-md rounded-lg py-2 transition-all text-gray-600 font-semibold"
                                                     aria-label={`View ${year.year} modules`}
                                                 >
                                                     {year.year}
@@ -519,9 +512,9 @@ export function IndividualProgramPage() {
                                                             <AccordionItem
                                                                 key={modIndex}
                                                                 value={`module-${yearIndex}-${semIndex}-${modIndex}`}
-                                                                className="border border-gray-200 rounded-xl mb-2 overflow-hidden hover:border-blue-300 transition-colors"
+                                                                className="border-b border-gray-200 last:border-b-0 overflow-hidden rounded-xl mb-4 shadow-sm"
                                                             >
-                                                                <AccordionTrigger className="text-left px-8 py-5 hover:no-underline">
+                                                                <AccordionTrigger className="flex justify-between items-center text-lg font-bold py-5 hover:no-underline bg-white hover:bg-blue-50 transition-colors px-6 rounded-t-xl data-[state=open]:rounded-b-none">
                                                                     <div className="flex items-center justify-between w-full pr-4">
                                                                         <span className="font-semibold text-gray-900">{module.name}</span>
                                                                         <span className="text-sm font-medium text-[#0b4c78] bg-blue-50 px-3 py-1 rounded-full">{module.credits} Credits</span>
@@ -627,9 +620,9 @@ export function IndividualProgramPage() {
                         </div>
 
                         {/* Desktop Sidebar Navigation - Right Side, Sticky */}
-                        <div className="hidden lg:block lg:col-span-3 order-2">
+                        <div className="hidden lg:block lg:col-span-3">
                             <div className="sticky top-24 z-10">
-                                <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-md">
+                                <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
                                     <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">ON THIS PAGE</h3>
                                     <nav className="space-y-1" aria-label="Table of contents">
                                         {[
@@ -646,8 +639,8 @@ export function IndividualProgramPage() {
                                                     key={item.id}
                                                     onClick={() => scrollToSection(item.id)}
                                                     className={`flex items-center gap-2.5 w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#0b4c78] focus:ring-offset-1 ${activeSection === item.id
-                                                        ? "bg-[#0b4c78] text-white"
-                                                        : "text-gray-700 hover:bg-gray-50"
+                                                        ? "bg-blue-500 text-white font-bold shadow-lg"
+                                                        : "text-gray-600 hover:text-[#0b4c78] hover:bg-gray-50"
                                                         }`}
                                                     aria-label={`Navigate to ${item.label} section`}
                                                 >
