@@ -525,7 +525,7 @@ export function IndividualProgramPage() {
                         </aside>
 
                         {/* Main Content Flow */}
-                        <div className="space-y-32 flex-1 min-w-0">
+                        <div className="space-y-24 flex-1 min-w-0">
                             {/* --- Overview Section --- */}
                             <motion.section
                                 ref={overviewSectionRef}
@@ -537,14 +537,14 @@ export function IndividualProgramPage() {
                             >
                                 <div className="relative">
                                     {/* Section Header */}
-                                    <div className="mb-8">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 mb-6 mt-6">
+                                    <div className="mb-10">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 mb-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
                                                 <BookOpen className="h-5 w-5 text-white" />
                                             </div>
                                             <span className="text-sm font-semibold text-blue-700 uppercase tracking-wider">Program Overview</span>
                                         </div>
-                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                                             Discover Your Path
                                         </h2>
                                         <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
@@ -553,30 +553,30 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* What You Will Learn Card */}
-                                    <div className="relative mt-12 bg-gradient-to-br from-white to-blue-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-6 sm:p-8 lg:p-10 overflow-hidden">
+                                    <div className="relative mt-8 bg-gradient-to-br from-white to-blue-50/30 rounded-2xl shadow-lg border border-gray-200 p-6 lg:p-8 overflow-hidden">
                                         {/* Decorative gradient overlay */}
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
 
                                         <div className="relative">
-                                            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                                                <div className="p-2 sm:p-3 rounded-lg bg-blue-100">
-                                                    <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                                            <div className="flex items-center gap-3 lg:gap-4 mb-6">
+                                                <div className="p-2 rounded-lg bg-blue-100">
+                                                    <Lightbulb className="h-5 w-5 lg:h-6 lg:w-6 text-blue-600" />
                                                 </div>
-                                                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">What You Will Learn</h3>
+                                                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">What You Will Learn</h3>
                                             </div>
-                                            <ul className="space-y-3 sm:space-y-4">
+                                            <ul className="space-y-3 lg:space-y-4">
                                                 {program.youWill.map((item, index) => (
                                                     <motion.li
                                                         key={index}
                                                         initial={{ opacity: 0, x: -20 }}
                                                         animate={isOverviewInView ? { opacity: 1, x: 0 } : {}}
-                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                        className="flex items-center gap-3 sm:gap-4"
+                                                        transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-3 lg:gap-4"
                                                     >
                                                         <div className="flex-shrink-0">
-                                                            <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                                                            <CheckCircle2 className="h-5 w-5 text-blue-600" />
                                                         </div>
-                                                        <span className="text-gray-700 text-sm sm:text-base">{item}</span>
+                                                        <span className="text-gray-700 text-base">{item}</span>
                                                     </motion.li>
                                                 ))}
                                             </ul>
@@ -585,30 +585,30 @@ export function IndividualProgramPage() {
 
                                     {/* Why Program Section */}
                                     {program.whyProgram && program.whyProgram.length > 0 && (
-                                        <div className="relative mt-8 bg-gradient-to-br from-white to-green-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-6 sm:p-8 lg:p-10 overflow-hidden">
+                                        <div className="relative mt-8 bg-gradient-to-br from-white to-green-50/30 rounded-2xl shadow-lg border border-gray-200 p-6 lg:p-8 overflow-hidden">
                                             {/* Decorative gradient overlay */}
                                             <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
 
                                             <div className="relative">
-                                                <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                                                    <div className="p-2 sm:p-3 rounded-lg bg-green-100">
-                                                        <Star className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
+                                                <div className="flex items-center gap-3 lg:gap-4 mb-6">
+                                                    <div className="p-2 rounded-lg bg-green-100">
+                                                        <Star className="h-5 w-5 lg:h-6 lg:w-6 text-green-600" />
                                                     </div>
-                                                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Why {program.title}?</h3>
+                                                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Why {program.title}?</h3>
                                                 </div>
-                                                <ul className="space-y-3 sm:space-y-4">
+                                                <ul className="space-y-3 lg:space-y-4">
                                                     {program.whyProgram.map((item, index) => (
                                                         <motion.li
                                                             key={index}
                                                             initial={{ opacity: 0, x: -20 }}
                                                             animate={isOverviewInView ? { opacity: 1, x: 0 } : {}}
-                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                            className="flex items-center gap-3 sm:gap-4"
+                                                            transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                                                            className="flex items-center gap-3 lg:gap-4"
                                                         >
                                                             <div className="flex-shrink-0">
-                                                                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                                                                <Star className="h-5 w-5 text-green-600" />
                                                             </div>
-                                                            <span className="text-gray-700 text-sm sm:text-base">{item}</span>
+                                                            <span className="text-gray-700 text-base">{item}</span>
                                                         </motion.li>
                                                     ))}
                                                 </ul>
@@ -630,7 +630,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-6 mt-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500">
                                                 <DollarSign className="h-5 w-5 text-white" />
                                             </div>
@@ -641,7 +641,7 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* Fee Table Card */}
-                                    <div className="relative mt-8 overflow-hidden rounded-xl border border-gray-300 bg-white">
+                                    <div className="relative mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
                                         <div className="overflow-x-auto">
                                             <table className="w-full">
                                                 <thead>
@@ -725,7 +725,7 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* Total Program Amount */}
-                                    <div className="mt-6 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border-2 border-gray-300">
+                                    <div className="mt-8 p-6 lg:p-8 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border border-gray-200 shadow-lg">
                                         <div className="flex items-center justify-between">
                                             <span className="text-lg font-semibold text-gray-700">Total Program Amount:</span>
                                             <span className="text-2xl font-bold text-gray-900">NPR {totalFee.toLocaleString()}</span>
@@ -733,14 +733,14 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* Note Card */}
-                                    <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-200/60 shadow-lg">
+                                    <div className="mt-8 p-6 lg:p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-200 shadow-lg">
                                         <div className="flex items-start gap-3">
                                             <div className="p-2 rounded-lg bg-blue-500 flex-shrink-0">
                                                 <FileText className="h-5 w-5 text-white" />
                                             </div>
                                             <div>
                                                 <p className="text-blue-900 font-semibold mb-1">Important Note</p>
-                                                <p className="text-blue-800 text-sm leading-relaxed">
+                                                <p className="text-blue-800 text-base leading-relaxed">
                                                     Admission Fee and Security Deposit apply only to the first year. Fees are subject to change. Please contact admissions for the most current details.
                                                 </p>
                                             </div>
@@ -761,7 +761,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 mb-6 mt-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 mb-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
                                                 <Award className="h-5 w-5 text-white" />
                                             </div>
@@ -771,28 +771,28 @@ export function IndividualProgramPage() {
                                         <p className="text-lg text-gray-600 max-w-2xl">Unlock your potential with skills and opportunities that shape tomorrow</p>
                                     </div>
 
-                                    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                                         {/* Key Skills Card */}
                                         <motion.div
                                             initial={{ opacity: 0, x: -30 }}
                                             animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                            transition={{ duration: 0.6, delay: 0.2 }}
-                                            className="relative bg-white rounded-2xl border border-gray-200 p-8 lg:p-10"
+                                            transition={{ duration: 0.3, delay: 0.2 }}
+                                            className="relative bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8"
                                         >
-                                            <div className="flex items-center gap-4 mb-8">
-                                                <div className="p-3 rounded-lg bg-blue-100">
-                                                    <Zap className="h-6 w-6 text-blue-600" />
+                                            <div className="flex items-center gap-3 lg:gap-4 mb-6">
+                                                <div className="p-2 rounded-lg bg-blue-100">
+                                                    <Zap className="h-5 w-5 lg:h-6 lg:w-6 text-blue-600" />
                                                 </div>
-                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Key Skills You'll Gain</h3>
+                                                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Key Skills You'll Gain</h3>
                                             </div>
-                                            <ul className="space-y-4">
+                                            <ul className="space-y-3 lg:space-y-4">
                                                 {program.degreeHighlights.map((highlight, index) => (
                                                     <motion.li
                                                         key={index}
                                                         initial={{ opacity: 0, x: -20 }}
                                                         animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                        className="flex items-center gap-4"
+                                                        transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-3 lg:gap-4"
                                                     >
                                                         <div className="flex-shrink-0">
                                                             <CheckCircle2 className="h-5 w-5 text-blue-600" />
@@ -807,23 +807,23 @@ export function IndividualProgramPage() {
                                         <motion.div
                                             initial={{ opacity: 0, x: 30 }}
                                             animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                            transition={{ duration: 0.6, delay: 0.2 }}
-                                            className="relative bg-white rounded-2xl border border-gray-200 p-8 lg:p-10"
+                                            transition={{ duration: 0.3, delay: 0.2 }}
+                                            className="relative bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8"
                                         >
-                                            <div className="flex items-center gap-4 mb-8">
-                                                <div className="p-3 rounded-lg bg-cyan-100">
-                                                    <Briefcase className="h-6 w-6 text-cyan-600" />
+                                            <div className="flex items-center gap-3 lg:gap-4 mb-6">
+                                                <div className="p-2 rounded-lg bg-cyan-100">
+                                                    <Briefcase className="h-5 w-5 lg:h-6 lg:w-6 text-cyan-600" />
                                                 </div>
-                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Potential Career Paths</h3>
+                                                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Potential Career Paths</h3>
                                             </div>
-                                            <ul className="space-y-4">
+                                            <ul className="space-y-3 lg:space-y-4">
                                                 {program.careerOutcomes.map((career, index) => (
                                                     <motion.li
                                                         key={index}
                                                         initial={{ opacity: 0, x: 20 }}
                                                         animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                        className="flex items-center gap-4"
+                                                        transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-3 lg:gap-4"
                                                     >
                                                         <div className="flex-shrink-0">
                                                             <CheckCircle2 className="h-5 w-5 text-cyan-600" />
@@ -848,56 +848,41 @@ export function IndividualProgramPage() {
                             >
                                 <div className="relative">
                                     {/* Section Header */}
-                                    <div className="mb-10 lg:mb-12">
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                            transition={{ duration: 0.5 }}
-                                            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200/60 shadow-sm mb-5 lg:mb-6 backdrop-blur-sm"
-                                        >
-                                            <div className="p-1.5 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-md shadow-indigo-500/30">
-                                                <BookMarked className="h-4 w-4 text-white" />
+                                    <div className="mb-10">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-100 mb-6">
+                                            <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+                                                <BookMarked className="h-5 w-5 text-white" />
                                             </div>
-                                            <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Curriculum</span>
-                                        </motion.div>
-                                        <motion.h2
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                            transition={{ duration: 0.5, delay: 0.1 }}
-                                            className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent tracking-tight mb-3 lg:mb-4"
-                                        >
+                                            <span className="text-sm font-semibold text-indigo-700 uppercase tracking-wider">Curriculum</span>
+                                        </div>
+                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                                             Course Modules
-                                        </motion.h2>
-                                        <motion.p
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                            transition={{ duration: 0.5, delay: 0.2 }}
-                                            className="text-base lg:text-lg text-gray-600 max-w-2xl leading-relaxed"
-                                        >
+                                        </h2>
+                                        <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
                                             Comprehensive curriculum designed for real-world success
-                                        </motion.p>
+                                        </p>
                                     </div>
 
                                     {/* Curriculum Container with Enhanced Design */}
-                                    <div className="mt-8 lg:mt-10 relative">
+                                    <div className="mt-8 relative">
                                         {/* Decorative Background Elements */}
-                                        <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
+                                        <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
                                             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-indigo-200/40 via-purple-200/40 to-pink-200/40 rounded-full blur-3xl animate-pulse"></div>
                                             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-200/40 via-pink-200/40 to-rose-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
                                         </div>
 
-                                        <div className="relative bg-white/80 backdrop-blur-xl rounded-[2rem] border-2 border-indigo-100/80 shadow-2xl p-6 lg:p-10 overflow-hidden">
+                                        <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-indigo-100 shadow-xl p-6 lg:p-8 overflow-hidden">
                                             {/* Animated border gradient */}
-                                            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 hover:opacity-10 transition-opacity duration-500 pointer-events-none"></div>
+                                            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
 
                                             <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full relative z-10">
                                                 {/* Enhanced Year Tabs */}
-                                                <TabsList className="flex w-full bg-gradient-to-r from-gray-50 via-gray-100/80 to-gray-50 rounded-2xl p-1.5 mb-8 h-auto border-2 border-gray-200/80 shadow-inner gap-1.5 backdrop-blur-sm">
+                                                <TabsList className="flex w-full bg-gradient-to-r from-gray-50 via-gray-100/80 to-gray-50 rounded-2xl p-1.5 mb-6 h-auto border border-gray-200 shadow-inner gap-1.5 backdrop-blur-sm">
                                                     {program.modules.map((year, tabIndex) => (
                                                         <TabsTrigger
                                                             key={year.year}
                                                             value={year.year}
-                                                            className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:via-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:shadow-indigo-500/50 data-[state=active]:ring-2 data-[state=active]:ring-indigo-300/60 data-[state=active]:ring-offset-2 rounded-xl py-2.5 px-3 lg:px-5 transition-all duration-300 text-gray-700 font-bold text-xs lg:text-sm hover:text-gray-900 data-[state=inactive]:hover:bg-white/80 data-[state=active]:scale-[1.02] data-[state=active]:font-extrabold"
+                                                            className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:via-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/50 rounded-xl py-2.5 px-3 lg:px-5 transition-all duration-300 text-gray-700 font-bold text-xs lg:text-sm hover:text-gray-900 data-[state=inactive]:hover:bg-white/80"
                                                         >
                                                             <span className="relative z-10">{year.year}</span>
                                                         </TabsTrigger>
@@ -911,7 +896,7 @@ export function IndividualProgramPage() {
                                                         value={year.year}
                                                         className="mt-0 animate-in fade-in-50 duration-300"
                                                     >
-                                                        <div className="space-y-7 lg:space-y-9">
+                                                        <div className="space-y-6 lg:space-y-8">
                                                             {year.semesters.map((semester, semIndex) => {
                                                                 // Calculate total credits for this semester
                                                                 const totalCredits = semester.modules.reduce((sum, module) => sum + module.credits, 0);
@@ -922,11 +907,11 @@ export function IndividualProgramPage() {
                                                                         className="relative"
                                                                         initial={{ opacity: 0, y: 20 }}
                                                                         animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                                                        transition={{ duration: 0.5, delay: semIndex * 0.1 }}
+                                                                        transition={{ duration: 0.3, delay: semIndex * 0.1 }}
                                                                     >
                                                                         {/* Semester Header with Enhanced Design */}
-                                                                        <div className="relative mb-4 lg:mb-5">
-                                                                            <div className="flex items-center justify-between gap-3 lg:gap-4 mb-2.5">
+                                                                        <div className="relative mb-4">
+                                                                            <div className="flex items-center justify-between gap-3 lg:gap-4 mb-2">
                                                                                 <div className="flex items-center gap-2.5 lg:gap-3 flex-1">
                                                                                     <div className="relative">
                                                                                         <div className="absolute inset-0 bg-gradient-to-b from-indigo-400 via-purple-500 to-pink-500 rounded-full blur-md opacity-50 animate-pulse"></div>
@@ -934,10 +919,10 @@ export function IndividualProgramPage() {
                                                                                     </div>
                                                                                     <div className="flex-1">
                                                                                         <div className="flex items-center gap-2.5 lg:gap-3 mb-1.5">
-                                                                                            <h3 className="text-lg lg:text-2xl font-extrabold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
+                                                                                            <h3 className="text-lg lg:text-xl font-bold text-gray-900">
                                                                                                 {semester.semester}
                                                                                             </h3>
-                                                                                            <span className="text-xs lg:text-sm font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-2.5 lg:px-3 py-1 rounded-full border border-indigo-200/80 whitespace-nowrap">
+                                                                                            <span className="text-xs lg:text-sm font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-2.5 lg:px-3 py-1 rounded-full border border-indigo-200 whitespace-nowrap">
                                                                                                 {totalCredits} Total Credits
                                                                                             </span>
                                                                                         </div>
@@ -958,19 +943,16 @@ export function IndividualProgramPage() {
                                                                                             value={`module-${yearIndex}-${semIndex}-${modIndex}`}
                                                                                             className="group border-0"
                                                                                         >
-                                                                                            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-md hover:shadow-xl transition-all duration-500 hover:border-indigo-300/80 hover:scale-[1.01] hover:-translate-y-0.5">
+                                                                                            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-indigo-300">
                                                                                                 {/* Animated gradient overlay */}
-                                                                                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none"></div>
-
-                                                                                                {/* Shine effect */}
-                                                                                                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                                                                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-all duration-300 pointer-events-none"></div>
 
                                                                                                 <AccordionTrigger className="flex w-full items-center justify-between p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
                                                                                                     <div className="flex items-center gap-4 lg:gap-5 flex-1 min-w-0">
                                                                                                         {/* Course Icon with smaller size */}
                                                                                                         <div className="flex-shrink-0 relative">
                                                                                                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg blur-sm opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                                                            <div className="relative w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                                                            <div className="relative w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40 group-hover/trigger:scale-110 transition-all duration-300">
                                                                                                                 <CourseIcon className="h-4 w-4" />
                                                                                                             </div>
                                                                                                         </div>
@@ -983,15 +965,15 @@ export function IndividualProgramPage() {
 
                                                                                                     {/* Credits Badge with enhanced design */}
                                                                                                     <div className="flex items-center gap-3 lg:gap-4 flex-shrink-0">
-                                                                                                        <span className="text-xs font-bold text-indigo-700 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-3.5 lg:px-4 py-1.5 lg:py-2 rounded-full border border-indigo-200/80 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:via-purple-100 group-hover/trigger:to-pink-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md group-hover/trigger:scale-105 transition-all duration-300 whitespace-nowrap">
+                                                                                                        <span className="text-xs font-bold text-indigo-700 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-3.5 lg:px-4 py-1.5 lg:py-2 rounded-full border border-indigo-200 whitespace-nowrap">
                                                                                                             {module.credits} Credits
                                                                                                         </span>
                                                                                                     </div>
                                                                                                 </AccordionTrigger>
 
                                                                                                 <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
-                                                                                                    <div className="pl-[58px] lg:pl-[64px] border-t border-indigo-200/60 pt-5 lg:pt-6">
-                                                                                                        <p className="text-gray-700 leading-relaxed text-sm lg:text-base font-medium">
+                                                                                                    <div className="pl-[58px] lg:pl-[64px] border-t border-indigo-200 pt-5 lg:pt-6">
+                                                                                                        <p className="text-gray-700 leading-relaxed text-base font-medium">
                                                                                                             {module.description}
                                                                                                         </p>
                                                                                                     </div>
@@ -1015,7 +997,7 @@ export function IndividualProgramPage() {
                             </motion.section>
 
                             {/* --- Why University & FAQ Section --- */}
-                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 scroll-mt-28" id="why-niet">
+                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 scroll-mt-28" id="why-niet">
                                 {/* Why University */}
                                 {program.whyUniversity && (
                                     <motion.section
@@ -1025,8 +1007,8 @@ export function IndividualProgramPage() {
                                         transition={{ duration: 0.7 }}
                                     >
                                         <div className="relative h-full">
-                                            <div className="mb-8">
-                                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-6 mt-6">
+                                            <div className="mb-10">
+                                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-6">
                                                     <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
                                                         <Sparkles className="h-5 w-5 text-white" />
                                                     </div>
@@ -1035,15 +1017,15 @@ export function IndividualProgramPage() {
                                                 <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Why Choose Us?</h2>
                                                 <p className="text-lg text-gray-600">Experience excellence in education</p>
                                             </div>
-                                            <div className="relative bg-gradient-to-br from-white to-amber-50/30 p-6 sm:p-8 lg:p-10 rounded-3xl shadow-xl border border-gray-200/60 overflow-hidden group hover:shadow-2xl transition-all">
+                                            <div className="relative bg-gradient-to-br from-white to-amber-50/30 p-6 lg:p-8 rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
                                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
                                                 <div className="relative">
-                                                    <div className="flex items-start gap-3 sm:gap-4 mb-6">
-                                                        <div className="p-2 sm:p-3 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg flex-shrink-0">
-                                                            <Star className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                                                    <div className="flex items-start gap-3 lg:gap-4">
+                                                        <div className="p-2 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex-shrink-0">
+                                                            <Star className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
                                                         </div>
                                                         <div className="flex-1 min-w-0">
-                                                            <p className="text-gray-700 leading-relaxed text-base sm:text-lg">{program.whyUniversity}</p>
+                                                            <p className="text-gray-700 leading-relaxed text-base">{program.whyUniversity}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1064,67 +1046,49 @@ export function IndividualProgramPage() {
                                     <div className="relative h-full">
                                         {/* Section Header */}
                                         <div className="mb-10">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
-                                                transition={{ duration: 0.5 }}
-                                                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 border border-rose-200/60 shadow-sm mb-6 mt-6 backdrop-blur-sm"
-                                            >
-                                                <div className="p-2 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/30">
+                                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 border border-rose-100 mb-6">
+                                                <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500">
                                                     <HelpCircle className="h-5 w-5 text-white" />
                                                 </div>
-                                                <span className="text-sm font-bold text-rose-700 uppercase tracking-wider">Frequently Asked</span>
-                                            </motion.div>
-                                            <motion.h2
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
-                                                transition={{ duration: 0.5, delay: 0.1 }}
-                                                className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-rose-700 to-pink-700 bg-clip-text text-transparent tracking-tight mb-4"
-                                            >
+                                                <span className="text-sm font-semibold text-rose-700 uppercase tracking-wider">Frequently Asked</span>
+                                            </div>
+                                            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                                                 FAQs
-                                            </motion.h2>
-                                            <motion.p
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
-                                                transition={{ duration: 0.5, delay: 0.2 }}
-                                                className="text-lg lg:text-xl text-gray-600 leading-relaxed"
-                                            >
+                                            </h2>
+                                            <p className="text-lg text-gray-600 leading-relaxed">
                                                 Get answers to common questions
-                                            </motion.p>
+                                            </p>
                                         </div>
 
                                         {/* FAQ Container with Enhanced Design */}
-                                        <div className="relative mt-8 lg:mt-10">
+                                        <div className="relative mt-8">
                                             {/* Decorative Background */}
-                                            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
+                                            <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
                                                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-rose-200/30 via-pink-200/30 to-fuchsia-200/30 rounded-full blur-3xl animate-pulse"></div>
                                                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-pink-200/30 via-fuchsia-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
                                             </div>
 
-                                            <div className="relative space-y-6 lg:space-y-8">
+                                            <div className="relative space-y-4 lg:space-y-5">
                                                 <Accordion type="single" collapsible className="w-full">
                                                     <AccordionItem value="faq-1" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
                                                             {/* Animated gradient overlay */}
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
 
-                                                            {/* Shine effect */}
-                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 lg:gap-5 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the admission requirements?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
                                                                         <HelpCircle className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
-                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t border-rose-200 pt-5 lg:pt-6">
+                                                                    <p className="text-gray-700 leading-relaxed text-base font-medium">
                                                                         {program.admissionEligibility}
                                                                     </p>
                                                                 </div>
@@ -1133,24 +1097,23 @@ export function IndividualProgramPage() {
                                                     </AccordionItem>
 
                                                     <AccordionItem value="faq-2" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
-                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 lg:gap-5 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the program fees?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
                                                                         <DollarSign className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
-                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t border-rose-200 pt-5 lg:pt-6">
+                                                                    <p className="text-gray-700 leading-relaxed text-base font-medium">
                                                                         The total program fee is <strong className="font-extrabold text-gray-900 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
                                                                         Please refer to the detailed fee structure above for a year-by-year breakdown.
                                                                     </p>
@@ -1160,32 +1123,31 @@ export function IndividualProgramPage() {
                                                     </AccordionItem>
 
                                                     <AccordionItem value="faq-3" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
-                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 lg:gap-5 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the career prospects after graduation?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
                                                                         <Briefcase className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
-                                                                    <p className="mb-6 lg:mb-7 font-bold text-gray-900 text-lg lg:text-xl">Graduates can pursue careers in:</p>
-                                                                    <ul className="space-y-4 lg:space-y-5">
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t border-rose-200 pt-5 lg:pt-6">
+                                                                    <p className="mb-4 font-bold text-gray-900 text-lg">Graduates can pursue careers in:</p>
+                                                                    <ul className="space-y-3 lg:space-y-4">
                                                                         {program.careerOutcomes.map((career, index) => (
-                                                                            <li key={index} className="flex items-start gap-4 lg:gap-5 group/item">
+                                                                            <li key={index} className="flex items-start gap-3 lg:gap-4 group/item">
                                                                                 <div className="flex-shrink-0 mt-1.5 relative">
                                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full blur-sm opacity-50"></div>
                                                                                     <div className="relative w-2 h-2 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 shadow-md"></div>
                                                                                 </div>
-                                                                                <span className="text-gray-700 font-medium text-base lg:text-lg group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
+                                                                                <span className="text-gray-700 font-medium text-base group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
                                                                             </li>
                                                                         ))}
                                                                     </ul>
@@ -1195,24 +1157,23 @@ export function IndividualProgramPage() {
                                                     </AccordionItem>
 
                                                     <AccordionItem value="faq-4" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
-                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 lg:gap-5 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     Are scholarships available?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
                                                                         <Award className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
-                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t border-rose-200 pt-5 lg:pt-6">
+                                                                    <p className="text-gray-700 leading-relaxed text-base font-medium">
                                                                         Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
                                                                         Please contact our admissions office for more information about available scholarships and eligibility criteria.
                                                                     </p>
