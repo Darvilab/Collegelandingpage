@@ -252,12 +252,18 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              className={`rounded-full transition-all duration-200 ${pastHeroSection ? 'text-gray-700 hover:bg-gray-100/80 hover:text-gray-900' : 'text-white hover:bg-white/10'}`}
+            <a
+              href="/NEIT Prospectus.pdf"
+              download="NEIT Prospectus.pdf"
+              className="inline-flex items-center justify-center"
             >
-              Brochure
-            </Button>
+              <Button
+                variant="ghost"
+                className={`rounded-full transition-all duration-200 ${pastHeroSection ? 'text-gray-700 hover:bg-gray-100/80 hover:text-gray-900' : 'text-white hover:bg-white/10'}`}
+              >
+                Brochure
+              </Button>
+            </a>
             <Button className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 active:scale-100">
               Apply Now
             </Button>
@@ -363,13 +369,19 @@ export function Header() {
                 </Link>
               </div>
               <div className="flex flex-col gap-3 pt-4 px-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-cyan-200 hover:bg-cyan-50 hover:border-cyan-300 transition-all duration-200"
+                <a
+                  href="/NEIT Prospectus.pdf"
+                  download="NEIT Prospectus.pdf"
+                  className="inline-flex items-center justify-center"
                 >
-                  Download Brochure
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full border-cyan-200 hover:bg-cyan-50 hover:border-cyan-300 transition-all duration-200"
+                  >
+                    Download Brochure
+                  </Button>
+                </a>
                 <Button
                   size="sm"
                   className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 active:scale-100"

@@ -3,13 +3,37 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap, TrendingUp, Users, Target, Lightbulb, Star } from "lucide-react";
+import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap, TrendingUp, Users, Target, Lightbulb, Star, Code, Cpu, Database, Network, Microscope, Heart, Brain, CircuitBoard, Settings, Globe, Shield, Cloud, Smartphone, Laptop, Server, Code2, GitBranch, Layers, Terminal, Wrench, FlaskConical } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { getProgramBySlug, getAllPrograms, Program } from "../data/programs";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, useCallback } from "react";
+
+// Function to get appropriate icon for a course based on its name
+function getCourseIcon(courseName: string) {
+    const name = courseName.toLowerCase();
+
+    if (name.includes("programming") || name.includes("code") || name.includes("software")) return Code;
+    if (name.includes("computer") && (name.includes("organization") || name.includes("architecture"))) return Cpu;
+    if (name.includes("data structure") || name.includes("algorithm")) return GitBranch;
+    if (name.includes("database")) return Database;
+    if (name.includes("network") || name.includes("communication")) return Network;
+    if (name.includes("digital logic") || name.includes("circuit")) return CircuitBoard;
+    if (name.includes("artificial intelligence") || name.includes("machine learning") || name.includes("ai")) return Brain;
+    if (name.includes("biomedical") || name.includes("medical")) return Heart;
+    if (name.includes("microcontroller") || name.includes("embedded")) return Microscope;
+    if (name.includes("web") || name.includes("internet")) return Globe;
+    if (name.includes("security") || name.includes("cyber")) return Shield;
+    if (name.includes("cloud")) return Cloud;
+    if (name.includes("mobile") || name.includes("android") || name.includes("ios")) return Smartphone;
+    if (name.includes("project") || name.includes("engineering project")) return Wrench;
+    if (name.includes("introduction") || name.includes("fundamental")) return BookOpen;
+    if (name.includes("lab") || name.includes("laboratory")) return FlaskConical;
+
+    return Code2; // Default icon
+}
 
 export function IndividualProgramPage() {
     const { slug } = useParams<{ slug: string }>();
@@ -295,14 +319,20 @@ export function IndividualProgramPage() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-6 lg:mb-8">
-                                <Button
-                                    size="lg"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base lg:text-lg px-5 lg:px-6 h-11 lg:h-12 group"
-                                    aria-label="Download program brochure"
+                                <a
+                                    href="/NEIT Prospectus.pdf"
+                                    download="NEIT Prospectus.pdf"
+                                    className="inline-flex items-center justify-center"
                                 >
-                                    <Download className="mr-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:scale-110 transition-transform" />
-                                    Download Brochure
-                                </Button>
+                                    <Button
+                                        size="lg"
+                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base lg:text-lg px-5 lg:px-6 h-11 lg:h-12 group"
+                                        aria-label="Download program brochure"
+                                    >
+                                        <Download className="mr-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:scale-110 transition-transform" />
+                                        Download Brochure
+                                    </Button>
+                                </a>
                                 <Button
                                     size="lg"
                                     variant="outline"
@@ -507,37 +537,68 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* What You Will Learn Card */}
-                                    <div className="relative mt-12 bg-gradient-to-br from-white to-blue-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden">
+                                    <div className="relative mt-12 bg-gradient-to-br from-white to-blue-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-6 sm:p-8 lg:p-10 overflow-hidden">
                                         {/* Decorative gradient overlay */}
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
 
                                         <div className="relative">
-                                            <div className="flex items-center gap-3 mb-8">
-                                                <div className="p-3 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg">
-                                                    <Lightbulb className="h-6 w-6 text-white" />
+                                            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                                                <div className="p-2 sm:p-3 rounded-lg bg-blue-100">
+                                                    <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                                                 </div>
-                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">What You Will Learn</h3>
+                                                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">What You Will Learn</h3>
                                             </div>
-                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <ul className="space-y-3 sm:space-y-4">
                                                 {program.youWill.map((item, index) => (
                                                     <motion.li
                                                         key={index}
                                                         initial={{ opacity: 0, x: -20 }}
                                                         animate={isOverviewInView ? { opacity: 1, x: 0 } : {}}
-                                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                                        className="flex items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm hover:bg-white/80 hover:shadow-md transition-all group"
+                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-3 sm:gap-4"
                                                     >
-                                                        <div className="flex-shrink-0 mt-0.5">
-                                                            <div className="p-1.5 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 group-hover:scale-110 transition-transform">
-                                                                <CheckCircle2 className="h-5 w-5 text-white" />
-                                                            </div>
+                                                        <div className="flex-shrink-0">
+                                                            <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
                                                         </div>
-                                                        <span className="text-gray-700 font-medium leading-relaxed">{item}</span>
+                                                        <span className="text-gray-700 text-sm sm:text-base">{item}</span>
                                                     </motion.li>
                                                 ))}
                                             </ul>
                                         </div>
                                     </div>
+
+                                    {/* Why Program Section */}
+                                    {program.whyProgram && program.whyProgram.length > 0 && (
+                                        <div className="relative mt-8 bg-gradient-to-br from-white to-green-50/30 rounded-3xl shadow-xl border border-gray-200/60 p-6 sm:p-8 lg:p-10 overflow-hidden">
+                                            {/* Decorative gradient overlay */}
+                                            <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
+
+                                            <div className="relative">
+                                                <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                                                    <div className="p-2 sm:p-3 rounded-lg bg-green-100">
+                                                        <Star className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
+                                                    </div>
+                                                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Why {program.title}?</h3>
+                                                </div>
+                                                <ul className="space-y-3 sm:space-y-4">
+                                                    {program.whyProgram.map((item, index) => (
+                                                        <motion.li
+                                                            key={index}
+                                                            initial={{ opacity: 0, x: -20 }}
+                                                            animate={isOverviewInView ? { opacity: 1, x: 0 } : {}}
+                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                            className="flex items-center gap-3 sm:gap-4"
+                                                        >
+                                                            <div className="flex-shrink-0">
+                                                                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                                                            </div>
+                                                            <span className="text-gray-700 text-sm sm:text-base">{item}</span>
+                                                        </motion.li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </motion.section>
 
@@ -766,55 +827,117 @@ export function IndividualProgramPage() {
                                         <p className="text-lg text-gray-600 max-w-2xl">Comprehensive curriculum designed for real-world success</p>
                                     </div>
 
-                                    <div className="mt-10 bg-white rounded-2xl border border-gray-200 p-8 lg:p-10">
-                                        <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
-                                            <TabsList className="flex w-full bg-transparent border-b border-gray-200 p-0 mb-8 h-auto">
-                                                {program.modules.map((year) => (
-                                                    <TabsTrigger
-                                                        key={year.year}
+                                    {/* Curriculum Container with Enhanced Design */}
+                                    <div className="mt-10 relative">
+                                        {/* Decorative Background Elements */}
+                                        <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
+                                            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-100/30 to-purple-100/30 rounded-full blur-3xl"></div>
+                                            <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl"></div>
+                                        </div>
+
+                                        <div className="relative bg-gradient-to-br from-white via-indigo-50/20 to-purple-50/20 rounded-3xl border border-indigo-100/60 shadow-2xl p-6 lg:p-10 backdrop-blur-sm">
+                                            <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
+                                                {/* Enhanced Year Tabs - Smaller to fit Year 4 */}
+                                                <TabsList className="flex w-full bg-gradient-to-r from-gray-50 to-gray-100/50 rounded-xl p-1.5 mb-8 h-auto border border-gray-200/60 shadow-inner gap-1">
+                                                    {program.modules.map((year, tabIndex) => (
+                                                        <TabsTrigger
+                                                            key={year.year}
+                                                            value={year.year}
+                                                            className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/40 data-[state=active]:ring-2 data-[state=active]:ring-indigo-300/50 data-[state=active]:ring-offset-2 rounded-lg py-2.5 px-3 lg:px-4 transition-all duration-300 text-gray-700 font-semibold text-xs lg:text-sm hover:text-gray-900 data-[state=inactive]:hover:bg-white/60 data-[state=active]:scale-[1.02] data-[state=active]:font-bold"
+                                                        >
+                                                            <span className="relative z-10">{year.year}</span>
+                                                        </TabsTrigger>
+                                                    ))}
+                                                </TabsList>
+
+                                                {/* Year Content */}
+                                                {program.modules.map((year, yearIndex) => (
+                                                    <TabsContent
+                                                        key={yearIndex}
                                                         value={year.year}
-                                                        className="flex-1 data-[state=active]:bg-transparent data-[state=active]:text-indigo-600 data-[state=active]:border-b-2 data-[state=active]:border-indigo-600 rounded-none py-4 px-6 transition-all text-gray-600 font-semibold text-base hover:text-gray-900 border-b-2 border-transparent -mb-[2px]"
+                                                        className="mt-0 animate-in fade-in-50 duration-300"
                                                     >
-                                                        {year.year}
-                                                    </TabsTrigger>
+                                                        <div className="space-y-6 lg:space-y-7">
+                                                            {year.semesters.map((semester, semIndex) => (
+                                                                <motion.div
+                                                                    key={semIndex}
+                                                                    className="relative"
+                                                                    initial={{ opacity: 0, y: 20 }}
+                                                                    animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                                                    transition={{ duration: 0.5, delay: semIndex * 0.1 }}
+                                                                >
+                                                                    {/* Semester Header with Enhanced Design */}
+                                                                    <div className="relative mb-4">
+                                                                        <div className="flex items-center gap-3 mb-4">
+                                                                            <div className="relative">
+                                                                                <div className="absolute inset-0 bg-gradient-to-b from-indigo-400 to-purple-500 rounded-full blur-md opacity-50"></div>
+                                                                                <div className="relative h-12 w-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg"></div>
+                                                                            </div>
+                                                                            <div className="flex-1">
+                                                                                <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
+                                                                                    {semester.semester}
+                                                                                </h3>
+                                                                                <div className="mt-1.5 h-0.5 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {/* Course Cards Grid */}
+                                                                    <div className="grid gap-3">
+                                                                        <Accordion type="single" collapsible className="w-full space-y-3">
+                                                                            {semester.modules.map((module, modIndex) => {
+                                                                                const CourseIcon = getCourseIcon(module.name);
+                                                                                return (
+                                                                                    <AccordionItem
+                                                                                        key={modIndex}
+                                                                                        value={`module-${yearIndex}-${semIndex}-${modIndex}`}
+                                                                                        className="group"
+                                                                                    >
+                                                                                        <div className="relative overflow-hidden rounded-xl bg-white/90 backdrop-blur-sm border border-gray-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:border-indigo-300/60 hover:scale-[1.01]">
+                                                                                            {/* Gradient Overlay on Hover */}
+                                                                                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-50/0 via-purple-50/0 to-pink-50/0 group-hover:from-indigo-50/30 group-hover:via-purple-50/20 group-hover:to-pink-50/30 transition-all duration-300 pointer-events-none"></div>
+
+                                                                                            <AccordionTrigger className="flex w-full items-center justify-between p-4 lg:p-5 text-left font-semibold text-gray-800 hover:no-underline group/trigger">
+                                                                                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                                                                                    {/* Course Icon */}
+                                                                                                    <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 group-hover/trigger:scale-110 transition-transform duration-300">
+                                                                                                        <CourseIcon className="h-5 w-5" />
+                                                                                                    </div>
+
+                                                                                                    {/* Course Name */}
+                                                                                                    <span className="text-sm lg:text-base font-bold text-gray-900 pr-4 group-hover/trigger:text-indigo-700 transition-colors duration-300">
+                                                                                                        {module.name}
+                                                                                                    </span>
+                                                                                                </div>
+
+                                                                                                {/* Credits Badge */}
+                                                                                                <div className="flex items-center gap-2 flex-shrink-0">
+                                                                                                    <span className="text-xs font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 px-3 py-1.5 rounded-full border border-indigo-200/60 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:to-purple-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md transition-all duration-300">
+                                                                                                        {module.credits} Credits
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </AccordionTrigger>
+
+                                                                                            <AccordionContent className="px-4 lg:px-5 pb-4 lg:pb-5 pt-0">
+                                                                                                <div className="pl-14 border-t border-gray-200/60 pt-4">
+                                                                                                    <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+                                                                                                        {module.description}
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </AccordionContent>
+                                                                                        </div>
+                                                                                    </AccordionItem>
+                                                                                );
+                                                                            })}
+                                                                        </Accordion>
+                                                                    </div>
+                                                                </motion.div>
+                                                            ))}
+                                                        </div>
+                                                    </TabsContent>
                                                 ))}
-                                            </TabsList>
-                                            {program.modules.map((year, yearIndex) => (
-                                                <TabsContent key={yearIndex} value={year.year} className="mt-6">
-                                                    <div className="space-y-12">
-                                                        {year.semesters.map((semester, semIndex) => (
-                                                            <div key={semIndex} className="relative">
-                                                                <div className="flex items-center gap-4 mb-6">
-                                                                    <div className="h-12 w-1 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></div>
-                                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">{semester.semester}</h3>
-                                                                </div>
-                                                                <Accordion type="single" collapsible className="w-full space-y-4">
-                                                                    {semester.modules.map((module, modIndex) => (
-                                                                        <AccordionItem
-                                                                            key={modIndex}
-                                                                            value={`module-${yearIndex}-${semIndex}-${modIndex}`}
-                                                                            className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden"
-                                                                        >
-                                                                            <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                                                <span className="text-lg pr-4">{module.name}</span>
-                                                                                <div className="flex items-center gap-3 flex-shrink-0">
-                                                                                    <span className="text-sm font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 px-4 py-1.5 rounded-full border border-indigo-200 group-hover:from-indigo-100 group-hover:to-purple-100 transition-colors">
-                                                                                        {module.credits} Credits
-                                                                                    </span>
-                                                                                </div>
-                                                                            </AccordionTrigger>
-                                                                            <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
-                                                                                {module.description}
-                                                                            </AccordionContent>
-                                                                        </AccordionItem>
-                                                                    ))}
-                                                                </Accordion>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </TabsContent>
-                                            ))}
-                                        </Tabs>
+                                            </Tabs>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.section>
@@ -840,20 +963,15 @@ export function IndividualProgramPage() {
                                                 <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Why Choose Us?</h2>
                                                 <p className="text-lg text-gray-600">Experience excellence in education</p>
                                             </div>
-                                            <div className="relative bg-gradient-to-br from-white to-amber-50/30 p-8 lg:p-10 rounded-3xl shadow-xl border border-gray-200/60 overflow-hidden group hover:shadow-2xl transition-all">
+                                            <div className="relative bg-gradient-to-br from-white to-amber-50/30 p-6 sm:p-8 lg:p-10 rounded-3xl shadow-xl border border-gray-200/60 overflow-hidden group hover:shadow-2xl transition-all">
                                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
                                                 <div className="relative">
-                                                    <div className="flex items-start gap-4 mb-6">
-                                                        <div className="p-3 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg flex-shrink-0">
-                                                            <Star className="h-6 w-6 text-white" />
+                                                    <div className="flex items-start gap-3 sm:gap-4 mb-6">
+                                                        <div className="p-2 sm:p-3 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg flex-shrink-0">
+                                                            <Star className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                                                         </div>
-                                                        <div className="flex-1">
-                                                            <p className="text-gray-700 leading-relaxed text-lg mb-4">{program.whyUniversity}</p>
-                                                            <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200/50">
-                                                                <p className="text-sm text-amber-800 italic leading-relaxed">
-                                                                    <strong className="font-semibold">Note:</strong> The curriculum is regularly reviewed to ensure it remains current and relevant to industry needs.
-                                                                </p>
-                                                            </div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <p className="text-gray-700 leading-relaxed text-base sm:text-lg">{program.whyUniversity}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -885,36 +1003,36 @@ export function IndividualProgramPage() {
                                         <div className="mt-8 space-y-4">
                                             <Accordion type="single" collapsible className="w-full">
                                                 <AccordionItem value="faq-1" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-lg pr-4">What are the admission requirements?</span>
+                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the admission requirements?</span>
                                                         <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <HelpCircle className="h-5 w-5 text-rose-600" />
+                                                            <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
                                                         </div>
                                                     </AccordionTrigger>
-                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
                                                         {program.admissionEligibility}
                                                     </AccordionContent>
                                                 </AccordionItem>
                                                 <AccordionItem value="faq-2" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-lg pr-4">What are the program fees?</span>
+                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the program fees?</span>
                                                         <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <DollarSign className="h-5 w-5 text-rose-600" />
+                                                            <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
                                                         </div>
                                                     </AccordionTrigger>
-                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
                                                         The total program fee is <strong className="font-semibold text-gray-900">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
                                                         Please refer to the detailed fee structure above for a year-by-year breakdown.
                                                     </AccordionContent>
                                                 </AccordionItem>
                                                 <AccordionItem value="faq-3" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-lg pr-4">What are the career prospects after graduation?</span>
+                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the career prospects after graduation?</span>
                                                         <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <Briefcase className="h-5 w-5 text-rose-600" />
+                                                            <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
                                                         </div>
                                                     </AccordionTrigger>
-                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
                                                         <p className="mb-4 font-semibold text-gray-900">Graduates can pursue careers in:</p>
                                                         <ul className="space-y-2">
                                                             {program.careerOutcomes.map((career, index) => (
@@ -929,13 +1047,13 @@ export function IndividualProgramPage() {
                                                     </AccordionContent>
                                                 </AccordionItem>
                                                 <AccordionItem value="faq-4" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-lg pr-4">Are scholarships available?</span>
+                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
+                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">Are scholarships available?</span>
                                                         <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <Award className="h-5 w-5 text-rose-600" />
+                                                            <Award className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
                                                         </div>
                                                     </AccordionTrigger>
-                                                    <AccordionContent className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
                                                         Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
                                                         Please contact our admissions office for more information about available scholarships and eligibility criteria.
                                                     </AccordionContent>

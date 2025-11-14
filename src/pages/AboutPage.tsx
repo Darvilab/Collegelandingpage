@@ -308,12 +308,18 @@ export function AboutPage() {
                 Apply Now
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
+              <a
+                href="/NEIT Prospectus.pdf"
+                download="NEIT Prospectus.pdf"
+                className="inline-flex items-center justify-center"
               >
-                Download Brochure
-              </Button>
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
+                >
+                  Download Brochure
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>

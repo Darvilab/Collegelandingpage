@@ -224,12 +224,18 @@ export function AcademicProgramsPage() {
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
                         </Link>
-                        <Button
-                          className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
+                        <a
+                          href="/NEIT Prospectus.pdf"
+                          download="NEIT Prospectus.pdf"
+                          className="inline-flex items-center justify-center"
                         >
-                          <Download className="mr-2 h-4 w-4" />
-                          Download Brochure
-                        </Button>
+                          <Button
+                            className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Brochure
+                          </Button>
+                        </a>
                         <Link to={`/academics/${program.slug}#fee-structure`}>
                           <Button
                             variant="outline"

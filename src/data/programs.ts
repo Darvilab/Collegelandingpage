@@ -54,6 +54,7 @@ export interface Program {
     youWill: string[];
     degreeHighlights: string[];
     whyUniversity?: string;
+    whyProgram?: string[];
 }
 
 export const programs: Program[] = [
@@ -61,15 +62,23 @@ export const programs: Program[] = [
         id: "btech-ai",
         slug: "btech-artificial-intelligence",
         icon: Brain,
-        title: "BTech in Artificial Intelligence (AI)",
-        degree: "BTech",
+        title: "B. Tech in AI",
+        degree: "Bachelor of Technology in Artificial Intelligence",
         duration: "4 Years",
         credit: "160",
-        intake: "Autumn",
-        overview: "Our BTech in Artificial Intelligence program focuses on machine learning, deep learning, natural language processing, and ethical AI. Students master cutting-edge AI technologies including neural networks, computer vision, and generative AI systems.",
-        description: "BTech in Artificial Intelligence course integrates foundational computer science and AI expertise, emphasizing computational thinking, programming, and advanced AI techniques for a versatile skill set in technology.",
+        intake: "2025/2026 (48 Seats)",
+        overview: "The Bachelor of Technology in Artificial Intelligence program is designed for those who dream of creating the future. This course brings together knowledge from computer science, mathematics, and data science to help students learn how to solve problems and build intelligent systems. By exploring this exciting field, you will be ready to face real-world challenges and make a positive impact on industries and communities.",
+        description: "The Bachelor of Technology in Artificial Intelligence program is designed for those who dream of creating the future. This course brings together knowledge from computer science, mathematics, and data science to help students learn how to solve problems and build intelligent systems. By exploring this exciting field, you will be ready to face real-world challenges and make a positive impact on industries and communities.",
         image: "/AILab.png",
         gradient: "from-violet-500 via-purple-500 to-indigo-500",
+        whyProgram: [
+            "Create & Empower the Global Tech Industry Leaders",
+            "Employer-focused Program",
+            "Build & Train AI Models",
+            "Analyze Large Datasets",
+            "Develop Intelligent Applications",
+            "Become a Computer Vision Engineer (and more)"
+        ],
         coreCourses: [
             "Neural Networks and Deep Learning",
             "Data Science and Analytics",
@@ -117,42 +126,67 @@ export const programs: Program[] = [
                 year: "YEAR ONE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER I",
                         modules: [
                             {
-                                name: "Programming Concepts and Algorithms",
-                                credits: 20,
-                                description: "Introduction to fundamental programming concepts, data structures, and algorithmic thinking."
+                                name: "Introduction to Programming",
+                                credits: 3,
+                                description: "Fundamental programming concepts and problem-solving techniques using modern programming languages."
                             },
                             {
-                                name: "Mathematical Skills for Computing Professionals",
-                                credits: 20,
-                                description: "Essential mathematics for computing including linear algebra, calculus, and statistics."
+                                name: "Digital Logic",
+                                credits: 3,
+                                description: "Digital circuits, logic gates, Boolean algebra, and combinational/sequential logic design."
                             },
                             {
-                                name: "Computer Systems",
-                                credits: 20,
-                                description: "Understanding computer architecture, operating systems, and system-level programming."
+                                name: "Calculus",
+                                credits: 3,
+                                description: "Differential and integral calculus for engineering applications, limits, derivatives, and integrals."
+                            },
+                            {
+                                name: "Introduction to Artificial Intelligence",
+                                credits: 3,
+                                description: "Overview of AI concepts, history, applications, and fundamental AI problem-solving approaches."
+                            },
+                            {
+                                name: "Technical Report Writing & Presentation",
+                                credits: 2,
+                                description: "Technical communication skills, report writing, and effective presentation techniques for engineers."
+                            },
+                            {
+                                name: "Society & Professional Ethics",
+                                credits: 2,
+                                description: "Ethical considerations in technology, professional practice, and social responsibility of engineers."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER II",
                         modules: [
                             {
-                                name: "Programming Professional Practice",
-                                credits: 20,
-                                description: "Advanced programming practices, software engineering principles, and professional development."
+                                name: "Object Oriented Programming",
+                                credits: 3,
+                                description: "Object-oriented programming principles, classes, inheritance, polymorphism, and design patterns."
                             },
                             {
-                                name: "Working with Data",
-                                credits: 20,
-                                description: "Data manipulation, analysis, and visualization techniques."
+                                name: "Artificial Intelligence & Intelligent Systems",
+                                credits: 3,
+                                description: "Advanced AI concepts, intelligent system design, knowledge representation, and reasoning."
                             },
                             {
-                                name: "Integration Project",
-                                credits: 20,
-                                description: "Capstone project integrating knowledge from all first-year modules."
+                                name: "Microprocessor & Assembly Language",
+                                credits: 3,
+                                description: "Microprocessor architecture, assembly language programming, and low-level system programming."
+                            },
+                            {
+                                name: "Linear Algebra & Statistics",
+                                credits: 3,
+                                description: "Vector spaces, matrices, linear transformations, and statistical methods for data analysis."
+                            },
+                            {
+                                name: "Project I",
+                                credits: 2,
+                                description: "First-year project integrating programming and AI concepts with practical implementation."
                             }
                         ]
                     }
@@ -162,42 +196,67 @@ export const programs: Program[] = [
                 year: "YEAR TWO",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER III",
                         modules: [
                             {
-                                name: "Machine Learning Fundamentals",
-                                credits: 20,
-                                description: "Introduction to machine learning algorithms and techniques."
+                                name: "Database Management System",
+                                credits: 3,
+                                description: "Database design, SQL, normalization, transaction management, and database administration."
                             },
                             {
-                                name: "Data Structures and Algorithms",
-                                credits: 20,
-                                description: "Advanced data structures and algorithm design and analysis."
+                                name: "Data Structure & Algorithm",
+                                credits: 3,
+                                description: "Advanced data structures, algorithm design, complexity analysis, and efficient problem-solving techniques."
                             },
                             {
-                                name: "Database Systems",
-                                credits: 20,
-                                description: "Database design, SQL, and database management systems."
+                                name: "Computer Organization",
+                                credits: 3,
+                                description: "Computer architecture, CPU design, memory systems, and organization principles."
+                            },
+                            {
+                                name: "Discrete Structure",
+                                credits: 3,
+                                description: "Discrete mathematics including sets, relations, functions, graphs, and combinatorics."
+                            },
+                            {
+                                name: "Differential Equations",
+                                credits: 3,
+                                description: "Ordinary and partial differential equations, their solutions, and applications in engineering."
+                            },
+                            {
+                                name: "Project",
+                                credits: 2,
+                                description: "Second-year project applying database, data structures, and system concepts."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER IV",
                         modules: [
                             {
-                                name: "Deep Learning",
-                                credits: 20,
-                                description: "Neural networks, deep learning architectures, and applications."
+                                name: "Numerical Methods",
+                                credits: 3,
+                                description: "Numerical techniques for solving mathematical problems, approximation methods, and error analysis."
                             },
                             {
-                                name: "Natural Language Processing",
-                                credits: 20,
-                                description: "Text processing, language models, and NLP applications."
+                                name: "Computer Networks",
+                                credits: 3,
+                                description: "Network protocols, architecture, OSI model, TCP/IP, and network security fundamentals."
                             },
                             {
-                                name: "AI Project",
-                                credits: 20,
-                                description: "Practical AI project applying learned concepts."
+                                name: "Design & Analysis of Algorithms",
+                                credits: 3,
+                                description: "Algorithm design techniques, complexity analysis, dynamic programming, and greedy algorithms."
+                            },
+                            {
+                                name: "Introduction to Data Science",
+                                credits: 3,
+                                description: "Data science fundamentals, data analysis, visualization, and exploratory data analysis techniques."
+                            },
+                            {
+                                name: "Project II",
+                                credits: 2,
+                                description: "Project focusing on AI, data science, and network applications."
                             }
                         ]
                     }
@@ -207,37 +266,142 @@ export const programs: Program[] = [
                 year: "YEAR THREE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER V",
                         modules: [
                             {
-                                name: "Advanced AI Topics",
-                                credits: 20,
-                                description: "Cutting-edge AI research and advanced topics."
+                                name: "Machine Learning",
+                                credits: 3,
+                                description: "Machine learning algorithms, supervised and unsupervised learning, model evaluation, and validation."
                             },
                             {
-                                name: "Computer Vision",
-                                credits: 20,
-                                description: "Image processing, computer vision algorithms, and applications."
+                                name: "Optimization Techniques",
+                                credits: 3,
+                                description: "Optimization methods for machine learning, gradient descent, convex optimization, and metaheuristics."
                             },
                             {
-                                name: "AI Ethics and Society",
-                                credits: 20,
-                                description: "Ethical considerations in AI development and deployment."
+                                name: "Embedded Systems & Image Processing",
+                                credits: 3,
+                                description: "Embedded system design, real-time processing, and image processing algorithms and techniques."
+                            },
+                            {
+                                name: "Data Warehousing & Mining",
+                                credits: 3,
+                                description: "Data warehouse design, ETL processes, data mining techniques, and knowledge discovery."
+                            },
+                            {
+                                name: "Project III",
+                                credits: 2,
+                                description: "Third-year project applying machine learning and data mining concepts."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER VI",
                         modules: [
                             {
-                                name: "Final Year Project",
-                                credits: 40,
-                                description: "Comprehensive final year project demonstrating mastery of AI concepts."
+                                name: "Object Oriented Software Engineering",
+                                credits: 3,
+                                description: "Software engineering principles, object-oriented design, UML, and software development lifecycle."
                             },
                             {
-                                name: "Professional Practice",
-                                credits: 20,
-                                description: "Industry placement and professional development."
+                                name: "Computer Vision",
+                                credits: 3,
+                                description: "Computer vision algorithms, image understanding, feature detection, and pattern recognition."
+                            },
+                            {
+                                name: "Natural Language Processing",
+                                credits: 3,
+                                description: "NLP techniques, text processing, language models, sentiment analysis, and language understanding."
+                            },
+                            {
+                                name: "Research Methods",
+                                credits: 3,
+                                description: "Research methodologies, academic writing, literature review, and research design for engineering projects."
+                            },
+                            {
+                                name: "Project IV",
+                                credits: 2,
+                                description: "Project in computer vision and natural language processing applications."
+                            },
+                            {
+                                name: "Project V",
+                                credits: 2,
+                                description: "Advanced project integrating multiple AI technologies and research methodologies."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                year: "YEAR FOUR",
+                semesters: [
+                    {
+                        semester: "SEMESTER VII",
+                        modules: [
+                            {
+                                name: "Internship",
+                                credits: 6,
+                                description: "Industry internship for practical experience in AI development and real-world applications."
+                            },
+                            {
+                                name: "Reinforcement Learning",
+                                credits: 3,
+                                description: "Reinforcement learning algorithms, Q-learning, policy gradients, and applications in AI systems."
+                            },
+                            {
+                                name: "Cloud Computing",
+                                credits: 3,
+                                description: "Cloud computing platforms, services, architectures, and deployment of AI applications on cloud."
+                            },
+                            {
+                                name: "Project VI",
+                                credits: 3,
+                                description: "Advanced project integrating reinforcement learning and cloud computing technologies."
+                            },
+                            {
+                                name: "Elective I: Computer Vision / Image & Video Processing / Surveillance",
+                                credits: 3,
+                                description: "Advanced computer vision topics including image processing, video analytics, surveillance systems, and biometric recognition."
+                            },
+                            {
+                                name: "Elective II: Mathematics - Introduction to Statistical Learning, Optimization Method, Bayesian Data Analysis / Complex Kernel",
+                                credits: 3,
+                                description: "Advanced mathematical methods for machine learning including statistical learning, optimization, kernel methods, and Bayesian analysis."
+                            }
+                        ]
+                    },
+                    {
+                        semester: "SEMESTER VIII",
+                        modules: [
+                            {
+                                name: "Internship",
+                                credits: 6,
+                                description: "Extended industry internship for comprehensive practical experience and professional development."
+                            },
+                            {
+                                name: "Reinforcement Learning",
+                                credits: 3,
+                                description: "Advanced reinforcement learning concepts and applications in complex AI systems."
+                            },
+                            {
+                                name: "Cloud Computing VI",
+                                credits: 3,
+                                description: "Advanced cloud computing topics, distributed systems, and scalable AI infrastructure."
+                            },
+                            {
+                                name: "Project VI",
+                                credits: 3,
+                                description: "Final year capstone project demonstrating comprehensive AI engineering skills."
+                            },
+                            {
+                                name: "Elective III: HCI / Common Models / Predictive Analysis",
+                                credits: 3,
+                                description: "Human-Computer Interaction, common AI models, and predictive analysis techniques for business intelligence."
+                            },
+                            {
+                                name: "Elective IV: Data Science - Fundamentals of Data Analytics, Data Analysis, Big Data Visualization, Intelligence, Social Media Analytics",
+                                credits: 3,
+                                description: "Advanced data science topics covering big data analytics, visualization, business intelligence, and social media analytics."
                             }
                         ]
                     }
@@ -290,7 +454,7 @@ export const programs: Program[] = [
                 grandTotal: 630000
             }
         ],
-        whyUniversity: "Our university is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. Our programs are regularly reviewed to ensure they meet the highest standards and prepare students for successful careers."
+        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
     },
     {
         id: "be-bme",
@@ -300,7 +464,7 @@ export const programs: Program[] = [
         degree: "BE",
         duration: "4 Years",
         credit: "160",
-        intake: "Autumn",
+        intake: "2025/2026 (144 Seats)",
         overview: "Our BE in Biomedical Engineering program blends engineering principles with healthcare applications. Students learn to design medical devices, develop diagnostic systems, and work on cutting-edge projects in bioinformatics, tissue engineering, and medical imaging.",
         description: "BE in Biomedical Engineering course integrates engineering principles with healthcare applications, emphasizing medical device design, diagnostic systems, and innovative solutions for healthcare challenges.",
         image: "/BiomedicalLab.jpg",
@@ -352,42 +516,72 @@ export const programs: Program[] = [
                 year: "YEAR ONE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER I",
                         modules: [
                             {
-                                name: "Introduction to Biomedical Engineering",
-                                credits: 20,
-                                description: "Fundamentals of biomedical engineering and its applications in healthcare."
+                                name: "Mathematics I",
+                                credits: 3,
+                                description: "Fundamental mathematical concepts including algebra, trigonometry, and calculus foundations."
                             },
                             {
-                                name: "Human Anatomy and Physiology",
-                                credits: 20,
-                                description: "Understanding the human body systems and their functions."
+                                name: "Physics",
+                                credits: 3,
+                                description: "Physics principles relevant to biomedical engineering including mechanics, waves, and optics."
                             },
                             {
-                                name: "Engineering Mathematics",
-                                credits: 20,
-                                description: "Mathematical foundations for biomedical engineering applications."
+                                name: "Basic Electronics Engineering",
+                                credits: 3,
+                                description: "Introduction to electronic components, circuits, and basic electronic systems."
+                            },
+                            {
+                                name: "Computer Programming",
+                                credits: 3,
+                                description: "Programming fundamentals and problem-solving using computer languages."
+                            },
+                            {
+                                name: "Engineering Drawing",
+                                credits: 2,
+                                description: "Technical drawing, CAD basics, and engineering graphics for biomedical device design."
+                            },
+                            {
+                                name: "Basic Electrical Engineering",
+                                credits: 3,
+                                description: "Fundamentals of electrical circuits, AC/DC systems, and electrical safety."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER II",
                         modules: [
                             {
-                                name: "Biomechanics",
-                                credits: 20,
-                                description: "Mechanics of biological systems and movement analysis."
+                                name: "Mathematics II",
+                                credits: 3,
+                                description: "Advanced calculus, differential equations, and mathematical methods for engineering."
                             },
                             {
-                                name: "Biomedical Instrumentation",
-                                credits: 20,
-                                description: "Principles and design of medical instruments and devices."
+                                name: "Chemistry",
+                                credits: 3,
+                                description: "General and organic chemistry principles relevant to biomedical materials and processes."
                             },
                             {
-                                name: "Biomedical Project",
-                                credits: 20,
-                                description: "Practical project applying biomedical engineering principles."
+                                name: "Electric Engineering Materials",
+                                credits: 3,
+                                description: "Properties and applications of electrical and electronic materials in biomedical devices."
+                            },
+                            {
+                                name: "Communication Engineering",
+                                credits: 3,
+                                description: "Communication systems, signal transmission, and telecommunication fundamentals."
+                            },
+                            {
+                                name: "Introduction to Biomedical Engineering",
+                                credits: 3,
+                                description: "Overview of biomedical engineering field, applications, and career opportunities."
+                            },
+                            {
+                                name: "Digital Electronics & Computational System",
+                                credits: 3,
+                                description: "Digital logic, microprocessors, and computational systems for biomedical applications."
                             }
                         ]
                     }
@@ -397,42 +591,67 @@ export const programs: Program[] = [
                 year: "YEAR TWO",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER III",
                         modules: [
                             {
-                                name: "Medical Imaging Systems",
-                                credits: 20,
-                                description: "Medical imaging technologies including X-ray, MRI, and ultrasound."
+                                name: "Mathematics III",
+                                credits: 3,
+                                description: "Advanced mathematics including linear algebra, complex analysis, and numerical methods."
                             },
                             {
-                                name: "Biomedical Signal Processing",
-                                credits: 20,
-                                description: "Processing and analysis of biomedical signals."
+                                name: "Bio-Engineering Materials & Components",
+                                credits: 3,
+                                description: "Biomaterials science, biocompatibility, and materials used in medical devices."
                             },
                             {
-                                name: "Biomaterials",
-                                credits: 20,
-                                description: "Materials used in biomedical applications and their properties."
+                                name: "Fluid Mechanics & Thermodynamics",
+                                credits: 3,
+                                description: "Fluid dynamics, heat transfer, and thermodynamic principles in biological systems."
+                            },
+                            {
+                                name: "Cell Biology and Immunology",
+                                credits: 3,
+                                description: "Cellular structure, function, and immune system principles for biomedical applications."
+                            },
+                            {
+                                name: "Microprocessors",
+                                credits: 3,
+                                description: "Microprocessor architecture, programming, and interfacing for biomedical systems."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER IV",
                         modules: [
                             {
-                                name: "Medical Device Design",
-                                credits: 20,
-                                description: "Design principles and development of medical devices."
+                                name: "Applied Mathematics",
+                                credits: 3,
+                                description: "Applied mathematical techniques for solving biomedical engineering problems."
                             },
                             {
-                                name: "Tissue Engineering",
-                                credits: 20,
-                                description: "Engineering approaches to tissue regeneration and replacement."
+                                name: "Electronic Devices and Circuits",
+                                credits: 3,
+                                description: "Semiconductor devices, amplifiers, and electronic circuit design for medical equipment."
                             },
                             {
-                                name: "Clinical Engineering",
-                                credits: 20,
-                                description: "Management and maintenance of medical equipment in clinical settings."
+                                name: "Applied Sociology",
+                                credits: 2,
+                                description: "Social aspects of healthcare technology, ethics, and healthcare delivery systems."
+                            },
+                            {
+                                name: "Biomedical Embedded System Design",
+                                credits: 3,
+                                description: "Design and development of embedded systems for biomedical applications."
+                            },
+                            {
+                                name: "Biomedical Embryology",
+                                credits: 3,
+                                description: "Developmental biology and embryology relevant to biomedical engineering."
+                            },
+                            {
+                                name: "Human Anatomy and Physiology II",
+                                credits: 3,
+                                description: "Advanced study of human body systems, organ functions, and physiological processes."
                             }
                         ]
                     }
@@ -442,37 +661,137 @@ export const programs: Program[] = [
                 year: "YEAR THREE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER V",
                         modules: [
                             {
-                                name: "Advanced Biomedical Systems",
-                                credits: 20,
-                                description: "Advanced topics in biomedical engineering systems."
+                                name: "Probability and Statistics",
+                                credits: 3,
+                                description: "Statistical methods, probability theory, and data analysis for biomedical research."
                             },
                             {
-                                name: "Regulatory Affairs",
-                                credits: 20,
-                                description: "Regulatory requirements for medical devices and healthcare products."
+                                name: "Numerical Methods",
+                                credits: 3,
+                                description: "Numerical techniques for solving engineering problems in biomedical applications."
                             },
                             {
-                                name: "Biomedical Research Methods",
-                                credits: 20,
-                                description: "Research methodologies in biomedical engineering."
+                                name: "Implantable Devices",
+                                credits: 3,
+                                description: "Design, development, and safety of implantable medical devices and prosthetics."
+                            },
+                            {
+                                name: "Control Systems",
+                                credits: 3,
+                                description: "Control theory, feedback systems, and automation in biomedical devices."
+                            },
+                            {
+                                name: "Tissue Device Interactions",
+                                credits: 3,
+                                description: "Biocompatibility, tissue-material interactions, and biological responses to medical devices."
+                            },
+                            {
+                                name: "Communication Systems",
+                                credits: 3,
+                                description: "Advanced communication systems and telemedicine applications in healthcare."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER VI",
                         modules: [
                             {
-                                name: "Final Year Project",
-                                credits: 40,
-                                description: "Comprehensive final year project in biomedical engineering."
+                                name: "Engineering Economics",
+                                credits: 3,
+                                description: "Economic analysis, cost-benefit evaluation, and financial planning for medical devices."
                             },
                             {
-                                name: "Professional Practice",
-                                credits: 20,
-                                description: "Industry placement and professional development."
+                                name: "Medical Industry Management III",
+                                credits: 3,
+                                description: "Healthcare industry management, regulations, and business aspects of medical technology."
+                            },
+                            {
+                                name: "Biomedical Instrumentation I",
+                                credits: 3,
+                                description: "Principles and design of biomedical instruments for diagnosis and monitoring."
+                            },
+                            {
+                                name: "Medical Electronics",
+                                credits: 3,
+                                description: "Electronic systems in medical devices, sensors, and medical equipment technology."
+                            },
+                            {
+                                name: "Biomedical Digital Signal Processing",
+                                credits: 3,
+                                description: "Digital signal processing techniques for analyzing biomedical signals and data."
+                            },
+                            {
+                                name: "Seminar VII",
+                                credits: 2,
+                                description: "Research seminars, presentations, and academic discussions in biomedical engineering."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                year: "YEAR FOUR",
+                semesters: [
+                    {
+                        semester: "SEMESTER VII",
+                        modules: [
+                            {
+                                name: "Organization & Project Management",
+                                credits: 3,
+                                description: "Project management principles, team organization, and leadership in biomedical projects."
+                            },
+                            {
+                                name: "Biomedical Instrumentation II",
+                                credits: 3,
+                                description: "Advanced biomedical instrumentation, imaging systems, and diagnostic equipment."
+                            },
+                            {
+                                name: "Medical Imaging II",
+                                credits: 3,
+                                description: "Advanced medical imaging technologies including MRI, CT, ultrasound, and imaging processing."
+                            },
+                            {
+                                name: "Elective I: Structural & Functional Biomaterials, Medical Equipment",
+                                credits: 3,
+                                description: "Advanced biomaterials, structural analysis, and medical equipment design and maintenance."
+                            },
+                            {
+                                name: "Elective II: Neural Network Model of Medical Imaging Processing",
+                                credits: 3,
+                                description: "AI and machine learning applications in medical image processing and analysis."
+                            },
+                            {
+                                name: "Project",
+                                credits: 3,
+                                description: "Major project work integrating biomedical engineering knowledge and skills."
+                            }
+                        ]
+                    },
+                    {
+                        semester: "SEMESTER VIII",
+                        modules: [
+                            {
+                                name: "Engineering Professional Practice",
+                                credits: 3,
+                                description: "Professional ethics, regulations, standards, and practice in biomedical engineering."
+                            },
+                            {
+                                name: "Elective III: Hospital Engineering / Telemedicine / Telehealth",
+                                credits: 3,
+                                description: "Hospital infrastructure, telemedicine systems, and remote healthcare delivery technologies."
+                            },
+                            {
+                                name: "Biomedical Equipment Maintenance Management",
+                                credits: 3,
+                                description: "Maintenance, calibration, and management of biomedical equipment in healthcare settings."
+                            },
+                            {
+                                name: "Internship",
+                                credits: 6,
+                                description: "Industry internship providing practical experience in biomedical engineering workplaces."
                             }
                         ]
                     }
@@ -525,7 +844,7 @@ export const programs: Program[] = [
                 grandTotal: 630000
             }
         ],
-        whyUniversity: "Our university is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. Our programs are regularly reviewed to ensure they meet the highest standards and prepare students for successful careers."
+        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
     },
     {
         id: "be-computer",
@@ -535,7 +854,7 @@ export const programs: Program[] = [
         degree: "BE",
         duration: "4 Years",
         credit: "160",
-        intake: "Autumn",
+        intake: "2025/2026 (48 Seats)",
         overview: "Our BE in Computer Engineering program covers hardware-software integration, embedded systems, and cybersecurity. Students master computer architecture, operating systems, VLSI design, and network systems to build the digital infrastructure of tomorrow.",
         description: "BE in Computer Engineering course integrates hardware and software systems, emphasizing computer architecture, embedded systems, and network security for building robust digital infrastructure.",
         image: "/Lab.jpeg",
@@ -587,42 +906,72 @@ export const programs: Program[] = [
                 year: "YEAR ONE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER I",
                         modules: [
                             {
-                                name: "Introduction to Computer Engineering",
-                                credits: 20,
-                                description: "Fundamentals of computer engineering and digital systems."
+                                name: "Mathematics-I",
+                                credits: 3,
+                                description: "Fundamental mathematical concepts including algebra, trigonometry, and calculus foundations."
                             },
                             {
-                                name: "Programming Fundamentals",
-                                credits: 20,
-                                description: "Core programming concepts and software development practices."
+                                name: "Physics",
+                                credits: 3,
+                                description: "Physics principles relevant to computer engineering including mechanics, waves, and electromagnetism."
                             },
                             {
-                                name: "Digital Logic Design",
-                                credits: 20,
-                                description: "Design and analysis of digital circuits and logic systems."
+                                name: "Technical Communication",
+                                credits: 2,
+                                description: "Technical writing, presentation skills, and professional communication for engineers."
+                            },
+                            {
+                                name: "Computer Programming",
+                                credits: 3,
+                                description: "Programming fundamentals, problem-solving, and software development basics."
+                            },
+                            {
+                                name: "Fundamentals of Computing Technology",
+                                credits: 3,
+                                description: "Introduction to computing systems, computer organization, and basic computing concepts."
+                            },
+                            {
+                                name: "Engineering Drawing",
+                                credits: 2,
+                                description: "Technical drawing, CAD basics, and engineering graphics for system design."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER II",
                         modules: [
                             {
-                                name: "Data Structures and Algorithms",
-                                credits: 20,
-                                description: "Advanced data structures and algorithm design."
+                                name: "Mathematics-II",
+                                credits: 3,
+                                description: "Advanced calculus, differential equations, and mathematical methods for engineering."
                             },
                             {
-                                name: "Computer Organization",
-                                credits: 20,
-                                description: "Computer architecture and organization principles."
+                                name: "Chemistry",
+                                credits: 3,
+                                description: "General chemistry principles relevant to materials and electronic components."
                             },
                             {
-                                name: "Engineering Project",
-                                credits: 20,
-                                description: "Practical project integrating first-year concepts."
+                                name: "Object Oriented Programming",
+                                credits: 3,
+                                description: "Object-oriented programming principles, classes, inheritance, and design patterns."
+                            },
+                            {
+                                name: "Applied Mechanics",
+                                credits: 3,
+                                description: "Mechanics principles, statics, dynamics, and their applications in engineering."
+                            },
+                            {
+                                name: "Basic Electrical Engineering",
+                                credits: 3,
+                                description: "Fundamentals of electrical circuits, AC/DC systems, and electrical components."
+                            },
+                            {
+                                name: "Workshop Technology",
+                                credits: 2,
+                                description: "Workshop practices, manufacturing processes, and hands-on technical skills."
                             }
                         ]
                     }
@@ -632,42 +981,77 @@ export const programs: Program[] = [
                 year: "YEAR TWO",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER III",
                         modules: [
                             {
-                                name: "Operating Systems",
-                                credits: 20,
-                                description: "Operating system design, implementation, and management."
+                                name: "Mathematics III",
+                                credits: 3,
+                                description: "Advanced mathematics including linear algebra, complex analysis, and numerical methods."
                             },
                             {
-                                name: "Microprocessors and Microcontrollers",
-                                credits: 20,
-                                description: "Microprocessor architecture and embedded system programming."
+                                name: "Data Structure And Algorithm",
+                                credits: 3,
+                                description: "Data structures, algorithm design, complexity analysis, and efficient problem-solving."
                             },
                             {
-                                name: "Network Systems",
-                                credits: 20,
-                                description: "Computer networks, protocols, and network design."
+                                name: "Object Oriented Analysis And Design",
+                                credits: 3,
+                                description: "OOAD principles, UML modeling, design patterns, and software architecture."
+                            },
+                            {
+                                name: "Electronic Device And Circuits",
+                                credits: 3,
+                                description: "Semiconductor devices, amplifiers, and electronic circuit design and analysis."
+                            },
+                            {
+                                name: "Applied Sociology",
+                                credits: 2,
+                                description: "Social aspects of technology, ethics, and impact of computing on society."
+                            },
+                            {
+                                name: "Project-I",
+                                credits: 2,
+                                description: "Second-year project applying programming, data structures, and system concepts."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER IV",
                         modules: [
                             {
-                                name: "Embedded Systems",
-                                credits: 20,
-                                description: "Design and development of embedded systems."
+                                name: "Computer Graphics",
+                                credits: 3,
+                                description: "Computer graphics principles, rendering, 2D/3D graphics, and visualization."
                             },
                             {
-                                name: "VLSI Design",
-                                credits: 20,
-                                description: "Very Large Scale Integration circuit design."
+                                name: "Database Management System",
+                                credits: 3,
+                                description: "Database design, SQL, normalization, transaction management, and database administration."
                             },
                             {
-                                name: "System Integration Project",
-                                credits: 20,
-                                description: "Project integrating hardware and software systems."
+                                name: "Discrete Structure",
+                                credits: 3,
+                                description: "Discrete mathematics including sets, relations, functions, graphs, and combinatorics."
+                            },
+                            {
+                                name: "Microprocessor",
+                                credits: 3,
+                                description: "Microprocessor architecture, assembly language programming, and interfacing."
+                            },
+                            {
+                                name: "Communication System",
+                                credits: 3,
+                                description: "Communication systems, modulation, signal transmission, and telecommunication."
+                            },
+                            {
+                                name: "Python Programming",
+                                credits: 3,
+                                description: "Python programming language, libraries, and applications in computer engineering."
+                            },
+                            {
+                                name: "Probability and Statistics",
+                                credits: 3,
+                                description: "Statistical methods, probability theory, and data analysis for engineering applications."
                             }
                         ]
                     }
@@ -677,37 +1061,152 @@ export const programs: Program[] = [
                 year: "YEAR THREE",
                 semesters: [
                     {
-                        semester: "SEMESTER 1",
+                        semester: "SEMESTER V",
                         modules: [
                             {
-                                name: "Advanced Computer Architecture",
-                                credits: 20,
-                                description: "Advanced topics in computer architecture and design."
+                                name: "Algorithm Analysis and Design",
+                                credits: 3,
+                                description: "Algorithm design techniques, complexity analysis, dynamic programming, and optimization."
                             },
                             {
-                                name: "Cybersecurity",
-                                credits: 20,
-                                description: "Network security, cryptography, and secure system design."
+                                name: "Computer Architecture",
+                                credits: 3,
+                                description: "Computer architecture, CPU design, memory systems, and performance optimization."
                             },
                             {
-                                name: "Distributed Systems",
-                                credits: 20,
-                                description: "Design and implementation of distributed computing systems."
+                                name: "Numerical Methods",
+                                credits: 3,
+                                description: "Numerical techniques for solving engineering problems and computational methods."
+                            },
+                            {
+                                name: "Operating System",
+                                credits: 3,
+                                description: "Operating system concepts, processes, memory management, file systems, and scheduling."
+                            },
+                            {
+                                name: "Engineering Economics",
+                                credits: 3,
+                                description: "Economic analysis, cost-benefit evaluation, and financial planning for engineering projects."
+                            },
+                            {
+                                name: "Research Methodology",
+                                credits: 2,
+                                description: "Research methodologies, academic writing, and research design for engineering projects."
+                            },
+                            {
+                                name: "Project-II",
+                                credits: 2,
+                                description: "Third-year project integrating system design, algorithms, and software engineering."
                             }
                         ]
                     },
                     {
-                        semester: "SEMESTER 2",
+                        semester: "SEMESTER VI",
                         modules: [
                             {
-                                name: "Final Year Project",
-                                credits: 40,
-                                description: "Comprehensive final year project in computer engineering."
+                                name: "Artificial Intelligence",
+                                credits: 3,
+                                description: "AI concepts, machine learning, knowledge representation, and intelligent systems."
                             },
                             {
-                                name: "Professional Practice",
-                                credits: 20,
-                                description: "Industry placement and professional development."
+                                name: "Computer Network",
+                                credits: 3,
+                                description: "Network protocols, architecture, OSI model, TCP/IP, and network design."
+                            },
+                            {
+                                name: "Embedded and IoT System",
+                                credits: 3,
+                                description: "Embedded system design, IoT architecture, sensors, and connected devices."
+                            },
+                            {
+                                name: "Software Engineering",
+                                credits: 3,
+                                description: "Software development lifecycle, methodologies, testing, and project management."
+                            },
+                            {
+                                name: "Theory of Computation",
+                                credits: 3,
+                                description: "Computational theory, automata, formal languages, and computational complexity."
+                            },
+                            {
+                                name: "Control System",
+                                credits: 3,
+                                description: "Control theory, feedback systems, stability analysis, and automation."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                year: "YEAR FOUR",
+                semesters: [
+                    {
+                        semester: "SEMESTER VII",
+                        modules: [
+                            {
+                                name: "Distributed and Cloud Computing",
+                                credits: 3,
+                                description: "Distributed systems, cloud computing platforms, services, and architectures."
+                            },
+                            {
+                                name: "IT Project Management",
+                                credits: 3,
+                                description: "Project management principles, methodologies, and leadership in IT projects."
+                            },
+                            {
+                                name: "Simulation and Modelling",
+                                credits: 3,
+                                description: "System simulation, modeling techniques, and performance evaluation methods."
+                            },
+                            {
+                                name: "Elective-I : Image Processing & PR",
+                                credits: 3,
+                                description: "Image processing techniques, pattern recognition, and computer vision applications."
+                            },
+                            {
+                                name: "Elective-II : Mobile Computing",
+                                credits: 3,
+                                description: "Mobile computing, mobile app development, wireless systems, and mobile technologies."
+                            },
+                            {
+                                name: "Project-A",
+                                credits: 3,
+                                description: "Major project work integrating computer engineering knowledge and skills."
+                            }
+                        ]
+                    },
+                    {
+                        semester: "SEMESTER VIII",
+                        modules: [
+                            {
+                                name: "Cyber Security",
+                                credits: 3,
+                                description: "Cybersecurity principles, network security, cryptography, and secure system design."
+                            },
+                            {
+                                name: "Engineering Professional Practice",
+                                credits: 3,
+                                description: "Professional ethics, regulations, standards, and practice in computer engineering."
+                            },
+                            {
+                                name: "Elective-III : VB.Net",
+                                credits: 3,
+                                description: "VB.NET programming, .NET framework, and Windows application development."
+                            },
+                            {
+                                name: "Elective-IV : Geographical Information System",
+                                credits: 3,
+                                description: "GIS principles, spatial data analysis, mapping, and geographic information technologies."
+                            },
+                            {
+                                name: "Elective-V",
+                                credits: 3,
+                                description: "Additional elective course option in computer engineering specialization."
+                            },
+                            {
+                                name: "Internship",
+                                credits: 6,
+                                description: "Industry internship providing practical experience in computer engineering workplaces."
                             }
                         ]
                     }
@@ -760,7 +1259,7 @@ export const programs: Program[] = [
                 grandTotal: 630000
             }
         ],
-        whyUniversity: "Our university is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. Our programs are regularly reviewed to ensure they meet the highest standards and prepare students for successful careers."
+        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
     }
 ];
 
