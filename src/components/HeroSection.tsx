@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 
 export function HeroSection() {
   const stats = [
-    { value: "500+", label: "Students" },
-    { value: "95%", label: "Placement" },
-    { value: "20+", label: "Partners" },
+    { value: "500+", label: "Graduates" },
+    { value: "40%+", label: "Abroad Studies" },
+    { value: "15", label: "Batches" },
     { value: "UGC-QAA", label: "Certified" },
   ];
 
@@ -50,13 +50,12 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1] tracking-tight"
           >
-            Engineering
+            Engineering Tomorrow's
             <br />
             <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-              Tomorrow's
+              Innovators
             </span>
-            <br />
-            Innovators
+
           </motion.h1>
 
           {/* Subheadline */}
@@ -66,7 +65,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl leading-relaxed"
           >
-            Ace AI, Biomedical & Computer Engineering with cutting-edge curriculum, world-class faculty, and guaranteed industry placements.
+            Nepal's first UGC-QAA certified engineering college. Master AI, Biomedical & Computer Engineering with industry-aligned curriculum, expert faculty, and proven track record of global placements.
           </motion.p>
 
           {/* CTAs */}
@@ -76,8 +75,8 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-start gap-4 mb-16"
           >
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
             >
               Apply for 2026

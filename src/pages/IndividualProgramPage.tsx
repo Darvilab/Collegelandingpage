@@ -954,8 +954,8 @@ export function IndividualProgramPage() {
                                                                         </div>
 
                                                                         {/* Course Cards Grid */}
-                                                                        <div className="grid gap-3 lg:gap-4">
-                                                                            <Accordion type="single" collapsible className="w-full space-y-3 lg:space-y-4">
+                                                                        <div className="grid gap-4 lg:gap-5">
+                                                                            <Accordion type="single" collapsible className="w-full space-y-4 lg:space-y-5">
                                                                                 {semester.modules.map((module, modIndex) => {
                                                                                     const CourseIcon = getCourseIcon(module.name);
                                                                                     return (
@@ -967,12 +967,12 @@ export function IndividualProgramPage() {
                                                                                             <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-md hover:shadow-xl transition-all duration-500 hover:border-indigo-300/80 hover:scale-[1.01] hover:-translate-y-0.5">
                                                                                                 {/* Animated gradient overlay */}
                                                                                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none"></div>
-                                                                                                
+
                                                                                                 {/* Shine effect */}
                                                                                                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                                                                <AccordionTrigger className="flex w-full items-center justify-between p-4 lg:p-5 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                                                    <div className="flex items-center gap-3.5 lg:gap-4 flex-1 min-w-0">
+                                                                                                <AccordionTrigger className="flex w-full items-center justify-between p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                                                    <div className="flex items-center gap-4 lg:gap-5 flex-1 min-w-0">
                                                                                                         {/* Course Icon with smaller size */}
                                                                                                         <div className="flex-shrink-0 relative">
                                                                                                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg blur-sm opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
@@ -982,21 +982,21 @@ export function IndividualProgramPage() {
                                                                                                         </div>
 
                                                                                                         {/* Course Name */}
-                                                                                                        <span className="text-sm lg:text-base font-bold text-gray-900 pr-3 lg:pr-4 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-indigo-600 group-hover/trigger:to-purple-600 transition-all duration-300">
+                                                                                                        <span className="text-sm lg:text-base font-bold text-gray-900 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-indigo-600 group-hover/trigger:to-purple-600 transition-all duration-300">
                                                                                                             {module.name}
                                                                                                         </span>
                                                                                                     </div>
 
                                                                                                     {/* Credits Badge with enhanced design */}
-                                                                                                    <div className="flex items-center gap-2.5 lg:gap-3 flex-shrink-0">
-                                                                                                        <span className="text-xs font-bold text-indigo-700 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-3 lg:px-3.5 py-1.5 lg:py-2 rounded-full border border-indigo-200/80 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:via-purple-100 group-hover/trigger:to-pink-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md group-hover/trigger:scale-105 transition-all duration-300 whitespace-nowrap">
+                                                                                                    <div className="flex items-center gap-3 lg:gap-4 flex-shrink-0">
+                                                                                                        <span className="text-xs font-bold text-indigo-700 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-3.5 lg:px-4 py-1.5 lg:py-2 rounded-full border border-indigo-200/80 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:via-purple-100 group-hover/trigger:to-pink-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md group-hover/trigger:scale-105 transition-all duration-300 whitespace-nowrap">
                                                                                                             {module.credits} Credits
                                                                                                         </span>
                                                                                                     </div>
                                                                                                 </AccordionTrigger>
 
-                                                                                                <AccordionContent className="px-4 lg:px-5 pb-4 lg:pb-5 pt-0 relative z-10">
-                                                                                                    <div className="pl-[58px] lg:pl-[64px] border-t border-indigo-200/60 pt-4 lg:pt-5">
+                                                                                                <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                                                    <div className="pl-[58px] lg:pl-[64px] border-t border-indigo-200/60 pt-5 lg:pt-6">
                                                                                                         <p className="text-gray-700 leading-relaxed text-sm lg:text-base font-medium">
                                                                                                             {module.description}
                                                                                                         </p>
@@ -1100,14 +1100,14 @@ export function IndividualProgramPage() {
                                         </div>
 
                                         {/* FAQ Container with Enhanced Design */}
-                                        <div className="relative mt-8">
+                                        <div className="relative mt-8 lg:mt-10">
                                             {/* Decorative Background */}
                                             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
                                                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-rose-200/30 via-pink-200/30 to-fuchsia-200/30 rounded-full blur-3xl animate-pulse"></div>
                                                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-pink-200/30 via-fuchsia-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
                                             </div>
 
-                                            <div className="relative space-y-4">
+                                            <div className="relative space-y-5 lg:space-y-6">
                                                 <Accordion type="single" collapsible className="w-full">
                                                     <AccordionItem value="faq-1" className="group border-0">
                                                         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
@@ -1117,19 +1117,19 @@ export function IndividualProgramPage() {
                                                             {/* Shine effect */}
                                                             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the admission requirements?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
+                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
                                                                     <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
                                                                         <HelpCircle className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
                                                                     <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
                                                                         {program.admissionEligibility}
                                                                     </p>
@@ -1143,19 +1143,19 @@ export function IndividualProgramPage() {
                                                             <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
                                                             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the program fees?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
+                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
                                                                     <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
                                                                         <DollarSign className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
                                                                     <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
                                                                         The total program fee is <strong className="font-extrabold text-gray-900 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
                                                                         Please refer to the detailed fee structure above for a year-by-year breakdown.
@@ -1170,28 +1170,28 @@ export function IndividualProgramPage() {
                                                             <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
                                                             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     What are the career prospects after graduation?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
+                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
                                                                     <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
                                                                         <Briefcase className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-5">
-                                                                    <p className="mb-5 font-bold text-gray-900 text-lg">Graduates can pursue careers in:</p>
-                                                                    <ul className="space-y-3">
+                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
+                                                                    <p className="mb-6 lg:mb-7 font-bold text-gray-900 text-lg lg:text-xl">Graduates can pursue careers in:</p>
+                                                                    <ul className="space-y-4 lg:space-y-5">
                                                                         {program.careerOutcomes.map((career, index) => (
-                                                                            <li key={index} className="flex items-start gap-3 group/item">
-                                                                                <div className="flex-shrink-0 mt-1 relative">
+                                                                            <li key={index} className="flex items-start gap-4 lg:gap-5 group/item">
+                                                                                <div className="flex-shrink-0 mt-1.5 relative">
                                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full blur-sm opacity-50"></div>
                                                                                     <div className="relative w-2 h-2 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 shadow-md"></div>
                                                                                 </div>
-                                                                                <span className="text-gray-700 font-medium group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
+                                                                                <span className="text-gray-700 font-medium text-base lg:text-lg group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
                                                                             </li>
                                                                         ))}
                                                                     </ul>
@@ -1205,19 +1205,19 @@ export function IndividualProgramPage() {
                                                             <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
                                                             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-5 lg:gap-6 p-6 lg:p-7 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-4 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
                                                                     Are scholarships available?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
+                                                                <div className="flex-shrink-0 relative ml-3 lg:ml-4">
                                                                     <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
                                                                     <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
                                                                         <Award className="h-5 w-5 text-white" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                            <AccordionContent className="px-6 lg:px-7 pb-6 lg:pb-7 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-6 lg:pt-7">
                                                                     <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
                                                                         Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
                                                                         Please contact our admissions office for more information about available scholarships and eligibility criteria.

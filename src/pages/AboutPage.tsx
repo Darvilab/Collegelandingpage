@@ -24,32 +24,32 @@ export function AboutPage() {
     {
       year: "2005",
       title: "Foundation & Pioneer Status",
-      description: "Established as Nepal's first BME institution, pioneering engineering education with Purbanchal University affiliation.",
+      description: "Established as Nepal's first Biomedical Engineering institution. Formerly CBEAS, now NIET - one of few colleges in Asia offering BME education.",
       keywords: "First BME College in Nepal, Pioneer Engineering Institute, Purbanchal University Affiliation"
     },
     {
       year: "2008",
-      title: "Global Partnerships",
-      description: "Launched exchange programs with AIT and IAESTE, opening doors for international student exchange and global engineering partnerships.",
-      keywords: "Global Engineering Partnerships, International Student Exchange, AIT Collaboration"
+      title: "International Recognition",
+      description: "Hosted first International Conference on Medical Materials, Devices and Regenerative Medicine (MMDR), inaugurated by First President of Nepal. Launched IAESTE partnerships for global student exchange.",
+      keywords: "International Conferences, Global Engineering Partnerships, Student Exchange Programs"
     },
     {
-      year: "2012",
-      title: "Industry Integration",
-      description: "Formed partnerships with 20+ leading hospitals and medical institutions, providing hands-on healthcare technology exposure.",
-      keywords: "Hospital Partnerships BME, Hands-on Healthcare Technology Exposure, Medical Engineering Careers"
-    },
-    {
-      year: "2018",
+      year: "2014",
       title: "Research Excellence",
-      description: "Launched advanced research labs for molecular biology, neuroscience, and bioinformatics, establishing research excellence in Nepal.",
-      keywords: "Advanced Engineering Research Labs, Bioinformatics, Neuroscience Research in Nepal"
+      description: "Hosted second MMDR conference, inaugurated by Vice-President of Nepal. Published research in Wiley, Elsevier, SAGE journals. Faculty serving as guest editors.",
+      keywords: "International Research Publications, Academic Excellence, Global Recognition"
     },
     {
-      year: "2025",
-      title: "Expansion into AI & Computing",
-      description: "Introducing BTech programs in AI Engineering and Computer Engineering, expanding our commitment to future-proof engineering education.",
-      keywords: "Introducing BTech in AI and BE in Computer Engineering, New Engineering Programs 2025"
+      year: "2017",
+      title: "Best Private College Award",
+      description: "Awarded Best Private College in Nepal by Ministry of Education (97th National Education Day). Received NPR 250,000 recognition. First Purbanchal University college to receive UGC-QAA certification.",
+      keywords: "Ministry of Education Award, UGC-QAA Certification, Best Private College Nepal"
+    },
+    {
+      year: "2023-2025",
+      title: "Expansion & Innovation",
+      description: "Co-hosted ICIDN-2023 and Ka SAM-2024 international conferences. Launched B.Tech AI and BE Computer Engineering programs. Students won best poster awards. 500+ graduates, 50+ PhD holders, 40%+ pursuing higher studies abroad.",
+      keywords: "New Engineering Programs, International Conferences, Student Success, AI and Computer Engineering"
     }
   ];
 
@@ -186,7 +186,7 @@ export function AboutPage() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              At NIET (National Institute of Engineering and Technology), we're not just teaching engineering—we're creating the innovators who'll shape tomorrow's tech landscape.
+              From Nepal's first Biomedical Engineering college to a multi-program engineering institute. 500+ graduates, 40%+ pursuing global opportunities, 50+ PhD holders. We're creating innovators who shape tomorrow's tech landscape.
             </p>
           </motion.div>
 
@@ -202,7 +202,7 @@ export function AboutPage() {
               </div>
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                At NIET (National Institute of Engineering and Technology), we empower the next generation to drive innovation in biomedical tech, AI, and computer systems. We deliver industry-aligned engineering education that's actually relevant—no fluff, just skills that matter.
+                Empower the next generation to drive innovation in Biomedical Engineering, AI, and Computer Engineering. Deliver industry-aligned education with proven results: graduates at Cambridge, Mayo Clinic, Nanyang Tech, and leading hospitals across Nepal.
               </p>
             </motion.div>
 
@@ -217,7 +217,7 @@ export function AboutPage() {
               </div>
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Our Vision</h3>
               <p className="text-gray-600 leading-relaxed text-base">
-                NIET aims to be globally recognized as the premier institute for BME, AI innovation, and computer systems. We're building a reputation that opens doors—everywhere.
+                Be globally recognized as Nepal's premier multi-program engineering institute. First UGC-QAA certified. Best Private College award winner. Building a reputation that opens doors worldwide—from Cambridge to Silicon Valley.
               </p>
             </motion.div>
 
@@ -232,10 +232,10 @@ export function AboutPage() {
               </div>
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Our Programs</h3>
               <p className="text-gray-600 leading-relaxed text-base mb-4">
-                <span className="font-semibold text-gray-900">3 Cutting-Edge Programs</span> covering Biomedical Engineering, AI, and Computer Engineering.
+                <span className="font-semibold text-gray-900">3 Cutting-Edge Programs</span> with 240 total seats: BE Biomedical (144), B.Tech AI (48), BE Computer (48).
               </p>
               <p className="text-gray-600 leading-relaxed text-base">
-                Choose your path: BTech or BE. Both designed to get you industry-ready, fast.
+                From Nepal's first BME program to cutting-edge AI and Computer Engineering. All designed to get you industry-ready with proven global placement success.
               </p>
             </motion.div>
           </div>
@@ -298,7 +298,7 @@ export function AboutPage() {
               </div>
               <h3 className="text-2xl text-gray-900 mb-4">UGC-QAA Accredited</h3>
               <p className="text-gray-600 leading-relaxed">
-                NIET is accredited by the University Grants Commission (UGC) Nepal under its Quality Assurance and Accreditation (QAA) program. This recognition validates our commitment to maintaining the highest standards in engineering education and ensures our programs meet national quality benchmarks.
+                NIET is the first affiliated college in Nepal, first among Purbanchal University colleges, and first Engineering College in Kathmandu Valley to receive QAA Institutional Accreditation Certificate from UGC Nepal. This recognition validates our commitment to maintaining the highest standards in engineering education.
               </p>
             </motion.div>
           </div>
@@ -323,7 +323,7 @@ export function AboutPage() {
               The Future of Engineering Starts Now
             </h2>
             <p className="text-xl text-blue-100/90 mb-10 max-w-2xl mx-auto">
-              Ready to be at the forefront of technology, healthcare, and innovation? Start your BE or BTech career at NIET (National Institute of Engineering and Technology). Apply for BTech in Artificial Intelligence or BE Biomedical Engineering Admission today.
+              Join 500+ graduates who've shaped their careers at NIET. From Cambridge to Mayo Clinic, our alumni are making global impact. Start your BE or B.Tech journey in Biomedical Engineering, AI, or Computer Engineering today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button

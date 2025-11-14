@@ -10,28 +10,28 @@ export function RecognitionSection() {
   const recognitions = [
     {
       icon: Building,
-      name: "Purvanchal University",
+      name: "Purbanchal University",
       description: "Affiliated",
       gradient: "from-blue-500 to-cyan-400",
       imageSrc: "/PU.png",
     },
     {
-      icon: Award,
-      name: "ISO 9001:2015",
-      description: "Certified",
-      gradient: "from-purple-500 to-pink-400",
-      imageSrc: "/ISO.png",
+      icon: Shield,
+      name: "UGC-QAA Certified",
+      description: "First in Kathmandu Valley",
+      gradient: "from-green-500 to-emerald-400",
+      imageSrc: "/UGC Logo.png",
     },
     {
-      icon: Shield,
-      name: "Government Approved",
-      description: "Ministry of Education",
-      gradient: "from-green-500 to-emerald-400",
+      icon: Award,
+      name: "Best Private College",
+      description: "Ministry of Education Award",
+      gradient: "from-purple-500 to-pink-400",
     },
     {
       icon: Star,
-      name: "International Standards",
-      description: "Accredited Programs",
+      name: "International Conferences",
+      description: "ICIDN, Ka SAM, MMDR",
       gradient: "from-orange-500 to-amber-400",
     },
   ];
@@ -54,7 +54,7 @@ export function RecognitionSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Recognized by leading national and international educational bodies.
+            First UGC-QAA certified engineering college in Kathmandu Valley. Awarded Best Private College by Ministry of Education. Hosting international conferences since 2008.
           </p>
         </motion.div>
 
@@ -105,15 +105,15 @@ export function RecognitionSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-center text-gray-400 mb-8 uppercase tracking-[0.2em] text-sm">
-            Industry Partners
+            Research & Publications
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            {["Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5"].map((partner, index) => (
+            {["Wiley", "Elsevier", "SAGE", "BIOMED-NEPAL Journal", "International Conferences"].map((partner, index) => (
               <div
                 key={index}
-                className="px-8 py-4 rounded-2xl bg-white border border-gray-200 hover:border-[#0b4c78]/30 hover:shadow-lg transition-all"
+                className="px-6 py-3 rounded-2xl bg-white border border-gray-200 hover:border-[#0b4c78]/30 hover:shadow-lg transition-all"
               >
-                <div className="text-gray-300">{partner}</div>
+                <div className="text-gray-600 text-sm font-medium">{partner}</div>
               </div>
             ))}
           </div>
