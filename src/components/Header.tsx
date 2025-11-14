@@ -31,7 +31,7 @@ export function Header() {
         setPastHeroSection(window.scrollY > window.innerHeight - 100 || window.scrollY > 20);
       }
     };
-    
+
     const checkInitialState = () => {
       // Always start with white text on pages with hero sections (dark background)
       const heroSection = document.querySelector('section[class*="min-h-screen"]');
@@ -40,7 +40,7 @@ export function Header() {
       }
       handleScroll();
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     // Check on mount and when route changes in case page loads with scroll position
     // Use a small delay to ensure DOM is ready
@@ -82,7 +82,7 @@ export function Header() {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl shadow-lg border-b border-cyan-100/30' : 'bg-transparent'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/50 backdrop-blur-xl shadow-lg border-b border-cyan-100/30' : 'bg-transparent'
       }`}>
       <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 lg:h-24">
@@ -259,6 +259,22 @@ export function Header() {
                 </div>
               )}
             </div>
+
+            {/* Faculty and Staff */}
+            <div className="relative flex flex-col items-center pb-3">
+              <NavLink
+                to="/faculty-and-staff"
+                className={`px-5 py-2 rounded-full transition-all duration-200 ${pastHeroSection
+                  ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+                  }`}
+              >
+                Faculty and Staff
+              </NavLink>
+              {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
+              )}
+            </div>
           </div>
 
           {/* CTA Buttons */}
@@ -282,8 +298,8 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden transition-all relative z-50 flex items-center justify-center w-10 h-10 rounded-lg ${pastHeroSection 
-              ? 'text-gray-900 hover:bg-gray-100 bg-white/90 backdrop-blur-sm shadow-md' 
+            className={`lg:hidden transition-all relative z-50 flex items-center justify-center w-10 h-10 rounded-lg ${pastHeroSection
+              ? 'text-gray-900 hover:bg-gray-100 bg-white/90 backdrop-blur-sm shadow-md'
               : 'text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm shadow-lg'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
@@ -382,6 +398,20 @@ export function Header() {
                   <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
                 </Link>
               </div>
+
+              {/* Mobile Faculty and Staff */}
+              <NavLink
+                to="/faculty-and-staff"
+                className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0b4c78] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) ? 'text-[#0b4c78] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
+                  }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Faculty and Staff
+                {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
+                  <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0b4c78] rounded-full shadow-sm"></span>
+                )}
+              </NavLink>
+
               <div className="flex flex-col gap-3 pt-4 px-4">
                 <a
                   href="/NEIT Prospectus.pdf"
