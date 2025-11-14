@@ -131,7 +131,7 @@ export function AcademicProgramsPage() {
             </p>
           </motion.div>
 
-          <div className="space-y-20">
+          <div className="space-y-28">
             {programs.map((program, index) => {
               const Icon = program.icon;
               return (

@@ -147,7 +147,7 @@ export function Header() {
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/30 via-white to-blue-50/20 pointer-events-none"></div>
 
                   {/* Header section */}
-                  <div className="relative px-6 pt-5 pb-4 border-b border-cyan-100/50">
+                  <div className="relative px-6 pt-8 pb-4 border-b border-cyan-100/50">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 shadow-md shadow-cyan-500/20">
                         <GraduationCap className="h-5 w-5 text-white" />
@@ -234,7 +234,7 @@ export function Header() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="relative px-6 pb-4 pt-3 border-t border-cyan-100/50">
+                  <div className="relative px-6 pb-4 pt-6 border-t border-cyan-100/50">
                     <Link
                       to="/academics"
                       onClick={() => setAcademicsDropdownOpen(false)}
@@ -296,7 +296,7 @@ export function Header() {
 
               {/* Mobile Academics Section - Enhanced */}
               <div className="px-4">
-                <div className="mb-3 px-2">
+                <div className="mb-3 mt-4 px-2">
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Academic Programs</h3>
                 </div>
                 <div className="space-y-3">
@@ -355,7 +355,7 @@ export function Header() {
                 <Link
                   to="/academics"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-3 flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0b4c78] font-semibold text-sm transition-all duration-200 hover:shadow-md"
+                  className="mt-6 flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0b4c78] font-semibold text-sm transition-all duration-200 hover:shadow-md"
                 >
                   <GraduationCap className="h-4 w-4" />
                   <span>View All Programs</span>

@@ -492,7 +492,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-8">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 mb-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 mb-6 mt-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
                                                 <BookOpen className="h-5 w-5 text-white" />
                                             </div>
@@ -553,7 +553,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-6 mt-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500">
                                                 <DollarSign className="h-5 w-5 text-white" />
                                             </div>
@@ -564,75 +564,72 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* Fee Table Card */}
-                                    <div className="relative mt-8 overflow-hidden rounded-3xl border border-gray-200/60 shadow-2xl bg-white">
-                                        {/* Decorative elements */}
-                                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500"></div>
-
+                                    <div className="relative mt-8 overflow-hidden rounded-xl border border-gray-300 bg-white">
                                         <div className="overflow-x-auto">
                                             <table className="w-full">
                                                 <thead>
-                                                    <tr className="bg-gradient-to-r from-blue-600 to-cyan-500">
-                                                        <th scope="col" className="px-6 py-5 text-left font-bold text-white uppercase tracking-wider text-base">Particulars</th>
+                                                    <tr className="bg-gray-100 border-b-2 border-gray-300">
+                                                        <th scope="col" className="px-8 py-6 text-left font-semibold text-gray-900 uppercase tracking-wide text-sm">Particulars</th>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <th key={index} scope="col" className="px-6 py-5 text-center font-bold text-white uppercase tracking-wider text-base">
+                                                            <th key={index} scope="col" className="px-8 py-6 text-center font-semibold text-gray-900 uppercase tracking-wide text-sm">
                                                                 {fee.year}
                                                             </th>
                                                         ))}
                                                     </tr>
                                                 </thead>
-                                                <tbody className="divide-y divide-gray-200">
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Admission Fee</td>
+                                                <tbody>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Admission Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Annual Fee</td>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Annual Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 NPR {fee.annualFee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">CCA Fee</td>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">CCA Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 NPR {fee.ccaFee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Semester 1 Fee</td>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Semester 1 Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 NPR {fee.semester1Fee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">Semester 2 Fee</td>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Semester 2 Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 NPR {fee.semester2Fee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="hover:bg-gray-50 transition-colors">
-                                                        <td className="px-6 py-5 whitespace-nowrap font-semibold text-gray-900 text-base">University Regd. Fee</td>
+                                                    <tr className="border-b border-gray-200">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">University Regd. Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-5 whitespace-nowrap text-center text-gray-700 font-medium text-base">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold border-t-4 border-blue-700">
-                                                        <td className="px-6 py-6 whitespace-nowrap text-lg">Grand Total</td>
+                                                    <tr className="bg-gray-50 border-t-2 border-gray-300">
+                                                        <td className="px-8 py-6 whitespace-nowrap font-bold text-gray-900 text-lg">Grand Total</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-6 py-6 whitespace-nowrap text-center text-lg">
+                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center font-bold text-gray-900 text-lg">
                                                                 NPR {fee.total.toLocaleString()}
                                                             </td>
                                                         ))}
@@ -671,7 +668,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 mb-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 mb-6 mt-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
                                                 <Award className="h-5 w-5 text-white" />
                                             </div>
@@ -687,35 +684,30 @@ export function IndividualProgramPage() {
                                             initial={{ opacity: 0, x: -30 }}
                                             animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
                                             transition={{ duration: 0.6, delay: 0.2 }}
-                                            className="relative bg-gradient-to-br from-white to-blue-50/40 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden group hover:shadow-2xl transition-all"
+                                            className="relative bg-white rounded-2xl border border-gray-200 p-8 lg:p-10"
                                         >
-                                            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
-                                            <div className="relative">
-                                                <div className="flex items-center gap-4 mb-8">
-                                                    <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg group-hover:scale-110 transition-transform">
-                                                        <Zap className="h-6 w-6 text-white" />
-                                                    </div>
-                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Key Skills You'll Gain</h3>
+                                            <div className="flex items-center gap-4 mb-8">
+                                                <div className="p-3 rounded-lg bg-blue-100">
+                                                    <Zap className="h-6 w-6 text-blue-600" />
                                                 </div>
-                                                <ul className="space-y-3">
-                                                    {program.degreeHighlights.map((highlight, index) => (
-                                                        <motion.li
-                                                            key={index}
-                                                            initial={{ opacity: 0, x: -20 }}
-                                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                            className="flex items-start gap-3 p-4 rounded-xl bg-white/70 backdrop-blur-sm hover:bg-white/90 hover:shadow-md transition-all group/item"
-                                                        >
-                                                            <div className="flex-shrink-0 mt-0.5">
-                                                                <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-400 to-cyan-400 group-hover/item:scale-110 transition-transform">
-                                                                    <TrendingUp className="h-4 w-4 text-white" />
-                                                                </div>
-                                                            </div>
-                                                            <span className="text-gray-700 font-medium leading-relaxed">{highlight}</span>
-                                                        </motion.li>
-                                                    ))}
-                                                </ul>
+                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Key Skills You'll Gain</h3>
                                             </div>
+                                            <ul className="space-y-4">
+                                                {program.degreeHighlights.map((highlight, index) => (
+                                                    <motion.li
+                                                        key={index}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-4"
+                                                    >
+                                                        <div className="flex-shrink-0">
+                                                            <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                                                        </div>
+                                                        <span className="text-gray-700 text-base">{highlight}</span>
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
                                         </motion.div>
 
                                         {/* Career Paths Card */}
@@ -723,35 +715,30 @@ export function IndividualProgramPage() {
                                             initial={{ opacity: 0, x: 30 }}
                                             animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
                                             transition={{ duration: 0.6, delay: 0.2 }}
-                                            className="relative bg-gradient-to-br from-white to-cyan-50/40 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10 overflow-hidden group hover:shadow-2xl transition-all"
+                                            className="relative bg-white rounded-2xl border border-gray-200 p-8 lg:p-10"
                                         >
-                                            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-cyan-400/10 to-teal-400/10 rounded-full blur-3xl"></div>
-                                            <div className="relative">
-                                                <div className="flex items-center gap-4 mb-8">
-                                                    <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500 shadow-lg group-hover:scale-110 transition-transform">
-                                                        <Briefcase className="h-6 w-6 text-white" />
-                                                    </div>
-                                                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Potential Career Paths</h3>
+                                            <div className="flex items-center gap-4 mb-8">
+                                                <div className="p-3 rounded-lg bg-cyan-100">
+                                                    <Briefcase className="h-6 w-6 text-cyan-600" />
                                                 </div>
-                                                <ul className="space-y-3">
-                                                    {program.careerOutcomes.map((career, index) => (
-                                                        <motion.li
-                                                            key={index}
-                                                            initial={{ opacity: 0, x: 20 }}
-                                                            animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
-                                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                                                            className="flex items-start gap-3 p-4 rounded-xl bg-white/70 backdrop-blur-sm hover:bg-white/90 hover:shadow-md transition-all group/item"
-                                                        >
-                                                            <div className="flex-shrink-0 mt-0.5">
-                                                                <div className="p-1.5 rounded-lg bg-gradient-to-br from-cyan-400 to-teal-400 group-hover/item:scale-110 transition-transform">
-                                                                    <Target className="h-4 w-4 text-white" />
-                                                                </div>
-                                                            </div>
-                                                            <span className="text-gray-700 font-medium leading-relaxed">{career}</span>
-                                                        </motion.li>
-                                                    ))}
-                                                </ul>
+                                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">Potential Career Paths</h3>
                                             </div>
+                                            <ul className="space-y-4">
+                                                {program.careerOutcomes.map((career, index) => (
+                                                    <motion.li
+                                                        key={index}
+                                                        initial={{ opacity: 0, x: 20 }}
+                                                        animate={isDegreeInView ? { opacity: 1, x: 0 } : {}}
+                                                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                                                        className="flex items-center gap-4"
+                                                    >
+                                                        <div className="flex-shrink-0">
+                                                            <CheckCircle2 className="h-5 w-5 text-cyan-600" />
+                                                        </div>
+                                                        <span className="text-gray-700 text-base">{career}</span>
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
                                         </motion.div>
                                     </div>
                                 </div>
@@ -769,7 +756,7 @@ export function IndividualProgramPage() {
                                 <div className="relative">
                                     {/* Section Header */}
                                     <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-6">
+                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-6 mt-6">
                                             <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500">
                                                 <BookMarked className="h-5 w-5 text-white" />
                                             </div>
@@ -779,14 +766,14 @@ export function IndividualProgramPage() {
                                         <p className="text-lg text-gray-600 max-w-2xl">Comprehensive curriculum designed for real-world success</p>
                                     </div>
 
-                                    <div className="mt-10 bg-gradient-to-br from-white to-indigo-50/20 rounded-3xl shadow-xl border border-gray-200/60 p-8 lg:p-10">
+                                    <div className="mt-10 bg-white rounded-2xl border border-gray-200 p-8 lg:p-10">
                                         <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
-                                            <TabsList className="grid w-full grid-cols-3 bg-gray-100/80 p-1.5 rounded-2xl shadow-inner border border-gray-200/50 mb-8">
+                                            <TabsList className="flex w-full bg-transparent border-b border-gray-200 p-0 mb-8 h-auto">
                                                 {program.modules.map((year) => (
                                                     <TabsTrigger
                                                         key={year.year}
                                                         value={year.year}
-                                                        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg rounded-xl py-3 transition-all text-gray-700 font-bold text-sm hover:bg-gray-200/50"
+                                                        className="flex-1 data-[state=active]:bg-transparent data-[state=active]:text-indigo-600 data-[state=active]:border-b-2 data-[state=active]:border-indigo-600 rounded-none py-4 px-6 transition-all text-gray-600 font-semibold text-base hover:text-gray-900 border-b-2 border-transparent -mb-[2px]"
                                                     >
                                                         {year.year}
                                                     </TabsTrigger>
@@ -844,7 +831,7 @@ export function IndividualProgramPage() {
                                     >
                                         <div className="relative h-full">
                                             <div className="mb-8">
-                                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-6">
+                                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-6 mt-6">
                                                     <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
                                                         <Sparkles className="h-5 w-5 text-white" />
                                                     </div>
@@ -886,7 +873,7 @@ export function IndividualProgramPage() {
                                 >
                                     <div className="relative h-full">
                                         <div className="mb-8">
-                                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 mb-6">
+                                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 mb-6 mt-6">
                                                 <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 to-pink-500">
                                                     <HelpCircle className="h-5 w-5 text-white" />
                                                 </div>

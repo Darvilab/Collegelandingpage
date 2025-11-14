@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ArrowRight, Sparkles, Award, Users, Globe, Building2, Target } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -7,6 +8,7 @@ import { useRef } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { JourneyTimelineSection } from "../components/JourneyTimelineSection";
+import { getAllPrograms } from "../data/programs";
 
 export function AboutPage() {
   const heroRef = useRef(null);
@@ -119,15 +121,24 @@ export function AboutPage() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-wrap gap-4 mb-16"
             >
-              <div className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                <span className="text-white text-lg">🧬 BE in Biomedical Engineering</span>
-              </div>
-              <div className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                <span className="text-white text-lg">🤖 BTech in AI (Artificial Intelligence) (NEW 2025)</span>
-              </div>
-              <div className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                <span className="text-white text-lg">💻 BE in Computer Engineering (NEW 2025)</span>
-              </div>
+              {getAllPrograms().map((program) => {
+                const isNewProgram = program.slug === "btech-artificial-intelligence" || program.slug === "be-computer-engineering";
+                return (
+                  <Link
+                    key={program.slug}
+                    to={`/academics/${program.slug}`}
+                    className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all cursor-pointer group"
+                  >
+                    <span className="text-white text-lg group-hover:text-cyan-200 transition-colors">
+                      {program.slug === "be-biomedical-engineering" && "🧬 "}
+                      {program.slug === "btech-artificial-intelligence" && "🤖 "}
+                      {program.slug === "be-computer-engineering" && "💻 "}
+                      {program.slug === "btech-artificial-intelligence" ? "BTech in AI (Artificial Intelligence)" : program.title}
+                      {isNewProgram && " (NEW 2025)"}
+                    </span>
+                  </Link>
+                );
+              })}
             </motion.div>
           </div>
         </div>
