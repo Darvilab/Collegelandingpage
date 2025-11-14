@@ -2,7 +2,7 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { ArrowRight, Sparkles, Award, Users, Globe, Building2, Target } from "lucide-react";
+import { ArrowRight, Sparkles, Award, Users, Globe, Target } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
@@ -270,8 +270,12 @@ export function AboutPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="bg-white rounded-[2rem] p-8 border border-gray-200 shadow-lg"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0b4c78] to-cyan-500 flex items-center justify-center mb-6">
-                <Building2 className="h-8 w-8 text-white" />
+              <div className="mb-6">
+                <ImageWithFallback
+                  src="/PU.png"
+                  alt="Purbanchal University Logo"
+                  className="h-16 w-auto object-contain"
+                />
               </div>
               <h3 className="text-2xl text-gray-900 mb-4">Purbanchal University</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -285,12 +289,16 @@ export function AboutPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-[2rem] p-8 border border-gray-200 shadow-lg"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
-                <Award className="h-8 w-8 text-white" />
+              <div className="mb-6">
+                <ImageWithFallback
+                  src="/UGC Logo.png"
+                  alt="UGC-QAA Accredited Logo"
+                  className="h-16 w-auto object-contain"
+                />
               </div>
-              <h3 className="text-2xl text-gray-900 mb-4">USC-GAA Accredited</h3>
+              <h3 className="text-2xl text-gray-900 mb-4">UGC-QAA Accredited</h3>
               <p className="text-gray-600 leading-relaxed">
-                NIET programs meet rigorous international quality standards for engineering education. Our commitment to excellence is recognized globally, ensuring our graduates are prepared for international opportunities.
+                NIET is accredited by the University Grants Commission (UGC) Nepal under its Quality Assurance and Accreditation (QAA) program. This recognition validates our commitment to maintaining the highest standards in engineering education and ensures our programs meet national quality benchmarks.
               </p>
             </motion.div>
           </div>

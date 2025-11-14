@@ -1,6 +1,7 @@
 import { Award, CheckCircle, Building, Globe, Shield, Star } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function RecognitionSection() {
   const ref = useRef(null);
@@ -12,12 +13,14 @@ export function RecognitionSection() {
       name: "Purvanchal University",
       description: "Affiliated",
       gradient: "from-blue-500 to-cyan-400",
+      imageSrc: "/PU.png",
     },
     {
       icon: Award,
       name: "ISO 9001:2015",
       description: "Certified",
       gradient: "from-purple-500 to-pink-400",
+      imageSrc: "/ISO.png",
     },
     {
       icon: Shield,
@@ -68,10 +71,20 @@ export function RecognitionSection() {
                 className="group relative"
               >
                 <div className="relative p-8 rounded-[2rem] bg-white border border-gray-200 hover:border-gray-300 hover:shadow-2xl transition-all h-full flex flex-col items-center text-center">
-                  {/* Icon */}
-                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <Icon className="h-10 w-10 text-white" />
-                  </div>
+                  {/* Icon or Image */}
+                  {item.imageSrc ? (
+                    <div className="mb-6 group-hover:scale-110 transition-transform">
+                      <ImageWithFallback
+                        src={item.imageSrc}
+                        alt={item.name}
+                        className="h-20 w-auto object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                      <Icon className="h-10 w-10 text-white" />
+                    </div>
+                  )}
 
                   {/* Content */}
                   <h3 className="text-xl text-gray-900 mb-2">{item.name}</h3>

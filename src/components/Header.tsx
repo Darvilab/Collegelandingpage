@@ -31,9 +31,20 @@ export function Header() {
         setPastHeroSection(window.scrollY > window.innerHeight - 100 || window.scrollY > 20);
       }
     };
+    
+    const checkInitialState = () => {
+      // Always start with white text on pages with hero sections (dark background)
+      const heroSection = document.querySelector('section[class*="min-h-screen"]');
+      if (heroSection) {
+        setPastHeroSection(false);
+      }
+      handleScroll();
+    };
+    
     window.addEventListener("scroll", handleScroll);
     // Check on mount and when route changes in case page loads with scroll position
-    handleScroll();
+    // Use a small delay to ensure DOM is ready
+    setTimeout(checkInitialState, 150);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
@@ -73,7 +84,7 @@ export function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl shadow-lg border-b border-cyan-100/30' : 'bg-transparent'
       }`}>
-      <nav className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
@@ -271,8 +282,11 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden transition-colors ${pastHeroSection ? 'text-gray-900' : 'text-white'}`}
+            className={`lg:hidden transition-all relative z-50 flex items-center justify-center w-10 h-10 rounded-lg ${pastHeroSection 
+              ? 'text-gray-900 hover:bg-gray-100 bg-white/90 backdrop-blur-sm shadow-md' 
+              : 'text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm shadow-lg'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
           </button>

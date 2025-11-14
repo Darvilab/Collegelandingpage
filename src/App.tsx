@@ -4,6 +4,8 @@ import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { AcademicProgramsPage } from "./pages/AcademicProgramsPage";
 import { IndividualProgramPage } from "./pages/IndividualProgramPage";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { WhatsAppFloatButton } from "./components/WhatsAppFloatButton";
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
           <Route path="/academics" element={<AcademicProgramsPage />} />
           <Route path="/academics/:slug" element={<IndividualProgramPage />} />
         </Routes>
+        <ScrollToTop />
+        <WhatsAppFloatButton />
       </BrowserRouter>
     </HelmetProvider>
   );

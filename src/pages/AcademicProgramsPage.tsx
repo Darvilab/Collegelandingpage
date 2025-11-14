@@ -36,7 +36,7 @@ export function AcademicProgramsPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="/building1_khNhjUl.jpg"
@@ -50,8 +50,8 @@ export function AcademicProgramsPage() {
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40 flex flex-col items-center justify-center min-h-screen">
-          <div className="max-w-5xl text-center mb-12 lg:mb-16">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-24 lg:py-32 xl:py-40 flex flex-col items-center justify-center min-h-screen pt-24 sm:pt-28">
+          <div className="max-w-5xl text-center mb-8 sm:mb-12 lg:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export function AcademicProgramsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1] tracking-tight"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-4 sm:mb-6 leading-[1.1] tracking-tight px-2"
             >
               Choose Your
               <br />
@@ -79,7 +79,7 @@ export function AcademicProgramsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-blue-100/90 mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
             >
               Comprehensive engineering education designed for the future. Three cutting-edge programs to shape your career in technology and healthcare.
             </motion.p>
@@ -90,7 +90,7 @@ export function AcademicProgramsPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6"
+            className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 px-2 sm:px-0"
           >
             {programs.map((program, index) => {
               const Icon = program.icon;
@@ -128,8 +128,8 @@ export function AcademicProgramsPage() {
       </section>
 
       {/* Programs Detail */}
-      <section ref={programsRef} className="py-20 lg:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <section ref={programsRef} className="py-12 sm:py-16 lg:py-20 xl:py-32 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isProgramsInView ? { opacity: 1, y: 0 } : {}}
@@ -160,8 +160,8 @@ export function AcademicProgramsPage() {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="bg-white rounded-[2rem] border border-gray-200 overflow-hidden shadow-lg hover:shadow-2xl transition-all scroll-mt-24"
                 >
-                  <div className="lg:grid lg:grid-cols-2">
-                    <div className="relative h-64 lg:h-full overflow-hidden">
+                    <div className="lg:grid lg:grid-cols-2">
+                    <div className="relative h-64 sm:h-80 lg:h-full overflow-hidden">
                       <ImageWithFallback
                         src={program.image}
                         alt={program.title}
@@ -180,9 +180,9 @@ export function AcademicProgramsPage() {
                       </div>
                     </div>
 
-                    <div className="p-8 lg:p-12">
-                      <h3 className="text-3xl text-gray-900 mb-4">{program.title}</h3>
-                      <p className="text-gray-600 leading-relaxed mb-8">{program.overview}</p>
+                    <div className="p-6 sm:p-8 lg:p-12">
+                      <h3 className="text-2xl sm:text-3xl text-gray-900 mb-3 sm:mb-4">{program.title}</h3>
+                      <p className="text-gray-600 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">{program.overview}</p>
 
                       <div className="space-y-6">
                         <div>
@@ -232,7 +232,7 @@ export function AcademicProgramsPage() {
                         </div>
                       </div>
 
-                      <div className="mt-8 flex flex-wrap gap-3">
+                      <div className="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-3">
                         <Link to={`/academics/${program.slug}`}>
                           <Button
                             className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
@@ -273,26 +273,26 @@ export function AcademicProgramsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#0b4c78] via-blue-900 to-slate-900 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-32 bg-gradient-to-br from-[#0b4c78] via-blue-900 to-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px]"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"></div>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl lg:text-6xl text-white mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl text-white mb-4 sm:mb-6 tracking-tight px-2">
               Ready to Start Your Engineering Journey?
             </h2>
-            <p className="text-xl text-blue-100/90 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100/90 mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto px-4">
               Apply now for admissions 2026. Choose from our three cutting-edge programs and shape your future in technology and healthcare.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
               <Button
                 size="lg"
                 className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
