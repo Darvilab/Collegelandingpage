@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ArrowRight, Sparkles, Award, Users, Globe, Building2, Target } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -52,8 +53,24 @@ export function AboutPage() {
     }
   ];
 
+  const location = useLocation();
+  const canonicalUrl = `${window.location.origin}${location.pathname}`;
+
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>About NIET - National Institute of Engineering and Technology | Pioneering Engineering Education Since 2005</title>
+        <meta name="description" content="Learn about NIET (National Institute of Engineering and Technology), Nepal's premier engineering institute. Established in 2005, we offer BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Affiliated with Purbanchal University." />
+        <meta name="keywords" content="About NIET, National Institute of Engineering and Technology, Engineering College Nepal, NIET History, Engineering Education Nepal, Purbanchal University, Biomedical Engineering College, AI Engineering Nepal" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="About NIET - National Institute of Engineering and Technology" />
+        <meta property="og:description" content="NIET is Nepal's premier engineering institute, pioneering engineering education since 2005. Offering cutting-edge programs in AI, Biomedical Engineering, and Computer Engineering." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About NIET - National Institute of Engineering and Technology" />
+        <meta name="twitter:description" content="Nepal's premier engineering institute, pioneering engineering education since 2005." />
+      </Helmet>
       <Header />
 
       {/* Hero Section */}

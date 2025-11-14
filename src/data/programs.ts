@@ -411,14 +411,14 @@ export const programs: Program[] = [
         feeStructure: [
             {
                 year: "1st Year",
-                admissionFee: 0,
+                admissionFee: 100000,
                 annualFee: 0,
                 ccaFee: 0,
                 semester1Fee: 147000,
                 semester2Fee: 126000,
-                universityRegFee: 0,
-                total: 273000,
-                grandTotal: 273000
+                universityRegFee: 20000,
+                total: 393000,
+                grandTotal: 393000
             },
             {
                 year: "2nd Year",
@@ -1216,14 +1216,14 @@ export const programs: Program[] = [
         feeStructure: [
             {
                 year: "1st Year",
-                admissionFee: 0,
+                admissionFee: 100000,
                 annualFee: 0,
                 ccaFee: 0,
                 semester1Fee: 147000,
                 semester2Fee: 126000,
-                universityRegFee: 0,
-                total: 273000,
-                grandTotal: 273000
+                universityRegFee: 20000,
+                total: 393000,
+                grandTotal: 393000
             },
             {
                 year: "2nd Year",

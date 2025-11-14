@@ -1,5 +1,6 @@
 import React from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
@@ -38,6 +39,7 @@ function getCourseIcon(courseName: string) {
 export function IndividualProgramPage() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
+    const location = useLocation();
     const [activeSection, setActiveSection] = useState("overview");
 
     const program = slug ? getProgramBySlug(slug) : undefined;
@@ -193,8 +195,28 @@ export function IndividualProgramPage() {
         };
     }, []);
 
+    const pageTitle = `${program.title} - ${program.degree} | NIET`;
+    const pageDescription = `${program.description} ${program.overview} Duration: ${program.duration}. Credit: ${program.credit}. Intake: ${program.intake}. Apply for admissions 2026.`;
+    const pageKeywords = `${program.title}, ${program.degree}, ${program.slug === "btech-artificial-intelligence" ? "AI Engineering, Machine Learning, Data Science" : program.slug === "be-biomedical-engineering" ? "Biomedical Engineering, Medical Devices, Healthcare Technology" : "Computer Engineering, Hardware Software Integration, Embedded Systems"}, Engineering Program Nepal, Purbanchal University, NIET Programs, Engineering Admission 2026`;
+    const canonicalUrl = `${window.location.origin}${location.pathname}`;
+
     return (
         <div className="min-h-screen bg-white" lang="en">
+            <Helmet>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+                <meta name="keywords" content={pageKeywords} />
+                <link rel="canonical" href={canonicalUrl} />
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={canonicalUrl} />
+                <meta property="og:image" content={program.image} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+                <meta name="twitter:image" content={program.image} />
+            </Helmet>
             <Header />
             {/* Hero Section */}
             <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
@@ -680,7 +702,7 @@ export function IndividualProgramPage() {
                                                         ))}
                                                     </tr>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">University Regd. Fee</td>
+                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Security Deposit</td>
                                                         {program.feeStructure.map((fee, index) => (
                                                             <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
                                                                 {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
@@ -709,7 +731,7 @@ export function IndividualProgramPage() {
                                             <div>
                                                 <p className="text-blue-900 font-semibold mb-1">Important Note</p>
                                                 <p className="text-blue-800 text-sm leading-relaxed">
-                                                    University Registration Fee applies only to the first year. Fees are subject to change. Please contact admissions for the most current details.
+                                                    Admission Fee and Security Deposit apply only to the first year. Fees are subject to change. Please contact admissions for the most current details.
                                                 </p>
                                             </div>
                                         </div>

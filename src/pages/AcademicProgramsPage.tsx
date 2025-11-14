@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ArrowRight, Sparkles, GraduationCap, FlaskConical, CheckCircle2, Download, FileText } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -13,9 +15,24 @@ export function AcademicProgramsPage() {
   const isProgramsInView = useInView(programsRef, { once: true, margin: "-100px" });
 
   const programs = getAllPrograms();
+  const location = useLocation();
+  const canonicalUrl = `${window.location.origin}${location.pathname}`;
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>Academic Programs - BTech AI, BE Biomedical Engineering, BE Computer Engineering | NIET</title>
+        <meta name="description" content="Explore NIET's comprehensive engineering programs: BTech in Artificial Intelligence, BE in Biomedical Engineering, and BE in Computer Engineering. Industry-aligned curriculum, hands-on experience, and career-ready skills. Apply for admissions 2026." />
+        <meta name="keywords" content="Engineering Programs Nepal, BTech AI, Biomedical Engineering Program, Computer Engineering Program, Engineering Courses Nepal, Purbanchal University Programs, Engineering Admission 2026, NIET Programs" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Academic Programs - NIET Engineering Programs" />
+        <meta property="og:description" content="Explore comprehensive engineering programs: BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Industry-aligned curriculum and hands-on experience." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Academic Programs - NIET" />
+        <meta name="twitter:description" content="Comprehensive engineering programs: BTech AI, BE Biomedical Engineering, and BE Computer Engineering." />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}
