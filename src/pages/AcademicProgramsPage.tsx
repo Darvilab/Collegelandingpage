@@ -36,7 +36,7 @@ export function AcademicProgramsPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="/building1_khNhjUl.jpg"
@@ -50,13 +50,13 @@ export function AcademicProgramsPage() {
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-24 lg:py-32 xl:py-40 flex flex-col items-center justify-center min-h-screen pt-24 sm:pt-28">
-          <div className="max-w-5xl text-center mb-8 sm:mb-12 lg:mb-16">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 flex flex-col items-center justify-center h-full">
+          <div className="max-w-5xl text-center mb-6 sm:mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4 sm:mb-6"
             >
               <GraduationCap className="h-4 w-4 text-cyan-400" />
               <span className="text-white text-sm">Academic Programs</span>
@@ -66,7 +66,7 @@ export function AcademicProgramsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-4 sm:mb-6 leading-[1.1] tracking-tight px-2"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-3 sm:mb-4 leading-[1.1] tracking-tight px-2"
             >
               Choose Your
               <br />
@@ -79,7 +79,7 @@ export function AcademicProgramsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl text-blue-100/90 mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-blue-100/90 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed px-4"
             >
               Comprehensive engineering education designed for the future. Three cutting-edge programs to shape your career in technology and healthcare.
             </motion.p>
@@ -90,7 +90,7 @@ export function AcademicProgramsPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 px-2 sm:px-0"
+            className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 px-2 sm:px-0"
           >
             {programs.map((program, index) => {
               const Icon = program.icon;
