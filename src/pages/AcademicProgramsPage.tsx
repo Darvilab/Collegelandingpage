@@ -36,7 +36,7 @@ export function AcademicProgramsPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
+      <section className="hero-section relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="/building1_khNhjUl.jpg"

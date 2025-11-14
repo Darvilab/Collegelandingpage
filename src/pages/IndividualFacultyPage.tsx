@@ -86,7 +86,7 @@ export function IndividualFacultyPage() {
             <Header />
 
             {/* Hero Section */}
-            <section className="relative pt-20 lg:pt-24 pb-12 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
+            <section className="hero-section relative pt-20 lg:pt-24 pb-12 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-500/30 rounded-full blur-[120px]"></div>
                     <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[100px]"></div>

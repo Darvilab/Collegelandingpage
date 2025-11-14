@@ -74,7 +74,7 @@ export function AboutPage() {
       <Header />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
+      <section ref={heroRef} className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
         {/* Animated Background Image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback

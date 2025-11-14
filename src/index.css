@@ -9,11 +9,11 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
-/* Global font styles for headings - Roboto font */
+/* Global font styles for headings - Graduate font */
 h1,
 h2,
 h3 {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Graduate", serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
 }
