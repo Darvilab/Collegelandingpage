@@ -49,7 +49,7 @@ export function Footer() {
                 className="w-12 h-12 object-contain rounded-full"
               />
               <div className="flex flex-col">
-                <span className="text-white text-xl">NIET</span>
+                <span className="niet-text text-white text-xl">NIET</span>
                 <span className="text-xs text-gray-500">Engineering Excellence</span>
               </div>
             </div>

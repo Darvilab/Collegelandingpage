@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Download } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 
@@ -12,7 +12,7 @@ export function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
+    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
       {/* Animated Background Image */}
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
@@ -88,6 +88,19 @@ export function HeroSection() {
             >
               Campus Tour
             </Button>
+            <a
+              href="/NEIT Prospectus.pdf"
+              download="NEIT Prospectus.pdf"
+              className="inline-flex items-center justify-center"
+            >
+              <Button
+                size="lg"
+                className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all group"
+              >
+                <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                Brochure
+              </Button>
+            </a>
           </motion.div>
 
           {/* Stats */}

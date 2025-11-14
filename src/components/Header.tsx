@@ -97,8 +97,8 @@ export function Header() {
               <div className="absolute -inset-1 bg-gradient-to-br from-[#0b4c78] to-cyan-400 rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity -z-10"></div>
             </div>
             <div className="flex flex-col">
-              <span className={`text-xl transition-colors ${pastHeroSection ? 'text-gray-900' : 'text-white'}`}>NIET</span>
-              <span className={`text-xs transition-colors ${pastHeroSection ? 'text-gray-500' : 'text-gray-400'}`}>Engineering Excellence</span>
+              <span className={`niet-text text-2xl transition-colors ${pastHeroSection ? 'text-gray-900' : 'text-white'}`}>NIET</span>
+              <span className={`text-xs transition-colors ${pastHeroSection ? 'text-gray-500' : 'text-gray-400'}`}>(FORMER COLLEGE OF BIOMEDICAL ENGINEERING AND APPLIED SCIENCES)</span>
             </div>
           </Link>
 
@@ -277,25 +277,6 @@ export function Header() {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="/NEIT Prospectus.pdf"
-              download="NEIT Prospectus.pdf"
-              className="inline-flex items-center justify-center"
-            >
-              <Button
-                variant="ghost"
-                className={`rounded-full transition-all duration-200 ${pastHeroSection ? 'text-gray-700 hover:bg-gray-100/80 hover:text-gray-900' : 'text-white hover:bg-white/10'}`}
-              >
-                Brochure
-              </Button>
-            </a>
-            <Button className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 active:scale-100">
-              Apply Now
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden transition-all relative z-50 flex items-center justify-center w-10 h-10 rounded-lg ${pastHeroSection
@@ -412,27 +393,6 @@ export function Header() {
                 )}
               </NavLink>
 
-              <div className="flex flex-col gap-3 pt-4 px-4">
-                <a
-                  href="/NEIT Prospectus.pdf"
-                  download="NEIT Prospectus.pdf"
-                  className="inline-flex items-center justify-center"
-                >
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="rounded-full border-cyan-200 hover:bg-cyan-50 hover:border-cyan-300 transition-all duration-200"
-                  >
-                    Download Brochure
-                  </Button>
-                </a>
-                <Button
-                  size="sm"
-                  className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 active:scale-100"
-                >
-                  Apply Now
-                </Button>
-              </div>
             </div>
           </div>
         )}
