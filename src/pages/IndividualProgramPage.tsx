@@ -1107,7 +1107,7 @@ export function IndividualProgramPage() {
                                                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-pink-200/30 via-fuchsia-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
                                             </div>
 
-                                            <div className="relative space-y-5 lg:space-y-6">
+                                            <div className="relative space-y-6 lg:space-y-8">
                                                 <Accordion type="single" collapsible className="w-full">
                                                     <AccordionItem value="faq-1" className="group border-0">
                                                         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
