@@ -237,8 +237,8 @@ export function IndividualProgramPage() {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-4 sm:py-6 w-full h-full flex flex-col justify-center">
-                    <div className="grid lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-start w-full">
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-16 w-full h-full flex flex-col justify-center">
+                    <div className="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center w-full">
                         {/* Left Side - Program Image */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
@@ -246,22 +246,16 @@ export function IndividualProgramPage() {
                             transition={{ duration: 0.8 }}
                             className="relative order-2 lg:order-1 lg:col-span-5"
                         >
-                            <div className="relative h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] xl:h-[420px] rounded-[2rem] overflow-hidden shadow-2xl">
-                                <ImageWithFallback
-                                    src={program.image}
-                                    alt={program.title}
-                                    className="w-full h-full object-cover"
-                                    loading="eager"
-                                />
+                            <div className="relative h-[320px] sm:h-[380px] md:h-[440px] lg:h-[500px] xl:h-[560px] rounded-[2rem] overflow-hidden shadow-2xl">
                                 <div className={`absolute inset-0 bg-gradient-to-br ${program.gradient} opacity-30`}></div>
 
-                                {/* Course-specific illustration overlay */}
+                                {/* Course-specific illustration */}
                                 {program.slug === "btech-artificial-intelligence" && (
                                     <div className="absolute inset-0">
                                         <ImageWithFallback
                                             src="/ArtificialIntelligence.png"
                                             alt="Artificial Intelligence Illustration"
-                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            className="w-full h-full object-cover rounded-[2rem] scale-110"
                                             loading="eager"
                                         />
                                     </div>
@@ -271,7 +265,7 @@ export function IndividualProgramPage() {
                                         <ImageWithFallback
                                             src="/BioMedicalEngineeringInNepal.png"
                                             alt="Biomedical Engineering Illustration"
-                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            className="w-full h-full object-cover rounded-[2rem] scale-110"
                                             loading="eager"
                                         />
                                     </div>
@@ -281,20 +275,20 @@ export function IndividualProgramPage() {
                                         <ImageWithFallback
                                             src="/ComputerEngineering.png"
                                             alt="Computer Engineering Illustration"
-                                            className="w-full h-full object-contain rounded-[2rem]"
+                                            className="w-full h-full object-cover rounded-[2rem] scale-110"
                                             loading="eager"
                                         />
                                     </div>
                                 )}
 
-                                <div className="absolute top-6 left-6 z-10">
-                                    <div className="w-16 h-16 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center">
-                                        <Icon className="h-8 w-8 text-gray-900" />
+                                <div className="absolute top-8 left-8 z-10">
+                                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center">
+                                        <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-gray-900" />
                                     </div>
                                 </div>
                             </div>
                             {program.studentName && (
-                                <p className="text-xs sm:text-sm text-blue-200/80 mt-3 sm:mt-4 text-center">
+                                <p className="text-xs sm:text-sm text-blue-200/80 mt-4 sm:mt-5 text-center">
                                     Student on picture: {program.studentName}
                                 </p>
                             )}
@@ -305,74 +299,74 @@ export function IndividualProgramPage() {
                             initial={{ opacity: 0, x: 50 }}
                             animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="space-y-2 sm:space-y-3 lg:space-y-3 order-1 lg:order-2 lg:col-span-7"
+                            className="space-y-4 sm:space-y-5 lg:space-y-6 order-1 lg:order-2 lg:col-span-7"
                         >
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.4 }}
-                                className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+                                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
                             >
-                                <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-400" />
-                                <span className="text-white text-xs sm:text-sm font-semibold">{program.degree}</span>
+                                <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400" />
+                                <span className="text-white text-sm sm:text-base font-semibold">{program.degree}</span>
                             </motion.div>
 
-                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-white font-bold leading-[1.15] tracking-tight mb-2 sm:mb-3">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-white font-bold leading-[1.1] tracking-tight">
                                 {program.title}
                             </h1>
 
-                            <div className="flex flex-wrap gap-2 mb-2 sm:mb-3">
-                                <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Duration:</span>
-                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.duration}</span>
+                            <div className="flex flex-wrap gap-3 sm:gap-4">
+                                <div className="flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm sm:text-base">Duration:</span>
+                                    <span className="text-white font-semibold text-sm sm:text-base">{program.duration}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Credit:</span>
-                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.credit}</span>
+                                <div className="flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm sm:text-base">Credit:</span>
+                                    <span className="text-white font-semibold text-sm sm:text-base">{program.credit}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
-                                    <span className="text-white/90 font-medium text-xs sm:text-sm">Intake:</span>
-                                    <span className="text-white font-semibold text-xs sm:text-sm">{program.intake}</span>
+                                <div className="flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-lg">
+                                    <span className="text-white/90 font-medium text-sm sm:text-base">Intake:</span>
+                                    <span className="text-white font-semibold text-sm sm:text-base">{program.intake}</span>
                                 </div>
                             </div>
 
-                            <p className="text-sm sm:text-base md:text-lg text-blue-100/90 leading-[1.3] mb-3 sm:mb-4">
+                            <p className="text-base sm:text-lg md:text-xl text-blue-100/90 leading-relaxed max-w-2xl">
                                 {program.description}
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                                 <a
                                     href="/NEIT Prospectus.pdf"
                                     download="NEIT Prospectus.pdf"
                                     className="inline-flex items-center justify-center"
                                 >
                                     <Button
-                                        size="sm"
-                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base px-4 sm:px-5 h-9 sm:h-10 group"
+                                        size="default"
+                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base sm:text-lg px-6 sm:px-7 h-11 sm:h-12 group"
                                         aria-label="Download program brochure"
                                     >
-                                        <Download className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform" />
+                                        <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
                                         Download Brochure
                                     </Button>
                                 </a>
                                 <Button
-                                    size="sm"
+                                    size="default"
                                     variant="outline"
-                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-sm sm:text-base px-4 sm:px-5 h-9 sm:h-10 transition-all"
+                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-base sm:text-lg px-6 sm:px-7 h-11 sm:h-12 transition-all"
                                     onClick={() => scrollToSection("fee-structure")}
                                     aria-label="View fee structure"
                                 >
-                                    <FileText className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                    <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                                     Fee Structure
                                 </Button>
                                 <Button
-                                    size="sm"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base px-5 sm:px-6 h-9 sm:h-10 group w-full sm:w-auto"
+                                    size="default"
+                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base sm:text-lg px-7 sm:px-8 h-11 sm:h-12 group w-full sm:w-auto"
                                     aria-label="Apply now for this program"
                                 >
-                                    <Send className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform" />
+                                    <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
                                     Apply Now
-                                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform animate-gentle-bounce" />
+                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform animate-gentle-bounce" />
                                 </Button>
                             </div>
                         </motion.div>
