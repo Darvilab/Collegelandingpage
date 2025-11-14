@@ -67,8 +67,8 @@ export const programs: Program[] = [
         duration: "4 Years",
         credit: "160",
         intake: "2025/2026 (48 Seats)",
-        overview: "The Bachelor of Technology in Artificial Intelligence program is designed for those who dream of creating the future. This course brings together knowledge from computer science, mathematics, and data science to help students learn how to solve problems and build intelligent systems. By exploring this exciting field, you will be ready to face real-world challenges and make a positive impact on industries and communities.",
-        description: "The Bachelor of Technology in Artificial Intelligence program is designed for those who dream of creating the future. This course brings together knowledge from computer science, mathematics, and data science to help students learn how to solve problems and build intelligent systems. By exploring this exciting field, you will be ready to face real-world challenges and make a positive impact on industries and communities.",
+        overview: "The Bachelor of Technology in Artificial Intelligence integrates computer science, mathematics, and data science to develop problem-solving skills and build intelligent systems for real-world applications.",
+        description: "The Bachelor of Technology in Artificial Intelligence integrates computer science, mathematics, and data science to develop problem-solving skills and build intelligent systems for real-world applications.",
         image: "/AILab.png",
         gradient: "from-violet-500 via-purple-500 to-indigo-500",
         whyProgram: [
@@ -201,32 +201,32 @@ export const programs: Program[] = [
                             {
                                 name: "Database Management System",
                                 credits: 3,
-                                description: "Database design, SQL, normalization, transaction management, and database administration."
+                                description: "Database design principles, Entity-Relationship modeling, SQL programming, normalization techniques, transaction management, concurrency control, database security, and administration. Covers relational database systems, query optimization, and database applications in AI systems."
                             },
                             {
                                 name: "Data Structure & Algorithm",
                                 credits: 3,
-                                description: "Advanced data structures, algorithm design, complexity analysis, and efficient problem-solving techniques."
+                                description: "Advanced data structures including stacks, queues, trees, graphs, hash tables, and heaps. Algorithm design paradigms, time and space complexity analysis, sorting and searching algorithms, and efficient problem-solving techniques for AI applications."
                             },
                             {
                                 name: "Computer Organization",
                                 credits: 3,
-                                description: "Computer architecture, CPU design, memory systems, and organization principles."
+                                description: "Computer architecture fundamentals, CPU design and organization, instruction set architecture, memory hierarchy, cache memory, I/O systems, and performance optimization. Understanding hardware-software interface for AI system development."
                             },
                             {
                                 name: "Discrete Structure",
                                 credits: 3,
-                                description: "Discrete mathematics including sets, relations, functions, graphs, and combinatorics."
+                                description: "Discrete mathematics including sets, relations, functions, propositional and predicate logic, graph theory, trees, combinatorics, recurrence relations, and mathematical reasoning. Essential mathematical foundation for AI and computer science."
                             },
                             {
                                 name: "Differential Equations",
                                 credits: 3,
-                                description: "Ordinary and partial differential equations, their solutions, and applications in engineering."
+                                description: "Ordinary differential equations (ODEs), partial differential equations (PDEs), first-order and higher-order differential equations, linear and nonlinear systems, numerical methods for solving differential equations, and their applications in modeling AI systems and dynamic processes."
                             },
                             {
                                 name: "Project",
                                 credits: 2,
-                                description: "Second-year project applying database, data structures, and system concepts."
+                                description: "Second-year project integrating database systems, data structures, and computer organization concepts. Students develop a complete software system demonstrating practical application of learned concepts with proper documentation and presentation."
                             }
                         ]
                     },
@@ -236,27 +236,27 @@ export const programs: Program[] = [
                             {
                                 name: "Numerical Methods",
                                 credits: 3,
-                                description: "Numerical techniques for solving mathematical problems, approximation methods, and error analysis."
+                                description: "Numerical techniques for solving mathematical problems including root finding, interpolation, numerical differentiation and integration, solution of linear and nonlinear systems, numerical solution of differential equations, error analysis, and computational methods for AI applications."
                             },
                             {
                                 name: "Computer Networks",
                                 credits: 3,
-                                description: "Network protocols, architecture, OSI model, TCP/IP, and network security fundamentals."
+                                description: "Network architecture and protocols, OSI and TCP/IP models, physical and data link layers, network layer and routing, transport layer protocols, application layer protocols, network security fundamentals, and distributed systems for AI applications."
                             },
                             {
                                 name: "Design & Analysis of Algorithms",
                                 credits: 3,
-                                description: "Algorithm design techniques, complexity analysis, dynamic programming, and greedy algorithms."
+                                description: "Algorithm design techniques including divide-and-conquer, dynamic programming, greedy algorithms, backtracking, and branch-and-bound. Advanced topics in algorithm analysis, NP-completeness, approximation algorithms, and algorithm optimization for AI problems."
                             },
                             {
                                 name: "Introduction to Data Science",
                                 credits: 3,
-                                description: "Data science fundamentals, data analysis, visualization, and exploratory data analysis techniques."
+                                description: "Data science fundamentals including data collection, cleaning, and preprocessing, exploratory data analysis, statistical analysis, data visualization techniques, introduction to machine learning workflows, and hands-on practice with data science tools and libraries."
                             },
                             {
                                 name: "Project II",
                                 credits: 2,
-                                description: "Project focusing on AI, data science, and network applications."
+                                description: "Project focusing on AI, data science, and network applications. Students work on real-world problems applying data science techniques, network programming, and algorithm design to develop practical solutions with comprehensive documentation."
                             }
                         ]
                     }
@@ -271,27 +271,27 @@ export const programs: Program[] = [
                             {
                                 name: "Machine Learning",
                                 credits: 3,
-                                description: "Machine learning algorithms, supervised and unsupervised learning, model evaluation, and validation."
+                                description: "Comprehensive machine learning covering supervised learning (regression, classification), unsupervised learning (clustering, dimensionality reduction), model evaluation and validation, cross-validation, bias-variance tradeoff, regularization, ensemble methods, and practical implementation of ML algorithms using modern frameworks."
                             },
                             {
                                 name: "Optimization Techniques",
                                 credits: 3,
-                                description: "Optimization methods for machine learning, gradient descent, convex optimization, and metaheuristics."
+                                description: "Optimization methods for machine learning including gradient descent variants, stochastic gradient descent, convex optimization, constrained optimization, metaheuristics (genetic algorithms, particle swarm optimization), hyperparameter tuning, and optimization for neural networks and deep learning models."
                             },
                             {
                                 name: "Embedded Systems & Image Processing",
                                 credits: 3,
-                                description: "Embedded system design, real-time processing, and image processing algorithms and techniques."
+                                description: "Embedded system design principles, real-time processing, microcontroller programming, image acquisition, image enhancement, filtering, edge detection, feature extraction, image segmentation, morphological operations, and applications in AI systems and IoT devices."
                             },
                             {
                                 name: "Data Warehousing & Mining",
                                 credits: 3,
-                                description: "Data warehouse design, ETL processes, data mining techniques, and knowledge discovery."
+                                description: "Data warehouse architecture and design, ETL (Extract, Transform, Load) processes, OLAP and OLTP systems, data mining techniques including association rules, classification, clustering, and knowledge discovery. Practical applications in business intelligence and AI systems."
                             },
                             {
                                 name: "Project III",
                                 credits: 2,
-                                description: "Third-year project applying machine learning and data mining concepts."
+                                description: "Third-year project applying machine learning, optimization techniques, and data mining concepts. Students develop a comprehensive AI system integrating multiple technologies with proper evaluation, documentation, and presentation of results."
                             }
                         ]
                     },
@@ -301,32 +301,32 @@ export const programs: Program[] = [
                             {
                                 name: "Object Oriented Software Engineering",
                                 credits: 3,
-                                description: "Software engineering principles, object-oriented design, UML, and software development lifecycle."
+                                description: "Software engineering principles, object-oriented analysis and design, UML modeling, design patterns, software development lifecycle (SDLC), agile methodologies, software testing, quality assurance, project management, and best practices for developing AI software systems."
                             },
                             {
                                 name: "Computer Vision",
                                 credits: 3,
-                                description: "Computer vision algorithms, image understanding, feature detection, and pattern recognition."
+                                description: "Computer vision algorithms and techniques including image formation, camera models, feature detection and matching, object recognition, image classification, convolutional neural networks, deep learning for vision, video analysis, and applications in autonomous systems and robotics."
                             },
                             {
                                 name: "Natural Language Processing",
                                 credits: 3,
-                                description: "NLP techniques, text processing, language models, sentiment analysis, and language understanding."
+                                description: "NLP fundamentals including text preprocessing, tokenization, part-of-speech tagging, named entity recognition, language models, word embeddings, sentiment analysis, text classification, machine translation, transformer architectures, and building NLP applications using modern frameworks."
                             },
                             {
                                 name: "Research Methods",
                                 credits: 3,
-                                description: "Research methodologies, academic writing, literature review, and research design for engineering projects."
+                                description: "Research methodologies in AI and engineering, literature review techniques, research design, experimental methods, data collection and analysis, academic writing, paper presentation, research ethics, and preparing research proposals for AI projects."
                             },
                             {
                                 name: "Project IV",
                                 credits: 2,
-                                description: "Project in computer vision and natural language processing applications."
+                                description: "Project in computer vision and natural language processing applications. Students develop advanced AI systems combining vision and language understanding with comprehensive implementation, testing, and documentation."
                             },
                             {
                                 name: "Project V",
                                 credits: 2,
-                                description: "Advanced project integrating multiple AI technologies and research methodologies."
+                                description: "Advanced project integrating multiple AI technologies including machine learning, computer vision, NLP, and research methodologies. Capstone project demonstrating comprehensive understanding and practical application of AI engineering principles."
                             }
                         ]
                     }
@@ -341,32 +341,32 @@ export const programs: Program[] = [
                             {
                                 name: "Internship",
                                 credits: 6,
-                                description: "Industry internship for practical experience in AI development and real-world applications."
+                                description: "Industry internship providing hands-on experience in AI development, real-world applications, and professional work environments. Students work on live projects, gain industry exposure, and develop professional skills in AI engineering."
                             },
                             {
                                 name: "Reinforcement Learning",
                                 credits: 3,
-                                description: "Reinforcement learning algorithms, Q-learning, policy gradients, and applications in AI systems."
+                                description: "Reinforcement learning fundamentals including Markov Decision Processes (MDPs), value functions, Q-learning, policy gradient methods, actor-critic algorithms, deep reinforcement learning, and applications in game playing, robotics, and autonomous systems."
                             },
                             {
                                 name: "Cloud Computing",
                                 credits: 3,
-                                description: "Cloud computing platforms, services, architectures, and deployment of AI applications on cloud."
+                                description: "Cloud computing platforms (AWS, Azure, GCP), cloud services and architectures, containerization (Docker, Kubernetes), serverless computing, distributed systems, and deployment of scalable AI applications on cloud infrastructure with best practices for production systems."
                             },
                             {
                                 name: "Project VI",
                                 credits: 3,
-                                description: "Advanced project integrating reinforcement learning and cloud computing technologies."
+                                description: "Advanced project integrating reinforcement learning and cloud computing technologies. Students develop and deploy production-ready AI systems on cloud platforms, demonstrating expertise in modern AI engineering practices."
                             },
                             {
                                 name: "Elective I: Computer Vision / Image & Video Processing / Surveillance",
                                 credits: 3,
-                                description: "Advanced computer vision topics including image processing, video analytics, surveillance systems, and biometric recognition."
+                                description: "Advanced computer vision topics including advanced image processing techniques, video analytics, real-time video processing, surveillance systems, object tracking, biometric recognition, and applications in security, healthcare, and autonomous systems."
                             },
                             {
                                 name: "Elective II: Mathematics - Introduction to Statistical Learning, Optimization Method, Bayesian Data Analysis / Complex Kernel",
                                 credits: 3,
-                                description: "Advanced mathematical methods for machine learning including statistical learning, optimization, kernel methods, and Bayesian analysis."
+                                description: "Advanced mathematical methods for machine learning including statistical learning theory, advanced optimization techniques, Bayesian inference and data analysis, kernel methods, support vector machines, and mathematical foundations of modern AI algorithms."
                             }
                         ]
                     },
@@ -376,32 +376,32 @@ export const programs: Program[] = [
                             {
                                 name: "Internship",
                                 credits: 6,
-                                description: "Extended industry internship for comprehensive practical experience and professional development."
+                                description: "Extended industry internship for comprehensive practical experience and professional development. Students continue working on advanced AI projects, contribute to production systems, and prepare for career transition into the AI industry."
                             },
                             {
                                 name: "Reinforcement Learning",
                                 credits: 3,
-                                description: "Advanced reinforcement learning concepts and applications in complex AI systems."
+                                description: "Advanced reinforcement learning concepts including multi-agent systems, hierarchical reinforcement learning, inverse reinforcement learning, transfer learning in RL, and applications in complex AI systems such as autonomous vehicles and intelligent agents."
                             },
                             {
-                                name: "Cloud Computing VI",
+                                name: "Cloud Computing",
                                 credits: 3,
-                                description: "Advanced cloud computing topics, distributed systems, and scalable AI infrastructure."
+                                description: "Advanced cloud computing topics including distributed systems architecture, microservices, cloud-native AI applications, edge computing, hybrid cloud solutions, and building scalable, fault-tolerant AI infrastructure for enterprise applications."
                             },
                             {
                                 name: "Project VI",
                                 credits: 3,
-                                description: "Final year capstone project demonstrating comprehensive AI engineering skills."
+                                description: "Final year capstone project demonstrating comprehensive AI engineering skills. Students develop a complete, production-ready AI system integrating multiple technologies, with full documentation, testing, deployment, and presentation of their work."
                             },
                             {
                                 name: "Elective III: HCI / Common Models / Predictive Analysis",
                                 credits: 3,
-                                description: "Human-Computer Interaction, common AI models, and predictive analysis techniques for business intelligence."
+                                description: "Human-Computer Interaction principles for AI systems, user experience design, common AI models and architectures, predictive analysis techniques, time series forecasting, and building AI systems with focus on usability and business intelligence applications."
                             },
                             {
                                 name: "Elective IV: Data Science - Fundamentals of Data Analytics, Data Analysis, Big Data Visualization, Intelligence, Social Media Analytics",
                                 credits: 3,
-                                description: "Advanced data science topics covering big data analytics, visualization, business intelligence, and social media analytics."
+                                description: "Advanced data science topics covering big data analytics frameworks (Hadoop, Spark), advanced data analysis techniques, big data visualization tools, business intelligence, social media analytics, sentiment analysis, and building data-driven AI solutions for enterprise applications."
                             }
                         ]
                     }
@@ -411,47 +411,47 @@ export const programs: Program[] = [
         feeStructure: [
             {
                 year: "1st Year",
-                admissionFee: 40000,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                admissionFee: 0,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 147000,
+                semester2Fee: 126000,
                 universityRegFee: 0,
-                total: 670000,
-                grandTotal: 670000
+                total: 273000,
+                grandTotal: 273000
             },
             {
                 year: "2nd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 126000,
+                semester2Fee: 126000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 252000,
+                grandTotal: 252000
             },
             {
                 year: "3rd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 98000,
+                semester2Fee: 98000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 196000,
+                grandTotal: 196000
             },
             {
                 year: "4th Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 77000,
+                semester2Fee: 77000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 154000,
+                grandTotal: 154000
             }
         ],
         whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
@@ -801,47 +801,47 @@ export const programs: Program[] = [
         feeStructure: [
             {
                 year: "1st Year",
-                admissionFee: 40000,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
-                universityRegFee: 0,
-                total: 670000,
-                grandTotal: 670000
+                admissionFee: 100000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 210000,
+                semester2Fee: 180000,
+                universityRegFee: 20000,
+                total: 510000,
+                grandTotal: 510000
             },
             {
                 year: "2nd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 180000,
+                semester2Fee: 180000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 360000,
+                grandTotal: 360000
             },
             {
                 year: "3rd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 140000,
+                semester2Fee: 140000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 280000,
+                grandTotal: 280000
             },
             {
                 year: "4th Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 110000,
+                semester2Fee: 110000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 220000,
+                grandTotal: 220000
             }
         ],
         whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
@@ -1216,47 +1216,47 @@ export const programs: Program[] = [
         feeStructure: [
             {
                 year: "1st Year",
-                admissionFee: 40000,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                admissionFee: 0,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 147000,
+                semester2Fee: 126000,
                 universityRegFee: 0,
-                total: 670000,
-                grandTotal: 670000
+                total: 273000,
+                grandTotal: 273000
             },
             {
                 year: "2nd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 126000,
+                semester2Fee: 126000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 252000,
+                grandTotal: 252000
             },
             {
                 year: "3rd Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 98000,
+                semester2Fee: 98000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 196000,
+                grandTotal: 196000
             },
             {
                 year: "4th Year",
                 admissionFee: 0,
-                annualFee: 25000,
-                ccaFee: 5000,
-                semester1Fee: 300000,
-                semester2Fee: 300000,
+                annualFee: 0,
+                ccaFee: 0,
+                semester1Fee: 77000,
+                semester2Fee: 77000,
                 universityRegFee: 0,
-                total: 630000,
-                grandTotal: 630000
+                total: 154000,
+                grandTotal: 154000
             }
         ],
         whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
