@@ -109,7 +109,7 @@ export const programs: Program[] = [
             "Robotics Lab",
             "High-Performance Computing Infrastructure"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanitas)",
+        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
         youWill: [
             "Explore AI, machine learning, parallel programming, and data science",
             "Master practical and theoretical knowledge for innovative solutions",
@@ -499,7 +499,7 @@ export const programs: Program[] = [
             "Bioinstrumentation Lab",
             "Biomedical Device Prototyping Center"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanitas)",
+        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
         youWill: [
             "Design and develop medical devices and diagnostic systems",
             "Master biomedical signal processing and medical imaging",
@@ -889,7 +889,7 @@ export const programs: Program[] = [
             "Network Security Lab",
             "Industry-Standard Software Tools"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanitas)",
+        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
         youWill: [
             "Master computer architecture and system design",
             "Develop expertise in embedded systems and cybersecurity",
