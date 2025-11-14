@@ -52,7 +52,7 @@ export function IndividualProgramPage() {
             "fee-structure": feeSectionRef,
             "degree-highlights": degreeSectionRef,
             modules: modulesSectionRef,
-            "why-university": whyUniversitySectionRef,
+            "why-niet": whyUniversitySectionRef,
             faq: faqSectionRef,
         };
 
@@ -90,7 +90,7 @@ export function IndividualProgramPage() {
                 { id: "fee-structure", ref: feeSectionRef },
                 { id: "degree-highlights", ref: degreeSectionRef },
                 { id: "modules", ref: modulesSectionRef },
-                { id: "why-university", ref: whyUniversitySectionRef },
+                { id: "why-niet", ref: whyUniversitySectionRef },
                 { id: "faq", ref: faqSectionRef },
             ];
 
@@ -468,7 +468,7 @@ export function IndividualProgramPage() {
                                 { id: "fee-structure", label: "Fee", icon: DollarSign },
                                 { id: "degree-highlights", label: "Highlights", icon: Award },
                                 { id: "modules", label: "Modules", icon: BookMarked },
-                                { id: "why-university", label: "Why Us", icon: Sparkles },
+                                { id: "why-niet", label: "Why Us", icon: Sparkles },
                                 { id: "faq", label: "FAQ", icon: HelpCircle },
                             ].map((item) => {
                                 const ItemIcon = item.icon;
@@ -506,7 +506,7 @@ export function IndividualProgramPage() {
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
                                             { id: "degree-highlights", label: "Highlights & Careers", icon: Award },
                                             { id: "modules", label: "Modules", icon: BookMarked },
-                                            { id: "why-university", label: "Why University?", icon: Sparkles },
+                                            { id: "why-niet", label: "Why NIET?", icon: Sparkles },
                                             { id: "faq", label: "FAQ", icon: HelpCircle },
                                         ].map((item) => {
                                             const ItemIcon = item.icon;
@@ -652,9 +652,9 @@ export function IndividualProgramPage() {
                                             <table className="w-full">
                                                 <thead>
                                                     <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                                        <th scope="col" className="px-8 py-6 text-left font-semibold text-gray-900 uppercase tracking-wide text-sm">Particulars</th>
+                                                        <th scope="col" className="px-4 sm:px-8 py-4 sm:py-6 text-left font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">Particulars</th>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <th key={index} scope="col" className="px-8 py-6 text-center font-semibold text-gray-900 uppercase tracking-wide text-sm">
+                                                            <th key={index} scope="col" className="px-4 sm:px-8 py-4 sm:py-6 text-center font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">
                                                                 {fee.year}
                                                             </th>
                                                         ))}
@@ -662,63 +662,79 @@ export function IndividualProgramPage() {
                                                 </thead>
                                                 <tbody>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Admission Fee</td>
+                                                        <td className="px-4 sm:px-8 py-4 sm:py-6 font-medium text-gray-900 text-sm sm:text-base">
+                                                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                                                <span className="whitespace-nowrap">Admission Fee</span>
+                                                                {program.discountInfo?.admissionFeeWaiver && (
+                                                                    <span className="inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 border border-red-200 w-fit">
+                                                                        {program.discountInfo.note || "100% Waiver"}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        </td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
+                                                            <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center text-gray-700 text-sm sm:text-base">
                                                                 {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Annual Fee</td>
-                                                        {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
-                                                                NPR {fee.annualFee.toLocaleString()}
+                                                    {program.discountInfo?.semesterFeeDiscount && (
+                                                        <tr className="border-b border-gray-200 bg-blue-50/50">
+                                                            <td className="px-4 sm:px-8 py-4 sm:py-6 font-medium text-gray-900 text-sm sm:text-base">
+                                                                <span className="whitespace-nowrap">Discount ({program.discountInfo.semesterFeeDiscount}% on Semester Fee)</span>
                                                             </td>
-                                                        ))}
-                                                    </tr>
+                                                            {program.feeStructure.map((fee, index) => {
+                                                                const discount = Math.round((fee.semester1Fee + fee.semester2Fee) * (program.discountInfo!.semesterFeeDiscount! / 100));
+                                                                return (
+                                                                    <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center text-green-700 text-sm sm:text-base font-semibold">
+                                                                        -NPR {discount.toLocaleString()}
+                                                                    </td>
+                                                                );
+                                                            })}
+                                                        </tr>
+                                                    )}
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">CCA Fee</td>
+                                                        <td className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Semester 1 Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
-                                                                NPR {fee.ccaFee.toLocaleString()}
-                                                            </td>
-                                                        ))}
-                                                    </tr>
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Semester 1 Fee</td>
-                                                        {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
+                                                            <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center text-gray-700 text-sm sm:text-base">
                                                                 NPR {fee.semester1Fee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Semester 2 Fee</td>
+                                                        <td className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Semester 2 Fee</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
+                                                            <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center text-gray-700 text-sm sm:text-base">
                                                                 NPR {fee.semester2Fee.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-medium text-gray-900 text-base">Security Deposit</td>
+                                                        <td className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Security Deposit</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center text-gray-700 text-base">
+                                                            <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center text-gray-700 text-sm sm:text-base">
                                                                 {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                     <tr className="bg-gray-50 border-t-2 border-gray-300">
-                                                        <td className="px-8 py-6 whitespace-nowrap font-bold text-gray-900 text-lg">Grand Total</td>
+                                                        <td className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap font-bold text-gray-900 text-base sm:text-lg">Grand Total</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-8 py-6 whitespace-nowrap text-center font-bold text-gray-900 text-lg">
+                                                            <td key={index} className="px-4 sm:px-8 py-4 sm:py-6 whitespace-nowrap text-center font-bold text-gray-900 text-base sm:text-lg">
                                                                 NPR {fee.total.toLocaleString()}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+
+                                    {/* Total Program Amount */}
+                                    <div className="mt-6 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border-2 border-gray-300">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-lg font-semibold text-gray-700">Total Program Amount:</span>
+                                            <span className="text-2xl font-bold text-gray-900">NPR {totalFee.toLocaleString()}</span>
                                         </div>
                                     </div>
 
@@ -838,34 +854,56 @@ export function IndividualProgramPage() {
                             >
                                 <div className="relative">
                                     {/* Section Header */}
-                                    <div className="mb-10">
-                                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-6 mt-6">
-                                            <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500">
-                                                <BookMarked className="h-5 w-5 text-white" />
+                                    <div className="mb-10 lg:mb-12">
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                            transition={{ duration: 0.5 }}
+                                            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200/60 shadow-sm mb-5 lg:mb-6 backdrop-blur-sm"
+                                        >
+                                            <div className="p-1.5 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-md shadow-indigo-500/30">
+                                                <BookMarked className="h-4 w-4 text-white" />
                                             </div>
-                                            <span className="text-sm font-semibold text-indigo-700 uppercase tracking-wider">Curriculum</span>
-                                        </div>
-                                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Course Modules</h2>
-                                        <p className="text-lg text-gray-600 max-w-2xl">Comprehensive curriculum designed for real-world success</p>
+                                            <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Curriculum</span>
+                                        </motion.div>
+                                        <motion.h2
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                            transition={{ duration: 0.5, delay: 0.1 }}
+                                            className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent tracking-tight mb-3 lg:mb-4"
+                                        >
+                                            Course Modules
+                                        </motion.h2>
+                                        <motion.p
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                            transition={{ duration: 0.5, delay: 0.2 }}
+                                            className="text-base lg:text-lg text-gray-600 max-w-2xl leading-relaxed"
+                                        >
+                                            Comprehensive curriculum designed for real-world success
+                                        </motion.p>
                                     </div>
 
                                     {/* Curriculum Container with Enhanced Design */}
-                                    <div className="mt-10 relative">
+                                    <div className="mt-8 lg:mt-10 relative">
                                         {/* Decorative Background Elements */}
-                                        <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
-                                            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-100/30 to-purple-100/30 rounded-full blur-3xl"></div>
-                                            <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl"></div>
+                                        <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
+                                            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-indigo-200/40 via-purple-200/40 to-pink-200/40 rounded-full blur-3xl animate-pulse"></div>
+                                            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-200/40 via-pink-200/40 to-rose-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
                                         </div>
 
-                                        <div className="relative bg-gradient-to-br from-white via-indigo-50/20 to-purple-50/20 rounded-3xl border border-indigo-100/60 shadow-2xl p-6 lg:p-10 backdrop-blur-sm">
-                                            <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full">
-                                                {/* Enhanced Year Tabs - Smaller to fit Year 4 */}
-                                                <TabsList className="flex w-full bg-gradient-to-r from-gray-50 to-gray-100/50 rounded-xl p-1.5 mb-8 h-auto border border-gray-200/60 shadow-inner gap-1">
+                                        <div className="relative bg-white/80 backdrop-blur-xl rounded-[2rem] border-2 border-indigo-100/80 shadow-2xl p-6 lg:p-10 overflow-hidden">
+                                            {/* Animated border gradient */}
+                                            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 hover:opacity-10 transition-opacity duration-500 pointer-events-none"></div>
+
+                                            <Tabs defaultValue={program.modules[0]?.year || "YEAR ONE"} className="w-full relative z-10">
+                                                {/* Enhanced Year Tabs */}
+                                                <TabsList className="flex w-full bg-gradient-to-r from-gray-50 via-gray-100/80 to-gray-50 rounded-2xl p-1.5 mb-8 h-auto border-2 border-gray-200/80 shadow-inner gap-1.5 backdrop-blur-sm">
                                                     {program.modules.map((year, tabIndex) => (
                                                         <TabsTrigger
                                                             key={year.year}
                                                             value={year.year}
-                                                            className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/40 data-[state=active]:ring-2 data-[state=active]:ring-indigo-300/50 data-[state=active]:ring-offset-2 rounded-lg py-2.5 px-3 lg:px-4 transition-all duration-300 text-gray-700 font-semibold text-xs lg:text-sm hover:text-gray-900 data-[state=inactive]:hover:bg-white/60 data-[state=active]:scale-[1.02] data-[state=active]:font-bold"
+                                                            className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:via-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:shadow-indigo-500/50 data-[state=active]:ring-2 data-[state=active]:ring-indigo-300/60 data-[state=active]:ring-offset-2 rounded-xl py-2.5 px-3 lg:px-5 transition-all duration-300 text-gray-700 font-bold text-xs lg:text-sm hover:text-gray-900 data-[state=inactive]:hover:bg-white/80 data-[state=active]:scale-[1.02] data-[state=active]:font-extrabold"
                                                         >
                                                             <span className="relative z-10">{year.year}</span>
                                                         </TabsTrigger>
@@ -879,82 +917,100 @@ export function IndividualProgramPage() {
                                                         value={year.year}
                                                         className="mt-0 animate-in fade-in-50 duration-300"
                                                     >
-                                                        <div className="space-y-6 lg:space-y-7">
-                                                            {year.semesters.map((semester, semIndex) => (
-                                                                <motion.div
-                                                                    key={semIndex}
-                                                                    className="relative"
-                                                                    initial={{ opacity: 0, y: 20 }}
-                                                                    animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
-                                                                    transition={{ duration: 0.5, delay: semIndex * 0.1 }}
-                                                                >
-                                                                    {/* Semester Header with Enhanced Design */}
-                                                                    <div className="relative mb-4">
-                                                                        <div className="flex items-center gap-3 mb-4">
-                                                                            <div className="relative">
-                                                                                <div className="absolute inset-0 bg-gradient-to-b from-indigo-400 to-purple-500 rounded-full blur-md opacity-50"></div>
-                                                                                <div className="relative h-12 w-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg"></div>
-                                                                            </div>
-                                                                            <div className="flex-1">
-                                                                                <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                                                                                    {semester.semester}
-                                                                                </h3>
-                                                                                <div className="mt-1.5 h-0.5 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                                                        <div className="space-y-7 lg:space-y-9">
+                                                            {year.semesters.map((semester, semIndex) => {
+                                                                // Calculate total credits for this semester
+                                                                const totalCredits = semester.modules.reduce((sum, module) => sum + module.credits, 0);
+
+                                                                return (
+                                                                    <motion.div
+                                                                        key={semIndex}
+                                                                        className="relative"
+                                                                        initial={{ opacity: 0, y: 20 }}
+                                                                        animate={isModulesInView ? { opacity: 1, y: 0 } : {}}
+                                                                        transition={{ duration: 0.5, delay: semIndex * 0.1 }}
+                                                                    >
+                                                                        {/* Semester Header with Enhanced Design */}
+                                                                        <div className="relative mb-4 lg:mb-5">
+                                                                            <div className="flex items-center justify-between gap-3 lg:gap-4 mb-2.5">
+                                                                                <div className="flex items-center gap-2.5 lg:gap-3 flex-1">
+                                                                                    <div className="relative">
+                                                                                        <div className="absolute inset-0 bg-gradient-to-b from-indigo-400 via-purple-500 to-pink-500 rounded-full blur-md opacity-50 animate-pulse"></div>
+                                                                                        <div className="relative h-10 lg:h-12 w-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg shadow-indigo-500/40"></div>
+                                                                                    </div>
+                                                                                    <div className="flex-1">
+                                                                                        <div className="flex items-center gap-2.5 lg:gap-3 mb-1.5">
+                                                                                            <h3 className="text-lg lg:text-2xl font-extrabold bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
+                                                                                                {semester.semester}
+                                                                                            </h3>
+                                                                                            <span className="text-xs lg:text-sm font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-2.5 lg:px-3 py-1 rounded-full border border-indigo-200/80 whitespace-nowrap">
+                                                                                                {totalCredits} Total Credits
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div className="h-0.5 w-16 lg:w-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"></div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    {/* Course Cards Grid */}
-                                                                    <div className="grid gap-3">
-                                                                        <Accordion type="single" collapsible className="w-full space-y-3">
-                                                                            {semester.modules.map((module, modIndex) => {
-                                                                                const CourseIcon = getCourseIcon(module.name);
-                                                                                return (
-                                                                                    <AccordionItem
-                                                                                        key={modIndex}
-                                                                                        value={`module-${yearIndex}-${semIndex}-${modIndex}`}
-                                                                                        className="group"
-                                                                                    >
-                                                                                        <div className="relative overflow-hidden rounded-xl bg-white/90 backdrop-blur-sm border border-gray-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:border-indigo-300/60 hover:scale-[1.01]">
-                                                                                            {/* Gradient Overlay on Hover */}
-                                                                                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-50/0 via-purple-50/0 to-pink-50/0 group-hover:from-indigo-50/30 group-hover:via-purple-50/20 group-hover:to-pink-50/30 transition-all duration-300 pointer-events-none"></div>
+                                                                        {/* Course Cards Grid */}
+                                                                        <div className="grid gap-3 lg:gap-4">
+                                                                            <Accordion type="single" collapsible className="w-full space-y-3 lg:space-y-4">
+                                                                                {semester.modules.map((module, modIndex) => {
+                                                                                    const CourseIcon = getCourseIcon(module.name);
+                                                                                    return (
+                                                                                        <AccordionItem
+                                                                                            key={modIndex}
+                                                                                            value={`module-${yearIndex}-${semIndex}-${modIndex}`}
+                                                                                            className="group border-0"
+                                                                                        >
+                                                                                            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-md hover:shadow-xl transition-all duration-500 hover:border-indigo-300/80 hover:scale-[1.01] hover:-translate-y-0.5">
+                                                                                                {/* Animated gradient overlay */}
+                                                                                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none"></div>
+                                                                                                
+                                                                                                {/* Shine effect */}
+                                                                                                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-                                                                                            <AccordionTrigger className="flex w-full items-center justify-between p-4 lg:p-5 text-left font-semibold text-gray-800 hover:no-underline group/trigger">
-                                                                                                <div className="flex items-center gap-3 flex-1 min-w-0">
-                                                                                                    {/* Course Icon */}
-                                                                                                    <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 group-hover/trigger:scale-110 transition-transform duration-300">
-                                                                                                        <CourseIcon className="h-5 w-5" />
+                                                                                                <AccordionTrigger className="flex w-full items-center justify-between p-4 lg:p-5 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                                                    <div className="flex items-center gap-3.5 lg:gap-4 flex-1 min-w-0">
+                                                                                                        {/* Course Icon with smaller size */}
+                                                                                                        <div className="flex-shrink-0 relative">
+                                                                                                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg blur-sm opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                                                            <div className="relative w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                                                                <CourseIcon className="h-4 w-4" />
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        {/* Course Name */}
+                                                                                                        <span className="text-sm lg:text-base font-bold text-gray-900 pr-3 lg:pr-4 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-indigo-600 group-hover/trigger:to-purple-600 transition-all duration-300">
+                                                                                                            {module.name}
+                                                                                                        </span>
                                                                                                     </div>
 
-                                                                                                    {/* Course Name */}
-                                                                                                    <span className="text-sm lg:text-base font-bold text-gray-900 pr-4 group-hover/trigger:text-indigo-700 transition-colors duration-300">
-                                                                                                        {module.name}
-                                                                                                    </span>
-                                                                                                </div>
+                                                                                                    {/* Credits Badge with enhanced design */}
+                                                                                                    <div className="flex items-center gap-2.5 lg:gap-3 flex-shrink-0">
+                                                                                                        <span className="text-xs font-bold text-indigo-700 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-3 lg:px-3.5 py-1.5 lg:py-2 rounded-full border border-indigo-200/80 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:via-purple-100 group-hover/trigger:to-pink-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md group-hover/trigger:scale-105 transition-all duration-300 whitespace-nowrap">
+                                                                                                            {module.credits} Credits
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </AccordionTrigger>
 
-                                                                                                {/* Credits Badge */}
-                                                                                                <div className="flex items-center gap-2 flex-shrink-0">
-                                                                                                    <span className="text-xs font-bold text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 px-3 py-1.5 rounded-full border border-indigo-200/60 shadow-sm group-hover/trigger:from-indigo-100 group-hover/trigger:to-purple-100 group-hover/trigger:border-indigo-300 group-hover/trigger:shadow-md transition-all duration-300">
-                                                                                                        {module.credits} Credits
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                            </AccordionTrigger>
-
-                                                                                            <AccordionContent className="px-4 lg:px-5 pb-4 lg:pb-5 pt-0">
-                                                                                                <div className="pl-14 border-t border-gray-200/60 pt-4">
-                                                                                                    <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                                                                                                        {module.description}
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </AccordionContent>
-                                                                                        </div>
-                                                                                    </AccordionItem>
-                                                                                );
-                                                                            })}
-                                                                        </Accordion>
-                                                                    </div>
-                                                                </motion.div>
-                                                            ))}
+                                                                                                <AccordionContent className="px-4 lg:px-5 pb-4 lg:pb-5 pt-0 relative z-10">
+                                                                                                    <div className="pl-[58px] lg:pl-[64px] border-t border-indigo-200/60 pt-4 lg:pt-5">
+                                                                                                        <p className="text-gray-700 leading-relaxed text-sm lg:text-base font-medium">
+                                                                                                            {module.description}
+                                                                                                        </p>
+                                                                                                    </div>
+                                                                                                </AccordionContent>
+                                                                                            </div>
+                                                                                        </AccordionItem>
+                                                                                    );
+                                                                                })}
+                                                                            </Accordion>
+                                                                        </div>
+                                                                    </motion.div>
+                                                                );
+                                                            })}
                                                         </div>
                                                     </TabsContent>
                                                 ))}
@@ -965,7 +1021,7 @@ export function IndividualProgramPage() {
                             </motion.section>
 
                             {/* --- Why University & FAQ Section --- */}
-                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 scroll-mt-28" id="why-university">
+                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 scroll-mt-28" id="why-niet">
                                 {/* Why University */}
                                 {program.whyUniversity && (
                                     <motion.section
@@ -1012,75 +1068,166 @@ export function IndividualProgramPage() {
                                     transition={{ duration: 0.7 }}
                                 >
                                     <div className="relative h-full">
-                                        <div className="mb-8">
-                                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 mb-6 mt-6">
-                                                <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 to-pink-500">
+                                        {/* Section Header */}
+                                        <div className="mb-10">
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
+                                                transition={{ duration: 0.5 }}
+                                                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 border border-rose-200/60 shadow-sm mb-6 mt-6 backdrop-blur-sm"
+                                            >
+                                                <div className="p-2 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/30">
                                                     <HelpCircle className="h-5 w-5 text-white" />
                                                 </div>
-                                                <span className="text-sm font-semibold text-rose-700 uppercase tracking-wider">Frequently Asked</span>
-                                            </div>
-                                            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">FAQs</h2>
-                                            <p className="text-lg text-gray-600">Get answers to common questions</p>
+                                                <span className="text-sm font-bold text-rose-700 uppercase tracking-wider">Frequently Asked</span>
+                                            </motion.div>
+                                            <motion.h2
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
+                                                transition={{ duration: 0.5, delay: 0.1 }}
+                                                className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-rose-700 to-pink-700 bg-clip-text text-transparent tracking-tight mb-4"
+                                            >
+                                                FAQs
+                                            </motion.h2>
+                                            <motion.p
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
+                                                transition={{ duration: 0.5, delay: 0.2 }}
+                                                className="text-lg lg:text-xl text-gray-600 leading-relaxed"
+                                            >
+                                                Get answers to common questions
+                                            </motion.p>
                                         </div>
-                                        <div className="mt-8 space-y-4">
-                                            <Accordion type="single" collapsible className="w-full">
-                                                <AccordionItem value="faq-1" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the admission requirements?</span>
-                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
-                                                        </div>
-                                                    </AccordionTrigger>
-                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
-                                                        {program.admissionEligibility}
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                                <AccordionItem value="faq-2" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the program fees?</span>
-                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
-                                                        </div>
-                                                    </AccordionTrigger>
-                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
-                                                        The total program fee is <strong className="font-semibold text-gray-900">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
-                                                        Please refer to the detailed fee structure above for a year-by-year breakdown.
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                                <AccordionItem value="faq-3" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all mb-4 overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">What are the career prospects after graduation?</span>
-                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
-                                                        </div>
-                                                    </AccordionTrigger>
-                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
-                                                        <p className="mb-4 font-semibold text-gray-900">Graduates can pursue careers in:</p>
-                                                        <ul className="space-y-2">
-                                                            {program.careerOutcomes.map((career, index) => (
-                                                                <li key={index} className="flex items-start gap-3">
-                                                                    <div className="p-1 rounded-full bg-rose-100 mt-1 flex-shrink-0">
-                                                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+
+                                        {/* FAQ Container with Enhanced Design */}
+                                        <div className="relative mt-8">
+                                            {/* Decorative Background */}
+                                            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
+                                                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-rose-200/30 via-pink-200/30 to-fuchsia-200/30 rounded-full blur-3xl animate-pulse"></div>
+                                                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-pink-200/30 via-fuchsia-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                                            </div>
+
+                                            <div className="relative space-y-4">
+                                                <Accordion type="single" collapsible className="w-full">
+                                                    <AccordionItem value="faq-1" className="group border-0">
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
+                                                            {/* Animated gradient overlay */}
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
+
+                                                            {/* Shine effect */}
+                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                                    What are the admission requirements?
+                                                                </span>
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                        <HelpCircle className="h-5 w-5 text-white" />
                                                                     </div>
-                                                                    <span>{career}</span>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                                <AccordionItem value="faq-4" className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden">
-                                                    <AccordionTrigger className="flex w-full items-center justify-between gap-3 p-4 sm:p-6 text-left font-semibold text-gray-800 hover:no-underline group">
-                                                        <span className="text-base sm:text-lg flex-1 min-w-0 pr-2">Are scholarships available?</span>
-                                                        <div className="p-2 rounded-lg bg-rose-100 group-hover:bg-rose-200 transition-colors flex-shrink-0">
-                                                            <Award className="h-4 w-4 sm:h-5 sm:w-5 text-rose-600" />
+                                                                </div>
+                                                            </AccordionTrigger>
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                                        {program.admissionEligibility}
+                                                                    </p>
+                                                                </div>
+                                                            </AccordionContent>
                                                         </div>
-                                                    </AccordionTrigger>
-                                                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
-                                                        Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
-                                                        Please contact our admissions office for more information about available scholarships and eligibility criteria.
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                            </Accordion>
+                                                    </AccordionItem>
+
+                                                    <AccordionItem value="faq-2" className="group border-0">
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
+                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                                    What are the program fees?
+                                                                </span>
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                        <DollarSign className="h-5 w-5 text-white" />
+                                                                    </div>
+                                                                </div>
+                                                            </AccordionTrigger>
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                                        The total program fee is <strong className="font-extrabold text-gray-900 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
+                                                                        Please refer to the detailed fee structure above for a year-by-year breakdown.
+                                                                    </p>
+                                                                </div>
+                                                            </AccordionContent>
+                                                        </div>
+                                                    </AccordionItem>
+
+                                                    <AccordionItem value="faq-3" className="group border-0">
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
+                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                                    What are the career prospects after graduation?
+                                                                </span>
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                        <Briefcase className="h-5 w-5 text-white" />
+                                                                    </div>
+                                                                </div>
+                                                            </AccordionTrigger>
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                                    <p className="mb-5 font-bold text-gray-900 text-lg">Graduates can pursue careers in:</p>
+                                                                    <ul className="space-y-3">
+                                                                        {program.careerOutcomes.map((career, index) => (
+                                                                            <li key={index} className="flex items-start gap-3 group/item">
+                                                                                <div className="flex-shrink-0 mt-1 relative">
+                                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full blur-sm opacity-50"></div>
+                                                                                    <div className="relative w-2 h-2 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 shadow-md"></div>
+                                                                                </div>
+                                                                                <span className="text-gray-700 font-medium group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            </AccordionContent>
+                                                        </div>
+                                                    </AccordionItem>
+
+                                                    <AccordionItem value="faq-4" className="group border-0">
+                                                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border-2 border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-rose-300/80 hover:scale-[1.02] hover:-translate-y-1">
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-500 pointer-events-none"></div>
+                                                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-4 p-5 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
+                                                                <span className="text-base lg:text-lg font-bold text-gray-900 flex-1 min-w-0 pr-2 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                                    Are scholarships available?
+                                                                </span>
+                                                                <div className="flex-shrink-0 relative">
+                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
+                                                                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 group-hover/trigger:rotate-3 transition-all duration-300">
+                                                                        <Award className="h-5 w-5 text-white" />
+                                                                    </div>
+                                                                </div>
+                                                            </AccordionTrigger>
+                                                            <AccordionContent className="px-5 lg:px-6 pb-5 lg:pb-6 pt-0 relative z-10">
+                                                                <div className="border-t-2 border-rose-200/60 pt-5">
+                                                                    <p className="text-gray-700 leading-relaxed text-base lg:text-lg font-medium">
+                                                                        Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
+                                                                        Please contact our admissions office for more information about available scholarships and eligibility criteria.
+                                                                    </p>
+                                                                </div>
+                                                            </AccordionContent>
+                                                        </div>
+                                                    </AccordionItem>
+                                                </Accordion>
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.section>

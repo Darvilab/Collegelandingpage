@@ -55,6 +55,11 @@ export interface Program {
     degreeHighlights: string[];
     whyUniversity?: string;
     whyProgram?: string[];
+    discountInfo?: {
+        admissionFeeWaiver?: boolean;
+        semesterFeeDiscount?: number; // percentage
+        note?: string;
+    };
 }
 
 export const programs: Program[] = [
@@ -454,6 +459,11 @@ export const programs: Program[] = [
                 grandTotal: 154000
             }
         ],
+        discountInfo: {
+            admissionFeeWaiver: true,
+            semesterFeeDiscount: 30,
+            note: "100% waiver in Admission Fee for this Batch"
+        },
         whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
     },
     {
@@ -1259,6 +1269,11 @@ export const programs: Program[] = [
                 grandTotal: 154000
             }
         ],
+        discountInfo: {
+            admissionFeeWaiver: true,
+            semesterFeeDiscount: 30,
+            note: "100% waiver in Admission Fee for this Batch"
+        },
         whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
     }
 ];
