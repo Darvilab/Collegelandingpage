@@ -40,3 +40,23 @@ h3 {
   font-weight: 400 !important;
   font-style: normal !important;
 }
+
+/* FAQ sections - Use Roboto for all text including headings */
+.faq-section {
+  font-family: "Roboto", sans-serif !important;
+}
+
+.faq-section h1,
+.faq-section h2,
+.faq-section h3,
+.faq-section h4,
+.faq-section h5,
+.faq-section h6,
+.faq-section p,
+.faq-section span,
+.faq-section div,
+.faq-section li,
+.faq-section ul,
+.faq-section * {
+  font-family: "Roboto", sans-serif !important;
+}

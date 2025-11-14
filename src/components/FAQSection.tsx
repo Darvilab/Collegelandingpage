@@ -40,7 +40,7 @@ export function FAQSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section ref={ref} className="faq-section py-20 lg:py-32 bg-white relative overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-purple-50 to-pink-50 rounded-full blur-3xl opacity-50"></div>
 

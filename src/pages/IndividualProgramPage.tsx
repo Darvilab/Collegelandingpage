@@ -1038,7 +1038,7 @@ export function IndividualProgramPage() {
                                 <motion.section
                                     ref={faqSectionRef}
                                     id="faq"
-                                    className="scroll-mt-28"
+                                    className="faq-section scroll-mt-28"
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
                                     transition={{ duration: 0.7 }}
