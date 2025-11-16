@@ -36,6 +36,17 @@ function getCourseIcon(courseName: string) {
     return Code2; // Default icon
 }
 
+// Function to get the brochure PDF path for a program
+function getProgramBrochure(programId: string): { path: string; filename: string } {
+    const brochureMap: { [key: string]: { path: string; filename: string } } = {
+        "btech-ai": { path: "/AI.pdf", filename: "B.Tech_AI_Brochure.pdf" },
+        "be-bme": { path: "/BioM.pdf", filename: "BE_Biomedical_Engineering_Brochure.pdf" },
+        "be-computer": { path: "/CE.pdf", filename: "BE_Computer_Engineering_Brochure.pdf" }
+    };
+
+    return brochureMap[programId] || { path: "/NEIT Prospectus.pdf", filename: "NEIT Prospectus.pdf" };
+}
+
 export function IndividualProgramPage() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
@@ -336,8 +347,8 @@ export function IndividualProgramPage() {
 
                             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                                 <a
-                                    href="/NEIT Prospectus.pdf"
-                                    download="NEIT Prospectus.pdf"
+                                    href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
+                                    download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
                                     className="inline-flex items-center justify-center"
                                 >
                                     <Button
