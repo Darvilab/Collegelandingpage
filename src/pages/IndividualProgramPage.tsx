@@ -366,7 +366,7 @@ export function IndividualProgramPage() {
                                 {program.description}
                             </p>
 
-                            <div className="flex flex-col gap-2.5 sm:gap-3 lg:gap-4 pt-2">
+                            <div className="flex flex-col lg:flex-row gap-2.5 sm:gap-3 lg:gap-4 pt-2">
                                 <a
                                     href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
                                     download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
@@ -374,7 +374,7 @@ export function IndividualProgramPage() {
                                 >
                                     <Button
                                         size="default"
-                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 group w-full sm:w-auto"
+                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
                                         aria-label="Download program brochure"
                                     >
                                         <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
@@ -384,7 +384,7 @@ export function IndividualProgramPage() {
                                 <Button
                                     size="default"
                                     variant="outline"
-                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 transition-all w-full sm:w-auto"
+                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 transition-all w-full lg:w-auto"
                                     onClick={() => scrollToSection("fee-structure")}
                                     aria-label="View fee structure"
                                 >
@@ -393,7 +393,7 @@ export function IndividualProgramPage() {
                                 </Button>
                                 <Button
                                     size="default"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-6 sm:px-7 lg:px-8 h-10 sm:h-11 lg:h-12 group w-full sm:w-auto"
+                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-6 sm:px-7 lg:px-8 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
                                     aria-label="Apply now for this program"
                                 >
                                     <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
@@ -1255,20 +1255,20 @@ export function IndividualProgramPage() {
 
             {/* Related Courses Section */}
             {relatedPrograms.length > 0 && (
-                <section ref={relatedProgramsRef} className="py-12 sm:py-16 lg:py-20 xl:py-32 bg-gradient-to-b from-white to-gray-50">
+                <section ref={relatedProgramsRef} className="py-8 sm:py-10 lg:py-12 xl:py-16 bg-gradient-to-b from-white to-gray-50">
                     <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="text-center mb-8 sm:mb-10 lg:mb-12"
+                            className="text-center mb-6 sm:mb-8"
                         >
-                            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-blue-50 border border-blue-100 mb-4 sm:mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-blue-50 border border-blue-100 mb-3 sm:mb-4">
                                 <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0b4c78]" />
                                 <span className="text-[#0b4c78] text-xs sm:text-sm">Related Programs</span>
                             </div>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
                                 Explore Other Programs
                             </h2>
                         </motion.div>
