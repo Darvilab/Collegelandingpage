@@ -418,6 +418,49 @@ export function IndividualProgramPage() {
                             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100/90 leading-relaxed max-w-2xl">
                                 {program.description}
                             </p>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-3 pt-4 sm:pt-6">
+                                <a
+                                    href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
+                                    download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
+                                    className="inline-flex items-center justify-center"
+                                >
+                                    <Button
+                                        size="default"
+                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full sm:w-auto"
+                                        aria-label="Download program brochure"
+                                    >
+                                        <Download className="mr-2 h-4 w-4" />
+                                        Download Brochure
+                                    </Button>
+                                </a>
+                                <Button
+                                    size="default"
+                                    variant="outline"
+                                    className="bg-white/10 border-white text-white hover:bg-white/20 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full sm:w-auto"
+                                    onClick={() => scrollToSection("fee-structure")}
+                                    aria-label="View fee structure"
+                                >
+                                    <FileText className="mr-2 h-4 w-4" />
+                                    Fee Structure
+                                </Button>
+                                <a
+                                    href="https://entrance.puexam.edu.np/studentlogin"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center w-full sm:w-auto"
+                                >
+                                    <Button
+                                        size="default"
+                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full sm:w-auto"
+                                        aria-label="Apply now for this program"
+                                    >
+                                        Apply Now
+                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </a>
+                            </div>
                         </motion.div>
                     </div>
 
