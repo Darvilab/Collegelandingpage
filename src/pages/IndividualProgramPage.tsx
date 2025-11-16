@@ -168,9 +168,9 @@ export function IndividualProgramPage() {
     const faqSectionRef = useRef(null);
     const mainContentRef = useRef<HTMLDivElement>(null);
     const sidebarRef = useRef<HTMLDivElement>(null);
+    const stickyNavRef = useRef<HTMLElement>(null);
     const relatedProgramsRef = useRef<HTMLElement>(null);
     const ctaSectionRef = useRef<HTMLElement>(null);
-    const [isSidebarSticky, setIsSidebarSticky] = useState(true);
 
     const isHeroInView = useInView(heroRef, { once: true });
     const isOverviewInView = useInView(overviewSectionRef, { once: true, margin: "-100px" });
@@ -180,52 +180,105 @@ export function IndividualProgramPage() {
     const isWhyUniversityInView = useInView(whyUniversitySectionRef, { once: true, margin: "-100px" });
     const isFaqInView = useInView(faqSectionRef, { once: true, margin: "-100px" });
 
-    // Track when sidebar should stop being sticky (when main content ends)
+    // Enhanced sticky positioning for sidebar - using fixed positioning when needed
     useEffect(() => {
-        const handleSidebarSticky = () => {
-            if (!mainContentRef.current) {
-                setIsSidebarSticky(true);
-                return;
+        if (!stickyNavRef.current || !mainContentRef.current || !sidebarRef.current) return;
+
+        const stickyNav = stickyNavRef.current;
+        const sidebarElement = sidebarRef.current;
+        const headerHeight = 112; // 7rem = 112px
+        let initialNavLeft = 0;
+        let initialNavWidth = 0;
+
+        const updateStickyPosition = () => {
+            const parentRect = mainContentRef.current!.getBoundingClientRect();
+            const navRect = stickyNav.getBoundingClientRect();
+            
+            // Store initial position and width on first call
+            if (initialNavLeft === 0) {
+                initialNavLeft = navRect.left;
+                initialNavWidth = navRect.width;
             }
-
-            const mainContentRect = mainContentRef.current.getBoundingClientRect();
-            const headerHeight = 112; // top-28 = 7rem = 112px
-            const mainContentBottomViewport = mainContentRect.bottom;
-
-            // Sidebar should be sticky as long as the main content container's bottom
-            // is still below the sticky position. CSS sticky will automatically handle
-            // sticking when the sidebar reaches the top-28 position.
-            // We only disable sticky when we've scrolled past the main content.
-            const shouldBeSticky = mainContentBottomViewport > headerHeight;
-
-            setIsSidebarSticky(shouldBeSticky);
+            
+            const parentTop = parentRect.top;
+            const parentBottom = parentRect.bottom;
+            const navHeight = navRect.height;
+            const scrollY = window.scrollY;
+            
+            // Check if we should use fixed positioning
+            // Use fixed when: parent top is above header AND parent bottom is still below header
+            if (parentTop < headerHeight && parentBottom > headerHeight) {
+                // Calculate the desired top position
+                let targetTop = headerHeight;
+                
+                // If parent bottom is getting close to header, adjust to keep nav within parent
+                if (parentBottom < headerHeight + navHeight) {
+                    targetTop = Math.max(headerHeight, parentBottom - navHeight);
+                }
+                
+                // Use fixed positioning
+                stickyNav.style.cssText = `
+                    position: fixed !important;
+                    top: ${targetTop}px !important;
+                    left: ${initialNavLeft}px !important;
+                    width: ${initialNavWidth}px !important;
+                    z-index: 40 !important;
+                `;
+            } else if (parentTop >= headerHeight) {
+                // Parent hasn't reached header yet - use relative positioning
+                stickyNav.style.cssText = `
+                    position: relative !important;
+                    top: 0 !important;
+                    left: auto !important;
+                    width: auto !important;
+                    z-index: auto !important;
+                `;
+            } else {
+                // Parent has scrolled completely past - use relative
+                stickyNav.style.cssText = `
+                    position: relative !important;
+                    top: 0 !important;
+                    left: auto !important;
+                    width: auto !important;
+                    z-index: auto !important;
+                `;
+            }
         };
 
-        // Throttled scroll handler
+        // Initial update after a short delay to ensure layout is complete
+        const timeout = setTimeout(() => {
+            updateStickyPosition();
+        }, 150);
+
+        // Update on scroll with throttling
         let ticking = false;
         const handleScroll = () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    handleSidebarSticky();
+                    updateStickyPosition();
                     ticking = false;
                 });
                 ticking = true;
             }
         };
 
-        // Initial check
-        const initTimeout = setTimeout(handleSidebarSticky, 100);
-        handleSidebarSticky();
+        // Update on resize
+        const handleResize = () => {
+            initialNavLeft = 0; // Reset to recalculate
+            initialNavWidth = 0;
+            updateStickyPosition();
+        };
 
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", handleSidebarSticky, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleResize, { passive: true });
 
         return () => {
-            clearTimeout(initTimeout);
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("resize", handleSidebarSticky);
+            clearTimeout(timeout);
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
+
 
     const pageTitle = `${program.title} - ${program.degree} | NIET`;
     const pageDescription = `${program.description} ${program.overview} Duration: ${program.duration}. Credit: ${program.credit}. Intake: ${program.intake}. Apply for admissions 2026.`;
@@ -365,48 +418,6 @@ export function IndividualProgramPage() {
                             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100/90 leading-relaxed max-w-2xl">
                                 {program.description}
                             </p>
-
-                            <div className="flex flex-col lg:flex-row gap-3 pt-2">
-                                <a
-                                    href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
-                                    download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
-                                    className="inline-flex items-center justify-center"
-                                >
-                                    <Button
-                                        size="default"
-                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
-                                        aria-label="Download program brochure"
-                                    >
-                                        <Download className="mr-2 h-4 w-4" />
-                                        Download Brochure
-                                    </Button>
-                                </a>
-                                <Button
-                                    size="default"
-                                    variant="outline"
-                                    className="bg-white/10 border-white text-white hover:bg-white/20 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
-                                    onClick={() => scrollToSection("fee-structure")}
-                                    aria-label="View fee structure"
-                                >
-                                    <FileText className="mr-2 h-4 w-4" />
-                                    Fee Structure
-                                </Button>
-                                <a
-                                    href="https://entrance.puexam.edu.np/studentlogin"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center w-full lg:w-auto"
-                                >
-                                    <Button
-                                        size="default"
-                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full lg:w-auto"
-                                        aria-label="Apply now for this program"
-                                    >
-                                        Apply Now
-                                        <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </a>
-                            </div>
                         </motion.div>
                     </div>
 
@@ -537,7 +548,7 @@ export function IndividualProgramPage() {
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-100/20 rounded-full blur-3xl"></div>
                 </div>
 
-                <div ref={mainContentRef} className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-24 xl:py-32">
+                <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-24 xl:py-32">
                     {/* Mobile Sidebar Navigation */}
                     <div className="lg:hidden overflow-x-auto pb-4 sm:pb-6 mb-6 sm:mb-8 -mx-4 sm:-mx-6 px-4 sm:px-6">
                         <nav className="flex gap-2" aria-label="Page navigation">
@@ -568,17 +579,20 @@ export function IndividualProgramPage() {
                         </nav>
                     </div>
 
-                    <div className="lg:flex lg:gap-12">
+                    <div className="lg:flex lg:gap-12 items-start" ref={mainContentRef}>
                         {/* Sticky Sidebar Navigation (Desktop) */}
-                        <aside className="hidden lg:block flex-shrink-0 self-start" style={{ width: '25%', maxWidth: '25%' }}>
-                            <div
-                                ref={sidebarRef}
-                                className={isSidebarSticky ? "sticky top-28" : ""}
-                                style={isSidebarSticky ? { position: 'sticky', top: '7rem' } : {}}
+                        <aside 
+                            ref={sidebarRef}
+                            className="hidden lg:block flex-shrink-0"
+                            style={{ width: '25%', maxWidth: '25%' }}
+                        >
+                            <nav 
+                                ref={stickyNavRef}
+                                aria-label="Page sections" 
+                                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100"
                             >
-                                <nav aria-label="Page sections" className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
                                     <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6">On this page</h3>
-                                    <div className="space-y-1.5">
+                                    <div className="space-y-1.5 mb-6">
                                         {[
                                             { id: "overview", label: "Overview", icon: BookOpen },
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
@@ -604,8 +618,50 @@ export function IndividualProgramPage() {
                                             );
                                         })}
                                     </div>
+                                    
+                                    {/* Action Buttons */}
+                                    <div className="space-y-3 pt-6 border-t border-gray-200">
+                                        <a
+                                            href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
+                                            download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
+                                            className="inline-flex items-center justify-center w-full"
+                                        >
+                                            <Button
+                                                size="default"
+                                                className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm w-full border border-gray-200 shadow-sm"
+                                                aria-label="Download program brochure"
+                                            >
+                                                <Download className="mr-2 h-4 w-4" />
+                                                Download Brochure
+                                            </Button>
+                                        </a>
+                                        <Button
+                                            size="default"
+                                            variant="outline"
+                                            className="bg-white border-gray-300 text-gray-700 hover:bg-gray-50 text-sm w-full shadow-sm"
+                                            onClick={() => scrollToSection("fee-structure")}
+                                            aria-label="View fee structure"
+                                        >
+                                            <FileText className="mr-2 h-4 w-4" />
+                                            Fee Structure
+                                        </Button>
+                                        <a
+                                            href="https://entrance.puexam.edu.np/studentlogin"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center w-full"
+                                        >
+                                            <Button
+                                                size="default"
+                                                className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm w-full border border-gray-200 shadow-sm"
+                                                aria-label="Apply now for this program"
+                                            >
+                                                Apply Now
+                                                <ArrowRight className="ml-2 h-4 w-4" />
+                                            </Button>
+                                        </a>
+                                    </div>
                                 </nav>
-                            </div>
                         </aside>
 
                         {/* Main Content Flow */}
