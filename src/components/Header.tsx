@@ -94,7 +94,7 @@ export function Header() {
                 alt="NIET Logo"
                 className="w-14 h-14 lg:w-16 lg:h-16 object-contain rounded-full group-hover:scale-105 transition-transform"
               />
-              <div className="absolute -inset-1 bg-gradient-to-br from-[#0b4c78] to-cyan-400 rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity -z-10"></div>
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#0d4e92] to-cyan-400 rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity -z-10"></div>
             </div>
             <div className="flex flex-col">
               <span className={`niet-text text-2xl transition-colors ${pastHeroSection ? 'text-gray-900' : 'text-white'}`}>NIET</span>
@@ -184,8 +184,8 @@ export function Header() {
                             onClick={() => setAcademicsDropdownOpen(false)}
                             role="menuitem"
                             className={`group relative flex items-start gap-4 px-4 py-4 rounded-xl text-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 ${isActive
-                              ? 'bg-gradient-to-r from-cyan-50 to-blue-50 text-[#0b4c78] font-medium border border-cyan-200/60 shadow-sm'
-                              : 'hover:bg-gradient-to-r hover:from-cyan-50/70 hover:to-blue-50/50 hover:text-[#0b4c78] hover:shadow-sm'
+                              ? 'bg-gradient-to-r from-cyan-50 to-blue-50 text-[#0d4e92] font-medium border border-cyan-200/60 shadow-sm'
+                              : 'hover:bg-gradient-to-r hover:from-cyan-50/70 hover:to-blue-50/50 hover:text-[#0d4e92] hover:shadow-sm'
                               }`}
                             aria-label={`Navigate to ${program.name}${program.isNew ? ' - New program' : ''}`}
                           >
@@ -197,7 +197,7 @@ export function Header() {
                                 }`}>
                                 <IconComponent className={`h-5 w-5 transition-all duration-300 ${isActive
                                   ? 'text-white'
-                                  : 'text-cyan-600 group-hover:text-[#0b4c78] group-hover:scale-110'
+                                  : 'text-cyan-600 group-hover:text-[#0d4e92] group-hover:scale-110'
                                   }`} />
                               </div>
                             </div>
@@ -207,7 +207,7 @@ export function Header() {
                               <div className="flex items-start justify-between gap-3">
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <span className={`text-sm font-semibold transition-colors duration-200 ${isActive ? 'text-[#0b4c78]' : 'text-gray-900 group-hover:text-[#0b4c78]'
+                                    <span className={`text-sm font-semibold transition-colors duration-200 ${isActive ? 'text-[#0d4e92]' : 'text-gray-900 group-hover:text-[#0d4e92]'
                                       }`}>
                                       {program.name}
                                     </span>
@@ -249,7 +249,7 @@ export function Header() {
                     <Link
                       to="/academics"
                       onClick={() => setAcademicsDropdownOpen(false)}
-                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0b4c78] font-semibold text-sm transition-all duration-200 hover:shadow-md"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0d4e92] font-semibold text-sm transition-all duration-200 hover:shadow-md"
                     >
                       <GraduationCap className="h-4 w-4" />
                       <span>View All Programs</span>
@@ -299,13 +299,13 @@ export function Header() {
                   <NavLink
                     key={item.name}
                     to={item.href}
-                    className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0b4c78] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${isActive ? 'text-[#0b4c78] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
+                    className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0d4e92] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${isActive ? 'text-[#0d4e92] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
                       }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                     {isActive && (
-                      <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0b4c78] rounded-full shadow-sm"></span>
+                      <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0d4e92] rounded-full shadow-sm"></span>
                     )}
                   </NavLink>
                 );
@@ -325,8 +325,8 @@ export function Header() {
                         key={index}
                         to={program.href}
                         className={`group relative flex items-start gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${isActive
-                          ? 'text-[#0b4c78] font-semibold bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200/60 shadow-sm'
-                          : 'text-gray-700 hover:text-[#0b4c78] hover:bg-gradient-to-r hover:from-cyan-50/70 hover:to-blue-50/50'
+                          ? 'text-[#0d4e92] font-semibold bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200/60 shadow-sm'
+                          : 'text-gray-700 hover:text-[#0d4e92] hover:bg-gradient-to-r hover:from-cyan-50/70 hover:to-blue-50/50'
                           }`}
                         onClick={() => setMobileMenuOpen(false)}
                         aria-label={`Navigate to ${program.name}${program.isNew ? ' - New program' : ''}`}
@@ -338,13 +338,13 @@ export function Header() {
                             }`}>
                             <IconComponent className={`h-5 w-5 transition-colors duration-200 ${isActive
                               ? 'text-white'
-                              : 'text-cyan-600 group-hover:text-[#0b4c78]'
+                              : 'text-cyan-600 group-hover:text-[#0d4e92]'
                               }`} />
                           </div>
                         </div>
                         <div className="flex-1 flex flex-col gap-1.5 min-w-0">
                           <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span className={`text-sm font-semibold transition-colors duration-200 ${isActive ? 'text-[#0b4c78]' : 'text-gray-900 group-hover:text-[#0b4c78]'
+                            <span className={`text-sm font-semibold transition-colors duration-200 ${isActive ? 'text-[#0d4e92]' : 'text-gray-900 group-hover:text-[#0d4e92]'
                               }`}>
                               {program.name}
                             </span>
@@ -372,7 +372,7 @@ export function Header() {
                 <Link
                   to="/academics"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-6 flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0b4c78] font-semibold text-sm transition-all duration-200 hover:shadow-md"
+                  className="mt-6 flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 hover:from-cyan-100 hover:to-blue-100 text-[#0d4e92] font-semibold text-sm transition-all duration-200 hover:shadow-md"
                 >
                   <GraduationCap className="h-4 w-4" />
                   <span>View All Programs</span>
@@ -383,13 +383,13 @@ export function Header() {
               {/* Mobile Faculty and Staff */}
               <NavLink
                 to="/faculty-and-staff"
-                className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0b4c78] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) ? 'text-[#0b4c78] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
+                className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0d4e92] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) ? 'text-[#0d4e92] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
                   }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Faculty and Staff
                 {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
-                  <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0b4c78] rounded-full shadow-sm"></span>
+                  <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0d4e92] rounded-full shadow-sm"></span>
                 )}
               </NavLink>
 

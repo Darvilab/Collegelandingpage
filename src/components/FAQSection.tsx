@@ -53,13 +53,13 @@ export function FAQSection() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-100 mb-6">
-            <Sparkles className="h-4 w-4 text-[#0b4c78]" />
-            <span className="text-[#0b4c78] text-sm">FAQ</span>
+            <Sparkles className="h-4 w-4 text-[#0d4e92]" />
+            <span className="text-[#0d4e92] text-sm">FAQ</span>
           </div>
           <h2 className="text-4xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
             Got Questions?
             <br />
-            <span className="bg-gradient-to-r from-[#0b4c78] to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0d4e92] to-pink-500 bg-clip-text text-transparent">
               We've Got Answers
             </span>
           </h2>
@@ -79,7 +79,7 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-3xl px-8 border border-gray-200 hover:border-[#0b4c78]/30 hover:shadow-lg transition-all overflow-hidden"
+                className="bg-gradient-to-br from-gray-50 to-white rounded-3xl px-8 border border-gray-200 hover:border-[#0d4e92]/30 hover:shadow-lg transition-all overflow-hidden"
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">
                   <span className="text-lg text-gray-900">{faq.question}</span>

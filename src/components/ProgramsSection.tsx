@@ -26,13 +26,13 @@ export function ProgramsSection() {
           className="mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-            <Sparkles className="h-4 w-4 text-[#0b4c78]" />
-            <span className="text-[#0b4c78] text-sm">Our Programs</span>
+            <Sparkles className="h-4 w-4 text-[#0d4e92]" />
+            <span className="text-[#0d4e92] text-sm">Our Programs</span>
           </div>
           <h2 className="text-5xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
             Choose Your
             <br />
-            <span className="bg-gradient-to-r from-[#0b4c78] to-cyan-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0d4e92] to-cyan-500 bg-clip-text text-transparent">
               Engineering Path
             </span>
           </h2>
@@ -94,7 +94,7 @@ export function ProgramsSection() {
                       
                       <Button
                         variant="ghost"
-                        className="text-[#0b4c78] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"
+                        className="text-[#0d4e92] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"
                       >
                         <span className="text-base">Explore Program</span>
                         <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />

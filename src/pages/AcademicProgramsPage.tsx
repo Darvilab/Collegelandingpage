@@ -148,8 +148,8 @@ export function AcademicProgramsPage() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <Sparkles className="h-4 w-4 text-[#0b4c78]" />
-              <span className="text-[#0b4c78] text-sm">Our Programs</span>
+              <Sparkles className="h-4 w-4 text-[#0d4e92]" />
+              <span className="text-[#0d4e92] text-sm">Our Programs</span>
             </div>
             <h2 className="text-5xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
               Academic Programs
@@ -208,7 +208,7 @@ export function AcademicProgramsPage() {
                           <div className="grid md:grid-cols-2 gap-2">
                             {program.coreCourses.map((course, i) => (
                               <div key={i} className="flex items-center gap-2 text-gray-600">
-                                <CheckCircle2 className="h-4 w-4 text-[#0b4c78] flex-shrink-0" />
+                                <CheckCircle2 className="h-4 w-4 text-[#0d4e92] flex-shrink-0" />
                                 <span className="text-sm">{course}</span>
                               </div>
                             ))}
@@ -253,7 +253,7 @@ export function AcademicProgramsPage() {
                       <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
                         <Link to={`/academics/${program.slug}`}>
                           <Button
-                            className="bg-[#0b4c78] hover:bg-[#0a3d5f] text-white"
+                            className="bg-[#0d4e92] hover:bg-[#0a3f75] text-white"
                           >
                             View Full Details
                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -292,7 +292,7 @@ export function AcademicProgramsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 lg:py-20 xl:py-32 bg-gradient-to-br from-[#0b4c78] via-blue-900 to-slate-900 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-32 bg-gradient-to-br from-[#0d4e92] via-blue-900 to-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px]"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"></div>
@@ -320,7 +320,7 @@ export function AcademicProgramsPage() {
               >
                 <Button
                   size="lg"
-                  className="bg-white text-[#0b4c78] hover:bg-blue-50 text-lg px-8 h-14"
+                  className="bg-white text-[#0d4e92] hover:bg-blue-50 text-lg px-8 h-14"
                 >
                   Apply Now
                   <ArrowRight className="ml-2 h-5 w-5" />

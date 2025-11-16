@@ -374,7 +374,7 @@ export function IndividualProgramPage() {
                                 >
                                     <Button
                                         size="default"
-                                        className="bg-white text-[#0b4c78] hover:bg-blue-50 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
+                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
                                         aria-label="Download program brochure"
                                     >
                                         <Download className="mr-2 h-4 w-4" />
@@ -555,12 +555,12 @@ export function IndividualProgramPage() {
                                         key={item.id}
                                         onClick={() => scrollToSection(item.id)}
                                         className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm whitespace-nowrap transition-all font-medium shadow-sm ${activeSection === item.id
-                                            ? "bg-gradient-to-r from-[#0b4c78] to-cyan-500 text-white shadow-lg scale-105"
+                                            ? "bg-gradient-to-r from-[#0d4e92] to-cyan-500 text-white shadow-lg scale-105"
                                             : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
                                             }`}
                                         aria-label={`Navigate to ${item.label} section`}
                                     >
-                                        <ItemIcon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0 ${activeSection === item.id ? "text-white" : "text-[#0b4c78]"}`} />
+                                        <ItemIcon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0 ${activeSection === item.id ? "text-white" : "text-[#0d4e92]"}`} />
                                         <span className="text-xs sm:text-sm">{item.label}</span>
                                     </button>
                                 );
@@ -1239,7 +1239,7 @@ export function IndividualProgramPage() {
                                                                         {program.admissionEligibility.split('\n').map((item, index) => (
                                                                             item.trim() && (
                                                                                 <li key={index} className="flex items-start gap-2">
-                                                                                    <span className="text-[#0b4c78] mt-1">•</span>
+                                                                                    <span className="text-[#0d4e92] mt-1">•</span>
                                                                                     <span>{item.replace(/^•\s*/, '')}</span>
                                                                                 </li>
                                                                             )
@@ -1385,8 +1385,8 @@ export function IndividualProgramPage() {
                             className="text-center mb-6 sm:mb-8"
                         >
                             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-blue-50 border border-blue-100 mb-3 sm:mb-4">
-                                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0b4c78]" />
-                                <span className="text-[#0b4c78] text-xs sm:text-sm">Related Programs</span>
+                                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0d4e92]" />
+                                <span className="text-[#0d4e92] text-xs sm:text-sm">Related Programs</span>
                             </div>
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
                                 Explore Other Programs
@@ -1438,7 +1438,7 @@ export function IndividualProgramPage() {
 
                                                     <Button
                                                         variant="ghost"
-                                                        className="text-[#0b4c78] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"
+                                                        className="text-[#0d4e92] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"
                                                     >
                                                         <span className="text-sm sm:text-base">Explore Program</span>
                                                         <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover/btn:translate-x-1 transition-transform" />
@@ -1486,7 +1486,7 @@ export function IndividualProgramPage() {
                             >
                                 <Button
                                     size="lg"
-                                    className="bg-white text-[#0b4c78] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
+                                    className="bg-white text-[#0d4e92] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
                                 >
                                     Apply Now
                                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -1510,7 +1510,7 @@ export function IndividualProgramPage() {
             {showBackToTop && (
                 <Button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="fixed bottom-6 right-6 z-50 bg-[#0b4c78] hover:bg-[#0a3d5f] text-white shadow-lg w-12 h-12 p-0"
+                    className="fixed bottom-6 right-6 z-50 bg-[#0d4e92] hover:bg-[#0a3f75] text-white shadow-lg w-12 h-12 p-0"
                     aria-label="Scroll to top"
                 >
                     <ArrowUp className="h-5 w-5 text-white" />

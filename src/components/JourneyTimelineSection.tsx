@@ -62,8 +62,8 @@ export function JourneyTimelineSection({ timeline }: JourneyTimelineSectionProps
                     className="text-center mb-16 lg:mb-20"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-                        <Calendar className="h-4 w-4 text-[#0b4c78]" />
-                        <span className="text-[#0b4c78] text-sm font-medium">Our Journey</span>
+                        <Calendar className="h-4 w-4 text-[#0d4e92]" />
+                        <span className="text-[#0d4e92] text-sm font-medium">Our Journey</span>
                     </div>
                     <h2 className="text-4xl lg:text-5xl text-gray-900 mb-6 tracking-tight">
                         Journey Timeline

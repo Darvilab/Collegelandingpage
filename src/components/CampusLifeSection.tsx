@@ -14,7 +14,7 @@ export function CampusLifeSection() {
       name: "Priya Sharma",
       role: "AI Engineering, 2025",
       quote: "NIET provided hands-on experience in ML and robotics. The industry connections helped me secure my dream internship at a leading AI firm.",
-      gradient: "from-[#0b4c78] to-cyan-400",
+      gradient: "from-[#0d4e92] to-cyan-400",
     },
     {
       name: "Rohan Thapa",
@@ -84,7 +84,7 @@ export function CampusLifeSection() {
   };
 
   return (
-    <section id="campus-life" ref={ref} className="py-20 lg:py-32 bg-gradient-to-b from-[#0b4c78]/5 to-white relative overflow-hidden">
+    <section id="campus-life" ref={ref} className="py-20 lg:py-32 bg-gradient-to-b from-[#0d4e92]/5 to-white relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -96,7 +96,7 @@ export function CampusLifeSection() {
           <h2 className="text-4xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
             Experience
             <br />
-            <span className="bg-gradient-to-r from-[#0b4c78] via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0d4e92] via-purple-500 to-pink-500 bg-clip-text text-transparent">
               NIET Life
             </span>
           </h2>
@@ -124,14 +124,14 @@ export function CampusLifeSection() {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <button className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl">
-                <Play className="h-8 w-8 text-[#0b4c78] ml-1" />
+                <Play className="h-8 w-8 text-[#0d4e92] ml-1" />
               </button>
             </div>
 
             {/* Floating Badge */}
             <div className="absolute bottom-8 left-8 right-8">
               <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/90 backdrop-blur-md">
-                <Award className="h-5 w-5 text-[#0b4c78]" />
+                <Award className="h-5 w-5 text-[#0d4e92]" />
                 <span className="text-gray-900">Best Campus Life 2025</span>
               </div>
             </div>
@@ -153,9 +153,9 @@ export function CampusLifeSection() {
               return (
                 <div
                   key={index}
-                  className="flex gap-5 p-6 rounded-3xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-[#0b4c78]/30 hover:shadow-lg transition-all group"
+                  className="flex gap-5 p-6 rounded-3xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-[#0d4e92]/30 hover:shadow-lg transition-all group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0b4c78] to-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0d4e92] to-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <Icon className="h-7 w-7 text-white" />
                   </div>
                   <div>
@@ -226,14 +226,14 @@ export function CampusLifeSection() {
             <button
               onClick={prevTestimonials}
               disabled={currentIndex === 0}
-              className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#0b4c78] hover:bg-[#0b4c78]/5 flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#0d4e92] hover:bg-[#0d4e92]/5 flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="h-6 w-6 text-gray-900" />
             </button>
             <button
               onClick={nextTestimonials}
               disabled={currentIndex >= maxIndex}
-              className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#0b4c78] hover:bg-[#0b4c78]/5 flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#0d4e92] hover:bg-[#0d4e92]/5 flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronRight className="h-6 w-6 text-gray-900" />
             </button>

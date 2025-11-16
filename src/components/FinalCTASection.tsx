@@ -46,7 +46,7 @@ export function FinalCTASection() {
             >
               <Button
                 size="lg"
-                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl text-lg px-10 h-14 group"
+                className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl text-lg px-10 h-14 group"
               >
                 Apply Now
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

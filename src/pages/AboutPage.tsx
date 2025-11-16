@@ -9,6 +9,7 @@ import { useRef } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { JourneyTimelineSection } from "../components/JourneyTimelineSection";
+import { GraduatesWorkAtSection } from "../components/GraduatesWorkAtSection";
 import { getAllPrograms } from "../data/programs";
 
 export function AboutPage() {
@@ -175,13 +176,13 @@ export function AboutPage() {
             className="text-center mb-16 lg:mb-20"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <Sparkles className="h-4 w-4 text-[#0b4c78]" />
-              <span className="text-[#0b4c78] text-sm font-medium">Why We Exist</span>
+              <Sparkles className="h-4 w-4 text-[#0d4e92]" />
+              <span className="text-[#0d4e92] text-sm font-medium">Why We Exist</span>
             </div>
             <h2 className="text-5xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
               Building the Future,
               <br />
-              <span className="bg-gradient-to-r from-[#0b4c78] to-cyan-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0d4e92] to-cyan-500 bg-clip-text text-transparent">
                 One Engineer at a Time
               </span>
             </h2>
@@ -245,6 +246,9 @@ export function AboutPage() {
       {/* Journey Timeline */}
       <JourneyTimelineSection timeline={timeline} />
 
+      {/* Graduates Work At Section */}
+      <GraduatesWorkAtSection />
+
       {/* Accreditation & Partnerships */}
       <section ref={accreditationRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -255,8 +259,8 @@ export function AboutPage() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <Award className="h-4 w-4 text-[#0b4c78]" />
-              <span className="text-[#0b4c78] text-sm">Accreditation & Partnerships</span>
+              <Award className="h-4 w-4 text-[#0d4e92]" />
+              <span className="text-[#0d4e92] text-sm">Accreditation & Partnerships</span>
             </div>
             <h2 className="text-5xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
               Recognized Excellence
@@ -306,7 +310,7 @@ export function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#0b4c78] via-blue-900 to-slate-900 relative overflow-hidden">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#0d4e92] via-blue-900 to-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px]"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"></div>
@@ -334,7 +338,7 @@ export function AboutPage() {
               >
                 <Button
                   size="lg"
-                  className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+                  className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
                 >
                   Apply Now
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

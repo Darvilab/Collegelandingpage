@@ -53,7 +53,7 @@ export function WhyNIETSection() {
           className="text-center mb-16 lg:mb-20"
         >
           <h2 className="text-4xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
-            Why <span className="bg-gradient-to-r from-[#0b4c78] to-cyan-500 bg-clip-text text-transparent">500+ Graduates</span>
+            Why <span className="bg-gradient-to-r from-[#0d4e92] to-cyan-500 bg-clip-text text-transparent">500+ Graduates</span>
             <br />
             Trust NIET
           </h2>
@@ -86,7 +86,7 @@ export function WhyNIETSection() {
                   {/* Icon Badge */}
                   <div className="absolute top-6 right-6">
                     <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Icon className="h-7 w-7 text-[#0b4c78]" />
+                      <Icon className="h-7 w-7 text-[#0d4e92]" />
                     </div>
                   </div>
                 </div>
@@ -103,100 +103,6 @@ export function WhyNIETSection() {
             );
           })}
         </div>
-
-        {/* Partner Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <p className="text-gray-400 mb-4 uppercase tracking-[0.2em] text-sm">
-            Our Graduates Work At
-          </p>
-          <p className="text-gray-500 mb-10 text-sm max-w-2xl mx-auto">
-            500+ graduates placed globally. From Cambridge to Mayo Clinic, from top hospitals in Nepal to leading tech companies worldwide.
-          </p>
-          
-          {/* Abroad Organizations */}
-          <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 mb-4">🌍 Global Universities & Companies</h4>
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
-              {[
-                "Cambridge University, UK",
-                "Mayo Clinic, USA",
-                "Nanyang Tech, Singapore",
-                "AstraZeneca, USA",
-                "Wake Forest Institute, USA",
-                "Harbin Institute, China",
-                "UNSW, Australia",
-                "Waterloo Institute, Ireland",
-                "Hannover Medical, Germany",
-                "IIT India"
-              ].map((partner, index) => (
-                <div
-                  key={index}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:border-[#0b4c78]/40 hover:shadow-md hover:scale-105 transition-all"
-                >
-                  <div className="text-gray-700 text-xs font-medium">{partner}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Private Hospitals */}
-          <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 mb-4">🏥 Private Hospitals in Nepal</h4>
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
-              {[
-                "Grande Int'l Hospital",
-                "Nepal Mediciti Hospital",
-                "Norvic Hospital",
-                "Lumbini Medical Hospital",
-                "Chitwan Medical College",
-                "Biratnagar Eye Hospital",
-                "Birt Medical College",
-                "Dhulikhel Hospital",
-                "Gautam Buddha Hospital",
-                "Universal College of Medical Sciences",
-                "National Kidney Center"
-              ].map((partner, index) => (
-                <div
-                  key={index}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 hover:border-emerald-400/40 hover:shadow-md hover:scale-105 transition-all"
-                >
-                  <div className="text-gray-700 text-xs font-medium">{partner}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Government Hospitals */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-700 mb-4">🏛️ Government Hospitals & Institutions</h4>
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
-              {[
-                "T.U. Teaching Hospital",
-                "Patan Academy of Science & Technology",
-                "Nepal Army Institute of Health Sciences",
-                "Armed Police Force Hospital",
-                "B.P. Koirala Institute of Health Sciences",
-                "B.P. Koirala Memorial Cancer Hospital",
-                "Kanti Children's Hospital",
-                "Shahid Dharmabhakta Human Organ Transplant Centre",
-                "Ministry of Health and Population",
-                "National Public Health Laboratory"
-              ].map((partner, index) => (
-                <div
-                  key={index}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 hover:border-purple-400/40 hover:shadow-md hover:scale-105 transition-all"
-                >
-                  <div className="text-gray-700 text-xs font-medium">{partner}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

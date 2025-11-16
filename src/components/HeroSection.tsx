@@ -65,7 +65,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl leading-relaxed"
           >
-            Nepal's first UGC-QAA certified engineering college. Master AI, Biomedical & Computer Engineering with industry-aligned curriculum, expert faculty, and proven track record of global placements.
+            National Institue of Engineering and Technology. Nepal's first UGC-QAA certified engineering college. Master AI, Biomedical & Computer Engineering with industry-aligned curriculum, expert faculty, and proven track record of global placements.
           </motion.p>
 
           {/* CTAs */}
@@ -77,7 +77,7 @@ export function HeroSection() {
           >
             <Button
               size="lg"
-              className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+              className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
             >
               Apply for 2026
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

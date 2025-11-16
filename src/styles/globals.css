@@ -1,3 +1,9 @@
+/* Brand Color */
+:root {
+  --brand-color: #0d4e92;
+  --brand-color-dark: #0a3f75;
+}
+
 /* Base font - Roboto for all text */
 body {
   font-family: "Roboto", sans-serif;

@@ -49,7 +49,7 @@ export function RecognitionSection() {
           <h2 className="text-4xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
             Accredited
             <br />
-            <span className="bg-gradient-to-r from-[#0b4c78] to-cyan-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0d4e92] to-cyan-500 bg-clip-text text-transparent">
               Excellence
             </span>
           </h2>
@@ -111,7 +111,7 @@ export function RecognitionSection() {
             {["Wiley", "Elsevier", "SAGE", "BIOMED-NEPAL Journal", "International Conferences"].map((partner, index) => (
               <div
                 key={index}
-                className="px-6 py-3 rounded-2xl bg-white border border-gray-200 hover:border-[#0b4c78]/30 hover:shadow-lg transition-all"
+                className="px-6 py-3 rounded-2xl bg-white border border-gray-200 hover:border-[#0d4e92]/30 hover:shadow-lg transition-all"
               >
                 <div className="text-gray-600 text-sm font-medium">{partner}</div>
               </div>
