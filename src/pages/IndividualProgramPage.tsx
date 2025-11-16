@@ -391,15 +391,22 @@ export function IndividualProgramPage() {
                                     <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                                     Fee Structure
                                 </Button>
-                                <Button
-                                    size="default"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-6 sm:px-7 lg:px-8 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
-                                    aria-label="Apply now for this program"
+                                <a
+                                    href="https://entrance.puexam.edu.np/studentlogin"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center w-full lg:w-auto"
                                 >
-                                    <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
-                                    Apply Now
-                                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform animate-gentle-bounce" />
-                                </Button>
+                                    <Button
+                                        size="default"
+                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-6 sm:px-7 lg:px-8 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
+                                        aria-label="Apply now for this program"
+                                    >
+                                        <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+                                        Apply Now
+                                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform animate-gentle-bounce" />
+                                    </Button>
+                                </a>
                             </div>
                         </motion.div>
                     </div>
@@ -939,6 +946,30 @@ export function IndividualProgramPage() {
                                         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
                                             Course Modules
                                         </h2>
+                                        {program.curriculumDocuments && (program.curriculumDocuments.structure || program.curriculumDocuments.syllabus) && (
+                                            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                                                {program.curriculumDocuments.structure && (
+                                                    <a
+                                                        href={program.curriculumDocuments.structure.path}
+                                                        download
+                                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium rounded-lg border border-indigo-200 transition-all duration-200 hover:shadow-md hover:scale-105 text-sm sm:text-base"
+                                                    >
+                                                        <Download className="h-4 w-4 sm:h-5 sm:w-5" />
+                                                        {program.curriculumDocuments.structure.label}
+                                                    </a>
+                                                )}
+                                                {program.curriculumDocuments.syllabus && (
+                                                    <a
+                                                        href={program.curriculumDocuments.syllabus.path}
+                                                        download
+                                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium rounded-lg border border-indigo-200 transition-all duration-200 hover:shadow-md hover:scale-105 text-sm sm:text-base"
+                                                    >
+                                                        <Download className="h-4 w-4 sm:h-5 sm:w-5" />
+                                                        {program.curriculumDocuments.syllabus.label}
+                                                    </a>
+                                                )}
+                                            </div>
+                                        )}
                                         <p className="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
                                             Comprehensive curriculum designed for real-world success
                                         </p>
@@ -1358,13 +1389,20 @@ export function IndividualProgramPage() {
                             Apply now for admissions 2026. Join us and shape your future in technology and innovation.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                            <Button
-                                size="lg"
-                                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 group w-full sm:w-auto"
+                            <a
+                                href="https://entrance.puexam.edu.np/studentlogin"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center w-full sm:w-auto"
                             >
-                                Apply Now
-                                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
-                            </Button>
+                                <Button
+                                    size="lg"
+                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 group w-full sm:w-auto"
+                                >
+                                    Apply Now
+                                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                            </a>
                             <a href="tel:+9779705320350">
                                 <Button
                                     size="lg"

@@ -60,6 +60,16 @@ export interface Program {
         semesterFeeDiscount?: number; // percentage
         note?: string;
     };
+    curriculumDocuments?: {
+        structure?: {
+            path: string;
+            label: string;
+        };
+        syllabus?: {
+            path: string;
+            label: string;
+        };
+    };
 }
 
 export const programs: Program[] = [
@@ -464,7 +474,17 @@ export const programs: Program[] = [
             semesterFeeDiscount: 30,
             note: "100% waiver in Admission Fee for this Batch"
         },
-        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
+        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers.",
+        curriculumDocuments: {
+            structure: {
+                path: "/Structure of the program- Btech in AI.pdf",
+                label: "Program Structure"
+            },
+            syllabus: {
+                path: "/BTech in AI Syllabus.pdf",
+                label: "Syllabus"
+            }
+        }
     },
     {
         id: "be-bme",
@@ -854,7 +874,13 @@ export const programs: Program[] = [
                 grandTotal: 220000
             }
         ],
-        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers."
+        whyUniversity: "NIET (National Institute of Engineering and Technology) is committed to providing an exceptional student experience with industry-relevant curriculum and comprehensive support for student success. As an institute affiliated with Purbanchal University, our programs meet rigorous standards and are regularly reviewed to ensure they remain current and relevant to industry needs, preparing students for successful careers.",
+        curriculumDocuments: {
+            syllabus: {
+                path: "/BE Biotech Syllabus.pdf",
+                label: "Syllabus"
+            }
+        }
     },
     {
         id: "be-computer",

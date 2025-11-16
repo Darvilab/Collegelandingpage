@@ -300,13 +300,20 @@ export function AcademicProgramsPage() {
               Apply now for admissions 2026. Choose from our three cutting-edge programs and shape your future in technology and healthcare.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
-              <Button
-                size="lg"
-                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+              <a
+                href="https://entrance.puexam.edu.np/studentlogin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center"
               >
-                Apply Now
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+                >
+                  Apply Now
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
               <a href="tel:+9779705320350">
                 <Button
                   size="lg"

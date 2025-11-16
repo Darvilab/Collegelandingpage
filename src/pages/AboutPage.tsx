@@ -326,13 +326,20 @@ export function AboutPage() {
               Join 500+ graduates who've shaped their careers at NIET. From Cambridge to Mayo Clinic, our alumni are making global impact. Start your BE or B.Tech journey in Biomedical Engineering, AI, or Computer Engineering today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                size="lg"
-                className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+              <a
+                href="https://entrance.puexam.edu.np/studentlogin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center"
               >
-                Apply Now
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+                >
+                  Apply Now
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
               <a
                 href="/NEIT Prospectus.pdf"
                 download="NEIT Prospectus.pdf"
