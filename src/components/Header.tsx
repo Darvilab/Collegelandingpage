@@ -65,7 +65,7 @@ export function Header() {
       name: p.title,
       href: `/academics/${p.slug}`,
       icon: p.icon,
-      isNew: p.title.includes("Artificial Intelligence") && new Date().getFullYear() === 2025,
+      isNew: (p.title.includes("Artificial Intelligence") || p.title.includes("Computer Engineering")) && new Date().getFullYear() === 2025,
       descriptor: p.title.includes("Artificial Intelligence")
         ? "Machine Learning • Deep Learning • AI Systems"
         : p.title.includes("Biomedical")

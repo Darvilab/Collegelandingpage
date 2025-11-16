@@ -1365,12 +1365,14 @@ export function IndividualProgramPage() {
                                 Apply Now
                                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                             </Button>
-                            <Button
-                                size="lg"
-                                className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 transition-all w-full sm:w-auto"
-                            >
-                                Contact Admissions
-                            </Button>
+                            <a href="tel:+9779705320350">
+                                <Button
+                                    size="lg"
+                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 transition-all w-full sm:w-auto"
+                                >
+                                    Contact Admissions
+                                </Button>
+                            </a>
                         </div>
                     </motion.div>
                 </div>

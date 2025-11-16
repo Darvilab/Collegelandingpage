@@ -82,7 +82,14 @@ export function ProgramsSection() {
 
                     {/* Content */}
                     <div className="p-8">
-                      <h3 className="text-2xl text-gray-900 mb-3">{program.title}</h3>
+                      <div className="flex items-center gap-2 flex-wrap mb-3">
+                        <h3 className="text-2xl text-gray-900">{program.title}</h3>
+                        {((program.title.includes("Artificial Intelligence") || program.title.includes("Computer Engineering")) && new Date().getFullYear() === 2025) && (
+                          <span className="text-xs font-semibold bg-emerald-600 text-white px-2.5 py-1 rounded" aria-label="New program for 2025">
+                            NEW
+                          </span>
+                        )}
+                      </div>
                       <p className="text-gray-600 mb-6 leading-relaxed">{program.overview}</p>
                       
                       <Button

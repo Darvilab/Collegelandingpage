@@ -181,7 +181,14 @@ export function AcademicProgramsPage() {
                     </div>
 
                     <div className="p-6 sm:p-8 lg:p-12">
-                      <h3 className="text-2xl sm:text-3xl text-gray-900 mb-3 sm:mb-4">{program.title}</h3>
+                      <div className="flex items-center gap-2 flex-wrap mb-3 sm:mb-4">
+                        <h3 className="text-2xl sm:text-3xl text-gray-900">{program.title}</h3>
+                        {((program.title.includes("Artificial Intelligence") || program.title.includes("Computer Engineering")) && new Date().getFullYear() === 2025) && (
+                          <span className="text-xs font-semibold bg-emerald-600 text-white px-2.5 py-1 rounded" aria-label="New program for 2025">
+                            NEW
+                          </span>
+                        )}
+                      </div>
                       <p className="text-gray-600 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">{program.overview}</p>
 
                       <div className="space-y-6">
@@ -300,12 +307,14 @@ export function AcademicProgramsPage() {
                 Apply Now
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
-              >
-                Contact Admissions
-              </Button>
+              <a href="tel:+9779705320350">
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
+                >
+                  Contact Admissions
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
