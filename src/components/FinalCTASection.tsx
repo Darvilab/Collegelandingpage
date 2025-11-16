@@ -76,21 +76,35 @@ export function FinalCTASection() {
           className="grid md:grid-cols-3 gap-6"
         >
           {[
-            { icon: Phone, label: "Phone", value: "+977-123-456789", gradient: "from-blue-500 to-cyan-400" },
-            { icon: Mail, label: "Email", value: "admissions@niet.edu.np", gradient: "from-purple-500 to-pink-400" },
+            { icon: Phone, label: "Phone", value: "+977-9705320350", gradient: "from-blue-500 to-cyan-400", href: "tel:+9779705320350" },
+            { icon: Mail, label: "Email", value: "admissions@niet.edu.np", gradient: "from-purple-500 to-pink-400", href: "mailto:admissions@niet.edu.np" },
             { icon: MapPin, label: "Location", value: "Kathmandu, Nepal", gradient: "from-orange-500 to-amber-400" },
           ].map((contact, index) => {
             const Icon = contact.icon;
-            return (
-              <div
-                key={index}
-                className="relative p-8 rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group"
-              >
+            const CardContent = (
+              <>
                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${contact.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <Icon className="h-7 w-7 text-white" />
                 </div>
                 <div className="text-blue-200 text-sm mb-2">{contact.label}</div>
                 <div className="text-white text-lg">{contact.value}</div>
+              </>
+            );
+            
+            return contact.href ? (
+              <a
+                key={index}
+                href={contact.href}
+                className="relative p-8 rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group block cursor-pointer"
+              >
+                {CardContent}
+              </a>
+            ) : (
+              <div
+                key={index}
+                className="relative p-8 rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group"
+              >
+                {CardContent}
               </div>
             );
           })}

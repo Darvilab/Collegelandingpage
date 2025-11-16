@@ -109,7 +109,7 @@ export function AdmissionProcessSection() {
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <p className="text-blue-100 mt-6 text-sm">
-            Applications for 2026 admission open • Early deadline: March 31, 2026
+            Applications for 2026 admission open • Early deadline: November 30, 2025
           </p>
         </motion.div>
       </div>
