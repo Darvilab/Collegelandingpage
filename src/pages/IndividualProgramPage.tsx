@@ -4,11 +4,12 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap, TrendingUp, Users, Target, Lightbulb, Star, Code, Cpu, Database, Network, Microscope, Heart, Brain, CircuitBoard, Settings, Globe, Shield, Cloud, Smartphone, Laptop, Server, Code2, GitBranch, Layers, Terminal, Wrench, FlaskConical, Send } from "lucide-react";
+import { Download, FileText, ArrowRight, CheckCircle2, GraduationCap, Sparkles, BookOpen, DollarSign, Award, Briefcase, BookMarked, HelpCircle, ArrowUp, ChevronRight, Zap, TrendingUp, Users, Target, Lightbulb, Star, Code, Cpu, Database, Network, Microscope, Heart, Brain, CircuitBoard, Settings, Globe, Shield, Cloud, Smartphone, Laptop, Server, Code2, GitBranch, Layers, Terminal, Wrench, FlaskConical, Send, UserCircle, Building2 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { getProgramBySlug, getAllPrograms, Program } from "../data/programs";
+import { getFacultyByDepartment, FacultyMember } from "../data/faculty";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, useCallback } from "react";
 
@@ -62,6 +63,9 @@ export function IndividualProgramPage() {
             overview: overviewSectionRef,
             "fee-structure": feeSectionRef,
             "degree-highlights": degreeSectionRef,
+            faculty: facultySectionRef,
+            "labs-resources": labsSectionRef,
+            internships: internshipsSectionRef,
             modules: modulesSectionRef,
             "why-niet": whyUniversitySectionRef,
             faq: faqSectionRef,
@@ -100,6 +104,11 @@ export function IndividualProgramPage() {
                 { id: "overview", ref: overviewSectionRef },
                 { id: "fee-structure", ref: feeSectionRef },
                 { id: "degree-highlights", ref: degreeSectionRef },
+                ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
+                    { id: "faculty", ref: facultySectionRef },
+                    { id: "labs-resources", ref: labsSectionRef },
+                    { id: "internships", ref: internshipsSectionRef },
+                ] : []),
                 { id: "modules", ref: modulesSectionRef },
                 { id: "why-niet", ref: whyUniversitySectionRef },
                 { id: "faq", ref: faqSectionRef },
@@ -118,7 +127,7 @@ export function IndividualProgramPage() {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [program]);
 
     if (!program) {
         return null;
@@ -163,6 +172,9 @@ export function IndividualProgramPage() {
     const overviewSectionRef = useRef(null);
     const feeSectionRef = useRef(null);
     const degreeSectionRef = useRef(null);
+    const facultySectionRef = useRef(null);
+    const labsSectionRef = useRef(null);
+    const internshipsSectionRef = useRef(null);
     const modulesSectionRef = useRef(null);
     const whyUniversitySectionRef = useRef(null);
     const faqSectionRef = useRef(null);
@@ -176,6 +188,9 @@ export function IndividualProgramPage() {
     const isOverviewInView = useInView(overviewSectionRef, { once: true, margin: "-100px" });
     const isFeeInView = useInView(feeSectionRef, { once: true, margin: "-100px" });
     const isDegreeInView = useInView(degreeSectionRef, { once: true, margin: "-100px" });
+    const isFacultyInView = useInView(facultySectionRef, { once: true, margin: "-100px" });
+    const isLabsInView = useInView(labsSectionRef, { once: true, margin: "-100px" });
+    const isInternshipsInView = useInView(internshipsSectionRef, { once: true, margin: "-100px" });
     const isModulesInView = useInView(modulesSectionRef, { once: true, margin: "-100px" });
     const isWhyUniversityInView = useInView(whyUniversitySectionRef, { once: true, margin: "-100px" });
     const isFaqInView = useInView(faqSectionRef, { once: true, margin: "-100px" });
@@ -599,6 +614,11 @@ export function IndividualProgramPage() {
                                 { id: "overview", label: "Overview", icon: BookOpen },
                                 { id: "fee-structure", label: "Fee", icon: DollarSign },
                                 { id: "degree-highlights", label: "Highlights", icon: Award },
+                                ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
+                                    { id: "faculty", label: "Faculty", icon: UserCircle },
+                                    { id: "labs-resources", label: "Labs", icon: FlaskConical },
+                                    { id: "internships", label: "Internships", icon: Briefcase },
+                                ] : []),
                                 { id: "modules", label: "Modules", icon: BookMarked },
                                 { id: "why-niet", label: "Why Us", icon: Sparkles },
                                 { id: "faq", label: "FAQ", icon: HelpCircle },
@@ -640,6 +660,11 @@ export function IndividualProgramPage() {
                                             { id: "overview", label: "Overview", icon: BookOpen },
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
                                             { id: "degree-highlights", label: "Highlights & Careers", icon: Award },
+                                            ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
+                                                { id: "faculty", label: "Faculty", icon: UserCircle },
+                                                { id: "labs-resources", label: "Labs & Resources", icon: FlaskConical },
+                                                { id: "internships", label: "Internships", icon: Briefcase },
+                                            ] : []),
                                             { id: "modules", label: "Modules", icon: BookMarked },
                                             { id: "why-niet", label: "Why NIET?", icon: Sparkles },
                                             { id: "faq", label: "FAQ", icon: HelpCircle },
@@ -1068,6 +1093,359 @@ export function IndividualProgramPage() {
                                     </div>
                                 </div>
                             </motion.section>
+
+                            {/* --- Faculty Section --- */}
+                            {program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer" ? (
+                                <motion.section
+                                    ref={facultySectionRef}
+                                    id="faculty"
+                                    className="scroll-mt-28"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={isFacultyInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.7 }}
+                                >
+                                    <div className="relative">
+                                        {/* Section Header */}
+                                        <div className="mb-6 sm:mb-8 lg:mb-10">
+                                            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 mb-4 sm:mb-6">
+                                                <div className="p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
+                                                    <UserCircle className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                </div>
+                                                <span className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wider">Expert Faculty</span>
+                                            </div>
+                                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
+                                                Learn from Industry Experts
+                                            </h2>
+                                            <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
+                                                Our distinguished faculty bring years of research and industry experience to the classroom
+                                            </p>
+                                        </div>
+
+                                        {/* Faculty Content - Program Specific */}
+                                        <div className="mt-8">
+                                            {program.id === "btech-ai" && (
+                                                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                    <p className="text-gray-700 text-base mb-6 leading-relaxed">
+                                                        Our AI program is led by faculty with expertise in cutting-edge research areas including computer vision, generative AI, natural language processing, and machine learning. These experts bring both academic rigor and industry insights to help you master the latest AI technologies.
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-3 mb-6">
+                                                        <span className="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Computer Vision</span>
+                                                        <span className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Generative AI</span>
+                                                        <span className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">NLP & LLMs</span>
+                                                        <span className="px-3 py-1.5 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">Deep Learning</span>
+                                                        <span className="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Reinforcement Learning</span>
+                                                    </div>
+                                                    <Link to="/faculty">
+                                                        <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white">
+                                                            View All Faculty
+                                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                            {program.id === "be-bme" && (
+                                                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                    <p className="text-gray-700 text-base mb-6 leading-relaxed">
+                                                        Our biomedical engineering faculty include professors with extensive expertise in medical technology, clinical engineering, and healthcare innovation. Many have active collaborations with hospitals and medical institutions, bringing real-world healthcare challenges into the classroom.
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-3 mb-6">
+                                                        <span className="px-3 py-1.5 bg-rose-100 text-rose-700 rounded-full text-sm font-medium">Medical Device Design</span>
+                                                        <span className="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Biomedical Instrumentation</span>
+                                                        <span className="px-3 py-1.5 bg-fuchsia-100 text-fuchsia-700 rounded-full text-sm font-medium">Medical Imaging</span>
+                                                        <span className="px-3 py-1.5 bg-red-100 text-red-700 rounded-full text-sm font-medium">Prosthetics & Orthotics</span>
+                                                        <span className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Clinical Engineering</span>
+                                                    </div>
+                                                    <Link to="/faculty">
+                                                        <Button className="bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-700 hover:to-pink-600 text-white">
+                                                            View All Faculty
+                                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                            {program.id === "be-computer" && (
+                                                <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                    <p className="text-gray-700 text-base mb-6 leading-relaxed">
+                                                        Our computer engineering faculty feature professionals with significant industry experience from leading tech companies. They bring expertise in emerging areas like IoT, quantum computing, embedded systems, and network security, ensuring you learn the most current technologies.
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-3 mb-6">
+                                                        <span className="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">IoT & Edge Computing</span>
+                                                        <span className="px-3 py-1.5 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">Quantum Computing</span>
+                                                        <span className="px-3 py-1.5 bg-teal-100 text-teal-700 rounded-full text-sm font-medium">Embedded Systems</span>
+                                                        <span className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Network Security</span>
+                                                        <span className="px-3 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium">System Architecture</span>
+                                                    </div>
+                                                    <Link to="/faculty">
+                                                        <Button className="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white">
+                                                            View All Faculty
+                                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </motion.section>
+                            ) : null}
+
+                            {/* --- Labs and Resources Section --- */}
+                            {program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer" ? (
+                                <motion.section
+                                    ref={labsSectionRef}
+                                    id="labs-resources"
+                                    className="scroll-mt-28"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={isLabsInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.7 }}
+                                >
+                                    <div className="relative">
+                                        {/* Section Header */}
+                                        <div className="mb-6 sm:mb-8 lg:mb-10">
+                                            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 mb-4 sm:mb-6">
+                                                <div className="p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                                                    <FlaskConical className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                </div>
+                                                <span className="text-xs sm:text-sm font-semibold text-emerald-700 uppercase tracking-wider">Labs & Resources</span>
+                                            </div>
+                                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
+                                                State-of-the-Art Facilities
+                                            </h2>
+                                            <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
+                                                Access cutting-edge laboratories and industry-standard tools to bring your learning to life
+                                            </p>
+                                        </div>
+
+                                        {/* Labs Content - Program Specific */}
+                                        <div className="mt-8">
+                                            {program.id === "btech-ai" && (
+                                                <div className="grid md:grid-cols-2 gap-6">
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-purple-100">
+                                                                <Server className="h-6 w-6 text-purple-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">AI Research Labs</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Our dedicated AI labs feature GPU clusters for training deep learning models and high-performance computing infrastructure for large-scale AI research.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Cloud GPU access for model training</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>High-performance computing clusters</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-indigo-100">
+                                                                <Code className="h-6 w-6 text-indigo-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">Software & Tools</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Access industry-standard AI development frameworks and tools used by leading tech companies.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>TensorFlow & PyTorch development environments</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Jupyter notebooks and MLflow for experiment tracking</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Cloud platforms: AWS, GCP, Azure</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {program.id === "be-bme" && (
+                                                <div className="grid md:grid-cols-2 gap-6">
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-rose-100">
+                                                                <Heart className="h-6 w-6 text-rose-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">Prosthetics & Orthotics Lab</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Hands-on experience designing and developing assistive devices and prosthetics with modern fabrication tools.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>3D printing and rapid prototyping equipment</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Biomechanical testing systems</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-pink-100">
+                                                                <Microscope className="h-6 w-6 text-pink-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">Medical Imaging & Bioinstrumentation</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Advanced labs for medical imaging analysis and biomedical instrumentation development.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Medical imaging processing workstations</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Bioinstrumentation design and testing equipment</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Signal processing and analysis tools</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {program.id === "be-computer" && (
+                                                <div className="grid md:grid-cols-2 gap-6">
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-blue-100">
+                                                                <Laptop className="h-6 w-6 text-blue-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">Computer Labs</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Modern computer labs equipped with the latest hardware and software for system design, embedded development, and network programming.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>High-performance workstations for system design</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>FPGA development boards and tools</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 lg:p-8">
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div className="p-2 rounded-lg bg-cyan-100">
+                                                                <Settings className="h-6 w-6 text-cyan-600" />
+                                                            </div>
+                                                            <h3 className="text-xl font-bold text-gray-900">Industry-Standard Software</h3>
+                                                        </div>
+                                                        <p className="text-gray-700 mb-4 leading-relaxed">
+                                                            Access to professional software tools used in industry for hardware design, embedded systems, and network security.
+                                                        </p>
+                                                        <ul className="space-y-2">
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>VLSI design and simulation tools</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Embedded system development environments</span>
+                                                            </li>
+                                                            <li className="flex items-center gap-2 text-gray-600">
+                                                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                                                <span>Network security and penetration testing tools</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </motion.section>
+                            ) : null}
+
+                            {/* --- Internship Placements Section --- */}
+                            {program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer" ? (
+                                <motion.section
+                                    ref={internshipsSectionRef}
+                                    id="internships"
+                                    className="scroll-mt-28"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={isInternshipsInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.7 }}
+                                >
+                                    <div className="relative">
+                                        {/* Section Header */}
+                                        <div className="mb-6 sm:mb-8 lg:mb-10">
+                                            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-100 mb-4 sm:mb-6">
+                                                <div className="p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500">
+                                                    <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                </div>
+                                                <span className="text-xs sm:text-sm font-semibold text-violet-700 uppercase tracking-wider">Industry Connections</span>
+                                            </div>
+                                            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
+                                                Internship Placements
+                                            </h2>
+                                            <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
+                                                Gain real-world experience through internships with our industry partners
+                                            </p>
+                                        </div>
+
+                                        {/* Internships Content */}
+                                        <div className="mt-8">
+                                            <div className="bg-gradient-to-br from-white to-violet-50/30 rounded-2xl border border-violet-200 shadow-lg p-6 lg:p-8">
+                                                <div className="flex items-center gap-3 mb-4">
+                                                    <div className="p-2 rounded-lg bg-violet-100">
+                                                        <Building2 className="h-6 w-6 text-violet-600" />
+                                                    </div>
+                                                    <h3 className="text-xl font-bold text-gray-900">Industry Partnerships</h3>
+                                                </div>
+                                                <p className="text-gray-700 mb-6 leading-relaxed">
+                                                    Our strong relationships with leading companies in the industry provide students with valuable internship opportunities. These placements allow you to apply classroom knowledge in real-world settings, build professional networks, and gain hands-on experience that enhances your career prospects.
+                                                </p>
+                                                <div className="grid sm:grid-cols-2 gap-4">
+                                                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                                                        <CheckCircle2 className="h-5 w-5 text-violet-600 flex-shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <h4 className="font-semibold text-gray-900 mb-1">Hands-On Experience</h4>
+                                                            <p className="text-sm text-gray-600">Work on real projects and contribute to industry solutions</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                                                        <CheckCircle2 className="h-5 w-5 text-violet-600 flex-shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <h4 className="font-semibold text-gray-900 mb-1">Professional Network</h4>
+                                                            <p className="text-sm text-gray-600">Build connections with industry professionals and mentors</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                                                        <CheckCircle2 className="h-5 w-5 text-violet-600 flex-shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <h4 className="font-semibold text-gray-900 mb-1">Career Preparation</h4>
+                                                            <p className="text-sm text-gray-600">Develop skills and experience that employers value</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                                                        <CheckCircle2 className="h-5 w-5 text-violet-600 flex-shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <h4 className="font-semibold text-gray-900 mb-1">Industry Insights</h4>
+                                                            <p className="text-sm text-gray-600">Understand current industry practices and trends</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.section>
+                            ) : null}
 
                             {/* --- Modules Section --- */}
                             <motion.section
