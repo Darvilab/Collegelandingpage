@@ -1210,7 +1210,7 @@ export function IndividualProgramPage() {
                             </motion.section>
 
                             {/* --- Why University & FAQ Section --- */}
-                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 scroll-mt-28" id="why-niet">
+                            <div className="space-y-6 lg:space-y-8 scroll-mt-28" id="why-niet">
                                 {/* Why University */}
                                 {program.whyUniversity && (
                                     <motion.section
