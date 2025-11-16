@@ -50,6 +50,13 @@ export interface Program {
     modules: ProgramYear[];
     feeStructure: FeeStructure[];
     admissionEligibility: string;
+    entranceExamRequired?: boolean;
+    entranceExamNote?: string;
+    scholarshipInfo?: {
+        description: string;
+        eligibility?: string;
+        note?: string;
+    };
     specializations?: string[];
     youWill: string[];
     degreeHighlights: string[];
@@ -125,6 +132,12 @@ export const programs: Program[] = [
             "High-Performance Computing Infrastructure"
         ],
         admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
+        entranceExamRequired: false,
+        entranceExamNote: "No entrance exam, direct admission",
+        scholarshipInfo: {
+            description: "First 25 students will receive a 25% scholarship on tuition fees.",
+            note: "Scholarships are awarded on a first-come, first-served basis."
+        },
         youWill: [
             "Explore AI, machine learning, parallel programming, and data science",
             "Master practical and theoretical knowledge for innovative solutions",
@@ -529,7 +542,9 @@ export const programs: Program[] = [
             "Bioinstrumentation Lab",
             "Biomedical Device Prototyping Center"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
+        admissionEligibility: "Students from both Maths and Biology streams of +2 science or I.Sc. with a minimum aggregate grade 'C' or 45% marks can apply for admissions for Bachelor of Biomedical Engineering. The candidate must have studied at least 100 marks of Math, Physics, Chemistry, and English in +2 Science/ I.Sc. or equivalent and passed with a minimum of 45% marks or a C grade in each subject.",
+        entranceExamRequired: true,
+        entranceExamNote: "Entrance exam required",
         youWill: [
             "Design and develop medical devices and diagnostic systems",
             "Master biomedical signal processing and medical imaging",
@@ -926,6 +941,12 @@ export const programs: Program[] = [
             "Industry-Standard Software Tools"
         ],
         admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
+        entranceExamRequired: true,
+        entranceExamNote: "Entrance exam required",
+        scholarshipInfo: {
+            description: "First 25 students will receive a 25% scholarship on tuition fees.",
+            note: "Scholarships are awarded on a first-come, first-served basis."
+        },
         youWill: [
             "Master computer architecture and system design",
             "Develop expertise in embedded systems and cybersecurity",

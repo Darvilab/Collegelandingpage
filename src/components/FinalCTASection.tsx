@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ArrowRight, Download, MapPin, Mail, Phone } from "lucide-react";
+import { ArrowRight, Download, MapPin, Mail, Phone, Clock } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
@@ -80,12 +80,13 @@ export function FinalCTASection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {[
-            { icon: Phone, label: "Phone", value: "+977-9705320350", gradient: "from-blue-500 to-cyan-400", href: "tel:+9779705320350" },
-            { icon: Mail, label: "Email", value: "admissions@niet.edu.np", gradient: "from-purple-500 to-pink-400", href: "mailto:admissions@niet.edu.np" },
-            { icon: MapPin, label: "Location", value: "Kathmandu, Nepal", gradient: "from-orange-500 to-amber-400" },
+            { icon: MapPin, label: "Location", value: "Lalitpur-1, Kupondole", gradient: "from-orange-500 to-amber-400" },
+            { icon: Clock, label: "Open Hours", value: "Sunday-Friday:\n7:00 AM - 2:00 PM", gradient: "from-green-500 to-emerald-400" },
+            { icon: Mail, label: "Email", value: "info@biomedical.edu.np", gradient: "from-purple-500 to-pink-400", href: "mailto:info@biomedical.edu.np" },
+            { icon: Phone, label: "Call", value: "01-5911894/5911895", gradient: "from-blue-500 to-cyan-400", href: "tel:015911894" },
           ].map((contact, index) => {
             const Icon = contact.icon;
             const CardContent = (
@@ -94,7 +95,7 @@ export function FinalCTASection() {
                   <Icon className="h-7 w-7 text-white" />
                 </div>
                 <div className="text-blue-200 text-sm mb-2">{contact.label}</div>
-                <div className="text-white text-lg">{contact.value}</div>
+                <div className="text-white text-lg whitespace-pre-line">{contact.value}</div>
               </>
             );
             

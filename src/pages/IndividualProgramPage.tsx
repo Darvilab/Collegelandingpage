@@ -480,6 +480,43 @@ export function IndividualProgramPage() {
                             </div>
                             <p className="text-blue-100/90 leading-relaxed text-xs sm:text-sm">{program.admissionEligibility}</p>
                         </div>
+
+                        {/* Entrance Exam Requirement */}
+                        {program.entranceExamRequired !== undefined && (
+                            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-5 hover:bg-white/15 transition-all sm:col-span-2 lg:col-span-1">
+                                <div className="flex items-center gap-2 sm:gap-2.5 mb-3">
+                                    <div className="p-2 rounded-lg bg-orange-500/20">
+                                        <FileText className="h-4 w-4 text-orange-300" />
+                                    </div>
+                                    <h3 className="text-white font-bold text-sm sm:text-base">Entrance Exam</h3>
+                                </div>
+                                <p className="text-blue-100/90 leading-relaxed text-xs sm:text-sm">
+                                    {program.entranceExamNote || (program.entranceExamRequired ? "Entrance exam required" : "No entrance exam, direct admission")}
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Scholarship Information */}
+                        {program.scholarshipInfo && (
+                            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-5 hover:bg-white/15 transition-all sm:col-span-2 lg:col-span-1">
+                                <div className="flex items-center gap-2 sm:gap-2.5 mb-3">
+                                    <div className="p-2 rounded-lg bg-emerald-500/20">
+                                        <Award className="h-4 w-4 text-emerald-300" />
+                                    </div>
+                                    <h3 className="text-white font-bold text-sm sm:text-base">Scholarship</h3>
+                                </div>
+                                <div className="space-y-2">
+                                    <p className="text-blue-100/90 leading-relaxed text-xs sm:text-sm">
+                                        {program.scholarshipInfo.description}
+                                    </p>
+                                    {program.scholarshipInfo.note && (
+                                        <p className="text-blue-200/80 leading-relaxed text-xs italic">
+                                            {program.scholarshipInfo.note}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </motion.div>
                 </div>
             </section>
@@ -1198,6 +1235,30 @@ export function IndividualProgramPage() {
                                                         </div>
                                                     </AccordionItem>
 
+                                                    {program.entranceExamRequired !== undefined && (
+                                                        <AccordionItem value="faq-entrance" className="border-0">
+                                                            <div className="bg-white rounded-lg">
+                                                                <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
+                                                                    <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
+                                                                        Is an entrance exam required?
+                                                                    </span>
+                                                                    <div className="flex-shrink-0">
+                                                                        <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
+                                                                            <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+                                                                        </div>
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
+                                                                    <div className="pt-3 sm:pt-4 lg:pt-6">
+                                                                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                                                            {program.entranceExamNote || (program.entranceExamRequired ? "Yes, an entrance exam is required for admission to this program." : "No, there is no entrance exam required. Direct admission is available for this program.")}
+                                                                        </p>
+                                                                    </div>
+                                                                </AccordionContent>
+                                                            </div>
+                                                        </AccordionItem>
+                                                    )}
+
                                                     <AccordionItem value="faq-2" className="border-0">
                                                         <div className="bg-white rounded-lg">
                                                             <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
@@ -1265,10 +1326,23 @@ export function IndividualProgramPage() {
                                                             </AccordionTrigger>
                                                             <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
                                                                 <div className="pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                                                                        Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
-                                                                        Please contact our admissions office for more information about available scholarships and eligibility criteria.
-                                                                    </p>
+                                                                    {program.scholarshipInfo ? (
+                                                                        <div className="space-y-2">
+                                                                            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                                                                {program.scholarshipInfo.description}
+                                                                            </p>
+                                                                            {program.scholarshipInfo.note && (
+                                                                                <p className="text-sm text-gray-600 italic">
+                                                                                    {program.scholarshipInfo.note}
+                                                                                </p>
+                                                                            )}
+                                                                        </div>
+                                                                    ) : (
+                                                                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                                                            Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
+                                                                            Please contact our admissions office for more information about available scholarships and eligibility criteria.
+                                                                        </p>
+                                                                    )}
                                                                 </div>
                                                             </AccordionContent>
                                                         </div>

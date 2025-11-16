@@ -23,11 +23,11 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "#", gradient: "from-blue-500 to-blue-600" },
-    { icon: Twitter, href: "#", gradient: "from-sky-500 to-blue-500" },
-    { icon: Linkedin, href: "#", gradient: "from-blue-600 to-blue-700" },
-    { icon: Instagram, href: "#", gradient: "from-pink-500 to-purple-500" },
-    { icon: Youtube, href: "#", gradient: "from-red-500 to-rose-600" },
+    { icon: Facebook, href: "https://www.facebook.com/NIET.Nepal/", gradient: "from-blue-500 to-blue-600" },
+    { icon: Instagram, href: "https://www.instagram.com/biomedicalcollege", gradient: "from-pink-500 to-purple-500" },
+    // { icon: Twitter, href: "#", gradient: "from-sky-500 to-blue-500" },
+    // { icon: Linkedin, href: "#", gradient: "from-blue-600 to-blue-700" },
+    // { icon: Youtube, href: "#", gradient: "from-red-500 to-rose-600" },
   ];
 
   return (
@@ -63,6 +63,8 @@ export function Footer() {
                   <a
                     key={index}
                     href={social.href}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                     className={`group relative w-11 h-11 rounded-xl bg-gradient-to-br ${social.gradient} flex items-center justify-center hover:scale-110 transition-transform`}
                   >
                     <Icon className="h-5 w-5 text-white" />
