@@ -419,44 +419,44 @@ export const programs: Program[] = [
                 admissionFee: 100000,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 147000,
-                semester2Fee: 126000,
+                semester1Fee: 210000,
+                semester2Fee: 180000,
                 universityRegFee: 20000,
-                total: 393000,
-                grandTotal: 393000
+                total: 510000,
+                grandTotal: 510000
             },
             {
                 year: "2nd Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 126000,
-                semester2Fee: 126000,
+                semester1Fee: 180000,
+                semester2Fee: 180000,
                 universityRegFee: 0,
-                total: 252000,
-                grandTotal: 252000
+                total: 360000,
+                grandTotal: 360000
             },
             {
                 year: "3rd Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 98000,
-                semester2Fee: 98000,
+                semester1Fee: 140000,
+                semester2Fee: 140000,
                 universityRegFee: 0,
-                total: 196000,
-                grandTotal: 196000
+                total: 280000,
+                grandTotal: 280000
             },
             {
                 year: "4th Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 77000,
-                semester2Fee: 77000,
+                semester1Fee: 110000,
+                semester2Fee: 110000,
                 universityRegFee: 0,
-                total: 154000,
-                grandTotal: 154000
+                total: 220000,
+                grandTotal: 220000
             }
         ],
         discountInfo: {
@@ -1229,44 +1229,44 @@ export const programs: Program[] = [
                 admissionFee: 100000,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 147000,
-                semester2Fee: 126000,
+                semester1Fee: 210000,
+                semester2Fee: 180000,
                 universityRegFee: 20000,
-                total: 393000,
-                grandTotal: 393000
+                total: 510000,
+                grandTotal: 510000
             },
             {
                 year: "2nd Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 126000,
-                semester2Fee: 126000,
+                semester1Fee: 180000,
+                semester2Fee: 180000,
                 universityRegFee: 0,
-                total: 252000,
-                grandTotal: 252000
+                total: 360000,
+                grandTotal: 360000
             },
             {
                 year: "3rd Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 98000,
-                semester2Fee: 98000,
+                semester1Fee: 140000,
+                semester2Fee: 140000,
                 universityRegFee: 0,
-                total: 196000,
-                grandTotal: 196000
+                total: 280000,
+                grandTotal: 280000
             },
             {
                 year: "4th Year",
                 admissionFee: 0,
                 annualFee: 0,
                 ccaFee: 0,
-                semester1Fee: 77000,
-                semester2Fee: 77000,
+                semester1Fee: 110000,
+                semester2Fee: 110000,
                 universityRegFee: 0,
-                total: 154000,
-                grandTotal: 154000
+                total: 220000,
+                grandTotal: 220000
             }
         ],
         discountInfo: {
