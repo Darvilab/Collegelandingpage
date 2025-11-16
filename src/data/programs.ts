@@ -131,7 +131,7 @@ export const programs: Program[] = [
             "Robotics Lab",
             "High-Performance Computing Infrastructure"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
+        admissionEligibility: "• Students from both Maths and Biology streams of +2 science or I.Sc. with a minimum aggregate grade 'C' or 45% marks\n• The candidate must have studied at least 100 marks of Math, Physics, Chemistry, and English in +2 Science/ I.Sc. or equivalent\n• Must have passed with a minimum of 45% marks or a C grade in each subject",
         entranceExamRequired: false,
         entranceExamNote: "No entrance exam, direct admission",
         scholarshipInfo: {
@@ -542,7 +542,7 @@ export const programs: Program[] = [
             "Bioinstrumentation Lab",
             "Biomedical Device Prototyping Center"
         ],
-        admissionEligibility: "Students from both Maths and Biology streams of +2 science or I.Sc. with a minimum aggregate grade 'C' or 45% marks can apply for admissions for Bachelor of Biomedical Engineering. The candidate must have studied at least 100 marks of Math, Physics, Chemistry, and English in +2 Science/ I.Sc. or equivalent and passed with a minimum of 45% marks or a C grade in each subject.",
+        admissionEligibility: "• Students from both Maths and Biology streams of +2 science or I.Sc. with a minimum aggregate grade 'C' or 45% marks\n• The candidate must have studied at least 100 marks of Math, Physics, Chemistry, and English in +2 Science/ I.Sc. or equivalent\n• Must have passed with a minimum of 45% marks or a C grade in each subject",
         entranceExamRequired: true,
         entranceExamNote: "Entrance exam required",
         youWill: [
@@ -940,7 +940,7 @@ export const programs: Program[] = [
             "Network Security Lab",
             "Industry-Standard Software Tools"
         ],
-        admissionEligibility: "Minimum 2.4 GPA in 10+2 level or 3.5 Credit in A level (Science / Management / Humanities)",
+        admissionEligibility: "• Students from both Maths and Biology streams of +2 science or I.Sc. with a minimum aggregate grade 'C' or 45% marks\n• The candidate must have studied at least 100 marks of Math, Physics, Chemistry, and English in +2 Science/ I.Sc. or equivalent\n• Must have passed with a minimum of 45% marks or a C grade in each subject",
         entranceExamRequired: true,
         entranceExamNote: "Entrance exam required",
         scholarshipInfo: {

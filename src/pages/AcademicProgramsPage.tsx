@@ -10,6 +10,17 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { getAllPrograms } from "../data/programs";
 
+// Function to get the brochure PDF path for a program
+function getProgramBrochure(programId: string): { path: string; filename: string } {
+  const brochureMap: { [key: string]: { path: string; filename: string } } = {
+    "btech-ai": { path: "/AI.pdf", filename: "B.Tech_AI_Brochure.pdf" },
+    "be-bme": { path: "/BioM.pdf", filename: "BE_Biomedical_Engineering_Brochure.pdf" },
+    "be-computer": { path: "/CE.pdf", filename: "BE_Computer_Engineering_Brochure.pdf" }
+  };
+
+  return brochureMap[programId] || { path: "/NEIT Prospectus.pdf", filename: "NEIT Prospectus.pdf" };
+}
+
 export function AcademicProgramsPage() {
   const programsRef = useRef(null);
   const isProgramsInView = useInView(programsRef, { once: true, margin: "-100px" });
@@ -34,7 +45,7 @@ export function AcademicProgramsPage() {
         <meta name="twitter:description" content="Comprehensive engineering programs: BTech AI, BE Biomedical Engineering, and BE Computer Engineering." />
       </Helmet>
       <Header />
-      
+
       {/* Hero Section */}
       <section className="hero-section relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 pt-20 lg:pt-24">
         <div className="absolute inset-0 z-0">
@@ -160,7 +171,7 @@ export function AcademicProgramsPage() {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="bg-white rounded-[2rem] border border-gray-200 overflow-hidden shadow-lg hover:shadow-2xl transition-all scroll-mt-24"
                 >
-                    <div className="lg:grid lg:grid-cols-2">
+                  <div className="lg:grid lg:grid-cols-2">
                     <div className="relative h-64 sm:h-80 lg:h-full overflow-hidden">
                       <ImageWithFallback
                         src={program.image}
@@ -239,22 +250,23 @@ export function AcademicProgramsPage() {
                         </div>
                       </div>
 
-                      <div className="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-3">
+                      <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
                         <Link to={`/academics/${program.slug}`}>
                           <Button
-                            className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
+                            className="bg-[#0b4c78] hover:bg-[#0a3d5f] text-white"
                           >
                             View Full Details
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
                         </Link>
                         <a
-                          href="/NEIT Prospectus.pdf"
-                          download="NEIT Prospectus.pdf"
+                          href={getProgramBrochure(program.id).path}
+                          download={getProgramBrochure(program.id).filename}
                           className="inline-flex items-center justify-center"
                         >
                           <Button
-                            className="rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600"
+                            variant="outline"
+                            className="border-gray-300 hover:bg-gray-50"
                           >
                             <Download className="mr-2 h-4 w-4" />
                             Download Brochure
@@ -263,7 +275,7 @@ export function AcademicProgramsPage() {
                         <Link to={`/academics/${program.slug}#fee-structure`}>
                           <Button
                             variant="outline"
-                            className="rounded-full"
+                            className="border-gray-300 hover:bg-gray-50"
                           >
                             <FileText className="mr-2 h-4 w-4" />
                             Fee Structure
@@ -299,7 +311,7 @@ export function AcademicProgramsPage() {
             <p className="text-lg sm:text-xl text-blue-100/90 mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto px-4">
               Apply now for admissions 2026. Choose from our three cutting-edge programs and shape your future in technology and healthcare.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4">
               <a
                 href="https://entrance.puexam.edu.np/studentlogin"
                 target="_blank"
@@ -308,16 +320,17 @@ export function AcademicProgramsPage() {
               >
                 <Button
                   size="lg"
-                  className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+                  className="bg-white text-[#0b4c78] hover:bg-blue-50 text-lg px-8 h-14"
                 >
                   Apply Now
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
               <a href="tel:+9779705320350">
                 <Button
                   size="lg"
-                  className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/20 text-lg px-8 h-14"
                 >
                   Contact Admissions
                 </Button>

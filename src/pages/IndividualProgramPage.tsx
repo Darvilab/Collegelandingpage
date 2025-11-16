@@ -366,7 +366,7 @@ export function IndividualProgramPage() {
                                 {program.description}
                             </p>
 
-                            <div className="flex flex-col lg:flex-row gap-2.5 sm:gap-3 lg:gap-4 pt-2">
+                            <div className="flex flex-col lg:flex-row gap-3 pt-2">
                                 <a
                                     href={program ? getProgramBrochure(program.id).path : "/NEIT Prospectus.pdf"}
                                     download={program ? getProgramBrochure(program.id).filename : "NEIT Prospectus.pdf"}
@@ -374,21 +374,21 @@ export function IndividualProgramPage() {
                                 >
                                     <Button
                                         size="default"
-                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
+                                        className="bg-white text-[#0b4c78] hover:bg-blue-50 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
                                         aria-label="Download program brochure"
                                     >
-                                        <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+                                        <Download className="mr-2 h-4 w-4" />
                                         Download Brochure
                                     </Button>
                                 </a>
                                 <Button
                                     size="default"
                                     variant="outline"
-                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-7 h-10 sm:h-11 lg:h-12 transition-all w-full lg:w-auto"
+                                    className="bg-white/10 border-white text-white hover:bg-white/20 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full lg:w-auto"
                                     onClick={() => scrollToSection("fee-structure")}
                                     aria-label="View fee structure"
                                 >
-                                    <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                                    <FileText className="mr-2 h-4 w-4" />
                                     Fee Structure
                                 </Button>
                                 <a
@@ -399,12 +399,11 @@ export function IndividualProgramPage() {
                                 >
                                     <Button
                                         size="default"
-                                        className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-base lg:text-lg px-6 sm:px-7 lg:px-8 h-10 sm:h-11 lg:h-12 group w-full lg:w-auto"
+                                        className="bg-white text-[#0b4c78] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full lg:w-auto"
                                         aria-label="Apply now for this program"
                                     >
-                                        <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
                                         Apply Now
-                                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform animate-gentle-bounce" />
+                                        <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 </a>
                             </div>
@@ -478,7 +477,16 @@ export function IndividualProgramPage() {
                                 </div>
                                 <h3 className="text-white font-bold text-sm sm:text-base">Eligibility</h3>
                             </div>
-                            <p className="text-blue-100/90 leading-relaxed text-xs sm:text-sm">{program.admissionEligibility}</p>
+                            <ul className="space-y-1.5 text-blue-100/90 leading-relaxed text-xs sm:text-sm">
+                                {program.admissionEligibility.split('\n').map((item, index) => (
+                                    item.trim() && (
+                                        <li key={index} className="flex items-start gap-2">
+                                            <span className="text-cyan-300 mt-0.5">•</span>
+                                            <span>{item.replace(/^•\s*/, '')}</span>
+                                        </li>
+                                    )
+                                ))}
+                            </ul>
                         </div>
 
                         {/* Entrance Exam Requirement */}
@@ -1227,9 +1235,16 @@ export function IndividualProgramPage() {
                                                             </AccordionTrigger>
                                                             <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
                                                                 <div className="pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                                                                        {program.admissionEligibility}
-                                                                    </p>
+                                                                    <ul className="space-y-2 text-sm sm:text-base text-gray-700 leading-relaxed">
+                                                                        {program.admissionEligibility.split('\n').map((item, index) => (
+                                                                            item.trim() && (
+                                                                                <li key={index} className="flex items-start gap-2">
+                                                                                    <span className="text-[#0b4c78] mt-1">•</span>
+                                                                                    <span>{item.replace(/^•\s*/, '')}</span>
+                                                                                </li>
+                                                                            )
+                                                                        ))}
+                                                                    </ul>
                                                                 </div>
                                                             </AccordionContent>
                                                         </div>
@@ -1462,7 +1477,7 @@ export function IndividualProgramPage() {
                         <p className="text-base sm:text-lg lg:text-xl text-blue-100/90 mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto px-4">
                             Apply now for admissions 2026. Join us and shape your future in technology and innovation.
                         </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                             <a
                                 href="https://entrance.puexam.edu.np/studentlogin"
                                 target="_blank"
@@ -1471,16 +1486,17 @@ export function IndividualProgramPage() {
                             >
                                 <Button
                                     size="lg"
-                                    className="rounded-full bg-white text-[#0b4c78] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 group w-full sm:w-auto"
+                                    className="bg-white text-[#0b4c78] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
                                 >
                                     Apply Now
-                                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="ml-2 h-4 w-4" />
                                 </Button>
                             </a>
                             <a href="tel:+9779705320350">
                                 <Button
                                     size="lg"
-                                    className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 lg:h-14 transition-all w-full sm:w-auto"
+                                    variant="outline"
+                                    className="border-white text-white hover:bg-white/20 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
                                 >
                                     Contact Admissions
                                 </Button>
@@ -1494,7 +1510,7 @@ export function IndividualProgramPage() {
             {showBackToTop && (
                 <Button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-[#0b4c78] to-cyan-500 hover:from-[#0a3d5f] hover:to-cyan-600 shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:scale-105 w-12 h-12 p-0"
+                    className="fixed bottom-6 right-6 z-50 bg-[#0b4c78] hover:bg-[#0a3d5f] text-white shadow-lg w-12 h-12 p-0"
                     aria-label="Scroll to top"
                 >
                     <ArrowUp className="h-5 w-5 text-white" />
