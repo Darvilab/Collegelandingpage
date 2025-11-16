@@ -1135,7 +1135,7 @@ export function IndividualProgramPage() {
                                                         <span className="px-3 py-1.5 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">Deep Learning</span>
                                                         <span className="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Reinforcement Learning</span>
                                                     </div>
-                                                    <Link to="/faculty">
+                                                    <Link to="/faculty-and-staff">
                                                         <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white">
                                                             View All Faculty
                                                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -1155,7 +1155,7 @@ export function IndividualProgramPage() {
                                                         <span className="px-3 py-1.5 bg-red-100 text-red-700 rounded-full text-sm font-medium">Prosthetics & Orthotics</span>
                                                         <span className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Clinical Engineering</span>
                                                     </div>
-                                                    <Link to="/faculty">
+                                                    <Link to="/faculty-and-staff">
                                                         <Button className="bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-700 hover:to-pink-600 text-white">
                                                             View All Faculty
                                                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -1175,7 +1175,7 @@ export function IndividualProgramPage() {
                                                         <span className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Network Security</span>
                                                         <span className="px-3 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium">System Architecture</span>
                                                     </div>
-                                                    <Link to="/faculty">
+                                                    <Link to="/faculty-and-staff">
                                                         <Button className="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white">
                                                             View All Faculty
                                                             <ArrowRight className="ml-2 h-4 w-4" />

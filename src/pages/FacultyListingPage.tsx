@@ -5,23 +5,23 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "motion/react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { 
-    getAllFaculty, 
-    getTeachingFaculty, 
-    getBoardMembers, 
+import {
+    getAllFaculty,
+    getTeachingFaculty,
+    getBoardMembers,
     getNonTeachingStaff,
     getFacultyByType,
     FacultyMember,
     FacultyType,
     StaffCategory
 } from "../data/faculty";
-import { 
-    Users, 
-    GraduationCap, 
-    Briefcase, 
-    Award, 
-    Mail, 
-    Phone, 
+import {
+    Users,
+    GraduationCap,
+    Briefcase,
+    Award,
+    Mail,
+    Phone,
     MapPin,
     Filter,
     Search,
@@ -49,12 +49,13 @@ export function FacultyListingPage() {
     const [selectedType, setSelectedType] = useState<FacultyType | "all">("all");
     const [selectedCategory, setSelectedCategory] = useState<StaffCategory | "all">("all");
     const [selectedCourse, setSelectedCourse] = useState<string>("all");
-    
+    const [selectedProgram, setSelectedProgram] = useState<string>("all");
+
     const facultyRef = useRef(null);
     const isFacultyInView = useInView(facultyRef, { once: true, margin: "-100px" });
 
     const allFaculty = getAllFaculty();
-    
+
     // Extract all unique courses
     const allCourses = Array.from(
         new Map(
@@ -63,23 +64,34 @@ export function FacultyListingPage() {
                 .map(course => [course.id, course])
         ).values()
     ).sort((a, b) => a.name.localeCompare(b.name));
-    
+
+    // Extract all unique programs
+    const allPrograms = Array.from(
+        new Set(
+            allFaculty
+                .flatMap(f => f.courses)
+                .map(course => course.program)
+                .filter((program): program is string => program !== undefined)
+        )
+    ).sort();
+
     // Filter faculty based on search and filters
     const filteredFaculty = allFaculty.filter(faculty => {
-        const matchesSearch = searchQuery === "" || 
+        const matchesSearch = searchQuery === "" ||
             `${faculty.firstName} ${faculty.lastName} ${faculty.designation} ${faculty.department} ${faculty.specialization || ""}`.toLowerCase().includes(searchQuery.toLowerCase());
-        
+
         const matchesType = selectedType === "all" || faculty.facultyType === selectedType;
         const matchesCategory = selectedCategory === "all" || faculty.category === selectedCategory;
         const matchesCourse = selectedCourse === "all" || faculty.courses.some(course => course.id === selectedCourse);
-        
-        return matchesSearch && matchesType && matchesCategory && matchesCourse;
+        const matchesProgram = selectedProgram === "all" || faculty.courses.some(course => course.program === selectedProgram);
+
+        return matchesSearch && matchesType && matchesCategory && matchesCourse && matchesProgram;
     });
 
     // Group faculty by category for display
     const teachingFaculty = filteredFaculty.filter(f => f.category === "teaching");
     const boardMembers = filteredFaculty.filter(f => f.category === "board-member");
-    const nonTeachingStaff = filteredFaculty.filter(f => 
+    const nonTeachingStaff = filteredFaculty.filter(f =>
         f.category === "administrative" || f.category === "support" || f.category === "non-teaching"
     );
 
@@ -105,7 +117,7 @@ export function FacultyListingPage() {
 
     const FacultyCard = ({ faculty }: { faculty: FacultyMember }) => {
         const fullName = `${faculty.title || ""} ${faculty.firstName} ${faculty.middleName || ""} ${faculty.lastName}`.trim();
-        
+
         return (
             <Link to={`/faculty-and-staff/${faculty.slug}`}>
                 <motion.div
@@ -131,7 +143,7 @@ export function FacultyListingPage() {
                                 )}
                             </div>
                             {faculty.facultyType && (
-                                <motion.div 
+                                <motion.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     className="absolute bottom-0 right-0 bg-white rounded-full px-3 py-1.5 text-xs font-bold border-2 border-cyan-400 shadow-md"
@@ -146,7 +158,7 @@ export function FacultyListingPage() {
                             {fullName}
                         </h3>
                         <p className="text-cyan-600 font-semibold mb-3 text-base">{faculty.designation}</p>
-                        
+
                         {faculty.department && (
                             <p className="text-sm text-gray-600 mb-4 flex items-center justify-center gap-2">
                                 <Building2 className="h-4 w-4 text-gray-500" />
@@ -159,6 +171,32 @@ export function FacultyListingPage() {
                                 {faculty.specialization}
                             </p>
                         )}
+
+                        {/* Programs Badges - Show all programs this faculty teaches */}
+                        {(() => {
+                            const uniquePrograms = Array.from(
+                                new Set(
+                                    faculty.courses
+                                        .map(course => course.program)
+                                        .filter((program): program is string => program !== undefined)
+                                )
+                            );
+
+                            return uniquePrograms.length > 0 && (
+                                <div className="mb-5 w-full">
+                                    <div className="flex flex-wrap gap-2 justify-center">
+                                        {uniquePrograms.map((program) => (
+                                            <span
+                                                key={program}
+                                                className="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 border border-blue-200"
+                                            >
+                                                {program}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })()}
 
                         {/* Courses Count */}
                         {faculty.courses.length > 0 && (
@@ -331,45 +369,74 @@ export function FacultyListingPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                        className="space-y-4"
                     >
-                        {/* Search and Filters - Single Row on Desktop */}
-                        <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 lg:gap-4 max-w-6xl mx-auto">
-                            {/* Search Bar - Premium Design */}
-                            <div className="relative flex-1 lg:max-w-md min-w-0">
+                        {/* Search Bar - On its own row above filters */}
+                        <div className="max-w-2xl mx-auto">
+                            <div className="relative group">
+                                {/* Search Icon Container */}
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                                    <Search className="h-5 w-5 text-gray-400 group-focus-within:text-blue-600 transition-colors duration-300" />
+                                </div>
+
+                                {/* Input Field */}
+                                <input
+                                    type="text"
+                                    placeholder="Search faculty..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full pl-12 pr-12 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg outline-none transition-all duration-200 text-gray-900 placeholder:text-gray-400 text-sm font-medium h-[48px]"
+                                />
+
+                                {/* Clear Button */}
+                                {searchQuery && (
+                                    <motion.button
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setSearchQuery("")}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-all duration-200"
+                                        aria-label="Clear search"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </motion.button>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Filters Row - Below search */}
+                        <div className="flex flex-wrap items-center justify-center gap-3 lg:gap-4 max-w-6xl mx-auto">
+                            {/* Program Filter */}
+                            {allPrograms.length > 0 && (
                                 <div className="relative group">
-                                    {/* Search Icon Container */}
-                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-                                        <Search className="h-5 w-5 text-gray-400 group-focus-within:text-blue-600 transition-colors duration-300" />
+                                    <select
+                                        value={selectedProgram}
+                                        onChange={(e) => setSelectedProgram(e.target.value)}
+                                        className="appearance-none pl-4 pr-10 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all duration-200 text-gray-900 text-sm font-semibold cursor-pointer min-w-[180px] h-[48px]"
+                                    >
+                                        <option value="all">All Programs</option>
+                                        {allPrograms.map((program) => (
+                                            <option key={program} value={program}>
+                                                {program}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
                                     </div>
-                                    
-                                    {/* Input Field */}
-                                    <input
-                                        type="text"
-                                        placeholder="Search faculty..."
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full pl-12 pr-12 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg outline-none transition-all duration-200 text-gray-900 placeholder:text-gray-400 text-sm font-medium h-[48px]"
-                                    />
-                                    
-                                    {/* Clear Button */}
-                                    {searchQuery && (
-                                        <motion.button
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.8 }}
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            onClick={() => setSearchQuery("")}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-all duration-200"
-                                            aria-label="Clear search"
-                                        >
-                                            <X className="h-4 w-4" />
-                                        </motion.button>
+                                    {selectedProgram !== "all" && (
+                                        <motion.div
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
+                                        />
                                     )}
                                 </div>
-                            </div>
+                            )}
 
-                            {/* Course Filter - Right after search */}
+                            {/* Course Filter */}
                             <div className="relative group">
                                 <select
                                     value={selectedCourse}
@@ -387,7 +454,7 @@ export function FacultyListingPage() {
                                     <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
                                 </div>
                                 {selectedCourse !== "all" && (
-                                    <motion.div 
+                                    <motion.div
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
                                         className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
@@ -395,77 +462,75 @@ export function FacultyListingPage() {
                                 )}
                             </div>
 
-                            {/* Other Filters Group */}
-                            <div className="flex flex-wrap items-center gap-3 lg:flex-nowrap lg:ml-auto">
-                                {/* Faculty Type Filter */}
-                                <div className="relative group">
-                                    <select
-                                        value={selectedType}
-                                        onChange={(e) => setSelectedType(e.target.value as FacultyType | "all")}
-                                        className="appearance-none pl-4 pr-10 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all duration-200 text-gray-900 text-sm font-semibold cursor-pointer min-w-[140px] h-[48px]"
-                                    >
-                                        <option value="all">All Types</option>
-                                        <option value="full-time">Full-Time</option>
-                                        <option value="part-time">Part-Time</option>
-                                        <option value="visiting">Visiting</option>
-                                    </select>
-                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
-                                    </div>
-                                    {selectedType !== "all" && (
-                                        <motion.div 
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
-                                        />
-                                    )}
+                            {/* Faculty Type Filter */}
+                            <div className="relative group">
+                                <select
+                                    value={selectedType}
+                                    onChange={(e) => setSelectedType(e.target.value as FacultyType | "all")}
+                                    className="appearance-none pl-4 pr-10 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all duration-200 text-gray-900 text-sm font-semibold cursor-pointer min-w-[140px] h-[48px]"
+                                >
+                                    <option value="all">All Types</option>
+                                    <option value="full-time">Full-Time</option>
+                                    <option value="part-time">Part-Time</option>
+                                    <option value="visiting">Visiting</option>
+                                </select>
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
                                 </div>
-
-                                {/* Category Filter */}
-                                <div className="relative group">
-                                    <select
-                                        value={selectedCategory}
-                                        onChange={(e) => setSelectedCategory(e.target.value as StaffCategory | "all")}
-                                        className="appearance-none pl-4 pr-10 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all duration-200 text-gray-900 text-sm font-semibold cursor-pointer min-w-[160px] h-[48px]"
-                                    >
-                                        <option value="all">All Categories</option>
-                                        <option value="teaching">Teaching</option>
-                                        <option value="board-member">Board Members</option>
-                                        <option value="administrative">Administrative</option>
-                                        <option value="support">Support Staff</option>
-                                    </select>
-                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                                        <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
-                                    </div>
-                                    {selectedCategory !== "all" && (
-                                        <motion.div 
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
-                                        />
-                                    )}
-                                </div>
-
-                                {/* Clear Button */}
-                                {(selectedType !== "all" || selectedCategory !== "all" || selectedCourse !== "all" || searchQuery) && (
-                                    <motion.button
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => {
-                                            setSearchQuery("");
-                                            setSelectedType("all");
-                                            setSelectedCategory("all");
-                                            setSelectedCourse("all");
-                                        }}
-                                        className="p-2.5 rounded-xl border-2 border-gray-200/80 bg-white hover:border-gray-300 hover:bg-gray-50 text-gray-600 hover:text-gray-700 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md h-[48px] w-[48px]"
-                                        aria-label="Clear all filters"
-                                    >
-                                        <X className="h-5 w-5" />
-                                    </motion.button>
+                                {selectedType !== "all" && (
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
+                                    />
                                 )}
                             </div>
+
+                            {/* Category Filter */}
+                            <div className="relative group">
+                                <select
+                                    value={selectedCategory}
+                                    onChange={(e) => setSelectedCategory(e.target.value as StaffCategory | "all")}
+                                    className="appearance-none pl-4 pr-10 py-2.5 rounded-xl border-2 border-gray-200/80 bg-white shadow-sm hover:border-gray-300 hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all duration-200 text-gray-900 text-sm font-semibold cursor-pointer min-w-[160px] h-[48px]"
+                                >
+                                    <option value="all">All Categories</option>
+                                    <option value="teaching">Teaching</option>
+                                    <option value="board-member">Board Members</option>
+                                    <option value="administrative">Administrative</option>
+                                    <option value="support">Support Staff</option>
+                                </select>
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <ChevronDown className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
+                                </div>
+                                {selectedCategory !== "all" && (
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 border-2 border-white shadow-md"
+                                    />
+                                )}
+                            </div>
+
+                            {/* Clear Button */}
+                            {(selectedType !== "all" || selectedCategory !== "all" || selectedCourse !== "all" || selectedProgram !== "all" || searchQuery) && (
+                                <motion.button
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => {
+                                        setSearchQuery("");
+                                        setSelectedType("all");
+                                        setSelectedCategory("all");
+                                        setSelectedCourse("all");
+                                        setSelectedProgram("all");
+                                    }}
+                                    className="p-2.5 rounded-xl border-2 border-gray-200/80 bg-white hover:border-gray-300 hover:bg-gray-50 text-gray-600 hover:text-gray-700 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md h-[48px] w-[48px]"
+                                    aria-label="Clear all filters"
+                                >
+                                    <X className="h-5 w-5" />
+                                </motion.button>
+                            )}
                         </div>
                     </motion.div>
                 </div>
