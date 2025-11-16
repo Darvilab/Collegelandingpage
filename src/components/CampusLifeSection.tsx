@@ -120,7 +120,7 @@ export function CampusLifeSection() {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            
+
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <button className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl">
@@ -147,7 +147,7 @@ export function CampusLifeSection() {
             {[
               { icon: Award, title: "Technical Competitions", desc: "Hackathons, robotics contests, and innovation challenges" },
               { icon: Coffee, title: "Innovation Hub", desc: "24/7 coworking space for student projects and startups" },
-              { icon: Dumbbell, title: "Sports & Recreation", desc: "Modern gym, sports facilities, and wellness programs" },
+              { icon: Dumbbell, title: "Sports & Recreation", desc: "Sports facilities and recreational activities" },
             ].map((item, index) => {
               const Icon = item.icon;
               return (
@@ -201,7 +201,7 @@ export function CampusLifeSection() {
                   <div className="relative p-8 rounded-[2rem] bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden h-full">
                     {/* Gradient Overlay */}
                     <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${testimonial.gradient} opacity-20 rounded-full blur-3xl`}></div>
-                    
+
                     <div className="relative z-10">
                       <Quote className="h-8 w-8 text-white/20 mb-4" />
                       <p className="text-base text-white/90 mb-6 leading-relaxed min-h-[120px]">
