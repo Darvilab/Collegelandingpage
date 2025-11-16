@@ -60,3 +60,27 @@ h3 {
 .faq-section * {
   font-family: "Roboto", sans-serif !important;
 }
+
+/* Custom scrollbar for fee table */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(209 213 219) rgb(243 244 246);
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: rgb(243 244 246);
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: rgb(209 213 219);
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: rgb(156 163 175);
+}

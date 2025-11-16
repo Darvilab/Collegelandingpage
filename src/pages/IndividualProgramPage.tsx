@@ -673,14 +673,24 @@ export function IndividualProgramPage() {
                                     </div>
 
                                     {/* Fee Table Card */}
-                                    <div className="relative mt-6 sm:mt-8 overflow-hidden rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-lg">
-                                        <div className="overflow-x-auto -mx-4 sm:mx-0">
-                                            <table className="w-full min-w-[600px] sm:min-w-0">
+                                    <div className="relative mt-6 sm:mt-8 rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+                                        {/* Scroll indicator - fade effect on right side */}
+                                        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-0 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 sm:hidden"></div>
+                                        
+                                        <div className="overflow-x-auto px-4 sm:px-0">
+                                            <div className="min-w-full inline-block">
+                                                <table className="w-full min-w-[600px] sm:min-w-full lg:table-fixed">
+                                                <colgroup>
+                                                    <col className="w-auto lg:w-[35%]" />
+                                                    {program.feeStructure.map((_, index) => (
+                                                        <col key={index} className="lg:w-[16.25%]" />
+                                                    ))}
+                                                </colgroup>
                                                 <thead>
                                                     <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                                        <th scope="col" className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 text-left font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">Particulars</th>
+                                                        <th scope="col" className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-5 text-left font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">Particulars</th>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <th key={index} scope="col" className="px-4 sm:px-8 py-4 sm:py-6 text-center font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">
+                                                            <th key={index} scope="col" className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-5 text-center font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">
                                                                 {fee.year}
                                                             </th>
                                                         ))}
@@ -688,31 +698,39 @@ export function IndividualProgramPage() {
                                                 </thead>
                                                 <tbody>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 font-medium text-gray-900 text-xs sm:text-sm lg:text-base">
-                                                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 lg:gap-3">
+                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">
+                                                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 lg:gap-2">
                                                                 <span className="whitespace-nowrap">Admission Fee</span>
                                                                 {program.discountInfo?.admissionFeeWaiver && (
-                                                                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-red-100 text-red-800 border border-red-200 w-fit">
-                                                                        {program.discountInfo.note || "100% Waiver"}
-                                                                    </span>
+                                                                    <div className="text-[10px] sm:text-xs font-semibold text-red-800">
+                                                                        {(() => {
+                                                                            const text = program.discountInfo.note || "100% waiver in Admission Fee for this Batch";
+                                                                            return text.split(' ').map((word, i, arr) => {
+                                                                                if (word === 'in' || word === 'for') {
+                                                                                    return <React.Fragment key={i}>{word}<br /></React.Fragment>;
+                                                                                }
+                                                                                return i < arr.length - 1 ? <React.Fragment key={i}>{word} </React.Fragment> : <React.Fragment key={i}>{word}</React.Fragment>;
+                                                                            });
+                                                                        })()}
+                                                                    </div>
                                                                 )}
                                                             </div>
                                                         </td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-base">
+                                                            <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
                                                                 {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                     {program.discountInfo?.semesterFeeDiscount && (
                                                         <tr className="border-b border-gray-200 bg-blue-50/50">
-                                                            <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 font-medium text-gray-900 text-xs sm:text-sm lg:text-base">
-                                                                <span className="whitespace-nowrap">Discount ({program.discountInfo.semesterFeeDiscount}% on Semester Fee)</span>
+                                                            <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">
+                                                                <span>Discount<br />({program.discountInfo.semesterFeeDiscount}% on Semester Fee)</span>
                                                             </td>
                                                             {program.feeStructure.map((fee, index) => {
                                                                 const discount = Math.round((fee.semester1Fee + fee.semester2Fee) * (program.discountInfo!.semesterFeeDiscount! / 100));
                                                                 return (
-                                                                    <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center text-green-700 text-xs sm:text-sm lg:text-base font-semibold">
+                                                                    <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-green-700 text-xs sm:text-sm lg:text-sm font-semibold">
                                                                         -NPR {discount.toLocaleString()}
                                                                     </td>
                                                                 );
@@ -720,41 +738,41 @@ export function IndividualProgramPage() {
                                                         </tr>
                                                     )}
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-base">Semester 1 Fee</td>
+                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Semester 1 Fee</td>
                                                         {program.feeStructure.map((fee, index) => {
                                                             const discountedFee = program.discountInfo?.semesterFeeDiscount
                                                                 ? Math.round(fee.semester1Fee * (1 - program.discountInfo.semesterFeeDiscount / 100))
                                                                 : fee.semester1Fee;
                                                             return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-base">
+                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
                                                                     NPR {discountedFee.toLocaleString()}
                                                                 </td>
                                                             );
                                                         })}
                                                     </tr>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-base">Semester 2 Fee</td>
+                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Semester 2 Fee</td>
                                                         {program.feeStructure.map((fee, index) => {
                                                             const discountedFee = program.discountInfo?.semesterFeeDiscount
                                                                 ? Math.round(fee.semester2Fee * (1 - program.discountInfo.semesterFeeDiscount / 100))
                                                                 : fee.semester2Fee;
                                                             return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-base">
+                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
                                                                     NPR {discountedFee.toLocaleString()}
                                                                 </td>
                                                             );
                                                         })}
                                                     </tr>
                                                     <tr className="border-b border-gray-200">
-                                                        <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-base">Security Deposit</td>
+                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Security Deposit</td>
                                                         {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-base">
+                                                            <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
                                                                 {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
                                                             </td>
                                                         ))}
                                                     </tr>
                                                     <tr className="bg-gray-50 border-t-2 border-gray-300">
-                                                        <td className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap font-bold text-gray-900 text-sm sm:text-base lg:text-lg">Grand Total</td>
+                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-bold text-gray-900 text-sm sm:text-base lg:text-base">Grand Total</td>
                                                         {program.feeStructure.map((fee, index) => {
                                                             let grandTotal;
                                                             if (program.discountInfo?.semesterFeeDiscount) {
@@ -767,7 +785,7 @@ export function IndividualProgramPage() {
                                                                 grandTotal = fee.total;
                                                             }
                                                             return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6 whitespace-nowrap text-center font-bold text-gray-900 text-sm sm:text-base lg:text-lg">
+                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center font-bold text-gray-900 text-sm sm:text-base lg:text-base">
                                                                     NPR {grandTotal.toLocaleString()}
                                                                 </td>
                                                             );
@@ -775,6 +793,15 @@ export function IndividualProgramPage() {
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Mobile scroll hint */}
+                                        <div className="sm:hidden px-4 py-2 text-center text-xs text-gray-500 bg-gray-50 border-t border-gray-200">
+                                            <span className="inline-flex items-center gap-1">
+                                                <span>←</span> Scroll horizontally to view all columns
+                                                <span>→</span>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -1114,35 +1141,25 @@ export function IndividualProgramPage() {
                                             </p>
                                         </div>
 
-                                        {/* FAQ Container with Enhanced Design */}
+                                        {/* FAQ Container */}
                                         <div className="relative mt-6 sm:mt-8">
-                                            {/* Decorative Background */}
-                                            <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl sm:rounded-3xl">
-                                                <div className="absolute top-0 right-0 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-gradient-to-br from-rose-200/30 via-pink-200/30 to-fuchsia-200/30 rounded-full blur-3xl animate-pulse"></div>
-                                                <div className="absolute bottom-0 left-0 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-gradient-to-br from-pink-200/30 via-fuchsia-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                                            </div>
-
-                                            <div className="relative space-y-4 sm:space-y-5 lg:space-y-6">
+                                            <div className="space-y-4 sm:space-y-5 lg:space-y-6">
                                                 <Accordion type="single" collapsible className="w-full">
-                                                    <AccordionItem value="faq-1" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
-                                                            {/* Animated gradient overlay */}
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
-
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-sm sm:text-base font-bold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                    <AccordionItem value="faq-1" className="border-0">
+                                                        <div className="bg-white rounded-lg">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
+                                                                <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
                                                                     What are the admission requirements?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
-                                                                        <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                                <div className="flex-shrink-0">
+                                                                    <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
+                                                                        <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t border-rose-200 pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
+                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
+                                                                <div className="pt-3 sm:pt-4 lg:pt-6">
+                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                                                                         {program.admissionEligibility}
                                                                     </p>
                                                                 </div>
@@ -1150,25 +1167,22 @@ export function IndividualProgramPage() {
                                                         </div>
                                                     </AccordionItem>
 
-                                                    <AccordionItem value="faq-2" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
-
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-sm sm:text-base font-bold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                    <AccordionItem value="faq-2" className="border-0">
+                                                        <div className="bg-white rounded-lg">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
+                                                                <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
                                                                     What are the program fees?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
-                                                                        <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                                <div className="flex-shrink-0">
+                                                                    <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
+                                                                        <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t border-rose-200 pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
-                                                                        The total program fee is <strong className="font-extrabold text-gray-900 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
+                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
+                                                                <div className="pt-3 sm:pt-4 lg:pt-6">
+                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                                                        The total program fee is <strong className="font-bold text-gray-900">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
                                                                         Please refer to the detailed fee structure above for a year-by-year breakdown.
                                                                     </p>
                                                                 </div>
@@ -1176,32 +1190,28 @@ export function IndividualProgramPage() {
                                                         </div>
                                                     </AccordionItem>
 
-                                                    <AccordionItem value="faq-3" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
-
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-sm sm:text-base font-bold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                    <AccordionItem value="faq-3" className="border-0">
+                                                        <div className="bg-white rounded-lg">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
+                                                                <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
                                                                     What are the career prospects after graduation?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
-                                                                        <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                                <div className="flex-shrink-0">
+                                                                    <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
+                                                                        <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t border-rose-200 pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="mb-3 sm:mb-4 font-bold text-gray-900 text-base sm:text-lg">Graduates can pursue careers in:</p>
+                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
+                                                                <div className="pt-3 sm:pt-4 lg:pt-6">
+                                                                    <p className="mb-3 sm:mb-4 font-semibold text-gray-900 text-base sm:text-lg">Graduates can pursue careers in:</p>
                                                                     <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
                                                                         {program.careerOutcomes.map((career, index) => (
-                                                                            <li key={index} className="flex items-start gap-2 sm:gap-3 lg:gap-4 group/item">
-                                                                                <div className="flex-shrink-0 mt-1.5 relative">
-                                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full blur-sm opacity-50"></div>
-                                                                                    <div className="relative w-2 h-2 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 shadow-md"></div>
+                                                                            <li key={index} className="flex items-start gap-2 sm:gap-3 lg:gap-4">
+                                                                                <div className="flex-shrink-0 mt-1.5">
+                                                                                    <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
                                                                                 </div>
-                                                                                <span className="text-sm sm:text-base text-gray-700 font-medium group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-rose-600 group-hover/item:to-pink-600 transition-all duration-300">{career}</span>
+                                                                                <span className="text-sm sm:text-base text-gray-700">{career}</span>
                                                                             </li>
                                                                         ))}
                                                                     </ul>
@@ -1210,24 +1220,21 @@ export function IndividualProgramPage() {
                                                         </div>
                                                     </AccordionItem>
 
-                                                    <AccordionItem value="faq-4" className="group border-0">
-                                                        <div className="relative overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-br from-white via-rose-50/30 to-pink-50/20 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-rose-300">
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-rose-500/0 via-pink-500/0 to-fuchsia-500/0 group-hover:from-rose-500/10 group-hover:via-pink-500/5 group-hover:to-fuchsia-500/10 transition-all duration-300 pointer-events-none"></div>
-
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left font-semibold text-gray-800 hover:no-underline group/trigger relative z-10">
-                                                                <span className="text-sm sm:text-base font-bold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5 group-hover/trigger:text-transparent group-hover/trigger:bg-clip-text group-hover/trigger:bg-gradient-to-r group-hover/trigger:from-rose-600 group-hover/trigger:to-pink-600 transition-all duration-300">
+                                                    <AccordionItem value="faq-4" className="border-0">
+                                                        <div className="bg-white rounded-lg">
+                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
+                                                                <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
                                                                     Are scholarships available?
                                                                 </span>
-                                                                <div className="flex-shrink-0 relative">
-                                                                    <div className="absolute inset-0 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg blur-md opacity-50 group-hover/trigger:opacity-75 transition-opacity"></div>
-                                                                    <div className="relative p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 shadow-lg shadow-rose-500/40 group-hover/trigger:scale-110 transition-all duration-300">
-                                                                        <Award className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                                                                <div className="flex-shrink-0">
+                                                                    <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
+                                                                        <Award className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0 relative z-10">
-                                                                <div className="border-t border-rose-200 pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
+                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
+                                                                <div className="pt-3 sm:pt-4 lg:pt-6">
+                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                                                                         Yes, we offer various scholarships including merit-based scholarships and need-based financial aid.
                                                                         Please contact our admissions office for more information about available scholarships and eligibility criteria.
                                                                     </p>
