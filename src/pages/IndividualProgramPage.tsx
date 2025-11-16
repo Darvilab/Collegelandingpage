@@ -399,7 +399,7 @@ export function IndividualProgramPage() {
                                 >
                                     <Button
                                         size="default"
-                                        className="bg-white text-[#0b4c78] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full lg:w-auto"
+                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full lg:w-auto"
                                         aria-label="Apply now for this program"
                                     >
                                         Apply Now

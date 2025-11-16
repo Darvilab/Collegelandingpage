@@ -151,7 +151,7 @@ export function Header() {
                   style={{
                     width: '520px',
                     marginTop: '45px',
-                    boxShadow: '0 25px 70px -12px rgba(11, 76, 120, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)'
+                    boxShadow: '0 25px 70px -12px rgba(13, 78, 146, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)'
                   }}
                 >
                   {/* Decorative gradient background */}

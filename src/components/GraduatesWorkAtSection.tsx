@@ -40,7 +40,7 @@ export function GraduatesWorkAtSection() {
               ].map((partner, index) => (
                 <div
                   key={index}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:border-[#0b4c78]/40 hover:shadow-md hover:scale-105 transition-all"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:border-[#0d4e92]/40 hover:shadow-md hover:scale-105 transition-all"
                 >
                   <div className="text-gray-700 text-xs font-medium">{partner}</div>
                 </div>
