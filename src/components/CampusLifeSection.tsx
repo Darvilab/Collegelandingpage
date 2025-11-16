@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { Play, Award, Coffee, Dumbbell, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Play, Award, Coffee, Dumbbell, Quote, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
@@ -148,6 +148,7 @@ export function CampusLifeSection() {
               { icon: Award, title: "Technical Competitions", desc: "Hackathons, robotics contests, and innovation challenges" },
               { icon: Coffee, title: "Innovation Hub", desc: "24/7 coworking space for student projects and startups" },
               { icon: Dumbbell, title: "Sports & Recreation", desc: "Sports facilities and recreational activities" },
+              { icon: Users, title: "Student Clubs", desc: "Active student organizations and cultural activities" },
             ].map((item, index) => {
               const Icon = item.icon;
               return (
