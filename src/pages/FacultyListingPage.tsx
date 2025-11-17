@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "motion/react";
 import { Header } from "../components/Header";
@@ -44,6 +44,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs"
 
 export function FacultyListingPage() {
     const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
     const canonicalUrl = `${window.location.origin}${location.pathname}`;
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedType, setSelectedType] = useState<FacultyType | "all">("all");
@@ -53,6 +54,7 @@ export function FacultyListingPage() {
 
     const facultyRef = useRef(null);
     const isFacultyInView = useInView(facultyRef, { once: true, margin: "-100px" });
+    const hasInitializedFromUrl = useRef(false);
 
     const allFaculty = getAllFaculty();
 
@@ -74,6 +76,87 @@ export function FacultyListingPage() {
                 .filter((program): program is string => program !== undefined)
         )
     ).sort();
+
+    // Read URL query parameters and apply filters on mount
+    useEffect(() => {
+        if (hasInitializedFromUrl.current) return;
+        hasInitializedFromUrl.current = true;
+
+        const programParam = searchParams.get("program");
+        const searchParam = searchParams.get("search");
+        const typeParam = searchParams.get("type");
+        const categoryParam = searchParams.get("category");
+        const courseParam = searchParams.get("course");
+
+        // Validate program parameter against available programs
+        if (programParam) {
+            const availablePrograms = Array.from(
+                new Set(
+                    allFaculty
+                        .flatMap(f => f.courses)
+                        .map(course => course.program)
+                        .filter((program): program is string => program !== undefined)
+                )
+            );
+            if (availablePrograms.includes(programParam)) {
+                setSelectedProgram(programParam);
+            }
+        }
+
+        if (searchParam) {
+            setSearchQuery(searchParam);
+        }
+        if (typeParam && (typeParam === "full-time" || typeParam === "part-time" || typeParam === "visiting")) {
+            setSelectedType(typeParam);
+        }
+        if (categoryParam && (categoryParam === "teaching" || categoryParam === "board-member" || categoryParam === "administrative" || categoryParam === "support" || categoryParam === "non-teaching")) {
+            setSelectedCategory(categoryParam);
+        }
+
+        // Validate course parameter against available courses
+        if (courseParam) {
+            const availableCourses = Array.from(
+                new Map(
+                    allFaculty
+                        .flatMap(f => f.courses)
+                        .map(course => [course.id, course])
+                ).values()
+            );
+            if (availableCourses.some(course => course.id === courseParam)) {
+                setSelectedCourse(courseParam);
+            }
+        }
+    }, [searchParams, allFaculty]); // Run when searchParams or allFaculty changes
+
+    // Sync filter changes to URL (but not during initial load)
+    useEffect(() => {
+        if (!hasInitializedFromUrl.current) return;
+
+        const params = new URLSearchParams();
+        if (selectedProgram !== "all") {
+            params.set("program", selectedProgram);
+        }
+        if (searchQuery) {
+            params.set("search", searchQuery);
+        }
+        if (selectedType !== "all") {
+            params.set("type", selectedType);
+        }
+        if (selectedCategory !== "all") {
+            params.set("category", selectedCategory);
+        }
+        if (selectedCourse !== "all") {
+            params.set("course", selectedCourse);
+        }
+
+        // Only update URL if params have changed
+        const currentParams = searchParams.toString();
+        const newParams = params.toString();
+        if (currentParams !== newParams) {
+            setSearchParams(params, { replace: true });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedProgram, searchQuery, selectedType, selectedCategory, selectedCourse, setSearchParams]);
 
     // Filter faculty based on search and filters
     const filteredFaculty = allFaculty.filter(faculty => {
