@@ -88,7 +88,7 @@ export interface FacultyMember {
     order?: number; // For display ordering
 }
 
-export const faculty: FacultyMember[] = [
+const facultyRaw: FacultyMember[] = [
     // Board Members (who may also teach)
     {
         id: "faculty-001",
@@ -132,7 +132,7 @@ export const faculty: FacultyMember[] = [
             { title: "Outstanding Researcher", organization: "Nepal Academy of Science", year: "2021" }
         ],
         contact: {
-            email: "rajesh.sharma@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Block A, Room 301",
             linkedin: "linkedin.com/in/rajeshsharma",
@@ -182,7 +182,7 @@ export const faculty: FacultyMember[] = [
             { area: "Medical Instrumentation", description: "Diagnostic and monitoring equipment" }
         ],
         contact: {
-            email: "priya.patel@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Block B, Room 205"
         },
@@ -221,7 +221,7 @@ export const faculty: FacultyMember[] = [
             { area: "Cybersecurity", description: "Network security and cryptography" }
         ],
         contact: {
-            email: "amit.kumar@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Block A, Room 208"
         },
@@ -256,7 +256,7 @@ export const faculty: FacultyMember[] = [
             { position: "Visiting Professor", organization: "NIET", duration: "2018 - Present" }
         ],
         contact: {
-            email: "sanjay.thapa@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX"
         },
         joiningDate: "2018-01-10",
@@ -297,7 +297,7 @@ export const faculty: FacultyMember[] = [
             { area: "NLP for Low-Resource Languages", description: "Developing NLP solutions for languages with limited data" }
         ],
         contact: {
-            email: "sarah.johnson@niet.edu.np",
+            email: "info@niet.edu.np",
             website: "sarahjohnson.ai"
         },
         joiningDate: "2023-09-01",
@@ -327,7 +327,7 @@ export const faculty: FacultyMember[] = [
             { position: "Deputy Registrar", organization: "NIET", duration: "2005 - 2010" }
         ],
         contact: {
-            email: "ramesh.adhikari@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Administration Block, Room 101"
         },
@@ -357,7 +357,7 @@ export const faculty: FacultyMember[] = [
             { position: "Lab Technician", organization: "NIET", duration: "2016 - Present" }
         ],
         contact: {
-            email: "sita.gurung@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Biomedical Lab, Block B"
         },
@@ -398,7 +398,7 @@ export const faculty: FacultyMember[] = [
             { area: "Data Mining", description: "Pattern recognition and knowledge discovery" }
         ],
         contact: {
-            email: "meera.shrestha@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Block A, Room 212"
         },
@@ -433,7 +433,7 @@ export const faculty: FacultyMember[] = [
             { position: "Software Developer", organization: "Tech Innovations Pvt. Ltd.", duration: "2014 - 2017" }
         ],
         contact: {
-            email: "niraj.basnet@niet.edu.np",
+            email: "info@niet.edu.np",
             phone: "+977-1-XXXXXXX",
             office: "Block A, Room 105"
         },
@@ -442,6 +442,15 @@ export const faculty: FacultyMember[] = [
         order: 9
     }
 ];
+
+// Standardize public-facing email for launch (single inbox).
+export const faculty: FacultyMember[] = facultyRaw.map((f) => ({
+    ...f,
+    contact: {
+        ...f.contact,
+        email: "info@niet.edu.np",
+    },
+}));
 
 // Helper functions
 export function getFacultyBySlug(slug: string): FacultyMember | undefined {

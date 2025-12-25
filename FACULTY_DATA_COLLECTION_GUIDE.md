@@ -117,7 +117,7 @@ List awards and recognitions. Use semicolons to separate entries.
 
 Single values only (one entry per field):
 
-- **Contact - Email**: Email address (e.g., `rajesh.sharma@niet.edu.np`)
+- **Contact - Email**: Email address (use `info@niet.edu.np`)
 - **Contact - Phone**: Phone number (e.g., `+977-1-XXXXXXX`)
 - **Contact - Office**: Office location (e.g., `Block A, Room 301`)
 - **Contact - Website**: Personal/professional website URL
@@ -182,7 +182,7 @@ Here's a complete example of how to fill in one row:
 | Experience - Positions | `Professor; Associate Professor; Research Scientist` |
 | Experience - Organizations | `NIET; Kathmandu University; Google Research` |
 | Experience - Durations | `2015 - Present; 2010 - 2015; 2005 - 2010` |
-| Contact - Email | `rajesh.sharma@niet.edu.np` |
+| Contact - Email | `info@niet.edu.np` |
 | Contact - Phone | `+977-1-XXXXXXX` |
 | Contact - Office | `Block A, Room 301` |
 | Joining Date | `2015-01-15` |

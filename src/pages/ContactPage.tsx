@@ -14,7 +14,7 @@ export function ContactPage() {
     addressLine: "Lalitpur-1, Kupondole",
     landmark: "Infront of Lalitpur Municipality Ward no 1 office building",
     phones: ["01-5911894", "01-5911895"],
-    email: "info@biomedical.edu.np",
+    email: "info@niet.edu.np",
   };
 
   return (

@@ -149,9 +149,10 @@ export function Header() {
                 <div
                   role="menu"
                   aria-label="Academic programs"
-                  className="absolute top-full left-0 mt-[45px] bg-white rounded-2xl shadow-2xl border border-cyan-200/60 overflow-hidden z-50 animate-dropdown-open"
+                  className="absolute top-full right-0 mt-[45px] bg-white rounded-2xl shadow-2xl border border-cyan-200/60 overflow-hidden z-50 animate-dropdown-open"
                   style={{
-                    width: '520px',
+                    // Keep dropdown within viewport on smaller laptops by clamping width.
+                    width: "min(520px, calc(100vw - 2rem))",
                     marginTop: '45px',
                     boxShadow: '0 25px 70px -12px rgba(13, 78, 146, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)'
                   }}

@@ -106,7 +106,7 @@ def create_faculty_template_csv():
         "ICML; Nepal Academy of Science",
         "2022; 2021",
         "; ",
-        "rajesh.sharma@niet.edu.np",
+        "info@niet.edu.np",
         "+977-1-XXXXXXX",
         "Block A, Room 301",
         "",

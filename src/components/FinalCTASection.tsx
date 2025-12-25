@@ -85,7 +85,7 @@ export function FinalCTASection() {
           {[
             { icon: MapPin, label: "Location", value: "Lalitpur-1, Kupondole", gradient: "from-orange-500 to-amber-400" },
             { icon: Clock, label: "Open Hours", value: "Sunday-Friday:\n7:00 AM - 2:00 PM", gradient: "from-green-500 to-emerald-400" },
-            { icon: Mail, label: "Email", value: "info@biomedical.edu.np", gradient: "from-purple-500 to-pink-400", href: "mailto:info@biomedical.edu.np" },
+            { icon: Mail, label: "Email", value: "info@niet.edu.np", gradient: "from-purple-500 to-pink-400", href: "mailto:info@niet.edu.np" },
             { icon: Phone, label: "Call", value: "01-5911894/5911895", gradient: "from-blue-500 to-cyan-400", href: "tel:015911894" },
           ].map((contact, index) => {
             const Icon = contact.icon;

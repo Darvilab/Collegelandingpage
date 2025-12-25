@@ -1095,8 +1095,8 @@ export function IndividualProgramPage() {
                                 </div>
                             </motion.section>
 
-                            {/* --- Faculty Section --- */}
-                            {program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer" ? (
+                            {/* --- Faculty Section (hidden for launch) --- */}
+                            {SHOW_FACULTY_AND_STAFF && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? (
                                 <motion.section
                                     ref={facultySectionRef}
                                     id="faculty"
