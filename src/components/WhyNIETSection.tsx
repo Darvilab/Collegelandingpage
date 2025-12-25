@@ -12,25 +12,25 @@ export function WhyNIETSection() {
       icon: BookOpen,
       title: "Industry-Aligned Curriculum",
       description: "Programs designed for real-world impact. Our graduates work at Cambridge, Mayo Clinic, Nanyang Tech, and top hospitals across Nepal.",
-      image: "https://images.unsplash.com/photo-1758270704534-fd9715bffc0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjbGFzc3Jvb20lMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2MjkwNDkyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/graduates.jpg",
     },
     {
       icon: Users,
       title: "Expert Faculty",
       description: "Learn from professors with international degrees (USA, UK, Belgium) and decades of real-world expertise. Faculty members serve as guest editors for SAGE journals.",
-      image: "https://images.unsplash.com/photo-1736066330610-c102cab4e942?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwcHJvZmVzc29yJTIwdGVhY2hpbmd8ZW58MXx8fHwxNzYyOTEzNDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/faculty.jpg",
     },
     {
       icon: FlaskConical,
       title: "Research Excellence",
       description: "Published in Wiley, Elsevier, SAGE journals. Hosted international conferences. Students win awards at global symposiums. Research that matters.",
-      image: "https://images.unsplash.com/photo-1606206848010-83949917a080?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbGFib3JhdG9yeSUyMGVxdWlwbWVudHxlbnwxfHx8fDE3NjI4NTIxODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/research.jpg",
     },
     {
       icon: Briefcase,
       title: "Global Opportunities",
       description: "40%+ graduates pursue Master's & PhD abroad. Scholarships: Erasmus Mundus, Singo Awards, Marie Curie. 50+ PhD graduates. Zero unemployment rate.",
-      image: "https://images.unsplash.com/photo-1696861273647-92dfe8bb697c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhhbmRzaGFrZSUyMGludGVybnNoaXB8ZW58MXx8fHwxNzYyOTEzNTAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/academic-research.jpg",
     },
   ];
 

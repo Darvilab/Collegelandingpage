@@ -167,7 +167,7 @@ export function AboutPage() {
       </section>
 
       {/* Mission, Vision & Values */}
-      <section ref={missionRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      <section id="mission-vision" ref={missionRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -250,7 +250,7 @@ export function AboutPage() {
       <GraduatesWorkAtSection />
 
       {/* Accreditation & Partnerships */}
-      <section ref={accreditationRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      <section id="accreditations" ref={accreditationRef} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

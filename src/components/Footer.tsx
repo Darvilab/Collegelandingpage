@@ -1,24 +1,30 @@
 import { Facebook, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
+import { SHOW_FACULTY_AND_STAFF } from "../config/features";
 
 export function Footer() {
-  const footerLinks = {
+  type FooterLink =
+    | { label: string; to: string; external?: false }
+    | { label: string; href: string; external: true };
+
+  const footerLinks: Record<string, FooterLink[]> = {
     Programs: [
-      "Biomedical Engineering",
-      "Computer Engineering",
-      "BTech in Artificial Intelligence",
-      "Admission Requirements",
+      { label: "Biomedical Engineering", to: "/academics/be-biomedical-engineering" },
+      { label: "Computer Engineering", to: "/academics/be-computer-engineering" },
+      { label: "BTech in Artificial Intelligence", to: "/academics/btech-artificial-intelligence" },
+      { label: "Admission Requirements", to: "/#admissions" },
     ],
     Resources: [
-      "Campus Tour",
-      "Student Portal",
-      "Faculty Directory",
-      "Research & Publications",
+      { label: "Campus Tour", to: "/#campus-life" },
+      { label: "Student Portal", href: "https://entrance.puexam.edu.np/studentlogin", external: true },
+      ...(SHOW_FACULTY_AND_STAFF ? [{ label: "Faculty Directory", to: "/faculty-and-staff" } as const] : []),
+      { label: "Research & Publications", to: "/#research-publications" },
     ],
     About: [
-      "About NIET",
-      "Mission & Vision",
-      "Accreditations",
-      "Contact Us",
+      { label: "About NIET", to: "/about" },
+      { label: "Mission & Vision", to: "/about#mission-vision" },
+      { label: "Accreditations", to: "/about#accreditations" },
+      { label: "Contact Us", to: "/contact" },
     ],
   };
 
@@ -79,13 +85,26 @@ export function Footer() {
             <div key={category}>
               <h3 className="text-white mb-6">{category}</h3>
               <ul className="space-y-3">
-                {links.map((link, index) => (
-                  <li key={index}>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {links.map((link, index) => {
+                  return (
+                    <li key={index}>
+                      {"to" in link ? (
+                        <Link to={link.to} className="text-gray-400 hover:text-white transition-colors">
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-white transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

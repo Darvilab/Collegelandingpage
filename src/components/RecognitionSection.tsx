@@ -37,7 +37,7 @@ export function RecognitionSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+    <section id="research-publications" ref={ref} className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div

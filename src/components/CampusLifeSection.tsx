@@ -1,73 +1,89 @@
 import { Button } from "./ui/button";
-import { Play, Award, Coffee, Dumbbell, Quote, ChevronLeft, ChevronRight, Users } from "lucide-react";
+import { Play, Award, Coffee, Dumbbell, Quote, ChevronLeft, ChevronRight, Users, Pause } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
 
 export function CampusLifeSection() {
   const ref = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [expandedTestimonialIndex, setExpandedTestimonialIndex] = useState<number | null>(null);
+
+  const getInitials = (name: string) => {
+    // If the name already includes initials like "(PN)", we still derive from the main name
+    const cleaned = name.replace(/\([^)]*\)/g, "").trim();
+    const tokens = cleaned
+      .split(/\s+/)
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0 && t !== "-" && t.toLowerCase() !== "the");
+
+    const first = tokens[0]?.[0] ?? "";
+    const last = tokens.length > 1 ? tokens[tokens.length - 1]?.[0] ?? "" : "";
+    return (first + last).toUpperCase() || "?";
+  };
 
   const testimonials = [
     {
-      name: "Priya Sharma",
-      role: "AI Engineering, 2025",
-      quote: "NIET provided hands-on experience in ML and robotics. The industry connections helped me secure my dream internship at a leading AI firm.",
+      name: "Prabhakar Neupane",
+      role: "NIET Alumni · Google Review",
+      quote: "The one and only Biomedical Engineering College In Nepal. With excellency. QAA certified. Best college award by ministry of education for year 73/74. First-rate education is provided to all students. Equipped with excellent infrastructure and well-furnished classrooms. The college building has all the facilities required for smooth and well planned functioning of the courses. The first one among the very few in Asia to provide higher education in Biomedical Engineering for Bachelor level students.",
       gradient: "from-[#0d4e92] to-cyan-400",
     },
     {
-      name: "Rohan Thapa",
-      role: "Biomedical Engineering, 2024",
-      quote: "The state-of-the-art biomedical labs and research opportunities gave me the skills to innovate in healthcare technology. Best decision ever.",
+      name: "Babin Khanal",
+      role: "NIET Alumni · Google Review",
+      quote: "The one and only Biomedical Engineering College In Nepal with excellency. QAA certified. Best college award by ministry of education for year 73/74.",
       gradient: "from-purple-500 to-pink-400",
     },
     {
-      name: "Anjali Patel",
-      role: "Computer Engineering, 2025",
-      quote: "The faculty's real-world experience and personalized mentorship helped me land multiple job offers even before graduation. NIET changed my life.",
+      name: "Trisam Sapkota",
+      role: "NIET Alumni · Google Review",
+      quote: "One and only biomedical engineering college in nepal which is being improved day by day and heading towards excellency.",
       gradient: "from-emerald-500 to-teal-400",
     },
     {
-      name: "Sanjay Kumar",
-      role: "AI Engineering, 2024",
-      quote: "The AI lab facilities are world-class. I published my first research paper in my second year thanks to the support from NIET faculty.",
+      name: "Shiva - The Mahadeva",
+      role: "NIET Alumni · Google Review",
+      quote: "Only the college of Biomedical Engineering in Nepal.",
       gradient: "from-blue-500 to-indigo-400",
     },
     {
-      name: "Nikita Rai",
-      role: "Biomedical Engineering, 2025",
-      quote: "NIET's internship program connected me with top hospitals. I'm now working on designing next-gen diagnostic equipment.",
+      name: "Himal Pandey",
+      role: "NIET Alumni · Google Review",
+      quote: "Very precious college.",
       gradient: "from-rose-500 to-orange-400",
     },
     {
-      name: "Arjun Bhattarai",
-      role: "Computer Engineering, 2024",
-      quote: "The curriculum is perfectly aligned with industry needs. I started my own tech startup in final year with guidance from NIET mentors.",
+      name: "Anusha Thapa",
+      role: "NIET Alumni",
+      quote: "NIET didn’t just teach me engineering — it taught me how to learn fast, build with confidence, and lead with humility.",
       gradient: "from-violet-500 to-purple-400",
     },
     {
-      name: "Shreya Adhikari",
-      role: "AI Engineering, 2025",
-      quote: "From hackathons to research projects, NIET gave me countless opportunities to grow. Now I'm working on AI solutions for agriculture.",
+      name: "Ujjwal Sapkota",
+      role: "NIET Alumni",
+      quote: "From labs to late-night group projects, NIET shaped my problem‑solving mindset. The faculty support was a real game‑changer.",
       gradient: "from-cyan-500 to-blue-400",
     },
     {
-      name: "Bibek Shrestha",
-      role: "Biomedical Engineering, 2024",
-      quote: "The hands-on training in medical device design prepared me for real-world challenges. NIET's industry partnerships made all the difference.",
+      name: "Sushil Acharya",
+      role: "NIET Alumni",
+      quote: "A culture of curiosity, practical learning, and strong mentorship. I graduated with real projects, solid fundamentals, and friends for life.",
       gradient: "from-amber-500 to-yellow-400",
     },
     {
-      name: "Kritika Tamang",
-      role: "Computer Engineering, 2025",
-      quote: "Small class sizes meant personalized attention from professors. I mastered cloud computing and cybersecurity through NIET's excellent program.",
+      name: "Aadit Shrestha",
+      role: "NIET Alumni",
+      quote: "Hands‑on sessions and guidance helped me turn ideas into working prototypes. Proud to carry NIET’s learning into my career.",
       gradient: "from-pink-500 to-fuchsia-400",
     },
     {
-      name: "Manish Karki",
-      role: "AI Engineering, 2024",
-      quote: "NIET's focus on practical skills over theory helped me build a strong portfolio. Graduated with 3 job offers from top tech companies.",
+      name: "Ayush Neupane",
+      role: "NIET Alumni",
+      quote: "NIET gave me the platform to explore, fail safely, and grow. It prepared me for both industry expectations and higher studies.",
       gradient: "from-teal-500 to-green-400",
     },
   ];
@@ -81,6 +97,21 @@ export function CampusLifeSection() {
 
   const prevTestimonials = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleExpandedTestimonial = (index: number) => {
+    setExpandedTestimonialIndex((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -112,27 +143,52 @@ export function CampusLifeSection() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="relative aspect-[4/5] rounded-[2rem] overflow-hidden group"
+            className="relative aspect-[4/5] lg:aspect-[4/5] rounded-[2rem] overflow-hidden group"
           >
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1632834380561-d1e05839a33a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwc3R1ZGVudHMlMjBjYW1wdXN8ZW58MXx8fHwxNzYyNzkwOTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="NIET Campus Life"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            <video
+              ref={videoRef}
+              src="/video.mp4"
+              poster="/thumb.png"
+              className="w-full h-full object-cover"
+              loop
+              muted
+              playsInline
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
             />
+            
+            {/* Thumbnail Overlay - Shows when video is paused/not playing */}
+            {!isPlaying && (
+              <div className="absolute inset-0">
+                <ImageWithFallback
+                  src="/thumb.png"
+                  alt="Message from the Chairman"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 
-            {/* Play Button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl">
-                <Play className="h-8 w-8 text-[#0d4e92] ml-1" />
+            {/* Play/Pause Button - Positioned lower on mobile to avoid face */}
+            <div className="absolute inset-0 flex items-end justify-center pb-20 lg:items-center lg:justify-center lg:pb-0">
+              <button 
+                onClick={toggleVideo}
+                className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl z-10"
+              >
+                {isPlaying ? (
+                  <Pause className="h-6 w-6 lg:h-8 lg:w-8 text-[#0d4e92]" />
+                ) : (
+                  <Play className="h-6 w-6 lg:h-8 lg:w-8 text-[#0d4e92] ml-1" />
+                )}
               </button>
             </div>
 
-            {/* Floating Badge */}
-            <div className="absolute bottom-8 left-8 right-8">
-              <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/90 backdrop-blur-md">
-                <Award className="h-5 w-5 text-[#0d4e92]" />
-                <span className="text-gray-900">Best Campus Life 2025</span>
+            {/* Floating Badge - Smaller and repositioned on mobile */}
+            <div className="absolute bottom-4 left-4 right-4 lg:bottom-8 lg:left-8 lg:right-8 z-10">
+              <div className="flex items-center gap-2 lg:gap-3 px-3 py-2 lg:px-5 lg:py-3 rounded-xl lg:rounded-2xl bg-white/90 backdrop-blur-md">
+                <Award className="h-4 w-4 lg:h-5 lg:w-5 text-[#0d4e92] flex-shrink-0" />
+                <span className="text-gray-900 text-sm lg:text-base">Message from the Chairman</span>
               </div>
             </div>
           </motion.div>
@@ -177,7 +233,7 @@ export function CampusLifeSection() {
           className="mb-8"
         >
           <h3 className="text-3xl lg:text-4xl text-gray-900 mb-12 text-center">
-            What Our Students Say
+            What Our Alumni Say
           </h3>
         </motion.div>
 
@@ -193,32 +249,50 @@ export function CampusLifeSection() {
               className="flex transition-transform duration-500 ease-out gap-6"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
             >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="w-full lg:w-1/3 flex-shrink-0"
-                  style={{ minWidth: `calc((100% - ${(itemsPerView - 1) * 24}px) / ${itemsPerView})` }}
-                >
-                  <div className="relative p-8 rounded-[2rem] bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden h-full">
-                    {/* Gradient Overlay */}
-                    <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${testimonial.gradient} opacity-20 rounded-full blur-3xl`}></div>
+              {testimonials.map((testimonial, index) => {
+                const isExpanded = expandedTestimonialIndex === index;
+                return (
+                  <div
+                    key={index}
+                    className="w-full lg:w-1/3 flex-shrink-0"
+                    style={{ minWidth: `calc((100% - ${(itemsPerView - 1) * 24}px) / ${itemsPerView})` }}
+                  >
+                    <div className="relative p-8 rounded-[2rem] bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden h-full">
+                      {/* Gradient Overlay */}
+                      <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${testimonial.gradient} opacity-20 rounded-full blur-3xl`}></div>
 
-                    <div className="relative z-10">
-                      <Quote className="h-8 w-8 text-white/20 mb-4" />
-                      <p className="text-base text-white/90 mb-6 leading-relaxed min-h-[120px]">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient}`}></div>
-                        <div>
-                          <div className="text-white text-sm">{testimonial.name}</div>
-                          <div className="text-white/60 text-xs">{testimonial.role}</div>
+                      <div className="relative z-10">
+                        <Quote className="h-8 w-8 text-white/20 mb-4" />
+                        <p
+                          className={`text-base text-white/90 leading-relaxed ${isExpanded ? "max-h-48 overflow-auto pr-2" : "line-clamp-3"}`}
+                        >
+                          "{testimonial.quote}"
+                        </p>
+                        {testimonial.quote.length > 140 && (
+                          <button
+                            type="button"
+                            onClick={() => toggleExpandedTestimonial(index)}
+                            className="mt-3 mb-6 text-sm text-white/70 hover:text-white underline underline-offset-4 transition-colors"
+                          >
+                            {isExpanded ? "See less" : "See more"}
+                          </button>
+                        )}
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white text-xs font-semibold`}
+                          >
+                            {getInitials(testimonial.name)}
+                          </div>
+                          <div>
+                            <div className="text-white text-sm">{testimonial.name}</div>
+                            <div className="text-white/60 text-xs">{testimonial.role}</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

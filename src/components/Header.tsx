@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, GraduationCap } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { getAllPrograms } from "../data/programs";
+import { SHOW_FACULTY_AND_STAFF } from "../config/features";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -78,6 +79,7 @@ export function Header() {
 
   const navigation = [
     { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
     // { name: "Notice", href: "/notice" },
   ];
 
@@ -260,21 +262,25 @@ export function Header() {
               )}
             </div>
 
-            {/* Faculty and Staff */}
-            <div className="relative flex flex-col items-center pb-3">
-              <NavLink
-                to="/faculty-and-staff"
-                className={`px-5 py-2 rounded-full transition-all duration-200 ${pastHeroSection
-                  ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-                  }`}
-              >
-                Faculty and Staff
-              </NavLink>
-              {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
-              )}
-            </div>
+            {SHOW_FACULTY_AND_STAFF && (
+              <>
+                {/* Faculty and Staff */}
+                <div className="relative flex flex-col items-center pb-3">
+                  <NavLink
+                    to="/faculty-and-staff"
+                    className={`px-5 py-2 rounded-full transition-all duration-200 ${pastHeroSection
+                      ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                      }`}
+                  >
+                    Faculty and Staff
+                  </NavLink>
+                  {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -380,18 +386,22 @@ export function Header() {
                 </Link>
               </div>
 
-              {/* Mobile Faculty and Staff */}
-              <NavLink
-                to="/faculty-and-staff"
-                className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0d4e92] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) ? 'text-[#0d4e92] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
-                  }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Faculty and Staff
-                {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
-                  <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0d4e92] rounded-full shadow-sm"></span>
-                )}
-              </NavLink>
+              {SHOW_FACULTY_AND_STAFF && (
+                <>
+                  {/* Mobile Faculty and Staff */}
+                  <NavLink
+                    to="/faculty-and-staff"
+                    className={`relative transition-all duration-200 px-4 py-3 rounded-2xl text-gray-700 hover:text-[#0d4e92] hover:bg-gradient-to-r hover:from-cyan-50/80 hover:to-blue-50/60 ${(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) ? 'text-[#0d4e92] font-semibold bg-gradient-to-r from-cyan-50/60 to-blue-50/40' : ''
+                      }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Faculty and Staff
+                    {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
+                      <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#0d4e92] rounded-full shadow-sm"></span>
+                    )}
+                  </NavLink>
+                </>
+              )}
 
             </div>
           </div>

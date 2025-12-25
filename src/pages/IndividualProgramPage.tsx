@@ -12,6 +12,7 @@ import { getProgramBySlug, getAllPrograms, Program } from "../data/programs";
 import { getFacultyByDepartment, FacultyMember } from "../data/faculty";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { SHOW_FACULTY_AND_STAFF } from "../config/features";
 
 // Function to get appropriate icon for a course based on its name
 function getCourseIcon(courseName: string) {
@@ -105,7 +106,7 @@ export function IndividualProgramPage() {
                 { id: "fee-structure", ref: feeSectionRef },
                 { id: "degree-highlights", ref: degreeSectionRef },
                 ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
-                    { id: "faculty", ref: facultySectionRef },
+                    ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", ref: facultySectionRef }] : []),
                     { id: "labs-resources", ref: labsSectionRef },
                     { id: "internships", ref: internshipsSectionRef },
                 ] : []),
@@ -615,7 +616,7 @@ export function IndividualProgramPage() {
                                 { id: "fee-structure", label: "Fee", icon: DollarSign },
                                 { id: "degree-highlights", label: "Highlights", icon: Award },
                                 ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
-                                    { id: "faculty", label: "Faculty", icon: UserCircle },
+                                    ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", label: "Faculty", icon: UserCircle }] : []),
                                     { id: "labs-resources", label: "Labs", icon: FlaskConical },
                                     { id: "internships", label: "Internships", icon: Briefcase },
                                 ] : []),
@@ -661,7 +662,7 @@ export function IndividualProgramPage() {
                                             { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
                                             { id: "degree-highlights", label: "Highlights & Careers", icon: Award },
                                             ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
-                                                { id: "faculty", label: "Faculty", icon: UserCircle },
+                                                ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", label: "Faculty", icon: UserCircle }] : []),
                                                 { id: "labs-resources", label: "Labs & Resources", icon: FlaskConical },
                                                 { id: "internships", label: "Internships", icon: Briefcase },
                                             ] : []),
