@@ -86,5 +86,9 @@ vite.config.ts.timestamp-*
 # TypeScript
 *.tsbuildinfo
 
+# Heavy Assets
+public/videos/*.mov
+public/videos/*.mp4.bak
+
 
 

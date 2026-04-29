@@ -62,7 +62,6 @@ export function IndividualProgramPage() {
     const scrollToSection = useCallback((sectionId: string) => {
         const refs: { [key: string]: React.RefObject<HTMLDivElement> } = {
             overview: overviewSectionRef,
-            "fee-structure": feeSectionRef,
             "degree-highlights": degreeSectionRef,
             faculty: facultySectionRef,
             "labs-resources": labsSectionRef,
@@ -103,7 +102,6 @@ export function IndividualProgramPage() {
         const handleScroll = () => {
             const sections = [
                 { id: "overview", ref: overviewSectionRef },
-                { id: "fee-structure", ref: feeSectionRef },
                 { id: "degree-highlights", ref: degreeSectionRef },
                 ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
                     ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", ref: facultySectionRef }] : []),
@@ -135,28 +133,7 @@ export function IndividualProgramPage() {
     }
 
     const Icon = program.icon;
-    // Calculate total fee: for programs with discount, exclude security deposit from total
-    // For discounted programs, total is sum of discounted semester fees only (875,000)
-    // For non-discounted programs, total includes everything (1,370,000)
-    const totalFee = program.feeStructure.reduce((sum, fee) => {
-        if (program.discountInfo?.semesterFeeDiscount) {
-            // For discounted programs, only sum the discounted semester fees
-            const discountedSem1 = Math.round(fee.semester1Fee * (1 - program.discountInfo.semesterFeeDiscount / 100));
-            const discountedSem2 = Math.round(fee.semester2Fee * (1 - program.discountInfo.semesterFeeDiscount / 100));
-            return sum + discountedSem1 + discountedSem2;
-        } else {
-            // For non-discounted programs, include everything
-            return sum + fee.grandTotal;
-        }
-    }, 0);
 
-    // Calculate total discount amount
-    const totalDiscount = program.discountInfo?.semesterFeeDiscount
-        ? program.feeStructure.reduce((sum, fee) => {
-            const discount = Math.round((fee.semester1Fee + fee.semester2Fee) * (program.discountInfo!.semesterFeeDiscount! / 100));
-            return sum + discount;
-        }, 0)
-        : 0;
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     // Handle back to top button visibility
@@ -171,7 +148,6 @@ export function IndividualProgramPage() {
     // Refs for animations
     const heroRef = useRef(null);
     const overviewSectionRef = useRef(null);
-    const feeSectionRef = useRef(null);
     const degreeSectionRef = useRef(null);
     const facultySectionRef = useRef(null);
     const labsSectionRef = useRef(null);
@@ -187,7 +163,6 @@ export function IndividualProgramPage() {
 
     const isHeroInView = useInView(heroRef, { once: true });
     const isOverviewInView = useInView(overviewSectionRef, { once: true, margin: "-100px" });
-    const isFeeInView = useInView(feeSectionRef, { once: true, margin: "-100px" });
     const isDegreeInView = useInView(degreeSectionRef, { once: true, margin: "-100px" });
     const isFacultyInView = useInView(facultySectionRef, { once: true, margin: "-100px" });
     const isLabsInView = useInView(labsSectionRef, { once: true, margin: "-100px" });
@@ -451,16 +426,7 @@ export function IndividualProgramPage() {
                                         Download Brochure
                                     </Button>
                                 </a>
-                                <Button
-                                    size="default"
-                                    variant="outline"
-                                    className="bg-white/10 border-white text-white hover:bg-white/20 text-sm sm:text-base px-5 sm:px-6 h-10 sm:h-11 w-full sm:w-auto"
-                                    onClick={() => scrollToSection("fee-structure")}
-                                    aria-label="View fee structure"
-                                >
-                                    <FileText className="mr-2 h-4 w-4" />
-                                    Fee Structure
-                                </Button>
+
                                 <a
                                     href="https://entrance.puexam.edu.np/studentlogin"
                                     target="_blank"
@@ -613,7 +579,6 @@ export function IndividualProgramPage() {
                         <nav className="flex gap-2" aria-label="Page navigation">
                             {[
                                 { id: "overview", label: "Overview", icon: BookOpen },
-                                { id: "fee-structure", label: "Fee", icon: DollarSign },
                                 { id: "degree-highlights", label: "Highlights", icon: Award },
                                 ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
                                     ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", label: "Faculty", icon: UserCircle }] : []),
@@ -659,7 +624,6 @@ export function IndividualProgramPage() {
                                     <div className="space-y-1.5 mb-6">
                                         {[
                                             { id: "overview", label: "Overview", icon: BookOpen },
-                                            { id: "fee-structure", label: "Fee Structure", icon: DollarSign },
                                             { id: "degree-highlights", label: "Highlights & Careers", icon: Award },
                                             ...(program && (program.id === "btech-ai" || program.id === "be-bme" || program.id === "be-computer") ? [
                                                 ...(SHOW_FACULTY_AND_STAFF ? [{ id: "faculty", label: "Faculty", icon: UserCircle }] : []),
@@ -704,16 +668,7 @@ export function IndividualProgramPage() {
                                                 Download Brochure
                                             </Button>
                                         </a>
-                                        <Button
-                                            size="default"
-                                            variant="outline"
-                                            className="bg-white border-gray-300 text-gray-700 hover:bg-gray-50 text-sm w-full shadow-sm"
-                                            onClick={() => scrollToSection("fee-structure")}
-                                            aria-label="View fee structure"
-                                        >
-                                            <FileText className="mr-2 h-4 w-4" />
-                                            Fee Structure
-                                        </Button>
+
                                         <a
                                             href="https://entrance.puexam.edu.np/studentlogin"
                                             target="_blank"
@@ -827,185 +782,7 @@ export function IndividualProgramPage() {
                                 </div>
                             </motion.section>
 
-                            {/* --- Fee Structure Section --- */}
-                            <motion.section
-                                ref={feeSectionRef}
-                                id="fee-structure"
-                                className="scroll-mt-28"
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={isFeeInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.7 }}
-                            >
-                                <div className="relative">
-                                    {/* Section Header */}
-                                    <div className="mb-6 sm:mb-8 lg:mb-10">
-                                        <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 mb-4 sm:mb-6">
-                                            <div className="p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500">
-                                                <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-                                            </div>
-                                            <span className="text-xs sm:text-sm font-semibold text-emerald-700 uppercase tracking-wider">Investment</span>
-                                        </div>
-                                        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">Fee Structure</h2>
-                                        <p className="text-base sm:text-lg text-gray-600 max-w-2xl">Transparent pricing for your educational journey</p>
-                                    </div>
 
-                                    {/* Fee Table Card */}
-                                    <div className="relative mt-6 sm:mt-8 rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-                                        {/* Scroll indicator - fade effect on right side */}
-                                        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-0 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 sm:hidden"></div>
-                                        
-                                        <div className="overflow-x-auto px-4 sm:px-0">
-                                            <div className="min-w-full inline-block">
-                                                <table className="w-full min-w-[600px] sm:min-w-full lg:table-fixed">
-                                                <colgroup>
-                                                    <col className="w-auto lg:w-[35%]" />
-                                                    {program.feeStructure.map((_, index) => (
-                                                        <col key={index} className="lg:w-[16.25%]" />
-                                                    ))}
-                                                </colgroup>
-                                                <thead>
-                                                    <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                                        <th scope="col" className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-5 text-left font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">Particulars</th>
-                                                        {program.feeStructure.map((fee, index) => (
-                                                            <th key={index} scope="col" className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-5 text-center font-semibold text-gray-900 uppercase tracking-wide text-xs sm:text-sm">
-                                                                {fee.year}
-                                                            </th>
-                                                        ))}
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">
-                                                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 lg:gap-2">
-                                                                <span className="whitespace-nowrap">Admission Fee</span>
-                                                                {program.discountInfo?.admissionFeeWaiver && (
-                                                                    <div className="text-[10px] sm:text-xs font-semibold text-red-800">
-                                                                        {(() => {
-                                                                            const text = program.discountInfo.note || "100% waiver in Admission Fee for this Batch";
-                                                                            return text.split(' ').map((word, i, arr) => {
-                                                                                if (word === 'in' || word === 'for') {
-                                                                                    return <React.Fragment key={i}>{word}<br /></React.Fragment>;
-                                                                                }
-                                                                                return i < arr.length - 1 ? <React.Fragment key={i}>{word} </React.Fragment> : <React.Fragment key={i}>{word}</React.Fragment>;
-                                                                            });
-                                                                        })()}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        </td>
-                                                        {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
-                                                                {fee.admissionFee > 0 ? `NPR ${fee.admissionFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                            </td>
-                                                        ))}
-                                                    </tr>
-                                                    {program.discountInfo?.semesterFeeDiscount && (
-                                                        <tr className="border-b border-gray-200 bg-blue-50/50">
-                                                            <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">
-                                                                <span>Discount<br />({program.discountInfo.semesterFeeDiscount}% on Semester Fee)</span>
-                                                            </td>
-                                                            {program.feeStructure.map((fee, index) => {
-                                                                const discount = Math.round((fee.semester1Fee + fee.semester2Fee) * (program.discountInfo!.semesterFeeDiscount! / 100));
-                                                                return (
-                                                                    <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-green-700 text-xs sm:text-sm lg:text-sm font-semibold">
-                                                                        -NPR {discount.toLocaleString()}
-                                                                    </td>
-                                                                );
-                                                            })}
-                                                        </tr>
-                                                    )}
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Semester 1 Fee</td>
-                                                        {program.feeStructure.map((fee, index) => {
-                                                            const discountedFee = program.discountInfo?.semesterFeeDiscount
-                                                                ? Math.round(fee.semester1Fee * (1 - program.discountInfo.semesterFeeDiscount / 100))
-                                                                : fee.semester1Fee;
-                                                            return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
-                                                                    NPR {discountedFee.toLocaleString()}
-                                                                </td>
-                                                            );
-                                                        })}
-                                                    </tr>
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Semester 2 Fee</td>
-                                                        {program.feeStructure.map((fee, index) => {
-                                                            const discountedFee = program.discountInfo?.semesterFeeDiscount
-                                                                ? Math.round(fee.semester2Fee * (1 - program.discountInfo.semesterFeeDiscount / 100))
-                                                                : fee.semester2Fee;
-                                                            return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
-                                                                    NPR {discountedFee.toLocaleString()}
-                                                                </td>
-                                                            );
-                                                        })}
-                                                    </tr>
-                                                    <tr className="border-b border-gray-200">
-                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-medium text-gray-900 text-xs sm:text-sm lg:text-sm">Security Deposit</td>
-                                                        {program.feeStructure.map((fee, index) => (
-                                                            <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center text-gray-700 text-xs sm:text-sm lg:text-sm">
-                                                                {fee.universityRegFee > 0 ? `NPR ${fee.universityRegFee.toLocaleString()}` : <span className="text-gray-400">-</span>}
-                                                            </td>
-                                                        ))}
-                                                    </tr>
-                                                    <tr className="bg-gray-50 border-t-2 border-gray-300">
-                                                        <td className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 lg:py-4 whitespace-nowrap font-bold text-gray-900 text-sm sm:text-base lg:text-base">Grand Total</td>
-                                                        {program.feeStructure.map((fee, index) => {
-                                                            let grandTotal;
-                                                            if (program.discountInfo?.semesterFeeDiscount) {
-                                                                // For discounted programs, grand total is only discounted semester fees
-                                                                const discountedSem1 = Math.round(fee.semester1Fee * (1 - program.discountInfo.semesterFeeDiscount / 100));
-                                                                const discountedSem2 = Math.round(fee.semester2Fee * (1 - program.discountInfo.semesterFeeDiscount / 100));
-                                                                grandTotal = discountedSem1 + discountedSem2;
-                                                            } else {
-                                                                // For non-discounted programs, include everything
-                                                                grandTotal = fee.total;
-                                                            }
-                                                            return (
-                                                                <td key={index} className="px-3 sm:px-4 lg:px-4 py-3 sm:py-4 lg:py-4 whitespace-nowrap text-center font-bold text-gray-900 text-sm sm:text-base lg:text-base">
-                                                                    NPR {grandTotal.toLocaleString()}
-                                                                </td>
-                                                            );
-                                                        })}
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            </div>
-                                        </div>
-                                        
-                                        {/* Mobile scroll hint */}
-                                        <div className="sm:hidden px-4 py-2 text-center text-xs text-gray-500 bg-gray-50 border-t border-gray-200">
-                                            <span className="inline-flex items-center gap-1">
-                                                <span>←</span> Scroll horizontally to view all columns
-                                                <span>→</span>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Total Program Amount */}
-                                    <div className="mt-6 sm:mt-8 p-4 sm:p-6 lg:p-8 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl border border-gray-200 shadow-lg">
-                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
-                                            <span className="text-base sm:text-lg font-semibold text-gray-700">Total Program Amount:</span>
-                                            <span className="text-xl sm:text-2xl font-bold text-gray-900">NPR {totalFee.toLocaleString()}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Note Card */}
-                                    <div className="mt-6 sm:mt-8 p-4 sm:p-6 lg:p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl sm:rounded-2xl border border-blue-200 shadow-lg">
-                                        <div className="flex items-start gap-3">
-                                            <div className="p-2 rounded-lg bg-blue-500 flex-shrink-0">
-                                                <FileText className="h-5 w-5 text-white" />
-                                            </div>
-                                            <div>
-                                                <p className="text-blue-900 font-semibold mb-1">Important Note</p>
-                                                <p className="text-blue-800 text-base leading-relaxed">
-                                                    Admission Fee and Security Deposit apply only to the first year. Fees are subject to change. Please contact admissions for the most current details.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.section>
 
                             {/* --- Career Highlights & Opportunities Section --- */}
                             <motion.section
@@ -1752,28 +1529,7 @@ export function IndividualProgramPage() {
                                                         </AccordionItem>
                                                     )}
 
-                                                    <AccordionItem value="faq-2" className="border-0">
-                                                        <div className="bg-white rounded-lg">
-                                                            <AccordionTrigger className="flex w-full items-center justify-between gap-2 sm:gap-3 lg:gap-5 p-3 sm:p-4 lg:p-6 text-left hover:no-underline">
-                                                                <span className="text-sm sm:text-base font-semibold text-gray-900 flex-1 min-w-0 pr-2 sm:pr-3 lg:pr-5">
-                                                                    What are the program fees?
-                                                                </span>
-                                                                <div className="flex-shrink-0">
-                                                                    <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100">
-                                                                        <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
-                                                                    </div>
-                                                                </div>
-                                                            </AccordionTrigger>
-                                                            <AccordionContent className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 pt-0">
-                                                                <div className="pt-3 sm:pt-4 lg:pt-6">
-                                                                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                                                                        The total program fee is <strong className="font-bold text-gray-900">NPR {totalFee.toLocaleString()}</strong>. This includes all fees across all years.
-                                                                        Please refer to the detailed fee structure above for a year-by-year breakdown.
-                                                                    </p>
-                                                                </div>
-                                                            </AccordionContent>
-                                                        </div>
-                                                    </AccordionItem>
+
 
                                                     <AccordionItem value="faq-3" className="border-0">
                                                         <div className="bg-white rounded-lg">

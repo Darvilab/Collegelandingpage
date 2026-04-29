@@ -61,11 +61,11 @@ export function AboutPage() {
     <div className="min-h-screen bg-white">
       <Helmet>
         <title>About NIET - National Institute of Engineering and Technology | Pioneering Engineering Education Since 2005</title>
-        <meta name="description" content="Learn about NIET (National Institute of Engineering and Technology), Nepal's premier engineering institute. Established in 2005, we offer BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Affiliated with Purbanchal University." />
+        <meta name="description" content="Learn about NIET (National Institute of Engineering and Technology), a premier engineering institute. Established in 2005, we offer BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Affiliated with Purbanchal University." />
         <meta name="keywords" content="About NIET, National Institute of Engineering and Technology, Engineering College Nepal, NIET History, Engineering Education Nepal, Purbanchal University, Biomedical Engineering College, AI Engineering Nepal" />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content="About NIET - National Institute of Engineering and Technology" />
-        <meta property="og:description" content="NIET is Nepal's premier engineering institute, pioneering engineering education since 2005. Offering cutting-edge programs in AI, Biomedical Engineering, and Computer Engineering." />
+        <meta property="og:description" content="NIET is a premier engineering institute, pioneering engineering education since 2005. Offering cutting-edge programs in AI, Biomedical Engineering, and Computer Engineering." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -129,7 +129,7 @@ export function AboutPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl leading-relaxed"
             >
-              NIET (National Institute of Engineering and Technology) is Nepal's premier institute for Biomedical Engineering, now expanding into AI and Computer Engineering to shape the future of technology and healthcare.
+              NIET (National Institute of Engineering and Technology) is a premier institute for Biomedical Engineering, now expanding into AI and Computer Engineering to shape the future of technology and healthcare.
             </motion.p>
 
             {/* Program Badges */}

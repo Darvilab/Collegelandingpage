@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "./styles/globals.css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Base font - Roboto for all text */
 body {
   font-family: "Roboto", sans-serif;

@@ -65,7 +65,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl leading-relaxed"
           >
-            National Institue of Engineering and Technology. Nepal's first UGC-QAA certified engineering college. Master AI, Biomedical & Computer Engineering with industry-aligned curriculum, expert faculty, and proven track record of global placements.
+            National Institute of Engineering and Technology. The first UGC-QAA certified engineering college. Master AI, Biomedical & Computer Engineering with industry-aligned curriculum, expert faculty, and proven track record of global placements.
           </motion.p>
 
           {/* CTAs */}
@@ -73,25 +73,27 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-start gap-4 mb-16"
+            className="grid grid-cols-2 sm:flex sm:flex-row items-center gap-3 sm:gap-4 mb-16"
           >
             <Button
               size="lg"
-              className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"
+              className="w-full sm:w-auto rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-lg px-4 sm:px-8 h-12 sm:h-14 group"
             >
               Apply for 2026
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button
-              size="lg"
-              className="rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-lg px-8 h-14 transition-all"
-            >
-              Campus Tour
-            </Button>
+            <a href="#campus-life" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full rounded-full bg-white/20 backdrop-blur-md border-2 border-white text-white hover:bg-white/30 text-sm sm:text-lg px-4 sm:px-8 h-12 sm:h-14 transition-all"
+              >
+                Campus Tour
+              </Button>
+            </a>
             <a
               href="/NEIT Prospectus.pdf"
               download="NEIT Prospectus.pdf"
-              className="inline-flex items-center justify-center"
+              className="hidden sm:inline-flex items-center justify-center"
             >
               <Button
                 size="lg"
@@ -108,12 +110,12 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-wrap gap-8 lg:gap-12"
+            className="grid grid-cols-2 md:flex md:flex-row gap-x-8 gap-y-6 md:gap-12"
           >
             {stats.map((stat, index) => (
               <div key={index} className="flex flex-col">
-                <div className="text-4xl lg:text-5xl text-white mb-1">{stat.value}</div>
-                <div className="text-blue-200 text-sm uppercase tracking-wider">{stat.label}</div>
+                <div className="text-3xl md:text-5xl text-white mb-1 font-bold">{stat.value}</div>
+                <div className="text-blue-200 text-[10px] md:text-sm uppercase tracking-widest font-medium">{stat.label}</div>
               </div>
             ))}
           </motion.div>

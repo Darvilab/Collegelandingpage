@@ -17,10 +17,7 @@ export function FAQSection() {
       question: "What are the admission requirements for NIET?",
       answer: "Applicants must have completed 10+2 or equivalent with Physics, Chemistry, and Mathematics. A minimum aggregate of 50% is required. Students must also pass the NIET entrance examination and interview.",
     },
-    {
-      question: "What is the fee structure?",
-      answer: "The annual tuition fee varies by program. BTech programs range from NPR 350,000 to NPR 450,000 per year. This includes lab fees, library access, and student facilities. Scholarship opportunities are available for meritorious students.",
-    },
+
     {
       question: "What is NIET's placement record?",
       answer: "NIET maintains a 95% placement rate with an average starting package of NPR 600,000 per annum. Our students are recruited by leading companies in Nepal and abroad, including tech giants, healthcare companies, and startups.",

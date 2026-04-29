@@ -16,7 +16,7 @@ export function ProgramsSection() {
     <section id="programs" ref={ref} className="py-20 lg:py-32 bg-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 to-cyan-50 rounded-full blur-3xl opacity-50"></div>
-      
+
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -37,7 +37,7 @@ export function ProgramsSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl">
-            Three cutting-edge programs designed to shape the future of technology and innovation.
+            Four cutting-edge programs designed to shape the future of technology and innovation.
           </p>
         </motion.div>
 
@@ -64,7 +64,7 @@ export function ProgramsSection() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className={`absolute inset-0 bg-gradient-to-br ${program.gradient} opacity-40 group-hover:opacity-30 transition-opacity`}></div>
-                      
+
                       {/* Floating Icon */}
                       <div className="absolute top-6 right-6">
                         <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center">
@@ -90,8 +90,8 @@ export function ProgramsSection() {
                           </span>
                         )}
                       </div>
-                      <p className="text-gray-600 mb-6 leading-relaxed">{program.overview}</p>
-                      
+                      <p className="text-gray-600 mb-6 leading-relaxed hidden md:block">{program.overview}</p>
+
                       <Button
                         variant="ghost"
                         className="text-[#0d4e92] hover:text-blue-700 hover:bg-blue-50 p-0 group/btn h-auto"

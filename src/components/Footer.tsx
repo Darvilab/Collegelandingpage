@@ -60,7 +60,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Nepal's premier institute for AI, Biomedical, and Computer Engineering education.
+              The premier institute for AI, Biomedical, and Computer Engineering education.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => {
@@ -111,18 +111,10 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-center items-center gap-4 text-center">
           <p className="text-gray-500">
-            © 2025 Nepal Institute of Engineering & Technology. All rights reserved.
+            © 2025 National Institute of Engineering & Technology. All rights reserved.
           </p>
-          <div className="flex gap-8">
-            <a href="#" className="text-gray-500 hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-500 hover:text-white transition-colors">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>

@@ -30,10 +30,12 @@ export function FinalCTASection() {
               Engineering Journey?
             </span>
           </h2>
-          <p className="text-xl lg:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Join 500+ students building the future of technology.
+          <p className="text-xl lg:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Invest in a <span className="text-cyan-400 font-semibold">specialized niche monopoly</span> with a 19-year legacy.
             <br />
-            Applications for 2026 admission are now open.
+            Seats available: <span className="text-cyan-400 font-semibold">48</span> (AI/Computer/BIT) and <span className="text-cyan-400 font-semibold">144</span> (BME).
+            <br />
+            Join the only engineering institute in Nepal with a <span className="text-white underline decoration-cyan-400 underline-offset-4">zero unemployment track record</span>.
           </p>
 
           {/* CTA Buttons */}

@@ -272,15 +272,7 @@ export function AcademicProgramsPage() {
                             Download Brochure
                           </Button>
                         </a>
-                        <Link to={`/academics/${program.slug}#fee-structure`}>
-                          <Button
-                            variant="outline"
-                            className="border-gray-300 hover:bg-gray-50"
-                          >
-                            <FileText className="mr-2 h-4 w-4" />
-                            Fee Structure
-                          </Button>
-                        </Link>
+
                       </div>
                     </div>
                   </div>

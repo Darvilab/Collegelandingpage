@@ -51,13 +51,13 @@ export function AdmissionProcessSection() {
             <br />
             <span className="text-cyan-300">Starts Here</span>
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto hidden md:block">
             Four simple steps to transform into a world-class engineer.
           </p>
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -69,18 +69,18 @@ export function AdmissionProcessSection() {
                 className="relative group"
               >
                 {/* Step Number */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center z-10">
-                  <span className="text-2xl text-white/60">{(index + 1).toString().padStart(2, '0')}</span>
+                <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center z-10">
+                  <span className="text-sm sm:text-2xl text-white/60">{(index + 1).toString().padStart(2, '0')}</span>
                 </div>
-
+ 
                 {/* Card */}
-                <div className="relative p-8 rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all h-full">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <Icon className="h-8 w-8 text-blue-600" />
+                <div className="relative p-4 sm:p-8 rounded-2xl sm:rounded-[2rem] bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all h-full flex flex-col items-center text-center lg:items-start lg:text-left">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
                   </div>
                   
-                  <h3 className="text-xl text-white mb-3">{step.title}</h3>
-                  <p className="text-blue-100">{step.description}</p>
+                  <h3 className="text-base sm:text-xl text-white mb-2 sm:mb-3">{step.title}</h3>
+                  <p className="text-blue-100 hidden md:block">{step.description}</p>
                 </div>
 
                 {/* Arrow Connector (Desktop) */}

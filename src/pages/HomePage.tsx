@@ -18,11 +18,11 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
-        <title>NIET - National Institute of Engineering and Technology | Engineering Programs in Nepal</title>
+        <title>NIET - National Institute of Engineering and Technology</title>
         <meta name="description" content="NIET (National Institute of Engineering and Technology) offers cutting-edge engineering programs including BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Affiliated with Purbanchal University. Apply for admissions 2026." />
         <meta name="keywords" content="NIET, National Institute of Engineering and Technology, Engineering College Nepal, BTech AI, Biomedical Engineering Nepal, Computer Engineering, Purbanchal University, Engineering Programs Nepal, Engineering Admission 2026" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="NIET - National Institute of Engineering and Technology | Engineering Programs in Nepal" />
+        <meta property="og:title" content="NIET - National Institute of Engineering and Technology" />
         <meta property="og:description" content="NIET offers cutting-edge engineering programs including BTech in AI, BE in Biomedical Engineering, and BE in Computer Engineering. Affiliated with Purbanchal University." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
