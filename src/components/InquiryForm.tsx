@@ -88,23 +88,36 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ onClose }) => {
     e.preventDefault();
     
     const form = e.target as HTMLFormElement;
-    const body = new FormData(form);
+    const formDataObj = new FormData(form);
+    // Ensure all state-managed fields are included correctly
+    formDataObj.set('form-name', 'inquiry');
+    formDataObj.set('ref-id', formRefId);
+    formDataObj.set('programs', formData.programs.join(', '));
+    formDataObj.set('fullName', formData.fullName);
+    formDataObj.set('dob', formData.dob);
     
-    body.append('programs', formData.programs.join(', '));
-    body.append('fullName', formData.fullName);
-    body.append('dob', formData.dob);
+    // Academic fields are already in formDataObj via FormData(form) if they have names,
+    // but we ensure the state-managed values are synced.
+    Object.entries(formData.academic).forEach(([key, val]) => {
+      formDataObj.set(key, val as string);
+    });
 
     try {
-      await fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(body as any).toString(),
+        body: new URLSearchParams(formDataObj as any).toString(),
       });
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      if (response.ok) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error(`Server responded with ${response.status}`);
+      }
     } catch (error) {
       console.error("Submission failed", error);
-      alert("Submission failed. Please try again.");
+      alert("Submission failed. Please try again or contact us directly at info@niet.edu.np");
     }
   };
 
@@ -139,6 +152,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ onClose }) => {
         ) : (
           <form className="form-card" name="inquiry" method="POST" data-netlify="true" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="inquiry" />
+            <input type="hidden" name="bot-field" />
             <input type="hidden" name="ref-id" value={formRefId} />
             
             <header className="masthead">
@@ -292,17 +306,17 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ onClose }) => {
                   <tbody>
                     <tr>
                       <td className="cert">SEE or Equivalent</td>
-                      <td><input type="text" name="see-inst" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, seeInst: e.target.value } })} /></td>
-                      <td><input type="text" name="see-board" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, seeBoard: e.target.value } })} /></td>
-                      <td><input type="text" name="see-year" maxLength={4} onChange={e => setFormData({ ...formData, academic: { ...formData.academic, seeYear: e.target.value } })} /></td>
-                      <td><input type="text" name="see-grade" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, seeGrade: e.target.value } })} /></td>
+                      <td><input type="text" name="see-inst" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'see-inst': e.target.value } })} /></td>
+                      <td><input type="text" name="see-board" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'see-board': e.target.value } })} /></td>
+                      <td><input type="text" name="see-year" maxLength={4} onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'see-year': e.target.value } })} /></td>
+                      <td><input type="text" name="see-grade" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'see-grade': e.target.value } })} /></td>
                     </tr>
                     <tr>
                       <td className="cert">+2 / Higher Secondary</td>
-                      <td><input type="text" name="plus2-inst" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, plus2Inst: e.target.value } })} /></td>
-                      <td><input type="text" name="plus2-board" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, plus2Board: e.target.value } })} /></td>
-                      <td><input type="text" name="plus2-year" maxLength={4} onChange={e => setFormData({ ...formData, academic: { ...formData.academic, plus2Year: e.target.value } })} /></td>
-                      <td><input type="text" name="plus2-grade" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, plus2Grade: e.target.value } })} /></td>
+                      <td><input type="text" name="plus2-inst" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'plus2-inst': e.target.value } })} /></td>
+                      <td><input type="text" name="plus2-board" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'plus2-board': e.target.value } })} /></td>
+                      <td><input type="text" name="plus2-year" maxLength={4} onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'plus2-year': e.target.value } })} /></td>
+                      <td><input type="text" name="plus2-grade" onChange={e => setFormData({ ...formData, academic: { ...formData.academic, 'plus2-grade': e.target.value } })} /></td>
                     </tr>
                   </tbody>
                 </table>
