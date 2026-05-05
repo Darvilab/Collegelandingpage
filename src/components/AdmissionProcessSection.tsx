@@ -101,15 +101,17 @@ export function AdmissionProcessSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <Button
-            size="lg"
-            className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl text-lg px-10 h-14 group"
-          >
-            Start Your Application
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center">
+            <Button
+              size="lg"
+              className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl text-lg px-10 h-14 group"
+            >
+              Start Your Application
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
           <p className="text-blue-100 mt-6 text-sm">
-            Applications for 2026 admission open • Early deadline: November 30, 2025
+            Applications for 2026 admission open
           </p>
         </motion.div>
       </div>

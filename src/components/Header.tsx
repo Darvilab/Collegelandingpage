@@ -20,24 +20,25 @@ export function Header() {
       setScrolled(window.scrollY > 20);
 
       // Text color only changes after scrolling past hero section
-      const heroSection = document.querySelector('section[class*="min-h-screen"]');
-      if (heroSection) {
+      if (heroSection && location.pathname !== '/apply') {
         const heroRect = heroSection.getBoundingClientRect();
         const heroHeight = heroRect.height;
         const scrollPosition = window.scrollY;
         // Change text color when scrolled past the hero section
         setPastHeroSection(scrollPosition > heroHeight - 100);
       } else {
-        // Fallback: if no hero section found (e.g., on other pages)
-        setPastHeroSection(window.scrollY > window.innerHeight - 100 || window.scrollY > 20);
+        // Fallback: if no hero section found (e.g., on other pages) or explicitly on /apply
+        setPastHeroSection(window.scrollY > 20 || location.pathname === '/apply');
       }
     };
 
     const checkInitialState = () => {
       // Always start with white text on pages with hero sections (dark background)
       const heroSection = document.querySelector('section[class*="min-h-screen"]');
-      if (heroSection) {
+      if (heroSection && location.pathname !== '/apply') {
         setPastHeroSection(false);
+      } else if (location.pathname === '/apply') {
+        setPastHeroSection(true);
       }
       handleScroll();
     };
@@ -120,7 +121,7 @@ export function Header() {
                     {item.name}
                   </NavLink>
                   {isActive && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
+                    <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)] ${pastHeroSection ? 'bg-[#0d4e92]' : 'bg-white'}`}></span>
                   )}
                 </div>
               );
@@ -142,7 +143,7 @@ export function Header() {
                 <ChevronDown className={`h-4 w-4 transition-all duration-300 ${academicsDropdownOpen ? 'rotate-180 text-cyan-400' : ''}`} />
               </button>
               {(location.pathname === '/academics' || location.pathname.startsWith('/academics')) && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
+                <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)] ${pastHeroSection ? 'bg-[#0d4e92]' : 'bg-white'}`}></span>
               )}
 
               {academicsDropdownOpen && (
@@ -277,7 +278,7 @@ export function Header() {
                     Faculty and Staff
                   </NavLink>
                   {(location.pathname === '/faculty-and-staff' || location.pathname.startsWith('/faculty-and-staff')) && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)]"></span>
+                    <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full z-10 shadow-[0_0_4px_1.5px_rgba(255,255,255,0.9)] ${pastHeroSection ? 'bg-[#0d4e92]' : 'bg-white'}`}></span>
                   )}
                 </div>
               </>

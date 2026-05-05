@@ -40,12 +40,7 @@ export function FinalCTASection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://entrance.puexam.edu.np/studentlogin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center"
-            >
+            <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center">
               <Button
                 size="lg"
                 className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl text-lg px-10 h-14 group"

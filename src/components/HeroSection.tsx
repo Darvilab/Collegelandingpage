@@ -75,13 +75,15 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid grid-cols-2 sm:flex sm:flex-row items-center gap-3 sm:gap-4 mb-16"
           >
-            <Button
-              size="lg"
-              className="w-full sm:w-auto rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-lg px-4 sm:px-8 h-12 sm:h-14 group"
-            >
-              Apply for 2026
-              <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <a href="/apply" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-sm sm:text-lg px-4 sm:px-8 h-12 sm:h-14 group"
+              >
+                Apply for 2026
+                <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
             <a href="#campus-life" className="w-full sm:w-auto">
               <Button
                 size="lg"

@@ -427,12 +427,7 @@ export function IndividualProgramPage() {
                                     </Button>
                                 </a>
 
-                                <a
-                                    href="https://entrance.puexam.edu.np/studentlogin"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center w-full sm:w-auto"
-                                >
+                                <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full sm:w-auto">
                                     <Button
                                         size="default"
                                         className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-7 h-10 sm:h-11 w-full sm:w-auto"
@@ -669,12 +664,7 @@ export function IndividualProgramPage() {
                                             </Button>
                                         </a>
 
-                                        <a
-                                            href="https://entrance.puexam.edu.np/studentlogin"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center w-full"
-                                        >
+                                        <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full">
                                             <Button
                                                 size="default"
                                                 className="bg-white text-[#0d4e92] hover:bg-blue-50 text-sm w-full border border-gray-200 shadow-sm"
@@ -1712,20 +1702,15 @@ export function IndividualProgramPage() {
                             Apply now for admissions 2026. Join us and shape your future in technology and innovation.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <a
-                                href="https://entrance.puexam.edu.np/studentlogin"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center w-full sm:w-auto"
-                            >
-                                <Button
-                                    size="lg"
-                                    className="bg-white text-[#0d4e92] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
-                                >
-                                    Apply Now
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
-                            </a>
+                                <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full sm:w-auto">
+                                    <Button
+                                        size="lg"
+                                        className="bg-white text-[#0d4e92] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 h-11 sm:h-12 w-full sm:w-auto"
+                                    >
+                                        Apply Now
+                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </a>
                             <a href="tel:+9779705320350">
                                 <Button
                                     size="lg"

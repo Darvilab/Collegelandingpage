@@ -330,12 +330,7 @@ export function AboutPage() {
               Join 500+ graduates who've shaped their careers at NIET. From Cambridge to Mayo Clinic, our alumni are making global impact. Start your BE or B.Tech journey in Biomedical Engineering, AI, or Computer Engineering today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://entrance.puexam.edu.np/studentlogin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center"
-              >
+              <a href="/apply" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center">
                 <Button
                   size="lg"
                   className="rounded-full bg-white text-[#0d4e92] hover:bg-blue-50 shadow-2xl hover:shadow-white/20 text-lg px-8 h-14 group"

@@ -7,6 +7,7 @@ import { IndividualProgramPage } from "./pages/IndividualProgramPage";
 import { FacultyListingPage } from "./pages/FacultyListingPage";
 import { IndividualFacultyPage } from "./pages/IndividualFacultyPage";
 import { ContactPage } from "./pages/ContactPage";
+import { InquiryPage } from "./pages/InquiryPage";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { ScrollToTopOnRouteChange } from "./components/ScrollToTopOnRouteChange";
 import { WhatsAppFloatButton } from "./components/WhatsAppFloatButton";
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/faculty-and-staff" element={<FacultyListingPage />} />
           <Route path="/faculty-and-staff/:slug" element={<IndividualFacultyPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/apply" element={<InquiryPage />} />
         </Routes>
         <ScrollToTop />
         <WhatsAppFloatButton />

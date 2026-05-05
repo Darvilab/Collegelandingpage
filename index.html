@@ -14,6 +14,30 @@
 
     <body>
       <div id="root"></div>
+      
+      <!-- Hidden form for Netlify Bot detection -->
+      <form name="inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="text" name="fullName" />
+        <input type="email" name="email" />
+        <input type="text" name="contact" />
+        <input type="text" name="dob" />
+        <input type="text" name="gender" />
+        <input type="text" name="nationality" />
+        <input type="text" name="addrTemp" />
+        <input type="text" name="addrPerm" />
+        <input type="text" name="parentName" />
+        <input type="text" name="parentContact" />
+        <textarea name="programs"></textarea>
+        <input type="text" name="see-inst" />
+        <input type="text" name="see-board" />
+        <input type="text" name="see-year" />
+        <input type="text" name="see-grade" />
+        <input type="text" name="plus2-inst" />
+        <input type="text" name="plus2-board" />
+        <input type="text" name="plus2-year" />
+        <input type="text" name="plus2-grade" />
+      </form>
+
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
