@@ -20,6 +20,7 @@ export function Header() {
       setScrolled(window.scrollY > 20);
 
       // Text color only changes after scrolling past hero section
+      const heroSection = document.querySelector('section[class*="min-h-screen"]');
       if (heroSection && location.pathname !== '/apply') {
         const heroRect = heroSection.getBoundingClientRect();
         const heroHeight = heroRect.height;
