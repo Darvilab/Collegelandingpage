@@ -438,6 +438,30 @@ export function IndividualProgramPage() {
                                     </Button>
                                 </a>
                             </div>
+
+                            {/* Presentation Link for B.Tech AI */}
+                            {program.id === "btech-ai" && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ duration: 0.5, delay: 0.8 }}
+                                    className="mt-4 flex flex-col items-start"
+                                >
+                                    <a 
+                                        href="/NIET_BTechAI_Presentation.html" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-1 py-1 text-cyan-400 hover:text-cyan-300 font-semibold text-sm sm:text-base group transition-all"
+                                        title="View Interactive Presentation"
+                                    >
+                                        <div className="p-1 rounded-md bg-cyan-400/10 group-hover:bg-cyan-400/20 transition-colors">
+                                            <Sparkles className="h-4 w-4" />
+                                        </div>
+                                        <span className="border-b border-cyan-400/30 group-hover:border-cyan-400/60 pb-0.5">Explore Interactive Program Deck</span>
+                                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+                                    </a>
+                                </motion.div>
+                            )}
                         </motion.div>
                     </div>
 
@@ -1721,6 +1745,22 @@ export function IndividualProgramPage() {
                                 </Button>
                             </a>
                         </div>
+                        
+                        {/* Presentation Link for B.Tech AI (Bottom CTA) */}
+                        {program.id === "btech-ai" && (
+                            <div className="mt-8 flex justify-center">
+                                <a 
+                                    href="/NIET_BTechAI_Presentation.html" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-cyan-300 hover:text-cyan-200 font-medium text-base group transition-all"
+                                >
+                                    <Sparkles className="h-5 w-5" />
+                                    <span>View Interactive Program Deck</span>
+                                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1.5 transition-transform" />
+                                </a>
+                            </div>
+                        )}
                     </motion.div>
                 </div>
             </section>
